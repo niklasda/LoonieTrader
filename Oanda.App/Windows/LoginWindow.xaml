@@ -1,0 +1,36 @@
+﻿<Window x:Class="Oanda.App.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
+        Title="Login" 
+        Height="350" 
+        Width="500"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="350"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="OandaTrader" Grid.Column="1" Margin="0,10,0,0" Grid.Row="0" FontSize="20" HorizontalAlignment="Center"/>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <TextBlock  Text="API Key (Sign up to Oanda, and generate it yourself)" Margin="3,0,0,0"  FontSize="12" />
+            <TextBox   Margin="0,0,0,0"  TextWrapping="Wrap" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" FontSize="16" BorderThickness="1" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Environment (For which the API key is valid)" Margin="3,0,0,0" FontSize="12" />
+            <ComboBox ItemsSource="{Binding AvailableEnvironemnts}" SelectedValue="{Binding SelectedEnvironment}" DisplayMemberPath="Key" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
+        </StackPanel>
+
+        <Button Content="_Use" Grid.Column="1" Grid.Row="3" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding LoginCommand}" IsDefault="True"/>
+    </Grid>
+</Window>
