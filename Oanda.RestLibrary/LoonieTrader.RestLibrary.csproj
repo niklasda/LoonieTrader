@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Oanda.RestLibrary</RootNamespace>
-    <AssemblyName>Oanda.RestLibrary</AssemblyName>
+    <AssemblyName>LoonieTrader.RestLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,7 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Controls;
+using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Oanda.App.Windows;
+using Oanda.RestLibrary.Responses;
 using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
 
 namespace Oanda.App.ViewModels
 {
@@ -10,6 +18,7 @@ namespace Oanda.App.ViewModels
         public MainViewModel()
         {
             AboutCommand = new RelayCommand(About);
+            TradeTicketCommand = new RelayCommand(TradeTicket);
 
             ////if (IsInDesignMode)
             ////{
@@ -19,6 +28,23 @@ namespace Oanda.App.ViewModels
             ////{
             ////    // Code runs "for real"
             ////}
+
+            if (IsInDesignMode)
+            {
+                var plotModel = new PlotModel {Title = "Sample 1", Subtitle = "Graph"};
+                plotModel.Axes.Add(new LinearAxis {Position = AxisPosition.Left, Minimum = -1, Maximum = 10});
+                plotModel.Series.Add(new LineSeries {LineStyle = LineStyle.Solid});
+
+                GraphData = plotModel;
+            }
+            else
+            {
+                 var plotModel = new PlotModel {Title = "Example Live", Subtitle = "Graph"};
+                plotModel.Axes.Add(new LinearAxis {Position = AxisPosition.Left, Minimum = -1, Maximum = 10});
+                plotModel.Series.Add(new LineSeries {LineStyle = LineStyle.Solid});
+
+                GraphData = plotModel;
+            }
         }
 
         private PlotModel _graphData;
@@ -38,9 +64,40 @@ namespace Oanda.App.ViewModels
 
         public RelayCommand AboutCommand { get; set; }
 
+        public RelayCommand TradeTicketCommand { get; set; }
+
+        public IList<ListViewItem> InstrumentList
+        {
+            get
+            {
+                return new[]
+                {
+                    new ListViewItem() {Content = "EURUSD",Background = Brushes.GreenYellow},
+                    new ListViewItem() {Content = "EUR_USD"},
+                    new ListViewItem() {Content = "EUR/USD"},
+                    new ListViewItem() {Content = "EUR.USD"},
+                    new ListViewItem() {Content = "Brent Crude Oil"}
+                };
+            }
+        }
+
+        public IList<Position> SomeDataTable
+        {
+            /*
+             * *  AutoMapper
+             * */
+            get { return new[] {new Position() {instrument = "EURUSD", pl = "1.22" }, }; }
+        }
+
         public void About()
         {
             AboutWindow mw = new AboutWindow();
+            mw.Show();
+        }
+
+        public void TradeTicket()
+        {
+            TradeTicketWindow mw = new TradeTicketWindow();
             mw.Show();
         }
     }

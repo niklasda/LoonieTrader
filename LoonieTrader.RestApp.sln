@@ -7,16 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20923E81
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.TestLibrary.Tests", "Oanda.TestLibrary.Tests\Oanda.TestLibrary.Tests.csproj", "{951C96BE-6C79-46CD-9530-292141951C86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.RestLibrary", "Oanda.RestLibrary\Oanda.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary", "Oanda.RestLibrary\LoonieTrader.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.TestApp", "Oanda.TestApp\Oanda.TestApp.csproj", "{67F3D19B-776C-45E0-90B7-3726E19D23CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "Oanda.TestApp\LoonieTrader.TestApp.csproj", "{67F3D19B-776C-45E0-90B7-3726E19D23CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2946475-3209-4CDF-BEFB-66C6C1A0E1C0}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.App", "Oanda.App\Oanda.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.App", "Oanda.App\LoonieTrader.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

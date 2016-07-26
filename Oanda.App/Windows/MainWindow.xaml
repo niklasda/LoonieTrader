@@ -29,7 +29,8 @@
             <MenuItem Header="_Help" >
                 <MenuItem Header="_About" Command="{Binding AboutCommand}" />
             </MenuItem>
-            <Button Content="Chart"></Button>
+            <Button Content="New Chart"></Button>
+            <Button Content="Trade Ticket" Command="{Binding TradeTicketCommand}"></Button>
         </Menu>
         <StatusBar Height="30"  DockPanel.Dock="Bottom">
             <MenuItem Header="yy">
@@ -46,7 +47,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Button Content="ölk"></Button>
+                <ListView ItemsSource="{Binding InstrumentList}" >
+                    <!--<ListBoxItem Content="EURUSD"/>
+                    <ListBoxItem Content="EUR_USD"/>
+                    <ListBoxItem Content="EUR/USD"/>
+                    <ListBoxItem Content="EUR.USD"/>
+                    <ListBoxItem Content="Brent Crude Oil"/>-->
+                </ListView>
             </Grid>
             <GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>
 
@@ -58,7 +65,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <DataGrid Grid.Row="0"   Margin="0" dgx:DataGridFilter.IsAutoFilterEnabled="True" />
+                <DataGrid Grid.Row="0"   Margin="0" dgx:DataGridFilter.IsAutoFilterEnabled="True" AutoGenerateColumns="True" ItemsSource="{Binding SomeDataTable}" />
                 <GridSplitter Grid.Row="1"  Height="3" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
 
                 <oxy:PlotView Grid.Row="2"  Model="{Binding GraphData}" BorderBrush="Black" BorderThickness="1" />
