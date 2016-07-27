@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using GalaSoft.MvvmLight;
@@ -86,19 +89,36 @@ namespace Oanda.App.ViewModels
             /*
              * *  AutoMapper
              * */
-            get { return new[] {new Position() {instrument = "EURUSD", pl = "1.22" }, }; }
+            get { return new[]
+            {
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new Position() {instrument = "EURUSD", pl = "1.22" },
+            }; }
         }
 
         public void About()
         {
-            AboutWindow mw = new AboutWindow();
-            mw.Show();
+            AboutWindow aw = new AboutWindow();
+            aw.Owner = Application.Current.MainWindow;
+            aw.ShowDialog();
+
         }
 
         public void TradeTicket()
         {
-            TradeTicketWindow mw = new TradeTicketWindow();
-            mw.Show();
+            TradeTicketWindow tw = new TradeTicketWindow();
+            tw.Show();
         }
     }
 }

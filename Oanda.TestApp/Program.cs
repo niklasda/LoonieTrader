@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
 using Oanda.RestLibrary.Configuration;
+using Oanda.RestLibrary.Interfaces;
 using Oanda.RestLibrary.Requester;
+using Oanda.TestApp.Locator;
 
 namespace Oanda.TespApp
 {
@@ -13,13 +15,16 @@ namespace Oanda.TespApp
 
             try
             {
+                var container = ServiceLocator.Initialize();
+                var ar = container.GetInstance<IOandaRequester>();
+
                 var cr = new ConfigurationReader();
                 var cfg = cr.ReadConfiguration();
 
-                Console.WindowHeight = 80;
-                Console.WindowWidth = 200;
+                ResizeWindow();
+                
 
-                var ar = new OandaRequester();
+                //    var ar = new OandaRequester();
                 Console.WriteLine(ar.GetAccounts());
                 Console.WriteLine(ar.GetAccountSummary());
                 Console.WriteLine(ar.GetPositions());
@@ -45,11 +50,26 @@ namespace Oanda.TespApp
 
                 Console.WriteLine(resp.ResponseUri);
                 Console.WriteLine("{0} ({1})", resp.StatusCode, (int)resp.StatusCode);
-                
+
                 Console.WriteLine(resp.Server);
             }
-           
+
             Console.ReadLine();
+        }
+
+        private static void ResizeWindow()
+        {
+            try
+            {
+                Console.WindowHeight = 80;
+                Console.WindowWidth = 200;
+                Console.BufferHeight = 80;
+                Console.BufferWidth = 200;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

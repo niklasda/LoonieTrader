@@ -1,4 +1,7 @@
-﻿using StructureMap;
+﻿using Oanda.RestLibrary.Configuration;
+using Oanda.RestLibrary.Interfaces;
+using Oanda.RestLibrary.Requester;
+using StructureMap;
 
 namespace Oanda.RestLibrary.Locator
 {
@@ -6,7 +9,12 @@ namespace Oanda.RestLibrary.Locator
     {
         public ServiceRegistry()
         {
-            //For<IWidget>().Use<AWidget>();
+            var cr = new ConfigurationReader();
+            var cfg = cr.ReadConfiguration();
+
+            ForSingletonOf<ISettings>().Use(cfg);
+            For<IOandaRequester>().Use<OandaRequester>();
+            For<IOandaRequesterLive>().Use<OandaRequesterLive>();
         }
     }
 }

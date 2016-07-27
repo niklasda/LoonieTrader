@@ -6,7 +6,7 @@
         Height="350" 
         Width="500"
         ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"></RowDefinition>
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="350"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="OandaTrader" Grid.Column="1" Margin="0,10,0,0" Grid.Row="0" FontSize="20" HorizontalAlignment="Center"/>
+        <TextBlock Text="LoonieTrader" Grid.Column="1" Margin="0,10,0,0" Grid.Row="0" FontSize="20" HorizontalAlignment="Center"/>
         
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
             <TextBlock  Text="API Key (Sign up to Oanda, and generate it yourself)" Margin="3,0,0,0"  FontSize="12" />

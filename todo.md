@@ -1,0 +1,1 @@
+﻿Currently initial config file is required

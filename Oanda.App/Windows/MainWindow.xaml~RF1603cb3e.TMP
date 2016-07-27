@@ -4,19 +4,16 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:dgx="urn:tom-englert.de/DataGridExtensions"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
-        Title="LoonieTrader"
+        Title="LoonieTrader" 
         ResizeMode="CanResizeWithGrip"
-        Height="700"
-        Width="900" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
-    <Window.InputBindings>
-        <KeyBinding Key="A" Modifiers="Control" Command="{Binding AboutCommand}"/>
-    </Window.InputBindings>
+        Height="600" 
+        Width="800" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <DockPanel DockPanel.LastChildFill="True">
         <Menu IsMainMenu="True" DockPanel.Dock="Top">
             <MenuItem Header="_File" >
-                <MenuItem Header="_Settings" ></MenuItem>
+                <MenuItem Header="_Settings" />
                 <Separator />
-                <MenuItem Header="E_xit" InputGestureText="Alt+F4"  />
+                <MenuItem Header="E_xit"  />
             </MenuItem>
             <MenuItem Header="_Edit" >
                 <MenuItem Command="ApplicationCommands.Paste"  />
@@ -32,7 +29,7 @@
             </MenuItem>
             <MenuItem Header="_Window" />
             <MenuItem Header="_Help" >
-                <MenuItem Header="_About" Command="{Binding AboutCommand}" InputGestureText="Ctrl+A"  ></MenuItem>
+                <MenuItem Header="_About" Command="{Binding AboutCommand}" />
             </MenuItem>
             <Button Content="New Chart"></Button>
             <Button Content="Trade Ticket" Command="{Binding TradeTicketCommand}"></Button>
@@ -64,18 +61,19 @@
 
 
             <Grid  Grid.Column="2">
-
+               
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TabControl Grid.Row="0" FlowDirection="RightToLeft">
-                    <TabItem Header="Account Information"/>
-                    <TabItem Header="Transaction History"/>
-                    <TabItem Header="Open Orders"/>
                     <TabItem Header="Open Positions" FlowDirection="LeftToRight">
-                        <DataGrid IsReadOnly="True"  Margin="0" dgx:DataGridFilter.IsAutoFilterEnabled="True" AutoGenerateColumns="True" ItemsSource="{Binding SomeDataTable}" />
+                    <DataGrid IsReadOnly="True"  Margin="0" dgx:DataGridFilter.IsAutoFilterEnabled="True" AutoGenerateColumns="True" ItemsSource="{Binding SomeDataTable}" />
+                    </TabItem>
+                    <TabItem Header="Open Orders">
+                    </TabItem>
+                    <TabItem Header="Transaction History">
                     </TabItem>
                 </TabControl>
                 <GridSplitter Grid.Row="1"  Height="3" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>

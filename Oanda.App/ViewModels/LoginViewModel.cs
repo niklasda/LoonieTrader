@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows;
 using GalaSoft.MvvmLight.CommandWpf;
 using Oanda.App.Windows;
 using Oanda.RestLibrary.Configuration;
@@ -42,6 +43,8 @@ namespace Oanda.App.ViewModels
 
             MainWindow mw = new MainWindow();
             mw.Show();
+
+            Application.Current.MainWindow = mw;
 
             CloseAction();
         }

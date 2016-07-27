@@ -64,7 +64,10 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReader.cs" />
     <Compile Include="Configuration\Environments.cs" />
-    <Compile Include="Configuration\Constants.cs" />
+    <Compile Include="Interfaces\IOandaRequesterLive.cs" />
+    <Compile Include="Interfaces\IOandaRequester.cs" />
+    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Requester\RequesterBase.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Locator\ServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
