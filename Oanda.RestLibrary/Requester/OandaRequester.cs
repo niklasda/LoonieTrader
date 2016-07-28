@@ -9,12 +9,17 @@ namespace Oanda.RestLibrary.Requester
 {
     public class OandaRequester : RequesterBase, IOandaRequester
     {
+        public OandaRequester(ISettings settings) : base(settings)
+        {
+        }
+
         public AccountResponse GetAccounts()
         {
-            const string urlAccounts = "https://api-fxpractice.oanda.com/v3/accounts";
+            string urlAccounts =base.GetRestUrl("accounts");
+            //const string urlAccounts = "https://api-fxpractice.oanda.com/v3/accounts";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(urlAccounts);
 
@@ -28,10 +33,11 @@ namespace Oanda.RestLibrary.Requester
         }
         public AccountSummaryResponse GetAccountSummary(string accountId)
         {
-            const string urlAccountSummary = "https://api-fxpractice.oanda.com/v3/accounts/{0}/summary";
+            string urlAccountSummary = base.GetRestUrl("accounts/{0}/summary");
+            //const string urlAccountSummary = "https://api-fxpractice.oanda.com/v3/accounts/{0}/summary";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
 
@@ -46,10 +52,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountPositionsResponse GetPositions(string accountId)
         {
-            const string urlAccountPositions = "https://api-fxpractice.oanda.com/v3/accounts/{0}/positions/";
+            string urlAccountPositions = base.GetRestUrl("accounts/{0}/positions/");
+            //const string urlAccountPositions = "https://api-fxpractice.oanda.com/v3/accounts/{0}/positions/";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountPositions, accountId));
 
@@ -65,10 +72,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountOpenPositionsResponse GetOpenPositions(string accountId)
         {
-            const string urlAccountOpenPositions = "https://api-fxpractice.oanda.com/v3/accounts/{0}/openPositions/";
+            string urlAccountOpenPositions = base.GetRestUrl("accounts/{0}/openPositions/");
+            //const string urlAccountOpenPositions = "https://api-fxpractice.oanda.com/v3/accounts/{0}/openPositions/";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountOpenPositions, accountId));
 
@@ -83,10 +91,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountOrdersResponse GetOrders(string accountId)
         {
-            const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/orders/";
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/orders/");
+            //const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/orders/";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
 
@@ -100,10 +109,11 @@ namespace Oanda.RestLibrary.Requester
         }
         public AccountPendingOrdersResponse GetPendingOrders(string accountId)
         {
-            const string urlPendingAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/pendingOrders/";
+            string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/pendingOrders/");
+            //const string urlPendingAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/pendingOrders/";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlPendingAccountOrders, accountId));
 
@@ -118,10 +128,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountTransactionPagesResponse GetTransactionPages(string accountId)
         {
-            const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/transactions/";
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/");
+            //const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/transactions/";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
 
@@ -136,10 +147,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountTransactionsResponse GetTransactions(string accountId)
         {
-            const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/transactions/idrange?from=1&to=19";
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/idrange?from=1&to=19");
+            //const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/transactions/idrange?from=1&to=19";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
 
@@ -154,10 +166,11 @@ namespace Oanda.RestLibrary.Requester
 
         public AccountTradesResponse GetTrades(string accountId)
         {
-            const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/trades";
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades");
+            //const string urlAccountOrders = "https://api-fxpractice.oanda.com/v3/accounts/{0}/trades";
 
             WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.ApiKey);
+            wc.Headers.Add("Authorization", base.BearerApiKey);
 
             var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
 

@@ -16,27 +16,29 @@ namespace Oanda.TespApp
             try
             {
                 var container = ServiceLocator.Initialize();
+                var arl = container.GetInstance<IOandaRequesterLive>();
                 var ar = container.GetInstance<IOandaRequester>();
+                var cfg = container.GetInstance<ISettings>();
 
-                var cr = new ConfigurationReader();
-                var cfg = cr.ReadConfiguration();
+              //  var cr = new ConfigurationReader();
+               // var cfg = cr.ReadConfiguration();
 
                 ResizeWindow();
                 
 
                 //    var ar = new OandaRequester();
                 Console.WriteLine(ar.GetAccounts());
-                Console.WriteLine(ar.GetAccountSummary());
-                Console.WriteLine(ar.GetPositions());
-                Console.WriteLine(ar.GetOpenPositions());
-                Console.WriteLine(ar.GetOrders());
-                Console.WriteLine(ar.GetPendingOrders());
-                Console.WriteLine(ar.GetTransactionPages());
-                Console.WriteLine(ar.GetTransactions());
-                Console.WriteLine(ar.GetTrades());
+                Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetPositions(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetOpenPositions(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetOrders(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetPendingOrders(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetTransactionPages(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetTransactions(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetTrades(cfg.DefaultAccountId));
 
-                var arl = new OandaRequesterLive();
-                Console.WriteLine(arl.GetInstruments());
+                //var arl = new OandaRequesterLive();
+                Console.WriteLine(arl.GetInstruments(cfg.DefaultAccountId));
 
                 //GetPrices();
                 //GetCandles();

@@ -12,18 +12,17 @@ namespace Oanda.TestLibrary.Tests.RestRequest
         public void Setup()
         {
             var container = ServiceLocator.Initialize();
-            var ar = container.GetInstance<IOandaRequester>();
-            _cfg = container.GetInstance<ISettings>();
-
+            _ar = container.GetInstance<IOandaRequester>();
+            _s = container.GetInstance<ISettings>();
         }
 
-        private ISettings _cfg;
+        private IOandaRequester _ar;
+        private ISettings _s;
 
         [Test]
         public void TestGetAccountPositions()
         {
-            var ar = new OandaRequester();
-            var resp = ar.GetPositions(_cfg.DefaultAccount);
+            var resp = _ar.GetPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }
@@ -31,8 +30,7 @@ namespace Oanda.TestLibrary.Tests.RestRequest
         [Test]
         public void TestGetAccountOpenPositions()
         {
-            var ar = new OandaRequester();
-            var resp = ar.GetOpenPositions(_cfg.DefaultAccount);
+            var resp = _ar.GetOpenPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }

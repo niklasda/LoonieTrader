@@ -8,6 +8,10 @@ namespace Oanda.RestLibrary.Configuration
 
         public string ApiKey { get; set; }
 
-        public string DefaultAccount { get; set; }
+        public string DefaultAccountId { get; set; }
+
+        public string UserId { get; set; }
+
+        public string[] FavouriteInstruments { get; set; }
     }
 }

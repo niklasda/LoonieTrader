@@ -9,7 +9,7 @@ namespace Oanda.RestLibrary.Configuration
     {
         private string GetConfigFileName()
         {
-            const string fileName = "Configuration.yaml";
+            const string fileName = "Config.yaml";
             var up = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var ltp = Path.Combine(up, "LoonieTrader", fileName);
             return ltp;
