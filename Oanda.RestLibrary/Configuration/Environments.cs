@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Oanda.RestLibrary.Configuration
+namespace LoonieTrader.RestLibrary.Configuration
 {
     public static class Environments
     {

@@ -1,7 +1,7 @@
-﻿using Oanda.RestLibrary.Configuration;
-using Oanda.RestLibrary.Interfaces;
+﻿using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.Interfaces;
 
-namespace Oanda.RestLibrary.Requester
+namespace LoonieTrader.RestLibrary.Requester
 {
     public abstract class RequesterBase
     {

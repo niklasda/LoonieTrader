@@ -1,7 +1,7 @@
-﻿using Oanda.RestLibrary.Locator;
+﻿using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
-namespace Oanda.TestApp.Locator
+namespace LoonieTrader.RestLibrary.Tests.Locator
 {
     public static class ServiceLocator
     {

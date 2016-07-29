@@ -1,6 +1,6 @@
-﻿using Oanda.RestLibrary.Responses;
+﻿using LoonieTrader.RestLibrary.Responses;
 
-namespace Oanda.RestLibrary.Interfaces
+namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface IOandaRequesterLive
     {

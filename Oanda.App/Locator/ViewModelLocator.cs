@@ -1,7 +1,7 @@
-using Oanda.App.ViewModels;
+using LoonieTrader.App.ViewModels;
 using StructureMap;
 
-namespace Oanda.App.Locator
+namespace LoonieTrader.App.Locator
 {
     public class ViewModelLocator
     {

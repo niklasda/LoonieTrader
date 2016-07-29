@@ -8,13 +8,13 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using Oanda.App.Windows;
-using Oanda.RestLibrary.Responses;
+using LoonieTrader.App.Windows;
+using LoonieTrader.RestLibrary.Responses;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace Oanda.App.ViewModels
+namespace LoonieTrader.App.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {

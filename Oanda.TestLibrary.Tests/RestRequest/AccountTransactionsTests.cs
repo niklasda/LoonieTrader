@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
-using Oanda.RestLibrary.Interfaces;
-using Oanda.RestLibrary.Requester;
-using Oanda.TestApp.Locator;
+using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Tests.Locator;
 
-namespace Oanda.TestLibrary.Tests.RestRequest
+namespace LoonieTrader.RestLibrary.Tests.RestRequest
 {
     public class AccountTransactionsTests
     {

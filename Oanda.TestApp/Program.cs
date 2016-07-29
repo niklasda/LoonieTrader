@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net;
-using Oanda.RestLibrary.Configuration;
-using Oanda.RestLibrary.Interfaces;
-using Oanda.RestLibrary.Requester;
-using Oanda.TestApp.Locator;
+using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Requester;
+using LoonieTrader.TestApp.Locator;
 
-namespace Oanda.TespApp
+namespace LoonieTrader.TespApp
 {
     internal class Program
     {

@@ -7,7 +7,7 @@
     <ProjectGuid>{442E127C-5965-4377-894F-2464C2F340DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Oanda.RestLibrary</RootNamespace>
+    <RootNamespace>LoonieTrader.RestLibrary</RootNamespace>
     <AssemblyName>LoonieTrader.RestLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

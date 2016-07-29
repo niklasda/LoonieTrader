@@ -7,7 +7,7 @@
     <ProjectGuid>{1F27DB4F-A869-4F60-9233-DB1856722817}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Oanda.App</RootNamespace>
+    <RootNamespace>LoonieTrader.App</RootNamespace>
     <AssemblyName>LoonieTrader.App</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

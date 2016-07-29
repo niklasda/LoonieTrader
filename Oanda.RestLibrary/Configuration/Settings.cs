@@ -1,6 +1,6 @@
-﻿using Oanda.RestLibrary.Interfaces;
+﻿using LoonieTrader.RestLibrary.Interfaces;
 
-namespace Oanda.RestLibrary.Configuration
+namespace LoonieTrader.RestLibrary.Configuration
 {
     public class Settings : ISettings
     {

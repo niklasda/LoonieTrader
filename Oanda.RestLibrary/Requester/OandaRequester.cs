@@ -2,10 +2,10 @@
 using System.Net;
 using System.Text;
 using Jil;
-using Oanda.RestLibrary.Interfaces;
-using Oanda.RestLibrary.Responses;
+using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Responses;
 
-namespace Oanda.RestLibrary.Requester
+namespace LoonieTrader.RestLibrary.Requester
 {
     public class OandaRequester : RequesterBase, IOandaRequester
     {

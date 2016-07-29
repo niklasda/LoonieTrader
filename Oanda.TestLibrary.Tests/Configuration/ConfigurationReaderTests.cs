@@ -2,9 +2,9 @@
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
-using Oanda.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.Configuration;
 
-namespace Oanda.TestLibrary.Tests.Configuration
+namespace LoonieTrader.RestLibrary.Tests.Configuration
 {
     public class ConfigurationReaderTests
     {

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Oanda.App.Windows.LoginWindow"
+﻿<Window x:Class="LoonieTrader.App.Windows.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{Binding Source={StaticResource Locator}, Path=Login}"

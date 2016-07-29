@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20923E81-0833-44C8-8EE5-E9297B9C0E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.TestLibrary.Tests", "Oanda.TestLibrary.Tests\Oanda.TestLibrary.Tests.csproj", "{951C96BE-6C79-46CD-9530-292141951C86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.RestLibrary.Tests", "Oanda.TestLibrary.Tests\Oanda.RestLibrary.Tests.csproj", "{951C96BE-6C79-46CD-9530-292141951C86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary", "Oanda.RestLibrary\LoonieTrader.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
 EndProject

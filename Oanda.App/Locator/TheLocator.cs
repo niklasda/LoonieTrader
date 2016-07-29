@@ -1,7 +1,7 @@
-﻿using Oanda.RestLibrary.Locator;
+﻿using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
-namespace Oanda.App.Locator
+namespace LoonieTrader.App.Locator
 {
     public static class TheLocator
     {

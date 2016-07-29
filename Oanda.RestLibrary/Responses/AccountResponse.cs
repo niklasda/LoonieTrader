@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Oanda.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Responses
 {
     public class AccountResponse
     {

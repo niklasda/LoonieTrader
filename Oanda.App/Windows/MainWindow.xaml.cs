@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Oanda.App.Windows
+namespace LoonieTrader.App.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

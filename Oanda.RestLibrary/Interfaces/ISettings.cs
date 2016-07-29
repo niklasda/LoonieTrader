@@ -1,4 +1,4 @@
-﻿namespace Oanda.RestLibrary.Interfaces
+﻿namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface ISettings
     {

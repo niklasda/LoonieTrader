@@ -7,8 +7,8 @@
     <ProjectGuid>{951C96BE-6C79-46CD-9530-292141951C86}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Oanda.TestLibrary.Tests</RootNamespace>
-    <AssemblyName>Oanda.TestLibrary.Tests</AssemblyName>
+    <RootNamespace>LoonieTrader.RestLibrary.Tests</RootNamespace>
+    <AssemblyName>LoonieTrader.RestLibrary.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

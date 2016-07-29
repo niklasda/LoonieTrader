@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
 using GalaSoft.MvvmLight.CommandWpf;
-using Oanda.App.Windows;
-using Oanda.RestLibrary.Configuration;
+using LoonieTrader.App.Windows;
+using LoonieTrader.RestLibrary.Configuration;
 
-namespace Oanda.App.ViewModels
+namespace LoonieTrader.App.ViewModels
 {
     public class LoginViewModel
     {

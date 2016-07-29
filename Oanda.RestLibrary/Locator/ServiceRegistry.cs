@@ -1,9 +1,9 @@
-﻿using Oanda.RestLibrary.Configuration;
-using Oanda.RestLibrary.Interfaces;
-using Oanda.RestLibrary.Requester;
+﻿using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Requester;
 using StructureMap;
 
-namespace Oanda.RestLibrary.Locator
+namespace LoonieTrader.RestLibrary.Locator
 {
     public class ServiceRegistry : Registry
     {

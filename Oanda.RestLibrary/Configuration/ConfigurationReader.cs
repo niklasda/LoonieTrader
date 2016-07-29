@@ -3,7 +3,7 @@ using System.IO;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Oanda.RestLibrary.Configuration
+namespace LoonieTrader.RestLibrary.Configuration
 {
     public class ConfigurationReader
     {
