@@ -11,17 +11,17 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequest
         public void Setup()
         {
             var container = ServiceLocator.Initialize();
-            _ar = container.GetInstance<IOandaRequester>();
+            _por = container.GetInstance<IPositionsRequester>();
             _s = container.GetInstance<ISettings>();
         }
 
-        private IOandaRequester _ar;
+        private IPositionsRequester _por;
         private ISettings _s;
 
         [Test]
         public void TestGetAccountPositions()
         {
-            var resp = _ar.GetPositions(_s.DefaultAccountId);
+            var resp = _por.GetPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }
@@ -29,7 +29,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequest
         [Test]
         public void TestGetAccountOpenPositions()
         {
-            var resp = _ar.GetOpenPositions(_s.DefaultAccountId);
+            var resp = _por.GetOpenPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }

@@ -16,29 +16,32 @@ namespace LoonieTrader.TespApp
             try
             {
                 var container = ServiceLocator.Initialize();
-                var arl = container.GetInstance<IOandaRequesterLive>();
-                var ar = container.GetInstance<IOandaRequester>();
+                var ar = container.GetInstance<IAccountsRequester>();
+                var or = container.GetInstance<IOrdersRequester>();
+                var por = container.GetInstance<IPositionsRequester>();
+                var prr = container.GetInstance<IPricingRequester>();
+                var tr = container.GetInstance<TradesRequester>();
+                var txr = container.GetInstance<ITransactionsRequester>();
+
                 var cfg = container.GetInstance<ISettings>();
 
               //  var cr = new ConfigurationReader();
                // var cfg = cr.ReadConfiguration();
 
                 ResizeWindow();
-                
 
-                //    var ar = new OandaRequester();
                 Console.WriteLine(ar.GetAccounts());
                 Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetPositions(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetOpenPositions(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetOrders(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetPendingOrders(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetTransactionPages(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetTransactions(cfg.DefaultAccountId));
-                Console.WriteLine(ar.GetTrades(cfg.DefaultAccountId));
+                Console.WriteLine(por.GetPositions(cfg.DefaultAccountId));
+                Console.WriteLine(por.GetOpenPositions(cfg.DefaultAccountId));
+                Console.WriteLine(or.GetOrders(cfg.DefaultAccountId));
+                Console.WriteLine(or.GetPendingOrders(cfg.DefaultAccountId));
+                Console.WriteLine(txr.GetTransactionPages(cfg.DefaultAccountId));
+                Console.WriteLine(txr.GetTransactions(cfg.DefaultAccountId));
+                Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));
 
-                //var arl = new OandaRequesterLive();
-                Console.WriteLine(arl.GetInstruments(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetInstruments(cfg.DefaultAccountId));
+                Console.WriteLine(prr.GetPrices(cfg.DefaultAccountId));
 
                 //GetPrices();
                 //GetCandles();
@@ -65,7 +68,7 @@ namespace LoonieTrader.TespApp
             {
                 Console.WindowHeight = 80;
                 Console.WindowWidth = 200;
-                Console.BufferHeight = 80;
+                Console.BufferHeight = 800;
                 Console.BufferWidth = 200;
             }
             catch (Exception ex)

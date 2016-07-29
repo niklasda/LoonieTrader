@@ -10,11 +10,11 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequest
         public void Setup()
         {
             var container = ServiceLocator.Initialize();
-            _ar = container.GetInstance<IOandaRequester>();
+            _ar = container.GetInstance<IAccountsRequester>();
             _s = container.GetInstance<ISettings>();
         }
 
-        private IOandaRequester _ar;
+        private IAccountsRequester _ar;
         private ISettings _s;
 
         [Test]

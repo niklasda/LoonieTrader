@@ -64,15 +64,23 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReader.cs" />
     <Compile Include="Configuration\Environments.cs" />
-    <Compile Include="Interfaces\IOandaRequesterLive.cs" />
-    <Compile Include="Interfaces\IOandaRequester.cs" />
+    <Compile Include="Interfaces\ITransactionsRequester.cs" />
+    <Compile Include="Interfaces\ITradesRequester.cs" />
+    <Compile Include="Interfaces\IPricingRequester.cs" />
+    <Compile Include="Interfaces\IPositionsRequester.cs" />
+    <Compile Include="Interfaces\IOrdersRequester.cs" />
+    <Compile Include="Interfaces\IAccountsRequester.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Requester\PositionsRequester.cs" />
+    <Compile Include="Requester\TransactionsRequester.cs" />
+    <Compile Include="Requester\PricingRequester.cs" />
+    <Compile Include="Requester\TradesRequester.cs" />
     <Compile Include="Requester\RequesterBase.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Locator\ServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requester\OandaRequesterLive.cs" />
-    <Compile Include="Requester\OandaRequester.cs" />
+    <Compile Include="Requester\OrdersRequester.cs" />
+    <Compile Include="Requester\AccountsRequester.cs" />
     <Compile Include="Responses\AccountPendingOrdersResponse.cs" />
     <Compile Include="Responses\AccountOrdersResponse.cs" />
     <Compile Include="Responses\AccountOpenPositionsResponse.cs" />
@@ -82,6 +90,7 @@
     <Compile Include="Responses\AccountResponse.cs" />
     <Compile Include="Responses\AccountTransactionPagesResponse.cs" />
     <Compile Include="Responses\AccountTransactionsResponse.cs" />
+    <Compile Include="Responses\InstrumentsResponse.cs" />
     <Compile Include="Responses\PricesResponse.cs" />
   </ItemGroup>
   <ItemGroup>

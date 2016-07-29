@@ -4,29 +4,30 @@ using LoonieTrader.RestLibrary.Tests.Locator;
 
 namespace LoonieTrader.RestLibrary.Tests.RestRequest
 {
-    public class AccountOrdersTests
+    public class AccountTransactionsTests
     {
         [OneTimeSetUp]
         public void Setup()
         {
             var container = ServiceLocator.Initialize();
-            _ar = container.GetInstance<IOandaRequester>();
+            _txr = container.GetInstance<ITransactionsRequester>();
             _s = container.GetInstance<ISettings>();
         }
 
-        private IOandaRequester _ar;
+        private ITransactionsRequester _txr;
         private ISettings _s;
 
         [Test]
-        public void TestGetAccountOrders()
+        public void TestGetAccountTransactionPages()
         {
-            Assert.NotNull(_ar.GetOrders(_s.DefaultAccountId));
+            Assert.NotNull(_txr.GetTransactionPages(_s.DefaultAccountId));
         }
 
         [Test]
-        public void TestGetAccountPendingOrders()
+        public void TestGetAccountTransactions()
         {
-            Assert.NotNull(_ar.GetPendingOrders(_s.DefaultAccountId));
+            Assert.NotNull(_txr.GetTransactions(_s.DefaultAccountId));
         }
+
     }
 }

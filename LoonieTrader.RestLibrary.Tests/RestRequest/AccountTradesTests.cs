@@ -11,17 +11,17 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequest
         public void Setup()
         {
             var container = ServiceLocator.Initialize();
-            _ar = container.GetInstance<IOandaRequester>();
+            _tr = container.GetInstance<ITradesRequester>();
             _c = container.GetInstance<ISettings>();
         }
 
-        private IOandaRequester _ar;
+        private ITradesRequester _tr;
         private ISettings _c;
 
         [Test]
         public void TestGetAccountTrades()
         {
-            var resp = _ar.GetTrades(_c.DefaultAccountId);
+            var resp = _tr.GetTrades(_c.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }

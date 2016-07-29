@@ -13,8 +13,12 @@ namespace LoonieTrader.RestLibrary.Locator
             var cfg = cr.ReadConfiguration();
 
             ForSingletonOf<ISettings>().Use(cfg);
-            For<IOandaRequester>().Use<OandaRequester>();
-            For<IOandaRequesterLive>().Use<OandaRequesterLive>();
+            For<IAccountsRequester>().Use<AccountsRequester>();
+            For<IOrdersRequester>().Use<OrdersRequester>();
+            For<IPositionsRequester>().Use<PositionsRequester>();
+            For<IPricingRequester>().Use<PricingRequester>();
+            For<ITradesRequester>().Use<TradesRequester>();
+            For<ITransactionsRequester>().Use<TransactionsRequester>();
         }
     }
 }

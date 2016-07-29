@@ -5,12 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20923E81-0833-44C8-8EE5-E9297B9C0E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oanda.RestLibrary.Tests", "Oanda.TestLibrary.Tests\Oanda.RestLibrary.Tests.csproj", "{951C96BE-6C79-46CD-9530-292141951C86}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary", "Oanda.RestLibrary\LoonieTrader.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "Oanda.TestApp\LoonieTrader.TestApp.csproj", "{67F3D19B-776C-45E0-90B7-3726E19D23CC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2946475-3209-4CDF-BEFB-66C6C1A0E1C0}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
@@ -18,7 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		todo.md = todo.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.App", "Oanda.App\LoonieTrader.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary.Tests", "LoonieTrader.RestLibrary.Tests\LoonieTrader.RestLibrary.Tests.csproj", "{0F1DBA22-02B2-4D76-818C-C8EBCD133887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "LoonieTrader.TestApp\LoonieTrader.TestApp.csproj", "{C9B926E0-7066-4CDF-8D03-1472D8CB4412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.App", "LoonieTrader.App\LoonieTrader.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary", "LoonieTrader.RestLibrary\LoonieTrader.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,27 +26,28 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{951C96BE-6C79-46CD-9530-292141951C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{951C96BE-6C79-46CD-9530-292141951C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{951C96BE-6C79-46CD-9530-292141951C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{951C96BE-6C79-46CD-9530-292141951C86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67F3D19B-776C-45E0-90B7-3726E19D23CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67F3D19B-776C-45E0-90B7-3726E19D23CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67F3D19B-776C-45E0-90B7-3726E19D23CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67F3D19B-776C-45E0-90B7-3726E19D23CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9B926E0-7066-4CDF-8D03-1472D8CB4412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9B926E0-7066-4CDF-8D03-1472D8CB4412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9B926E0-7066-4CDF-8D03-1472D8CB4412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9B926E0-7066-4CDF-8D03-1472D8CB4412}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{951C96BE-6C79-46CD-9530-292141951C86} = {20923E81-0833-44C8-8EE5-E9297B9C0E7F}
+		{0F1DBA22-02B2-4D76-818C-C8EBCD133887} = {20923E81-0833-44C8-8EE5-E9297B9C0E7F}
+		{C9B926E0-7066-4CDF-8D03-1472D8CB4412} = {20923E81-0833-44C8-8EE5-E9297B9C0E7F}
 	EndGlobalSection
 EndGlobal

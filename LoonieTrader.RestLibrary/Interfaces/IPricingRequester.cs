@@ -2,10 +2,9 @@
 
 namespace LoonieTrader.RestLibrary.Interfaces
 {
-    public interface IOandaRequesterLive
+    public interface IPricingRequester
     {
         PricesResponse GetPrices(string instrument);
-        PricesResponse GetCandles(string instrument);
-        PricesResponse GetInstruments(string accountId);
+
     }
 }

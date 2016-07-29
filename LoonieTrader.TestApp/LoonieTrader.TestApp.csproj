@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67F3D19B-776C-45E0-90B7-3726E19D23CC}</ProjectGuid>
+    <ProjectGuid>{C9B926E0-7066-4CDF-8D03-1472D8CB4412}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LoonieTrader.TestApp</RootNamespace>
@@ -73,7 +73,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Oanda.RestLibrary\LoonieTrader.RestLibrary.csproj">
+    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.RestLibrary.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
       <Name>LoonieTrader.RestLibrary</Name>
     </ProjectReference>
