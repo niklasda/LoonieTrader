@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LoonieTrader.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Models.Responses
 {
     public class AccountTradesResponse
     {

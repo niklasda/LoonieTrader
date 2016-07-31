@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LoonieTrader.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Models.Responses
 {
     public class AccountPositionsResponse
     {
@@ -53,14 +53,14 @@ namespace LoonieTrader.RestLibrary.Responses
         public string unrealizedPL { get; set; }
     }
 
-    /*
-    {"lastTransactionID":"16",
-    "positions":
-        [{"instrument":"EUR_USD",
-        "long":{"pl":"0.0000","resettablePL":"0.0000","units":"0","unrealizedPL":"0.0000"},
-        "pl":"26.3639",
-        "resettablePL":"26.3639",
-        "short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},
-        "unrealizedPL":"0.0000"}]}
-    */
+/*
+{"lastTransactionID":"16",
+"positions":
+[{"instrument":"EUR_USD",
+"long":{"pl":"0.0000","resettablePL":"0.0000","units":"0","unrealizedPL":"0.0000"},
+"pl":"26.3639",
+"resettablePL":"26.3639",
+"short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},
+"unrealizedPL":"0.0000"}]}
+*/
 }

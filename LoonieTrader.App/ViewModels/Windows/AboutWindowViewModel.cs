@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Windows;
-using LoonieTrader.RestLibrary.Configuration;
 
-namespace LoonieTrader.App.ViewModels
+namespace LoonieTrader.App.ViewModels.Windows
 {
-    public class AboutViewModel
+    public class AboutWindowViewModel
     {
-        public AboutViewModel()
+        public AboutWindowViewModel()
         {
             PerformLoginCommand = new RelayCommand(PerformLogin);
         }

@@ -1,4 +1,5 @@
-using LoonieTrader.App.ViewModels;
+using LoonieTrader.App.ViewModels.Windows;
+using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator
@@ -9,9 +10,7 @@ namespace LoonieTrader.App.Locator
         {
             _container = new Container(c =>
             {
-                c.ForSingletonOf<MainViewModel>().Use<MainViewModel>();
-                c.ForSingletonOf<LoginViewModel>().Use<LoginViewModel>();
-                c.ForSingletonOf<AboutViewModel>().Use<AboutViewModel>();
+                c.AddRegistry<ServiceRegistry>();
             });
 
             ////if (ViewModelBase.IsInDesignModeStatic)
@@ -26,13 +25,23 @@ namespace LoonieTrader.App.Locator
             ////}
         }
 
+        //private IContainer Initialize()
+        //{
+        //    _container = new Container(c =>
+        //    {
+        //        c.AddRegistry<ServiceRegistry>();
+        //    });
+
+        //    return container;
+        //}
+
         private Container _container;
 
-        public MainViewModel Main { get { return _container.GetInstance<MainViewModel>(); } }
+        public MainWindowViewModel Main { get { return _container.GetInstance<MainWindowViewModel>(); } }
 
-        public LoginViewModel Login { get { return _container.GetInstance<LoginViewModel>(); } }
+        public LoginWindowViewModel Login { get { return _container.GetInstance<LoginWindowViewModel>(); } }
 
-        public AboutViewModel About { get { return _container.GetInstance<AboutViewModel>(); } }
+        public AboutWindowViewModel About { get { return _container.GetInstance<AboutWindowViewModel>(); } }
 
     }
 }

@@ -10,7 +10,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1"  Margin="0" dgx:DataGridFilter.IsAutoFilterEnabled="True" />
+        <DataGrid Grid.Row="1"  Margin="0"  />
 
         <oxy:PlotView Grid.Row="0"  Model="{Binding GraphData}" BorderBrush="Black" BorderThickness="1" />
     </Grid>

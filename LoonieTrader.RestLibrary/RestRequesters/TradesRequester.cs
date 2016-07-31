@@ -4,9 +4,9 @@ using System.Net;
 using System.Text;
 using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Responses;
+using LoonieTrader.RestLibrary.Models.Responses;
 
-namespace LoonieTrader.RestLibrary.Requester
+namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class TradesRequester : RequesterBase, ITradesRequester
     {

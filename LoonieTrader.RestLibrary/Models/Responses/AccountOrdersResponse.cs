@@ -1,11 +1,11 @@
 ﻿using System.Text;
 
-namespace LoonieTrader.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountPendingOrdersResponse
+    public class AccountOrdersResponse
     {
         public string lastTransactionID { get; set; }
-        public PendingOrder[] orders { get; set; }
+        public Order[] orders { get; set; }
 
         public override string ToString()
         {
@@ -26,10 +26,19 @@ namespace LoonieTrader.RestLibrary.Responses
         }
     }
 
+    public class StopLossOnFill
+    {
+        public string price { get; set; }
+        public string timeInForce { get; set; }
+    }
 
-  
+    public class TakeProfitOnFill
+    {
+        public string price { get; set; }
+        public string timeInForce { get; set; }
+    }
 
-    public class PendingOrder
+    public class Order
     {
         public string createTime { get; set; }
         public string gtdTime { get; set; }
@@ -39,28 +48,32 @@ namespace LoonieTrader.RestLibrary.Responses
         public string positionFill { get; set; }
         public string price { get; set; }
         public string state { get; set; }
+        public StopLossOnFill stopLossOnFill { get; set; }
+        public TakeProfitOnFill takeProfitOnFill { get; set; }
         public string timeInForce { get; set; }
         public string triggerCondition { get; set; }
         public string type { get; set; }
         public string units { get; set; }
     }
-
-
 }
 
 /*
-  {"lastTransactionID":"16","orders":[]}
-
-  {"lastTransactionID":"17","orders":[
-    {"createTime":"2016-07-23T16:38:56.395363771Z",
-    "gtdTime":"2016-07-30T16:38:52.000000000Z",
-    "id":"17",
-    "instrument":"EUR_USD",
-    "partialFill":"DEFAULT_FILL",
-    "positionFill":"POSITION_DEFAULT",
-    "price":"1.10760",
-    "state":"PENDING",
-    "timeInForce":"GTD",
-    "triggerCondition":"TRIGGER_DEFAULT",
-    "type":"MARKET_IF_TOUCHED","units":"10000"}]}
+{"lastTransactionID":"8",
+"orders":
+[{
+"createTime":"2016-07-17T19:33:24.224580145Z",
+"gtdTime":"2016-07-24T19:33:22.000000000Z",
+"id":"6",
+"instrument":"EUR_USD",
+"partialFill":"DEFAULT_FILL",
+"positionFill":"POSITION_DEFAULT",
+"price":"1.10289",
+"state":"PENDING",
+"stopLossOnFill":{"price":"1.10500","timeInForce":"GTC"},
+"takeProfitOnFill":{"price":"1.10000","timeInForce":"GTC"},
+"timeInForce":"GTD",
+"triggerCondition":"TRIGGER_DEFAULT",
+"type":"MARKET_IF_TOUCHED",
+"units":"-10000"
+}]}
 */

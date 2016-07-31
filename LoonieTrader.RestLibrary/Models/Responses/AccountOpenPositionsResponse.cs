@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LoonieTrader.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Models.Responses
 {
     public class AccountOpenPositionsResponse
     {
@@ -27,7 +27,7 @@ namespace LoonieTrader.RestLibrary.Responses
         }
     }
 
-    /*
-   {"lastTransactionID":"16","positions":[]}
-    */
+/*
+{"lastTransactionID":"16","positions":[]}
+*/
 }

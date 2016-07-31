@@ -1,4 +1,4 @@
-﻿using LoonieTrader.RestLibrary.Responses;
+﻿using LoonieTrader.RestLibrary.Models.Responses;
 
 namespace LoonieTrader.RestLibrary.Interfaces
 {

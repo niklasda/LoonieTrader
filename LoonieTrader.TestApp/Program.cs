@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Net;
-using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Requester;
+using LoonieTrader.RestLibrary.RestRequesters;
 using LoonieTrader.TestApp.Locator;
 
-namespace LoonieTrader.TespApp
+namespace LoonieTrader.TestApp
 {
     internal class Program
     {

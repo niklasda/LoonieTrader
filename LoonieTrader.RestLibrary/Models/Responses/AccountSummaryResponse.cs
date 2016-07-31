@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LoonieTrader.RestLibrary.Responses
+namespace LoonieTrader.RestLibrary.Models.Responses
 {
     public class AccountSummaryResponse
     {
@@ -10,7 +10,7 @@ namespace LoonieTrader.RestLibrary.Responses
         public override string ToString()
         {
             var resp = new StringBuilder();
-            
+
             resp.Append("alias: ");
             resp.Append(account.alias);
             resp.Append(", balance: ");
@@ -25,7 +25,6 @@ namespace LoonieTrader.RestLibrary.Responses
             return resp.ToString();
         }
     }
-
 
     public class AccountSummary
     {

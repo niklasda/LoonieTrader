@@ -1,6 +1,6 @@
 ﻿using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Requester;
+using LoonieTrader.RestLibrary.RestRequesters;
 using StructureMap;
 
 namespace LoonieTrader.RestLibrary.Locator

@@ -1,24 +1,17 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Windows;
-using LoonieTrader.RestLibrary.Responses;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace LoonieTrader.App.ViewModels
+namespace LoonieTrader.App.ViewModels.Windows
 {
-    public class MainViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
-        public MainViewModel()
+        public MainWindowViewModel()
         {
             AboutCommand = new RelayCommand(About);
             TradeTicketCommand = new RelayCommand(TradeTicket);
@@ -69,41 +62,41 @@ namespace LoonieTrader.App.ViewModels
 
         public RelayCommand TradeTicketCommand { get; set; }
 
-        public IList<ListViewItem> InstrumentList
+        public IList<InstrumentModel> InstrumentList
         {
             get
             {
                 return new[]
                 {
-                    new ListViewItem() {Content = "EURUSD",Background = Brushes.GreenYellow},
-                    new ListViewItem() {Content = "EUR_USD"},
-                    new ListViewItem() {Content = "EUR/USD"},
-                    new ListViewItem() {Content = "EUR.USD"},
-                    new ListViewItem() {Content = "Brent Crude Oil"}
+                    new InstrumentModel() {Instrument = "EURUSD"},
+                    new InstrumentModel() {Instrument = "EUR_USD"},
+                    new InstrumentModel() {Instrument = "EUR/USD"},
+                    new InstrumentModel() {Instrument = "EUR.USD"},
+                    new InstrumentModel() {Instrument = "Brent Crude Oil"}
                 };
             }
         }
 
-        public IList<Position> SomeDataTable
+        public IList<PositionModel> SomeDataTable
         {
             /*
              * *  AutoMapper
              * */
             get { return new[]
             {
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
-                new Position() {instrument = "EURUSD", pl = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
+                new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
             }; }
         }
 

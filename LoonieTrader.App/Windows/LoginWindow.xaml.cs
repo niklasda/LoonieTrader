@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using LoonieTrader.App.ViewModels;
+using LoonieTrader.App.ViewModels.Windows;
 
 namespace LoonieTrader.App.Windows
 {
@@ -12,7 +12,7 @@ namespace LoonieTrader.App.Windows
         {
             InitializeComponent();
 
-            LoginViewModel vm = DataContext as LoginViewModel;
+            LoginWindowViewModel vm = DataContext as LoginWindowViewModel;
 
             if (vm != null)
             {

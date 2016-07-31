@@ -1,7 +1,7 @@
 ﻿using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
 
-namespace LoonieTrader.RestLibrary.Requester
+namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public abstract class RequesterBase
     {
