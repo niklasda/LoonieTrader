@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestRequesters;
+using LoonieTrader.RestLibrary.RestRequesters.v3;
 using LoonieTrader.TestApp.Locator;
 
 namespace LoonieTrader.TestApp

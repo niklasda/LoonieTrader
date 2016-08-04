@@ -73,16 +73,16 @@
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Models\InstrumentModel.cs" />
     <Compile Include="Models\PositionModel.cs" />
-    <Compile Include="RestRequesters\PositionsRequester.cs" />
-    <Compile Include="RestRequesters\TransactionsRequester.cs" />
-    <Compile Include="RestRequesters\PricingRequester.cs" />
-    <Compile Include="RestRequesters\TradesRequester.cs" />
-    <Compile Include="RestRequesters\RequesterBase.cs" />
+    <Compile Include="RestRequesters\v3\PositionsRequester.cs" />
+    <Compile Include="RestRequesters\v3\TransactionsRequester.cs" />
+    <Compile Include="RestRequesters\v3\PricingRequester.cs" />
+    <Compile Include="RestRequesters\v3\TradesRequester.cs" />
+    <Compile Include="RestRequesters\v3\RequesterBase.cs" />
     <Compile Include="Configuration\Settings.cs" />
-    <Compile Include="Locator\ServiceRegistry.cs" />
+    <Compile Include="Locator\v3\ServiceRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestRequesters\OrdersRequester.cs" />
-    <Compile Include="RestRequesters\AccountsRequester.cs" />
+    <Compile Include="RestRequesters\v3\OrdersRequester.cs" />
+    <Compile Include="RestRequesters\v3\AccountsRequester.cs" />
     <Compile Include="Models\Responses\AccountPendingOrdersResponse.cs" />
     <Compile Include="Models\Responses\AccountOrdersResponse.cs" />
     <Compile Include="Models\Responses\AccountOpenPositionsResponse.cs" />
@@ -99,6 +99,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

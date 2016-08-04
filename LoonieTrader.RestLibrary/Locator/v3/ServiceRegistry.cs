@@ -1,9 +1,9 @@
 ﻿using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestRequesters;
+using LoonieTrader.RestLibrary.RestRequesters.v3;
 using StructureMap;
 
-namespace LoonieTrader.RestLibrary.Locator
+namespace LoonieTrader.RestLibrary.Locator.v3
 {
     public class ServiceRegistry : Registry
     {

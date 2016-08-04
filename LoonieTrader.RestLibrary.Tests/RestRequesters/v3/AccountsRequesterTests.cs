@@ -2,9 +2,9 @@
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Tests.Locator;
 
-namespace LoonieTrader.RestLibrary.Tests.RestRequest
+namespace LoonieTrader.RestLibrary.Tests.RestRequesters.v3
 {
-    public class AccountsTests
+    public class AccountsRequesterTests
     {
         [OneTimeSetUp]
         public void Setup()

@@ -63,11 +63,11 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReaderTests.cs" />
     <Compile Include="Locator\ServiceLocator.cs" />
-    <Compile Include="RestRequest\AccountTradesTests.cs" />
-    <Compile Include="RestRequest\AccountTransactionsTests.cs" />
-    <Compile Include="RestRequest\AccountPositionsTests.cs" />
-    <Compile Include="RestRequest\AccountOrdersTests.cs" />
-    <Compile Include="RestRequest\AccountsTests.cs" />
+    <Compile Include="RestRequesters\v3\TradesRequesterTests.cs" />
+    <Compile Include="RestRequesters\v3\TransactionsRequesterTests.cs" />
+    <Compile Include="RestRequesters\v3\PositionsRequesterTests.cs" />
+    <Compile Include="RestRequesters\v3\OrdersRequesterTests.cs" />
+    <Compile Include="RestRequesters\v3\AccountsRequesterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,6 +83,7 @@
       <Name>LoonieTrader.RestLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
