@@ -5,7 +5,7 @@ using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
 
-namespace LoonieTrader.RestLibrary.RestRequesters.v3
+namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class PositionsRequester : RequesterBase, IPositionsRequester
     {

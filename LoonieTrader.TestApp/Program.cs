@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestRequesters.v3;
+using LoonieTrader.RestLibrary.RestRequesters;
 using LoonieTrader.TestApp.Locator;
 
 namespace LoonieTrader.TestApp
@@ -10,8 +10,6 @@ namespace LoonieTrader.TestApp
     {
         private static void Main()
         {
-            // Invoke-RestMethod -H @{"Authorization"="Bearer 3e5ab0c7bd2d6584e0e02578b316577f-21e638b773cf11229fe63f0ddd6e2245"} https://api-fxpractice.oanda.com/v3/accounts
-
             try
             {
                 var container = ServiceLocator.Initialize();
@@ -24,8 +22,6 @@ namespace LoonieTrader.TestApp
 
                 var cfg = container.GetInstance<ISettings>();
 
-              //  var cr = new ConfigurationReader();
-               // var cfg = cr.ReadConfiguration();
 
                 ResizeWindow();
 

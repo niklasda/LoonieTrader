@@ -1,4 +1,4 @@
-﻿using LoonieTrader.RestLibrary.Locator.v3;
+﻿using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
 namespace LoonieTrader.TestApp.Locator

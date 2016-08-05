@@ -63,12 +63,12 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReaderTests.cs" />
     <Compile Include="Locator\ServiceLocator.cs" />
-    <Compile Include="RestRequesters\v3\PricingRequesterTests.cs" />
-    <Compile Include="RestRequesters\v3\TradesRequesterTests.cs" />
-    <Compile Include="RestRequesters\v3\TransactionsRequesterTests.cs" />
-    <Compile Include="RestRequesters\v3\PositionsRequesterTests.cs" />
-    <Compile Include="RestRequesters\v3\OrdersRequesterTests.cs" />
-    <Compile Include="RestRequesters\v3\AccountsRequesterTests.cs" />
+    <Compile Include="RestRequesters\PricingRequesterTests.cs" />
+    <Compile Include="RestRequesters\TradesRequesterTests.cs" />
+    <Compile Include="RestRequesters\TransactionsRequesterTests.cs" />
+    <Compile Include="RestRequesters\PositionsRequesterTests.cs" />
+    <Compile Include="RestRequesters\OrdersRequesterTests.cs" />
+    <Compile Include="RestRequesters\AccountsRequesterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

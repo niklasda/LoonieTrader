@@ -6,18 +6,17 @@ using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
 
-namespace LoonieTrader.RestLibrary.RestRequesters.v3
+namespace LoonieTrader.RestLibrary.RestRequesters
 {
-    public class TradesRequester : RequesterBase, ITradesRequester
+    public class TransactionsRequester : RequesterBase, ITransactionsRequester
     {
-        public TradesRequester(ISettings settings) : base(settings)
+        public TransactionsRequester(ISettings settings) : base(settings)
         {
         }
 
-        public AccountTradesResponse GetTrades(string accountId)
+        public AccountTransactionPagesResponse GetTransactionPages(string accountId)
         {
-            // OPEN The Trade is currently open, CLOSED The Trade has been fully closed, CLOSE_WHEN_TRADEABLE The Trade will be closed as soon as the trade’s instrument becomes tradeable
-            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades?state=CLOSED");
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/");
 
             using (WebClient wc = new WebClient())
             {
@@ -29,14 +28,15 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
 
                 using (var input = new StringReader(responseString))
                 {
-                    var atr = JSON.Deserialize<AccountTradesResponse>(input);
-                    return atr;
+                    var atpr = JSON.Deserialize<AccountTransactionPagesResponse>(input);
+                    return atpr;
                 }
             }
         }
-        public AccountTradesResponse GetOpenTrades(string accountId)
+
+        public AccountTransactionsResponse GetTransactions(string accountId)
         {
-            string urlAccountOrders = base.GetRestUrl("accounts/{0}/openTrades");
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/idrange?from=1&to=19");
 
             using (WebClient wc = new WebClient())
             {
@@ -48,27 +48,27 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
 
                 using (var input = new StringReader(responseString))
                 {
-                    var atr = JSON.Deserialize<AccountTradesResponse>(input);
+                    var atr = JSON.Deserialize<AccountTransactionsResponse>(input);
                     return atr;
                 }
             }
         }
 
-        public AccountTradeDetailsResponse GetTradeDetails(string accountId, string tradeId)
+        public AccountTransactionDetailsResponse GetTransactionDetails(string accountId, string transactionId)
         {
-            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades/{1}");
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/{1}");
 
             using (WebClient wc = new WebClient())
             {
                 wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId, tradeId));
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId, transactionId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var atr = JSON.Deserialize<AccountTradeDetailsResponse>(input);
+                    var atr = JSON.Deserialize<AccountTransactionDetailsResponse>(input);
                     return atr;
                 }
             }

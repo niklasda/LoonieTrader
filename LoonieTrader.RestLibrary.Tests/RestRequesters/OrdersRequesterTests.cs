@@ -5,7 +5,7 @@ using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
 using LoonieTrader.RestLibrary.Tests.Locator;
 
-namespace LoonieTrader.RestLibrary.Tests.RestRequesters.v3
+namespace LoonieTrader.RestLibrary.Tests.RestRequesters
 {
     public class OrdersRequesterTests
     {

@@ -2,6 +2,6 @@
 {
     public class PriceCache
     {
-
+        // persist the caches as yaml
     }
 }

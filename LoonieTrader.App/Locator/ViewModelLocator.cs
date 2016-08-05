@@ -1,5 +1,5 @@
 using LoonieTrader.App.ViewModels.Windows;
-using LoonieTrader.RestLibrary.Locator.v3;
+using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator
