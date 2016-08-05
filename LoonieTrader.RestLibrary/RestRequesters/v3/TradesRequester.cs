@@ -16,30 +16,62 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
 
         public AccountTradesResponse GetTrades(string accountId)
         {
-            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades");
+            // OPEN The Trade is currently open, CLOSED The Trade has been fully closed, CLOSE_WHEN_TRADEABLE The Trade will be closed as soon as the trade’s instrument becomes tradeable
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades?state=CLOSED");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var atr = JSON.Deserialize<AccountTradesResponse>(input);
-                return atr;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<AccountTradesResponse>(input);
+                    return atr;
+                }
+            }
+        }
+        public AccountTradesResponse GetOpenTrades(string accountId)
+        {
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/openTrades");
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<AccountTradesResponse>(input);
+                    return atr;
+                }
             }
         }
 
-        public AccountTradesResponse GetOpenTrades(string accountId)
+        public AccountTradeDetailsResponse GetTradeDetails(string accountId, string tradeId)
         {
-            throw new NotImplementedException();
-        }
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/trades/{1}");
 
-        public AccountTradesResponse GetTradeDetails(string accountId, string tradeId)
-        {
-            throw new NotImplementedException();
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId, tradeId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<AccountTradeDetailsResponse>(input);
+                    return atr;
+                }
+            }
         }
     }
 }

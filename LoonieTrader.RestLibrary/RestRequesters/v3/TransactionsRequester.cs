@@ -18,17 +18,19 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
         {
             string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var atpr = JSON.Deserialize<AccountTransactionPagesResponse>(input);
-                return atpr;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atpr = JSON.Deserialize<AccountTransactionPagesResponse>(input);
+                    return atpr;
+                }
             }
         }
 
@@ -36,23 +38,40 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
         {
             string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/idrange?from=1&to=19");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var atr = JSON.Deserialize<AccountTransactionsResponse>(input);
-                return atr;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<AccountTransactionsResponse>(input);
+                    return atr;
+                }
             }
         }
 
-        public AccountTransactionsResponse GetTransactionDetails(string accountId, string transactionId)
+        public AccountTransactionDetailsResponse GetTransactionDetails(string accountId, string transactionId)
         {
-            throw new NotImplementedException();
+            string urlAccountOrders = base.GetRestUrl("accounts/{0}/transactions/{1}");
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId, transactionId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<AccountTransactionDetailsResponse>(input);
+                    return atr;
+                }
+            }
         }
     }
 }

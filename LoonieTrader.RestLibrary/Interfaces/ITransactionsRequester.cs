@@ -7,6 +7,6 @@ namespace LoonieTrader.RestLibrary.Interfaces
     {
         AccountTransactionPagesResponse GetTransactionPages(string accountId);
         AccountTransactionsResponse GetTransactions(string accountId);
-        AccountTransactionsResponse GetTransactionDetails(string accountId, string transactionId);
+        AccountTransactionDetailsResponse GetTransactionDetails(string accountId, string transactionId);
     }
 }

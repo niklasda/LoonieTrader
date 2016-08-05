@@ -15,7 +15,9 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             foreach (var transaction in transactions)
             {
-                resp.Append("accountID: ");
+                resp.Append("id: ");
+                resp.Append(transaction.id);
+                resp.Append(", accountID: ");
                 resp.Append(transaction.accountID);
                 resp.Append(", accountNumber: ");
                 resp.Append(transaction.accountNumber);

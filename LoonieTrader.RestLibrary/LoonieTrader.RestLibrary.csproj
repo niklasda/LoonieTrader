@@ -79,6 +79,9 @@
     <Compile Include="Models\Responses\AccountDetailsResponse.cs" />
     <Compile Include="Models\Responses\AccountCreateOrdersResponse.cs" />
     <Compile Include="Models\Responses\AccountInstrumentPositionResponse.cs" />
+    <Compile Include="Models\Responses\AccountOpenTradesResponse.cs" />
+    <Compile Include="Models\Responses\AccountTradeDetailsResponse.cs" />
+    <Compile Include="Models\Responses\AccountTransactionDetailsResponse.cs" />
     <Compile Include="RestRequesters\v3\PositionsRequester.cs" />
     <Compile Include="RestRequesters\v3\TransactionsRequester.cs" />
     <Compile Include="RestRequesters\v3\PricingRequester.cs" />

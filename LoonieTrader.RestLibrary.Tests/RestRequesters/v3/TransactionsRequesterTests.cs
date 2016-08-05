@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Tests.Locator;
 
@@ -26,8 +27,18 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters.v3
         [Test]
         public void TestGetAccountTransactions()
         {
-            Assert.NotNull(_txr.GetTransactions(_s.DefaultAccountId));
+            var resp = _txr.GetTransactions(_s.DefaultAccountId);
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
         }
 
+
+        [Test]
+        public void TestGetAccountTransactionDetails()
+        {
+            var resp = _txr.GetTransactionDetails(_s.DefaultAccountId, "37");
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
+        }
     }
 }

@@ -6,7 +6,7 @@ namespace LoonieTrader.RestLibrary.Interfaces
     {
         AccountTradesResponse GetTrades(string accountId);
         AccountTradesResponse GetOpenTrades(string accountId);
-        AccountTradesResponse GetTradeDetails(string accountId, string tradeId);
+        AccountTradeDetailsResponse GetTradeDetails(string accountId, string tradeId);
 
     }
 }

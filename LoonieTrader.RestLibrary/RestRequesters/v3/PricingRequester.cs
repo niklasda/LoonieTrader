@@ -17,18 +17,21 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
         {
             string urlPrices = base.GetRestUrl("accounts/{0}/pricing?instruments={1}&since={2}");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId, instrument, "2016-08-05T04:00:00.000000Z"));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-            //Console.WriteLine(responseString);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var pr = JSON.Deserialize<PricesResponse>(input);
-                return pr;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes =
+                    wc.DownloadData(string.Format(urlPrices, accountId, instrument, "2016-08-05T04:00:00.000000Z"));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+                //Console.WriteLine(responseString);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var pr = JSON.Deserialize<PricesResponse>(input);
+                    return pr;
+                }
             }
         }
     }
