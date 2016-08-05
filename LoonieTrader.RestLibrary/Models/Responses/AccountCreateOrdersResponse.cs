@@ -41,7 +41,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public OrderDefinition()
             {
                 order = new Order();
-                order.stopLossOnFill = new StopLossOnFill();
             }
 
             public Order order { get; set; }

@@ -6,7 +6,7 @@ namespace LoonieTrader.RestLibrary.Interfaces
     {
         AccountOrdersResponse GetOrders(string accountId);
         AccountPendingOrdersResponse GetPendingOrders(string accountId);
-        AccountPendingOrdersResponse GetOrderDetails(string accountId, string orderId);
+        AccountOrderDetailsResponse GetOrderDetails(string accountId, string orderId);
         AccountCreateOrdersResponse PostCreateOrder(string accountId, AccountCreateOrdersResponse.OrderDefinition order);
         AccountCreateOrdersResponse PutCancelOrder(string accountId, string orderId);
     }

@@ -55,11 +55,24 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         }
 
 
-        public AccountPendingOrdersResponse GetOrderDetails(string accountId, string orderId)
+        public AccountOrderDetailsResponse GetOrderDetails(string accountId, string orderId)
         {
             string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/orders/{1}");
 
-            throw new NotImplementedException();
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlPendingAccountOrders, accountId, orderId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var aor = JSON.Deserialize<AccountOrderDetailsResponse>(input);
+                    return aor;
+                }
+            }
         }
 
         public AccountCreateOrdersResponse PostCreateOrder(string accountId, AccountCreateOrdersResponse.OrderDefinition order)

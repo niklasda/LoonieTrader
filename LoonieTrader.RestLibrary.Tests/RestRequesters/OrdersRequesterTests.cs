@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
 using NUnit.Framework;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
@@ -25,10 +26,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         {
             AccountOrdersResponse aor = _or.GetOrders(_s.DefaultAccountId);
             Assert.NotNull(aor);
-            foreach (AccountOrdersResponse.Order o in aor.orders)
-            {
-                Console.WriteLine(o.id);
-            }
+            Console.WriteLine(aor);
         }
 
         [Test]
@@ -36,21 +34,19 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         {
             AccountPendingOrdersResponse apor = _or.GetPendingOrders(_s.DefaultAccountId);
             Assert.NotNull(apor);
-            foreach (AccountPendingOrdersResponse.PendingOrder o in apor.orders)
-            {
-                Console.WriteLine(o.id);
-            }
+            Console.WriteLine(apor);
         }
 
         [Test]
         public void TestGetAccountOrderDetails()
         {
-            AccountPendingOrdersResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "");
+            AccountOrderDetailsResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "61");
             Assert.NotNull(aodr);
+            Console.WriteLine(aodr);
         }
 
         [Test]
-        public void TestGetCreateAccountMarketOrderDetails()
+        public void TestPostCreateAccountMarketOrder()
         {
             var od = new AccountCreateOrdersResponse.OrderDefinition();
             od.order.units = "1000";
@@ -59,7 +55,6 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             od.order.type = "MARKET";
             od.order.positionFill = "DEFAULT";
 
-
             AccountCreateOrdersResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
             Assert.NotNull(aodr);
 
@@ -67,18 +62,19 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         }
 
         [Test]
-        public void TestGetCreateAccountLimitOrderDetails()
+        public void TestPostCreateAccountLimitOrder()
         {
             var od = new AccountCreateOrdersResponse.OrderDefinition();
-            od.order.price = "1.500";
+            od.order.price = "1.200";
             od.order.units = "1000";
             od.order.instrument = "EUR_USD";
             od.order.timeInForce = "GTC";
             od.order.type = "LIMIT";
             od.order.positionFill = "DEFAULT";
 
+            od.order.stopLossOnFill = new AccountCreateOrdersResponse.OrderDefinition.StopLossOnFill();
             od.order.stopLossOnFill.timeInForce = "GTC";
-            od.order.stopLossOnFill.price = "1.450";
+            od.order.stopLossOnFill.price = "1.000";
 
 
             AccountCreateOrdersResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
