@@ -24,7 +24,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
-    }
 
     public class PendingOrder
     {
@@ -41,6 +40,7 @@ namespace LoonieTrader.RestLibrary.Models.Responses
         public string type { get; set; }
         public string units { get; set; }
     }
+}
 }
 
 /*

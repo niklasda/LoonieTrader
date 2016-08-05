@@ -24,7 +24,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
-    }
 
     public class AccountSummary
     {
@@ -57,6 +56,7 @@ namespace LoonieTrader.RestLibrary.Models.Responses
         public string withdrawalLimit { get; set; }
     }
 
+    }
 }
 
 /*

@@ -30,6 +30,7 @@ namespace LoonieTrader.TestApp
                 ResizeWindow();
 
                 Console.WriteLine(ar.GetAccounts());
+                Console.WriteLine(ar.GetAccountDetails(cfg.DefaultAccountId));
                 Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
                 Console.WriteLine(por.GetPositions(cfg.DefaultAccountId));
                 Console.WriteLine(por.GetOpenPositions(cfg.DefaultAccountId));
@@ -40,7 +41,7 @@ namespace LoonieTrader.TestApp
                 Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));
 
                 Console.WriteLine(ar.GetInstruments(cfg.DefaultAccountId));
-                Console.WriteLine(prr.GetPrices(cfg.DefaultAccountId));
+                Console.WriteLine(prr.GetPrices(cfg.DefaultAccountId, "EUR_USD"));
 
                 //GetPrices();
                 //GetCandles();

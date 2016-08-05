@@ -4,7 +4,7 @@ namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface IPricingRequester
     {
-        PricesResponse GetPrices(string instrument);
+        PricesResponse GetPrices(string accountId, string instrument);
 
     }
 }

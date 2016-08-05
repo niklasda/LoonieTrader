@@ -25,6 +25,32 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
+
+        public class Position
+        {
+            public string instrument { get; set; }
+            public Long @long { get; set; }
+            public string pl { get; set; }
+            public string resettablePL { get; set; }
+            public Short @short { get; set; }
+            public string unrealizedPL { get; set; }
+        }
+
+        public class Long
+        {
+            public string pl { get; set; }
+            public string resettablePL { get; set; }
+            public string units { get; set; }
+            public string unrealizedPL { get; set; }
+        }
+
+        public class Short
+        {
+            public string pl { get; set; }
+            public string resettablePL { get; set; }
+            public string units { get; set; }
+            public string unrealizedPL { get; set; }
+        }
     }
 
     /*

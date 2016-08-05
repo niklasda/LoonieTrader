@@ -10,7 +10,7 @@
         Height="700"
         Width="900" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Window.InputBindings>
-        <KeyBinding Key="A" Modifiers="Control" Command="{Binding AboutCommand}"/>
+        <KeyBinding Key="T" Modifiers="Control" Command="{Binding TradeTicketCommand}"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Syncfusion:MenuAdv DockPanel.Dock="Top">
@@ -26,17 +26,15 @@
                 <Syncfusion:MenuItemAdv Header="Open Positions" />
                 <Syncfusion:MenuItemAdv Header="Open Orders" />
                 <Syncfusion:MenuItemSeparator />
-                <Syncfusion:MenuItemAdv Header="Chart" />
+                <Syncfusion:MenuItemAdv Header="Chart"  />
                 <Syncfusion:MenuItemSeparator />
-                <Syncfusion:MenuItemAdv Header="Trade Ticket" />
+                <Syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding TradeTicketCommand}" InputGestureText="Ctrl+T" />
                 <Syncfusion:MenuItemAdv Header="Order Ticket" />
             </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_Window" />
             <Syncfusion:MenuItemAdv Header="_Help" >
-                <Syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}" InputGestureText="Ctrl+A"  ></Syncfusion:MenuItemAdv>
+                <Syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}" ></Syncfusion:MenuItemAdv>
             </Syncfusion:MenuItemAdv>
-            <Syncfusion:ButtonAdv Label="New Chart"></Syncfusion:ButtonAdv>
-            <Syncfusion:ButtonAdv Command="{Binding TradeTicketCommand}" Label="Trade Ticket" ToolTip="Open Trade/Order Placement Window" SmallIcon="/LoonieTrader.App;component/Images/AppIcon.ico"/>
         </Syncfusion:MenuAdv>
         <StatusBar Height="30"  DockPanel.Dock="Bottom">
             <MenuItem Header="yy">
@@ -48,7 +46,7 @@
 
         <Grid   >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="140"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -58,14 +56,14 @@
                                AutoGenerateColumns="True"
                                AllowSelectionOnPointerPressed="True"
                                ColumnSizer="Auto"
-                                    ItemsSource="{Binding InstrumentList}" />
+                                    ItemsSource="{Binding InstrumentList}" SelectedItem="{Binding SelectedItem}" />
             </Grid>
             <GridSplitter Grid.Column="1" Width="7" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>
 
 
             <Grid  Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="180"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>

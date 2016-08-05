@@ -17,34 +17,59 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
         {
             string urlAccounts = base.GetRestUrl("accounts");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(urlAccounts);
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var ar = JSON.Deserialize<AccountResponse>(input);
-                return ar;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(urlAccounts);
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var ar = JSON.Deserialize<AccountResponse>(input);
+                    return ar;
+                }
             }
         }
+
+        public AccountDetailsResponse GetAccountDetails(string accountId)
+        {
+            string urlAccountSummary = base.GetRestUrl("accounts/{0}");
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var ar = JSON.Deserialize<AccountDetailsResponse>(input);
+                    return ar;
+                }
+            }
+        }
+
         public AccountSummaryResponse GetAccountSummary(string accountId)
         {
             string urlAccountSummary = base.GetRestUrl("accounts/{0}/summary");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var ar = JSON.Deserialize<AccountSummaryResponse>(input);
-                return ar;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var ar = JSON.Deserialize<AccountSummaryResponse>(input);
+                    return ar;
+                }
             }
         }
 
@@ -52,17 +77,19 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
         {
             string urlPrices = base.GetRestUrl("accounts/{0}/instruments");
 
-            WebClient wc = new WebClient();
-            wc.Headers.Add("Authorization", base.BearerApiKey);
-
-            var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId));
-
-            var responseString = Encoding.UTF8.GetString(responseBytes);
-
-            using (var input = new StringReader(responseString))
+            using (WebClient wc = new WebClient())
             {
-                var ir = JSON.Deserialize<InstrumentsResponse>(input);
-                return ir;
+                wc.Headers.Add("Authorization", base.BearerApiKey);
+
+                var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId));
+
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var ir = JSON.Deserialize<InstrumentsResponse>(input);
+                    return ir;
+                }
             }
         }
     }

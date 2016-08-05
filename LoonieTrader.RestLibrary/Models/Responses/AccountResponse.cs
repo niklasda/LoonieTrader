@@ -15,18 +15,18 @@ namespace LoonieTrader.RestLibrary.Models.Responses
                 resp.Append(account.id);
                 resp.Append(", ");
                 resp.Append("tags: ");
-                resp.Append(string.Concat(account.tags));
+                resp.AppendLine(string.Concat(account.tags));
             }
 
             return resp.ToString();
         }
-    }
 
     public class Account
     {
         public string id { get; set; }
 
         public string[] tags { get; set; }
+    }
     }
 }
 

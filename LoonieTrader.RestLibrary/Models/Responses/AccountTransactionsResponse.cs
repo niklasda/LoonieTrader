@@ -35,7 +35,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
-    }
 
     public class Transaction
     {
@@ -79,6 +78,7 @@ namespace LoonieTrader.RestLibrary.Models.Responses
         public string price { get; set; }
         public string timeInForce { get; set; }
     }
+}
 }
 
 /*

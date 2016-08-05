@@ -31,5 +31,15 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
                 return atr;
             }
         }
+
+        public AccountTradesResponse GetOpenTrades(string accountId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AccountTradesResponse GetTradeDetails(string accountId, string tradeId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

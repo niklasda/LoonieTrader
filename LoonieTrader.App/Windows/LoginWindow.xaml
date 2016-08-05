@@ -36,6 +36,6 @@
             <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableAccounts}" SelectedValue="{Binding SelectedEnvironmentKey}" DisplayMemberPath="Key" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
         </StackPanel>
 
-        <Syncfusion:ButtonAdv Content="_Use" Grid.Column="1" Grid.Row="4" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding LoginCommand}" />
+        <Syncfusion:ButtonAdv Label ="_Use" Grid.Column="1" Grid.Row="4" Width="100" Height="30" HorizontalAlignment="Right" SmallIcon="/LoonieTrader.App;component/Images/Check Mark.png" Command="{Binding LoginCommand}" />
     </Grid>
 </Window>

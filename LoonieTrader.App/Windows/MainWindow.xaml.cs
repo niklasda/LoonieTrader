@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Syncfusion.UI.Xaml.Grid;
 
 namespace LoonieTrader.App.Windows
 {
@@ -11,5 +12,6 @@ namespace LoonieTrader.App.Windows
         {
             InitializeComponent();
         }
+
     }
 }

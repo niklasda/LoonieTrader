@@ -191,6 +191,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Images\Loonie.metrop" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -208,10 +209,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\AppBitmap.bmp" />
     <Resource Include="Images\AppIcon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\AppBitmap.bmp" />
+    <Resource Include="Images\Bar Charts-1-WF.png" />
+    <Resource Include="Images\Chart-Series.png" />
+    <Resource Include="Images\Check Mark.png" />
+    <Resource Include="Images\Cursor-02-WF.png" />
+    <Resource Include="Images\Graph-03.png" />
+    <Resource Include="Images\Stcok-Exchange-03-WF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

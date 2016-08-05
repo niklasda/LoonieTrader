@@ -33,5 +33,13 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters.v3
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }
+
+        [Test]
+        public void TestGetAccountInstrumentPositions()
+        {
+            var resp = _por.GetInstrumentPositions(_s.DefaultAccountId, "EUR_USD");
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
+        }
     }
 }

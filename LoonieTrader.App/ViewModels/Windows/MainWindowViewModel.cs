@@ -29,15 +29,25 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 var plotModel = new PlotModel {Title = "Sample 1", Subtitle = "Graph"};
                 plotModel.Axes.Add(new LinearAxis {Position = AxisPosition.Left, Minimum = -1, Maximum = 10});
-                plotModel.Series.Add(new LineSeries {LineStyle = LineStyle.Solid});
+                plotModel.Axes.Add(new LinearAxis {Position = AxisPosition.Bottom, Minimum = -1, Maximum = 10});
+
+                var lineSeries = new LineSeries { LineStyle = LineStyle.Solid };
+                lineSeries.Points.AddRange(new[] { new DataPoint(1, 2), new DataPoint(2, 3) });
+
+                plotModel.Series.Add(lineSeries);
 
                 GraphData = plotModel;
             }
             else
             {
                  var plotModel = new PlotModel {Title = "Example Live", Subtitle = "Graph"};
-                plotModel.Axes.Add(new LinearAxis {Position = AxisPosition.Left, Minimum = -1, Maximum = 10});
-                plotModel.Series.Add(new LineSeries {LineStyle = LineStyle.Solid});
+                plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = -1, Maximum = 10 });
+                plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = -1, Maximum = 10 });
+
+                var lineSeries = new LineSeries {LineStyle = LineStyle.Solid};
+                lineSeries.Points.AddRange(new [] { new DataPoint(1, 2) , new DataPoint(2.1, 3) });
+
+                plotModel.Series.Add(lineSeries);
 
                 GraphData = plotModel;
             }
@@ -98,6 +108,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                 new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
                 new PositionModel() {Instrument = "EURUSD", ProfitLoss = "1.22" },
             }; }
+        }
+
+        private InstrumentModel _selectedItem;
+
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set { _selectedItem = value as InstrumentModel; }
         }
 
         public void About()

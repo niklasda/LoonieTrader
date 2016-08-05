@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReaderTests.cs" />
     <Compile Include="Locator\ServiceLocator.cs" />
+    <Compile Include="RestRequesters\v3\PricingRequesterTests.cs" />
     <Compile Include="RestRequesters\v3\TradesRequesterTests.cs" />
     <Compile Include="RestRequesters\v3\TransactionsRequesterTests.cs" />
     <Compile Include="RestRequesters\v3\PositionsRequesterTests.cs" />

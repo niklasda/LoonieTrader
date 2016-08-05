@@ -62,6 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caches\AccountCache.cs" />
+    <Compile Include="Caches\InstrumentCache.cs" />
+    <Compile Include="Caches\PriceCache.cs" />
     <Compile Include="Configuration\ConfigurationReader.cs" />
     <Compile Include="Configuration\Environments.cs" />
     <Compile Include="Interfaces\ITransactionsRequester.cs" />
@@ -73,6 +76,9 @@
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Models\InstrumentModel.cs" />
     <Compile Include="Models\PositionModel.cs" />
+    <Compile Include="Models\Responses\AccountDetailsResponse.cs" />
+    <Compile Include="Models\Responses\AccountCreateOrdersResponse.cs" />
+    <Compile Include="Models\Responses\AccountInstrumentPositionResponse.cs" />
     <Compile Include="RestRequesters\v3\PositionsRequester.cs" />
     <Compile Include="RestRequesters\v3\TransactionsRequester.cs" />
     <Compile Include="RestRequesters\v3\PricingRequester.cs" />

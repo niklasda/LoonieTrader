@@ -49,5 +49,10 @@ namespace LoonieTrader.RestLibrary.RestRequesters.v3
                 return atr;
             }
         }
+
+        public AccountTransactionsResponse GetTransactionDetails(string accountId, string transactionId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

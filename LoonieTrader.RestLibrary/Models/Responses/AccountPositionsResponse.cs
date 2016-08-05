@@ -19,13 +19,14 @@ namespace LoonieTrader.RestLibrary.Models.Responses
                 resp.AppendLine("P/L: "+ position.pl);
                 resp.AppendLine("resettable P/L: "+ position.resettablePL);
                 resp.AppendLine("unrealized P/L: "+ position.unrealizedPL);
+                resp.AppendLine("long units: "+ position.@long.units);
                 resp.AppendLine("long P/L: "+ position.@long.pl);
+                resp.AppendLine("short units: "+ position.@short.units);
                 resp.AppendLine("short P/L: "+ position.@short.pl);
             }
 
             return resp.ToString();
         }
-    }
 
     public class Position
     {
@@ -52,15 +53,16 @@ namespace LoonieTrader.RestLibrary.Models.Responses
         public string units { get; set; }
         public string unrealizedPL { get; set; }
     }
+    }
 
-/*
-{"lastTransactionID":"16",
-"positions":
-[{"instrument":"EUR_USD",
-"long":{"pl":"0.0000","resettablePL":"0.0000","units":"0","unrealizedPL":"0.0000"},
-"pl":"26.3639",
-"resettablePL":"26.3639",
-"short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},
-"unrealizedPL":"0.0000"}]}
-*/
+    /*
+    {"lastTransactionID":"16",
+    "positions":
+    [{"instrument":"EUR_USD",
+    "long":{"pl":"0.0000","resettablePL":"0.0000","units":"0","unrealizedPL":"0.0000"},
+    "pl":"26.3639",
+    "resettablePL":"26.3639",
+    "short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},
+    "unrealizedPL":"0.0000"}]}
+    */
 }
