@@ -84,10 +84,8 @@ namespace LoonieTrader.RestLibrary.RestRequesters
                 wc.Headers.Add("Content-Type", "application/json");
                 wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var orderJson = JSON.Serialize(order);
+                var orderJson = JSON.Serialize(order, new Options(excludeNulls:true));
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
-                //var reqparm = new System.Collections.Specialized.NameValueCollection();
-                //reqparm.Add("order", orderJson);
 
                 var responseBytes = wc.UploadData(string.Format(urlPendingAccountOrders, accountId), "POST", orderBytes);
 
