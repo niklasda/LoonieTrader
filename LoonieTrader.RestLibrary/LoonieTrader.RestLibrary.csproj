@@ -77,12 +77,11 @@
     <Compile Include="Models\InstrumentModel.cs" />
     <Compile Include="Models\PositionModel.cs" />
     <Compile Include="Models\Responses\AccountDetailsResponse.cs" />
-    <Compile Include="Models\Responses\AccountCreateOrdersResponse.cs" />
-    <Compile Include="Models\Responses\AccountInstrumentPositionResponse.cs" />
-    <Compile Include="Models\Responses\AccountOpenTradesResponse.cs" />
-    <Compile Include="Models\Responses\AccountOrderDetailsResponse.cs" />
-    <Compile Include="Models\Responses\AccountTradeDetailsResponse.cs" />
-    <Compile Include="Models\Responses\AccountTransactionDetailsResponse.cs" />
+    <Compile Include="Models\Responses\OrderCreateResponse.cs" />
+    <Compile Include="Models\Responses\PositionsInstrumentResponse.cs" />
+    <Compile Include="Models\Responses\OrderDetailsResponse.cs" />
+    <Compile Include="Models\Responses\TradeDetailsResponse.cs" />
+    <Compile Include="Models\Responses\TransactionDetailsResponse.cs" />
     <Compile Include="RestRequesters\PositionsRequester.cs" />
     <Compile Include="RestRequesters\TransactionsRequester.cs" />
     <Compile Include="RestRequesters\PricingRequester.cs" />
@@ -93,16 +92,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestRequesters\OrdersRequester.cs" />
     <Compile Include="RestRequesters\AccountsRequester.cs" />
-    <Compile Include="Models\Responses\AccountPendingOrdersResponse.cs" />
-    <Compile Include="Models\Responses\AccountOrdersResponse.cs" />
-    <Compile Include="Models\Responses\AccountOpenPositionsResponse.cs" />
-    <Compile Include="Models\Responses\AccountTradesResponse.cs" />
-    <Compile Include="Models\Responses\AccountPositionsResponse.cs" />
+    <Compile Include="Models\Responses\OrdersPendingResponse.cs" />
+    <Compile Include="Models\Responses\OrdersResponse.cs" />
+    <Compile Include="Models\Responses\PositionsOpenResponse.cs" />
+    <Compile Include="Models\Responses\TradesResponse.cs" />
+    <Compile Include="Models\Responses\PositionsResponse.cs" />
     <Compile Include="Models\Responses\AccountSummaryResponse.cs" />
-    <Compile Include="Models\Responses\AccountResponse.cs" />
-    <Compile Include="Models\Responses\AccountTransactionPagesResponse.cs" />
-    <Compile Include="Models\Responses\AccountTransactionsResponse.cs" />
-    <Compile Include="Models\Responses\InstrumentsResponse.cs" />
+    <Compile Include="Models\Responses\AccountsResponse.cs" />
+    <Compile Include="Models\Responses\TransactionPagesResponse.cs" />
+    <Compile Include="Models\Responses\TransactionsResponse.cs" />
+    <Compile Include="Models\Responses\AccountInstrumentsResponse.cs" />
     <Compile Include="Models\Responses\PricesResponse.cs" />
   </ItemGroup>
   <ItemGroup>

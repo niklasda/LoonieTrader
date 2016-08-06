@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountTransactionPagesResponse
+    public class TransactionPagesResponse
     {
          public int count { get; set; }
         public string from { get; set; }

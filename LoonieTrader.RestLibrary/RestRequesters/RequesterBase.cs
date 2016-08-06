@@ -1,4 +1,6 @@
-﻿using LoonieTrader.RestLibrary.Configuration;
+﻿using System;
+using System.Net;
+using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
 
 namespace LoonieTrader.RestLibrary.RestRequesters
@@ -17,6 +19,14 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         protected string GetRestUrl(string arg)
         {
             return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, arg);
+        }
+
+        protected WebClient GetAuthenticatedWebClient()
+        {
+            var wc = new WebClient();
+            wc.Headers.Add("Authorization", BearerApiKey);
+            wc.Headers.Add("Content-Type", "application/json");
+            return wc;
         }
     }
 }

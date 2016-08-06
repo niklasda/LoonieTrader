@@ -4,10 +4,10 @@ namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface IOrdersRequester
     {
-        AccountOrdersResponse GetOrders(string accountId);
-        AccountPendingOrdersResponse GetPendingOrders(string accountId);
-        AccountOrderDetailsResponse GetOrderDetails(string accountId, string orderId);
-        AccountCreateOrdersResponse PostCreateOrder(string accountId, AccountCreateOrdersResponse.OrderDefinition order);
-        AccountCreateOrdersResponse PutCancelOrder(string accountId, string orderId);
+        OrdersResponse GetOrders(string accountId);
+        OrdersPendingResponse GetPendingOrders(string accountId);
+        OrderDetailsResponse GetOrderDetails(string accountId, string orderId);
+        OrderCreateResponse PostCreateOrder(string accountId, OrderCreateResponse.OrderDefinition order);
+        OrderCreateResponse PutCancelOrder(string accountId, string orderId);
     }
 }

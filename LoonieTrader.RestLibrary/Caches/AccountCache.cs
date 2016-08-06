@@ -6,6 +6,6 @@ namespace LoonieTrader.RestLibrary.Caches
     {
         // persist the caches as yaml
 
-        public static AccountResponse Accounts { get; set; }
+        public static AccountsResponse Accounts { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountCreateOrdersResponse
+    public class OrderCreateResponse
     {
         public string lastTransactionID { get; set; }
         public Ordercreatetransaction orderCreateTransaction { get; set; }

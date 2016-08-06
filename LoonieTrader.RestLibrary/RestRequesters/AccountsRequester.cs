@@ -13,13 +13,13 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
         }
 
-        public AccountResponse GetAccounts()
+        public AccountsResponse GetAccounts()
         {
             string urlAccounts = base.GetRestUrl("accounts");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+               // wc.Headers.Add("Authorization", base.BearerApiKey);
 
                 var responseBytes = wc.DownloadData(urlAccounts);
 
@@ -27,7 +27,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountResponse>(input);
+                    var ar = JSON.Deserialize<AccountsResponse>(input);
                     return ar;
                 }
             }
@@ -35,13 +35,13 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
         public AccountDetailsResponse GetAccountDetails(string accountId)
         {
-            string urlAccountSummary = base.GetRestUrl("accounts/{0}");
+            string urlAccountDetails = base.GetRestUrl("accounts/{0}");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlAccountDetails, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
@@ -57,9 +57,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
             string urlAccountSummary = base.GetRestUrl("accounts/{0}/summary");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+             //   wc.Headers.Add("Authorization", base.BearerApiKey);
 
                 var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
 
@@ -73,21 +73,21 @@ namespace LoonieTrader.RestLibrary.RestRequesters
             }
         }
 
-        public InstrumentsResponse GetInstruments(string accountId)
+        public AccountInstrumentsResponse GetInstruments(string accountId)
         {
-            string urlPrices = base.GetRestUrl("accounts/{0}/instruments");
+            string urlInstruments = base.GetRestUrl("accounts/{0}/instruments");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlInstruments, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var ir = JSON.Deserialize<InstrumentsResponse>(input);
+                    var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);
                     return ir;
                 }
             }

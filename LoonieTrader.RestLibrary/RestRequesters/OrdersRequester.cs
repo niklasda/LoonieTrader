@@ -14,94 +14,94 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
         }
 
-        public AccountOrdersResponse GetOrders(string accountId)
+        public OrdersResponse GetOrders(string accountId)
         {
-            string urlAccountOrders = base.GetRestUrl("accounts/{0}/orders/");
+            string urlOrders = base.GetRestUrl("accounts/{0}/orders/");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+             //   wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountOrders, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlOrders, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var aor = JSON.Deserialize<AccountOrdersResponse>(input);
+                    var aor = JSON.Deserialize<OrdersResponse>(input);
                     return aor;
                 }
             }
         }
 
-        public AccountPendingOrdersResponse GetPendingOrders(string accountId)
+        public OrdersPendingResponse GetPendingOrders(string accountId)
         {
-            string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/pendingOrders/");
+            string urlPendingOrders = base.GetRestUrl("accounts/{0}/pendingOrders/");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+               // wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlPendingAccountOrders, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlPendingOrders, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var aor = JSON.Deserialize<AccountPendingOrdersResponse>(input);
+                    var aor = JSON.Deserialize<OrdersPendingResponse>(input);
                     return aor;
                 }
             }
         }
 
 
-        public AccountOrderDetailsResponse GetOrderDetails(string accountId, string orderId)
+        public OrderDetailsResponse GetOrderDetails(string accountId, string orderId)
         {
-            string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/orders/{1}");
+            string urlOrderDetails = base.GetRestUrl("accounts/{0}/orders/{1}");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlPendingAccountOrders, accountId, orderId));
+                var responseBytes = wc.DownloadData(string.Format(urlOrderDetails, accountId, orderId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var aor = JSON.Deserialize<AccountOrderDetailsResponse>(input);
+                    var aor = JSON.Deserialize<OrderDetailsResponse>(input);
                     return aor;
                 }
             }
         }
 
-        public AccountCreateOrdersResponse PostCreateOrder(string accountId, AccountCreateOrdersResponse.OrderDefinition order)
+        public OrderCreateResponse PostCreateOrder(string accountId, OrderCreateResponse.OrderDefinition order)
         {
-            string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/orders/");
+            string urlCreateOrder = base.GetRestUrl("accounts/{0}/orders/");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Content-Type", "application/json");
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Content-Type", "application/json");
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
                 var orderJson = JSON.Serialize(order, new Options(excludeNulls:true));
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 
-                var responseBytes = wc.UploadData(string.Format(urlPendingAccountOrders, accountId), "POST", orderBytes);
+                var responseBytes = wc.UploadData(string.Format(urlCreateOrder, accountId), "POST", orderBytes);
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var aor = JSON.Deserialize<AccountCreateOrdersResponse>(input);
+                    var aor = JSON.Deserialize<OrderCreateResponse>(input);
                     return aor;
                 }
             }
         }
 
-        public AccountCreateOrdersResponse PutCancelOrder(string accountId, string orderId)
+        public OrderCreateResponse PutCancelOrder(string accountId, string orderId)
         {
-            string urlPendingAccountOrders = base.GetRestUrl("accounts/{0}/orders/{1}/cancel");
+            string urlCancelOrder = base.GetRestUrl("accounts/{0}/orders/{1}/cancel");
             throw new NotImplementedException();
         }
     }

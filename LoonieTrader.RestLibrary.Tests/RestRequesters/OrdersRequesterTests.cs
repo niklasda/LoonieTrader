@@ -24,7 +24,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         [Test]
         public void TestGetAccountOrders()
         {
-            AccountOrdersResponse aor = _or.GetOrders(_s.DefaultAccountId);
+            OrdersResponse aor = _or.GetOrders(_s.DefaultAccountId);
             Assert.NotNull(aor);
             Console.WriteLine(aor);
         }
@@ -32,7 +32,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         [Test]
         public void TestGetAccountPendingOrders()
         {
-            AccountPendingOrdersResponse apor = _or.GetPendingOrders(_s.DefaultAccountId);
+            OrdersPendingResponse apor = _or.GetPendingOrders(_s.DefaultAccountId);
             Assert.NotNull(apor);
             Console.WriteLine(apor);
         }
@@ -40,7 +40,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         [Test]
         public void TestGetAccountOrderDetails()
         {
-            AccountOrderDetailsResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "61");
+            OrderDetailsResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "61");
             Assert.NotNull(aodr);
             Console.WriteLine(aodr);
         }
@@ -48,14 +48,14 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         [Test]
         public void TestPostCreateAccountMarketOrder()
         {
-            var od = new AccountCreateOrdersResponse.OrderDefinition();
+            var od = new OrderCreateResponse.OrderDefinition();
             od.order.units = "1000";
             od.order.instrument = "EUR_USD";
             od.order.timeInForce = "FOK";
             od.order.type = "MARKET";
             od.order.positionFill = "DEFAULT";
 
-            AccountCreateOrdersResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
+            OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
             Assert.NotNull(aodr);
 
             Console.WriteLine(aodr);
@@ -64,7 +64,7 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
         [Test]
         public void TestPostCreateAccountLimitOrder()
         {
-            var od = new AccountCreateOrdersResponse.OrderDefinition();
+            var od = new OrderCreateResponse.OrderDefinition();
             od.order.price = "1.200";
             od.order.units = "1000";
             od.order.instrument = "EUR_USD";
@@ -72,12 +72,12 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             od.order.type = "LIMIT";
             od.order.positionFill = "DEFAULT";
 
-            od.order.stopLossOnFill = new AccountCreateOrdersResponse.OrderDefinition.StopLossOnFill();
+            od.order.stopLossOnFill = new OrderCreateResponse.OrderDefinition.StopLossOnFill();
             od.order.stopLossOnFill.timeInForce = "GTC";
             od.order.stopLossOnFill.price = "1.000";
 
 
-            AccountCreateOrdersResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
+            OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
             Assert.NotNull(aodr);
 
             Console.WriteLine(aodr);

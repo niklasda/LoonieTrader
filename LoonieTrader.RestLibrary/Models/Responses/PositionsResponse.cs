@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountPositionsResponse
+    public class PositionsResponse
     {
         public string lastTransactionID { get; set; }
         public Position[] positions { get; set; }

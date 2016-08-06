@@ -13,61 +13,61 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
         }
 
-        public AccountPositionsResponse GetPositions(string accountId)
+        public PositionsResponse GetPositions(string accountId)
         {
-            string urlAccountPositions = base.GetRestUrl("accounts/{0}/positions/");
+            string urlPositions = base.GetRestUrl("accounts/{0}/positions/");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountPositions, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlPositions, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var apr = JSON.Deserialize<AccountPositionsResponse>(input);
+                    var apr = JSON.Deserialize<PositionsResponse>(input);
                     return apr;
                 }
             }
         }
 
-        public AccountOpenPositionsResponse GetOpenPositions(string accountId)
+        public PositionsOpenResponse GetOpenPositions(string accountId)
         {
-            string urlAccountOpenPositions = base.GetRestUrl("accounts/{0}/openPositions/");
+            string urlOpenPositions = base.GetRestUrl("accounts/{0}/openPositions/");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+             //   wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountOpenPositions, accountId));
+                var responseBytes = wc.DownloadData(string.Format(urlOpenPositions, accountId));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var apr = JSON.Deserialize<AccountOpenPositionsResponse>(input);
+                    var apr = JSON.Deserialize<PositionsOpenResponse>(input);
                     return apr;
                 }
             }
         }
 
-        public AccountInstrumentPositionResponse GetInstrumentPositions(string accountId, string instrument)
+        public PositionsInstrumentResponse GetInstrumentPositions(string accountId, string instrument)
         {
-            string urlAccountOpenPositions = base.GetRestUrl("accounts/{0}/positions/{1}");
+            string urlInstrumentPositions = base.GetRestUrl("accounts/{0}/positions/{1}");
 
-            using (WebClient wc = new WebClient())
+            using (WebClient wc = GetAuthenticatedWebClient())
             {
-                wc.Headers.Add("Authorization", base.BearerApiKey);
+              //  wc.Headers.Add("Authorization", base.BearerApiKey);
 
-                var responseBytes = wc.DownloadData(string.Format(urlAccountOpenPositions, accountId, instrument));
+                var responseBytes = wc.DownloadData(string.Format(urlInstrumentPositions, accountId, instrument));
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
 
                 using (var input = new StringReader(responseString))
                 {
-                    var apr = JSON.Deserialize<AccountInstrumentPositionResponse>(input);
+                    var apr = JSON.Deserialize<PositionsInstrumentResponse>(input);
                     return apr;
                 }
             }

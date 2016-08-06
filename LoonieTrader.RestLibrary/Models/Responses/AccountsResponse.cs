@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountResponse
+    public class AccountsResponse
     {
         public Account[] accounts { get; set; }
 

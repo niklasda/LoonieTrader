@@ -4,8 +4,8 @@ namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface IPositionsRequester
     {
-        AccountPositionsResponse GetPositions(string accountId);
-        AccountOpenPositionsResponse GetOpenPositions(string accountId);
-        AccountInstrumentPositionResponse GetInstrumentPositions(string accountId, string instrument);
+        PositionsResponse GetPositions(string accountId);
+        PositionsOpenResponse GetOpenPositions(string accountId);
+        PositionsInstrumentResponse GetInstrumentPositions(string accountId, string instrument);
     }
 }

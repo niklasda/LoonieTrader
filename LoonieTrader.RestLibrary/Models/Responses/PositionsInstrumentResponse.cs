@@ -2,10 +2,10 @@
 
 namespace LoonieTrader.RestLibrary.Models.Responses
 {
-    public class AccountOpenPositionsResponse
+    public class PositionsInstrumentResponse
     {
         public string lastTransactionID { get; set; }
-        public Position[] positions { get; set; }
+        public Position position { get; set; }
 
         public override string ToString()
         {
@@ -13,15 +13,12 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             resp.Append("lastTransactionID: ");
             resp.AppendLine(lastTransactionID);
 
-            foreach (var position in positions)
-            {
-                resp.AppendLine("Instrument: " + position.instrument);
-                resp.AppendLine("P/L: " + position.pl);
-                resp.AppendLine("resettable P/L: " + position.resettablePL);
-                resp.AppendLine("unrealized P/L: " + position.unrealizedPL);
-                resp.AppendLine("long P/L: " + position.@long.pl);
-                resp.AppendLine("short P/L: " + position.@short.pl);
-            }
+            resp.AppendLine("Instrument: " + position.instrument);
+            resp.AppendLine("P/L: " + position.pl);
+            resp.AppendLine("resettable P/L: " + position.resettablePL);
+            resp.AppendLine("unrealized P/L: " + position.unrealizedPL);
+            resp.AppendLine("long P/L: " + position.@long.pl);
+            resp.AppendLine("short P/L: " + position.@short.pl);
 
             return resp.ToString();
         }
@@ -38,8 +35,10 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
         public class Long
         {
+            public string averagePrice { get; set; }
             public string pl { get; set; }
             public string resettablePL { get; set; }
+            public string[] tradeIDs { get; set; }
             public string units { get; set; }
             public string unrealizedPL { get; set; }
         }
@@ -51,11 +50,12 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string units { get; set; }
             public string unrealizedPL { get; set; }
         }
+
     }
 
     /*
-    {"lastTransactionID":"16","positions":[]}
-    
+
+    {"lastTransactionID":"53","position":{"instrument":"EUR_USD","long":{"averagePrice":"1.10806","pl":"-1.7538","resettablePL":"-1.7538","tradeIDs":["18","29","31","33","35","37"],"units":"15000","unrealizedPL":"14.4239"},"pl":"24.6101","resettablePL":"24.6101","short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},"unrealizedPL":"14.4239"}}
 
     */
 }

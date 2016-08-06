@@ -4,9 +4,9 @@ namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface ITradesRequester
     {
-        AccountTradesResponse GetTrades(string accountId);
-        AccountTradesResponse GetOpenTrades(string accountId);
-        AccountTradeDetailsResponse GetTradeDetails(string accountId, string tradeId);
+        TradesResponse GetTrades(string accountId);
+        TradesResponse GetOpenTrades(string accountId);
+        TradeDetailsResponse GetTradeDetails(string accountId, string tradeId);
 
     }
 }
