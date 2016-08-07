@@ -5,12 +5,13 @@ using System.Text;
 using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
+using Serilog;
 
 namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class TradesRequester : RequesterBase, ITradesRequester
     {
-        public TradesRequester(ISettings settings) : base(settings)
+        public TradesRequester(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger) : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -21,11 +22,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-             //   wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlTrades, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.SaveLocalJson("trades", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
                 {
@@ -40,11 +39,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-           //     wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlOpenTrades, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.SaveLocalJson("tradesOpen", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
                 {
@@ -60,11 +57,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-             //   wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlTradeDetails, accountId, tradeId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
 
                 using (var input = new StringReader(responseString))
                 {

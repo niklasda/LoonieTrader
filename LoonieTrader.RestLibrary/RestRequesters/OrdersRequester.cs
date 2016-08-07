@@ -5,12 +5,13 @@ using System.Text;
 using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
+using Serilog;
 
 namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class OrdersRequester : RequesterBase, IOrdersRequester
     {
-        public OrdersRequester(ISettings settings) : base(settings)
+        public OrdersRequester(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger) : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -20,12 +21,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-             //   wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlOrders, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("orders", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var aor = JSON.Deserialize<OrdersResponse>(input);
@@ -40,12 +38,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-               // wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlPendingOrders, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("ordersPending", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var aor = JSON.Deserialize<OrdersPendingResponse>(input);
@@ -61,12 +56,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-              //  wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlOrderDetails, accountId, orderId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("orderDetails", accountId, orderId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var aor = JSON.Deserialize<OrderDetailsResponse>(input);
@@ -81,9 +73,6 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-              //  wc.Headers.Add("Content-Type", "application/json");
-              //  wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var orderJson = JSON.Serialize(order, new Options(excludeNulls:true));
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 

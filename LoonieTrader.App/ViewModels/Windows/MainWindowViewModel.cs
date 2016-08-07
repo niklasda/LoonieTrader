@@ -16,15 +16,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutCommand = new RelayCommand(About);
             TradeTicketCommand = new RelayCommand(TradeTicket);
 
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-
             if (IsInDesignMode)
             {
                 var plotModel = new PlotModel {Title = "Sample 1", Subtitle = "Graph"};

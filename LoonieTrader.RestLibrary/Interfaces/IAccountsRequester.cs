@@ -1,4 +1,5 @@
-﻿using LoonieTrader.RestLibrary.Models.Responses;
+﻿using System.Collections.Generic;
+using LoonieTrader.RestLibrary.Models.Responses;
 
 namespace LoonieTrader.RestLibrary.Interfaces
 {
@@ -9,5 +10,6 @@ namespace LoonieTrader.RestLibrary.Interfaces
         AccountSummaryResponse GetAccountSummary(string accountId);
         AccountInstrumentsResponse GetInstruments(string accountId);
 
+        IEnumerable<AccountSummaryResponse> GetAccountSummaries();
     }
 }

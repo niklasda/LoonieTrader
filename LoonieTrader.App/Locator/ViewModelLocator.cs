@@ -16,26 +16,14 @@ namespace LoonieTrader.App.Locator
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
             ////}
             ////else
             ////{
             ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
         }
 
-        //private IContainer Initialize()
-        //{
-        //    _container = new Container(c =>
-        //    {
-        //        c.AddRegistry<ServiceRegistry>();
-        //    });
-
-        //    return container;
-        //}
-
-        private Container _container;
+        private readonly Container _container;
 
         public MainWindowViewModel Main { get { return _container.GetInstance<MainWindowViewModel>(); } }
 

@@ -40,6 +40,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string SelectedEnvironmentKey { get; set; }
 
+        public string SelectedAccountKey { get; set; }
+
         public IList<KeyValuePair<string, string>> AvailableEnvironemnts
         {
             get { return _availableEnvironments; }
@@ -53,8 +55,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                var ar = _accountsRequester.GetAccounts();
-                return ar.accounts.Select(x => new KeyValuePair<string, string>(x.id, x.id)).ToList();
+                var ar = _accountsRequester.GetAccountSummaries();
+                return ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToList();
             }
         }
 

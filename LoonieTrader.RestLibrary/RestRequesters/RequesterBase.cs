@@ -2,23 +2,36 @@
 using System.Net;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
+using Serilog;
 
 namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public abstract class RequesterBase
     {
-        protected RequesterBase(ISettings settings)
+        protected RequesterBase(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger)
         {
-            ApiKey = settings.ApiKey;
+            _apiKey = settings.ApiKey;
+            _fileReaderWriter = fileReaderWriter;
+            _logger = logger;
         }
 
-        private string ApiKey { get; }
+        private readonly string _apiKey;
+        private readonly IFileReaderWriter _fileReaderWriter;
+        private readonly ILogger _logger;
 
-        protected string BearerApiKey { get { return string.Format("Bearer {0}", ApiKey); } }
+        private string BearerApiKey
+        {
+            get { return string.Format("Bearer {0}", _apiKey); }
+        }
 
         protected string GetRestUrl(string arg)
         {
             return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, arg);
+        }
+
+        protected ILogger Logger
+        {
+            get { return _logger; }
         }
 
         protected WebClient GetAuthenticatedWebClient()
@@ -27,6 +40,18 @@ namespace LoonieTrader.RestLibrary.RestRequesters
             wc.Headers.Add("Authorization", BearerApiKey);
             wc.Headers.Add("Content-Type", "application/json");
             return wc;
+        }
+
+        protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json)
+        {
+            _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, json);
+            _logger.Information("Saved a file with {0}#{1}", fileNamePart1, fileNamePart2);
+        }
+
+        protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json)
+        {
+            _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, fileNamePart3, json);
+            _logger.Information("Saved a file with {0}#{1}#{2}", fileNamePart1, fileNamePart2, fileNamePart3);
         }
     }
 }

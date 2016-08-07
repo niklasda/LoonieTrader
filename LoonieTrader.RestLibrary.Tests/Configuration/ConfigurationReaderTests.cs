@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using LoonieTrader.RestLibrary.Configuration;
 
 namespace LoonieTrader.RestLibrary.Tests.Configuration
@@ -10,10 +8,8 @@ namespace LoonieTrader.RestLibrary.Tests.Configuration
         [Test]
         public void YamlDotNetTest()
         {
-            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            var cr = new ConfigurationReader();
-            var s = cr.ReadConfigurationFrom(directoryName);
+            var cr = new FileReaderWriter();
+            var s = cr.LoadConfiguration();
             Assert.NotNull(s);
         }
     }

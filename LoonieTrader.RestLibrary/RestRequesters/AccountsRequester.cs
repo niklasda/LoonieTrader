@@ -1,17 +1,41 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using Jil;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
+using Serilog;
 
 namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class AccountsRequester : RequesterBase, IAccountsRequester
     {
-        public AccountsRequester(ISettings settings) : base(settings)
+        public AccountsRequester(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger) : base(settings, fileReaderWriter, logger)
         {
         }
+
+        public IEnumerable<AccountSummaryResponse> GetAccountSummaries()
+        {
+            var accounts = GetAccounts();
+            IList<AccountSummaryResponse> accountSummaries = new List<AccountSummaryResponse>();
+            foreach (var account in accounts.accounts)
+            {
+                try
+                {
+                    accountSummaries.Add(GetAccountSummary(account.id));
+                }
+                catch (Exception ex)
+                {
+                    base.Logger.Warning(ex, "Could not get  account summary for {0}", account.id);
+                }
+            }
+
+            return accountSummaries;
+        }
+
+        // -------- API Below  --
 
         public AccountsResponse GetAccounts()
         {
@@ -19,12 +43,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-               // wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(urlAccounts);
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("accounts", "All", responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ar = JSON.Deserialize<AccountsResponse>(input);
@@ -33,18 +54,16 @@ namespace LoonieTrader.RestLibrary.RestRequesters
             }
         }
 
+
         public AccountDetailsResponse GetAccountDetails(string accountId)
         {
             string urlAccountDetails = base.GetRestUrl("accounts/{0}");
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-              //  wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlAccountDetails, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("accountDetails", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ar = JSON.Deserialize<AccountDetailsResponse>(input);
@@ -59,12 +78,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-             //   wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("accountSummary", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ar = JSON.Deserialize<AccountSummaryResponse>(input);
@@ -79,12 +95,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-              //  wc.Headers.Add("Authorization", base.BearerApiKey);
-
                 var responseBytes = wc.DownloadData(string.Format(urlInstruments, accountId));
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-
+                base.SaveLocalJson("accountInstruments", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);
