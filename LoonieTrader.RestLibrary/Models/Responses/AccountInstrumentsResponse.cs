@@ -30,23 +30,25 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
+
+        public class Instrument
+        {
+            public string displayName { get; set; }
+            public int displayPrecision { get; set; }
+            public string marginRate { get; set; }
+            public string maximumOrderUnits { get; set; }
+            public string maximumPositionSize { get; set; }
+            public string maximumTrailingStopDistance { get; set; }
+            public string minimumTradeSize { get; set; }
+            public string minimumTrailingStopDistance { get; set; }
+            public string name { get; set; }
+            public int pipLocation { get; set; }
+            public int tradeUnitsPrecision { get; set; }
+            public string type { get; set; }
+        }
     }
 
-    public class Instrument
-    {
-        public string displayName { get; set; }
-        public int displayPrecision { get; set; }
-        public string marginRate { get; set; }
-        public string maximumOrderUnits { get; set; }
-        public string maximumPositionSize { get; set; }
-        public string maximumTrailingStopDistance { get; set; }
-        public string minimumTradeSize { get; set; }
-        public string minimumTrailingStopDistance { get; set; }
-        public string name { get; set; }
-        public int pipLocation { get; set; }
-        public int tradeUnitsPrecision { get; set; }
-        public string type { get; set; }
-    }
+
 
 }
 

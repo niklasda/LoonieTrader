@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using System.Windows;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Windows;
+using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Models.Responses;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
@@ -11,8 +14,12 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel()
+        public MainWindowViewModel(ISettings settings, IMapper mapper, IAccountsRequester accountsRequester)
         {
+            _settings = settings;
+            _mapper = mapper;
+            _accountsRequester = accountsRequester;
+
             AboutCommand = new RelayCommand(About);
             TradeTicketCommand = new RelayCommand(TradeTicket);
 
@@ -42,9 +49,16 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 GraphData = plotModel;
             }
+
+            AccountInstrumentsResponse im =_accountsRequester.GetInstruments(settings.DefaultAccountId);
+            _instrumentList = mapper.Map<IList<InstrumentModel>>(im.instruments);
         }
 
+        private readonly ISettings _settings;
+        private readonly IMapper _mapper;
+        private readonly IAccountsRequester _accountsRequester;
         private PlotModel _graphData;
+        private IList<InstrumentModel> _instrumentList;
 
         public PlotModel GraphData
         {
@@ -67,14 +81,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                return new[]
-                {
-                    new InstrumentModel() {Instrument = "EURUSD"},
-                    new InstrumentModel() {Instrument = "EUR_USD"},
-                    new InstrumentModel() {Instrument = "EUR/USD"},
-                    new InstrumentModel() {Instrument = "EUR.USD"},
-                    new InstrumentModel() {Instrument = "Brent Crude Oil"}
-                };
+                return _instrumentList;
             }
         }
 

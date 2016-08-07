@@ -28,6 +28,8 @@ namespace LoonieTrader.RestLibrary.Locator
             For<ITransactionsRequester>().Use<TransactionsRequester>();
         }
 
+
+
         private ILogger CreateLogger(IFileReaderWriter cr)
         {
             var logFilePattern = cr.GetLogFilePattern();

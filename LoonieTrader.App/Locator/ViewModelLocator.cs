@@ -1,3 +1,4 @@
+using AutoMapper;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
@@ -8,8 +9,13 @@ namespace LoonieTrader.App.Locator
     {
         public ViewModelLocator()
         {
+            AutoMappings ams = new AutoMappings();
+            IMapper mapper = ams.CreateMapper();
+
             _container = new Container(c =>
             {
+                c.ForSingletonOf<IMapper>().Use(mapper);
+
                 c.AddRegistry<ServiceRegistry>();
             });
 
@@ -25,11 +31,19 @@ namespace LoonieTrader.App.Locator
 
         private readonly Container _container;
 
-        public MainWindowViewModel Main { get { return _container.GetInstance<MainWindowViewModel>(); } }
+        public MainWindowViewModel Main
+        {
+            get { return _container.GetInstance<MainWindowViewModel>(); }
+        }
 
-        public LoginWindowViewModel Login { get { return _container.GetInstance<LoginWindowViewModel>(); } }
+        public LoginWindowViewModel Login
+        {
+            get { return _container.GetInstance<LoginWindowViewModel>(); }
+        }
 
-        public AboutWindowViewModel About { get { return _container.GetInstance<AboutWindowViewModel>(); } }
-
+        public AboutWindowViewModel About
+        {
+            get { return _container.GetInstance<AboutWindowViewModel>(); }
+        }
     }
 }
