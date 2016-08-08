@@ -83,6 +83,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Syncfusion.Data.WPF, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.PropertyGrid.WPF, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfGrid.WPF, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfInput.WPF, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="Syncfusion.SfShared.Wpf, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
@@ -120,6 +121,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Locator\AutoMappings.cs" />
+    <Compile Include="ViewModels\AccountSummaryModel.cs" />
+    <Compile Include="ViewModels\TradeModel .cs" />
+    <Compile Include="ViewModels\TransactionModel.cs" />
+    <Compile Include="ViewModels\OrderModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
     <Compile Include="ViewModels\InstrumentModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
