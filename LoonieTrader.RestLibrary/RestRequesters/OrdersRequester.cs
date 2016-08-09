@@ -17,7 +17,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
         public OrdersResponse GetOrders(string accountId)
         {
-            string urlOrders = base.GetRestUrl("accounts/{0}/orders/");
+            string urlOrders = base.GetRestUrl("accounts/{0}/orders"); // ?instrument=EUR_USD   ?state=PENDING    ?ids=177
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {

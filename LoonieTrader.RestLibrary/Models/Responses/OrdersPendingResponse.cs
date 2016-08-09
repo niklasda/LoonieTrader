@@ -17,6 +17,8 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             {
                 resp.Append("id: ");
                 resp.Append(order.id);
+                resp.Append(", tradeId: ");
+                resp.Append(order.tradeID);
                 resp.Append(", instrument: ");
                 resp.Append(order.instrument);
                 resp.Append(", type: ");
@@ -28,25 +30,29 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             return resp.ToString();
         }
 
-    public class PendingOrder
-    {
-        public string createTime { get; set; }
-        public string gtdTime { get; set; }
-        public string id { get; set; }
-        public string instrument { get; set; }
-        public string partialFill { get; set; }
-        public string positionFill { get; set; }
-        public string price { get; set; }
-        public string state { get; set; }
-        public string timeInForce { get; set; }
-        public string triggerCondition { get; set; }
-        public string type { get; set; }
-        public string units { get; set; }
+        public class PendingOrder
+        {
+            public string createTime { get; set; }
+            public string gtdTime { get; set; }
+            public string id { get; set; }
+            public string instrument { get; set; }
+            public string partialFill { get; set; }
+            public string positionFill { get; set; }
+            public string price { get; set; }
+            public string state { get; set; }
+            public string timeInForce { get; set; }
+            public string tradeID { get; set; }
+            public string triggerCondition { get; set; }
+            public string type { get; set; }
+            public string units { get; set; }
+        }
     }
-}
 }
 
 /*
+  
+{"lastTransactionID":"181","orders":[{"createTime":"2016-08-07T21:00:00.927691378Z","id":"177","price":"1.00000","state":"PENDING","timeInForce":"GTC","tradeID":"176","triggerCondition":"TRIGGER_DEFAULT","type":"STOP_LOSS"}]}
+  
 {"lastTransactionID":"16","orders":[]}
 
 {"lastTransactionID":"17","orders":[
