@@ -17,9 +17,12 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             {
                 resp.Append("id: ");
                 resp.Append(order.id);
-                resp.Append(", ");
-                resp.Append("instrument: ");
-                resp.AppendLine(order.instrument);
+                resp.Append(", instrument: ");
+                resp.Append(order.instrument);
+                resp.Append(", type: ");
+                resp.Append(order.type);
+                resp.Append(", state: ");
+                resp.AppendLine(order.state);
             }
 
             return resp.ToString();

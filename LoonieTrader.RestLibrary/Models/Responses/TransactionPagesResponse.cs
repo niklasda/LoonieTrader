@@ -22,7 +22,7 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             foreach (var page in pages)
             {
                 resp.Append("page: ");
-                resp.Append(page);
+                resp.AppendLine(page);
 
             }
 

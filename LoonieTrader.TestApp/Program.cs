@@ -3,6 +3,7 @@ using System.Net;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestRequesters;
 using LoonieTrader.TestApp.Locator;
+using Serilog;
 
 namespace LoonieTrader.TestApp
 {
@@ -13,6 +14,7 @@ namespace LoonieTrader.TestApp
             try
             {
                 var container = ServiceLocator.Initialize();
+
                 var ar = container.GetInstance<IAccountsRequester>();
                 var or = container.GetInstance<IOrdersRequester>();
                 var por = container.GetInstance<IPositionsRequester>();
@@ -21,22 +23,34 @@ namespace LoonieTrader.TestApp
                 var txr = container.GetInstance<ITransactionsRequester>();
 
                 var cfg = container.GetInstance<ISettings>();
-
+                ILogger logger = container.GetInstance<ILogger>();
 
                 ResizeWindow();
 
+                logger.Information("GetAccounts");
                 Console.WriteLine(ar.GetAccounts());
+                logger.Information("GetAccountDetails");
                 Console.WriteLine(ar.GetAccountDetails(cfg.DefaultAccountId));
+                logger.Information("GetAccountSummary");
                 Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
+                logger.Information("GetPositions");
                 Console.WriteLine(por.GetPositions(cfg.DefaultAccountId));
+                logger.Information("GetOpenPositions");
                 Console.WriteLine(por.GetOpenPositions(cfg.DefaultAccountId));
+                logger.Information("GetOrders");
                 Console.WriteLine(or.GetOrders(cfg.DefaultAccountId));
+                logger.Information("GetPendingOrders");
                 Console.WriteLine(or.GetPendingOrders(cfg.DefaultAccountId));
+                logger.Information("GetTransactionPages");
                 Console.WriteLine(txr.GetTransactionPages(cfg.DefaultAccountId));
+                logger.Information("GetTransactions");
                 Console.WriteLine(txr.GetTransactions(cfg.DefaultAccountId));
+                logger.Information("GetTrades");
                 Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));
 
+                logger.Information("GetInstruments");
                 Console.WriteLine(ar.GetInstruments(cfg.DefaultAccountId));
+                logger.Information("GetPrices");
                 Console.WriteLine(prr.GetPrices(cfg.DefaultAccountId, "EUR_USD"));
 
                 //GetPrices();
