@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FileHelpers, Version=3.1.5.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.1.5\lib\net45\FileHelpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Jil, Version=2.14.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jil.2.14.3\lib\net45\Jil.dll</HintPath>
       <Private>True</Private>
@@ -83,6 +87,7 @@
     <Compile Include="Caches\PriceCache.cs" />
     <Compile Include="Configuration\FileReaderWriter.cs" />
     <Compile Include="Configuration\Environments.cs" />
+    <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="Interfaces\IFileReaderWriter.cs" />
     <Compile Include="Interfaces\ITransactionsRequester.cs" />
     <Compile Include="Interfaces\ITradesRequester.cs" />

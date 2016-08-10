@@ -13,12 +13,15 @@ namespace LoonieTrader.RestLibrary.Configuration
         {
             _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
+            string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
             Directory.CreateDirectory(dataPath);
+            Directory.CreateDirectory(historicalDataPath);
         }
 
         private const string FileName = "Config.yaml";
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
+        private const string HistoricalDataFolderName = "HistoricalData";
         private const string LogsFolderName = "Logs";
         private const string Extension = "json";
         private const string Separator = "#";
@@ -29,6 +32,11 @@ namespace LoonieTrader.RestLibrary.Configuration
         {
             var ltp = Path.Combine(_appDataFolderPath, FolderName);
             return ltp;
+        }
+        public string GetHistoricalDataFolderPath()
+        {
+            var hdp = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
+            return hdp;
         }
 
         public string GetLogFilePattern()
