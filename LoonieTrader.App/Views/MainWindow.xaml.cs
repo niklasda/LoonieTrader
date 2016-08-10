@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Syncfusion.UI.Xaml.Grid;
 
-namespace LoonieTrader.App.Windows
+namespace LoonieTrader.App.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,4 +1,5 @@
 ﻿using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestRequesters;
 using Serilog;
@@ -18,6 +19,7 @@ namespace LoonieTrader.RestLibrary.Locator
             ForSingletonOf<ISettings>().Use(settings);
             ForSingletonOf<ILogger>().Use(logger);
 
+            For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
             For<IFileReaderWriter>().Use<FileReaderWriter>();
 
             For<IAccountsRequester>().Use<AccountsRequester>();

@@ -87,7 +87,11 @@
     <Compile Include="Caches\PriceCache.cs" />
     <Compile Include="Configuration\FileReaderWriter.cs" />
     <Compile Include="Configuration\Environments.cs" />
+    <Compile Include="HistoricalData\CandleDataConverter.cs" />
+    <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
+    <Compile Include="HistoricalData\HistoricalDataLoader.cs" />
+    <Compile Include="Interfaces\IHistoricalDataLoader.cs" />
     <Compile Include="Interfaces\IFileReaderWriter.cs" />
     <Compile Include="Interfaces\ITransactionsRequester.cs" />
     <Compile Include="Interfaces\ITradesRequester.cs" />

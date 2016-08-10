@@ -1,6 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.App.Windows;
+using LoonieTrader.App.Views;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

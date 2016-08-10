@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace LoonieTrader.App.Windows
+namespace LoonieTrader.App.Views
 {
     /// <summary>
     /// Interaction logic for TestWindow.xaml

@@ -1,5 +1,6 @@
 using AutoMapper;
 using LoonieTrader.App.ViewModels;
+using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Models.Responses;
 
 namespace LoonieTrader.App.Locator
@@ -33,6 +34,9 @@ namespace LoonieTrader.App.Locator
 
                 CreateMap<TransactionsResponse.Transaction, TransactionModel>()
                     .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+
+
+                CreateMap<CandleDataRecord, CandleDataViewModel>();//.ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
             }
         }
     }

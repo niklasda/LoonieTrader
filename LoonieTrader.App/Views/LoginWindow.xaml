@@ -1,4 +1,4 @@
-﻿<Window xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"  x:Class="LoonieTrader.App.Windows.LoginWindow"
+﻿<Window xmlns:Syncfusion="http://schemas.syncfusion.com/wpf"  x:Class="LoonieTrader.App.Views.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{Binding Source={StaticResource Locator}, Path=Login}"

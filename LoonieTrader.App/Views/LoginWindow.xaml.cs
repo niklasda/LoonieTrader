@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using LoonieTrader.App.ViewModels.Windows;
 
-namespace LoonieTrader.App.Windows
+namespace LoonieTrader.App.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

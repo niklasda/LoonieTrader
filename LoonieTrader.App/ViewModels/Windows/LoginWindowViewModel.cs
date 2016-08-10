@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.App.Windows;
+using LoonieTrader.App.Views;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
 
