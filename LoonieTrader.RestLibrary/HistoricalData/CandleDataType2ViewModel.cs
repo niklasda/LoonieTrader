@@ -2,15 +2,13 @@
 
 namespace LoonieTrader.RestLibrary.HistoricalData
 {
-    public class CandleDataViewModel
+    public class CandleDataType2ViewModel
     {
-        public string Ticker { get; set; }
-
         public string Date { get; set; }
 
         public string Time { get; set; }
 
-        public DateTime DatePlusTime { get { return DateTime.ParseExact(string.Format("{0} {1}", Date, Time), "yyyyMMdd HHmmss", null); } }
+        public DateTime DatePlusTime { get { return DateTime.ParseExact(string.Format("{0} {1}", Date, Time), "yyyy.MM.dd HH:mm", null); } }
 
         public decimal Open { get; set; }
 
@@ -22,5 +20,5 @@ namespace LoonieTrader.RestLibrary.HistoricalData
 
         public int Vol { get; set; }
     }
-    //<TICKER>,<DTYYYYMMDD>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>
+    //2016.08.11,01:00,1.1185,1.11861,1.1185,1.11856,1604
 }

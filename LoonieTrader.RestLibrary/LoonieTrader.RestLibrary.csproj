@@ -88,6 +88,8 @@
     <Compile Include="Configuration\FileReaderWriter.cs" />
     <Compile Include="Configuration\Environments.cs" />
     <Compile Include="HistoricalData\CandleDataConverter.cs" />
+    <Compile Include="HistoricalData\CandleDataType2ViewModel.cs" />
+    <Compile Include="HistoricalData\CandleDataType2Record.cs" />
     <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="HistoricalData\HistoricalDataLoader.cs" />

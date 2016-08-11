@@ -3,10 +3,8 @@
 namespace LoonieTrader.RestLibrary.HistoricalData
 {
     [DelimitedRecord(",")]
-    [IgnoreFirst]
-    public class CandleDataRecord
+    public class CandleDataType2Record
     {
-        public string Ticker;
 
         public string Date;
 

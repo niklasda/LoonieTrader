@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="FileHelpers, Version=3.1.5.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
       <HintPath>..\packages\FileHelpers.3.1.5\lib\net45\FileHelpers.dll</HintPath>
       <Private>True</Private>
@@ -67,7 +71,8 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfigurationReaderTests.cs" />
     <Compile Include="HistoricalData\CsvReaderTests.cs" />
-    <Compile Include="Locator\ServiceLocator.cs" />
+    <Compile Include="Locator\TestAutoMappings.cs" />
+    <Compile Include="Locator\TestServiceLocator.cs" />
     <Compile Include="RestRequesters\PricingRequesterTests.cs" />
     <Compile Include="RestRequesters\TradesRequesterTests.cs" />
     <Compile Include="RestRequesters\TransactionsRequesterTests.cs" />
@@ -86,7 +91,9 @@
       <Name>LoonieTrader.RestLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="LinkedViewModels\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

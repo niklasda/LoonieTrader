@@ -33,6 +33,7 @@ namespace LoonieTrader.RestLibrary.Configuration
             var ltp = Path.Combine(_appDataFolderPath, FolderName);
             return ltp;
         }
+
         public string GetHistoricalDataFolderPath()
         {
             var hdp = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);

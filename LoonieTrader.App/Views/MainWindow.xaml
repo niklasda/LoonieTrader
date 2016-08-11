@@ -82,18 +82,28 @@
                     </Syncfusion:TabItemExt>
                 </Syncfusion:TabControlExt>
                 <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
-                <Syncfusion:SfChart Grid.Row="2" Header="EUR/USD"  >
+                <Grid Grid.Row="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel><Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Selectilate..."/></StackPanel>
+                    <Syncfusion:SfChart Grid.Row="1"  Header="EUR/USD"  >
+                        <Syncfusion:SfChart.TechnicalIndicators>
+                            <Syncfusion:SimpleAverageIndicator/>
+                        </Syncfusion:SfChart.TechnicalIndicators>
 
-                    <Syncfusion:SfChart.PrimaryAxis>
-                        <Syncfusion:CategoryAxis Header="Time"/>
-                    </Syncfusion:SfChart.PrimaryAxis>
+                        <Syncfusion:SfChart.PrimaryAxis>
+                            <Syncfusion:CategoryAxis Header="Time"/>
+                        </Syncfusion:SfChart.PrimaryAxis>
 
-                    <Syncfusion:SfChart.SecondaryAxis>
-                        <Syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
-                    </Syncfusion:SfChart.SecondaryAxis>
+                        <Syncfusion:SfChart.SecondaryAxis>
+                            <Syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
+                        </Syncfusion:SfChart.SecondaryAxis>
 
-                    <Syncfusion:CandleSeries   Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"  High="High" Open="Open" Close="Close" Low="Low"  />
-                </Syncfusion:SfChart>
+                        <Syncfusion:CandleSeries   Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"  High="High" Open="Open" Close="Close" Low="Low"  />
+                    </Syncfusion:SfChart>
+                </Grid>
             </Grid>
         </Grid>
 

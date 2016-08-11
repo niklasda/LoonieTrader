@@ -168,6 +168,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return _accountSummary; }
         }
 
+        public string[] AvailableIndicators
+        {
+            get { return new[] {"asd", "wer"}; }
+        }
+
         public void About()
         {
             AboutWindow aw = new AboutWindow();
