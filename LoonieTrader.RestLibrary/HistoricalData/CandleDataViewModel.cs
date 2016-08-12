@@ -20,7 +20,7 @@ namespace LoonieTrader.RestLibrary.HistoricalData
 
         public decimal Close { get; set; }
 
-        public int Vol { get; set; }
+        public int Volume { get; set; }
     }
     //<TICKER>,<DTYYYYMMDD>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using LoonieTrader.App.ViewModels.Windows;
 using Syncfusion.UI.Xaml.Grid;
 
 namespace LoonieTrader.App.Views
@@ -11,7 +12,12 @@ namespace LoonieTrader.App.Views
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+            var mvm = this.DataContext as MainWindowViewModel;
+            if (mvm != null)
+            {
+                mvm.MainChart = this.MainChart;
+            }
+        }
     }
 }

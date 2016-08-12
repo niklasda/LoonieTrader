@@ -1,7 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
+using System.Windows.Media;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -10,6 +14,8 @@ using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
+using Syncfusion.UI.Xaml.Charts;
+using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -18,6 +24,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester, ITransactionsRequester transactionsRequester)
         {
+
             _settings = settings;
             _mapper = mapper;
             _dataLoader = dataLoader;
@@ -40,7 +47,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _tradeList = new List<TradeModel>();
                 _transactionList = new List<TransactionModel>();
 
-               // var candleRecords = dataLoader.LoadDataFile201601();
+               // var candleRecords = dataLoader.LoadDataFile201603();
                // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
                // GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
@@ -57,7 +64,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                var candleRecords = dataLoader.LoadDataFile201601();
+                var candleRecords = dataLoader.LoadDataFile201603();
                 var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
                 GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
@@ -78,9 +85,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             }
 
-
-
-
         }
 
         private readonly ISettings _settings;
@@ -100,6 +104,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         private IList<TradeModel> _tradeList;
         private IList<TransactionModel> _transactionList;
 
+
+        public SfChart MainChart { get; set; }
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
@@ -155,6 +161,49 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+
+        private ICommand selectionChangedCommand;
+        public ICommand SelectionChangedCommand
+        {
+            get
+            {
+                if (selectionChangedCommand == null)
+                {
+                    selectionChangedCommand = new DelegateCommand<object>(SelectionChagned);
+                }
+                return selectionChangedCommand;
+            }
+        }
+
+        public void SelectionChagned(object checkedIndicatorItems)
+        {
+            var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
+            this.MainChart.TechnicalIndicators.Clear();
+
+            if (checkedIndicators != null)
+            {
+
+               // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
+               // this.MainChart.TechnicalIndicators.Add(indicator);
+
+                foreach (string indicatorName in checkedIndicators)
+                {
+                    var indicator = ApplyIndicator(indicatorName, 1);
+
+                   // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
+                    if (indicator != null)
+                    {
+                        this.MainChart.TechnicalIndicators.Add(indicator);
+                     //   NumericalAxis axis = new NumericalAxis();
+                     //   axis.OpposedPosition = true;
+                     //   axis.ShowGridLines = false;
+                     //   axis.Visibility = Visibility.Collapsed;
+                     //   indicatorAxis.YAxis = axis;
+                    }
+                }
+            }
+        }
+
         private InstrumentModel _selectedItem;
 
         public object SelectedItem
@@ -170,7 +219,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string[] AvailableIndicators
         {
-            get { return new[] {"asd", "wer"}; }
+
+            get
+            {
+                string[] technicalIndicators = { "Bollinger Band", "Accumulation Distribution", "Exponential Average",
+                                             "MACD", "Average True Range", "Momentum", "RSI", "Simple Average", "Stochastic",
+                                             "Triangular Average"};
+                return technicalIndicators;
+            }
         }
 
         public void About()
@@ -185,6 +241,90 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             TradeTicketWindow tw = new TradeTicketWindow();
             tw.Show();
+        }
+
+        private FinancialTechnicalIndicator ApplyIndicator(string value, int rowIndex)
+        {
+            FinancialTechnicalIndicator indicator;
+            switch (value)
+            {
+                case "Accumulation Distribution":
+                    indicator = new AccumulationDistributionIndicator();
+                    break;
+
+                case "Average True Range":
+                    indicator = new AverageTrueRangeIndicator()
+                    {
+                        Period = 1
+                    };
+                    break;
+
+                case "Bollinger Band":
+                    indicator = new BollingerBandIndicator()
+                    {
+                        UpperLineColor = Brushes.Green,
+                        Period = 3
+                    };
+                    break;
+                case "Exponential Average":
+                    indicator = new ExponentialAverageIndicator();
+                    break;
+
+                case "MACD":
+                    indicator = new MACDTechnicalIndicator()
+                    {
+                        Period = 5,
+                        LongPeriod = 12,
+                        ShortPeriod = 6,
+                        ConvergenceLineColor = Brushes.Green
+                    };
+                    break;
+                case "Momentum":
+                    indicator = new MomentumTechnicalIndicator()
+                    {
+                        Period = 4
+                    };
+                    break;
+                case "RSI":
+                    indicator = new RSITechnicalIndicator()
+                    {
+                        Period = 4,
+                        UpperLineColor = Brushes.Green
+                    };
+                    break;
+                case "Simple Average":
+                    indicator = new SimpleAverageIndicator();
+                    break;
+                case "Stochastic":
+                    indicator = new StochasticTechnicalIndicator()
+                    {
+                        UpperLineColor = Brushes.Green
+                    };
+                    break;
+                case "Triangular Average":
+                    indicator = new TriangularAverageIndicator();
+                    break;
+                default:
+                    return null;
+            }
+
+            var index = rowIndex == 0 ? 1 : 0;
+            ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
+            indicator.XBindingPath = "Date";
+            indicator.High = "High";
+            indicator.Low = "Low";
+            indicator.Open = "Open";
+            indicator.Close = "Last";
+            indicator.Volume = "Volume";
+
+            Binding binding = new Binding();
+            binding.Path = new PropertyPath("ItemsSource");
+            binding.Source = series;
+            binding.Mode = BindingMode.TwoWay;
+            indicator.SetBinding(FinancialTechnicalIndicator.ItemsSourceProperty, binding);
+            
+
+            return indicator;
         }
     }
 

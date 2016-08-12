@@ -6,6 +6,6 @@ namespace LoonieTrader.RestLibrary.Interfaces
 {
     public interface IHistoricalDataLoader
     {
-        IList<CandleDataRecord> LoadDataFile201601();
+        IList<CandleDataRecord> LoadDataFile201603();
     }
 }

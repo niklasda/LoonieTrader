@@ -23,7 +23,7 @@ namespace LoonieTrader.RestLibrary.HistoricalData
         public decimal Close;
 
         [FieldConverter(ConverterKind.Int32)]
-        public int Vol;
+        public int Volume;
     }
     //<TICKER>,<DTYYYYMMDD>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>
 }

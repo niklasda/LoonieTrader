@@ -87,10 +87,15 @@
                         <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <StackPanel><Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Selectilate..."/></StackPanel>
-                    <Syncfusion:SfChart Grid.Row="1"  Header="EUR/USD"  >
-                        <Syncfusion:SfChart.TechnicalIndicators>
-                            <Syncfusion:SimpleAverageIndicator/>
+                    <StackPanel>
+                        <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Selectilate..."
+                                                Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding SelectionChangedCommand}"
+                        Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
+
+                    </StackPanel>
+                    <Syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD"  >
+                        <Syncfusion:SfChart.TechnicalIndicators >
+                            <Syncfusion:SimpleAverageIndicator />
                         </Syncfusion:SfChart.TechnicalIndicators>
 
                         <Syncfusion:SfChart.PrimaryAxis>
@@ -101,7 +106,7 @@
                             <Syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
                         </Syncfusion:SfChart.SecondaryAxis>
 
-                        <Syncfusion:CandleSeries   Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"  High="High" Open="Open" Close="Close" Low="Low"  />
+                        <Syncfusion:CandleSeries Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"  High="High" Open="Open" Close="Close" Low="Low" />
                     </Syncfusion:SfChart>
                 </Grid>
             </Grid>
