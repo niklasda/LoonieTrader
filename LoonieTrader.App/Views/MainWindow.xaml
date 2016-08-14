@@ -5,8 +5,8 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="LoonieTrader"
         ResizeMode="CanResizeWithGrip"
-        Height="700"
-        Width="900"
+        Height="700" MinHeight="600"
+        Width="980" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Window.InputBindings>
         <KeyBinding Key="T" Modifiers="Control" Command="{Binding TradeTicketCommand}"/>
@@ -16,21 +16,22 @@
             <Syncfusion:MenuItemAdv Header="_File" >
                 <Syncfusion:MenuItemAdv Header="_Settings" ></Syncfusion:MenuItemAdv>
                 <Syncfusion:MenuItemSeparator />
-                <Syncfusion:MenuItemAdv Header="E_xit" InputGestureText="Alt+F4"  />
+                <Syncfusion:MenuItemAdv Header="E_xit" InputGestureText="Alt+F4" Command="{Binding ExitApplicationCommand}" />
             </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_Edit" >
+                <Syncfusion:MenuItemAdv Command="ApplicationCommands.Cut"  />
+                <Syncfusion:MenuItemAdv Command="ApplicationCommands.Copy"  />
                 <Syncfusion:MenuItemAdv Command="ApplicationCommands.Paste"  />
             </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_View" >
                 <Syncfusion:MenuItemAdv Header="Open Positions" />
                 <Syncfusion:MenuItemAdv Header="Open Orders" />
-                <Syncfusion:MenuItemSeparator />
-                <Syncfusion:MenuItemAdv Header="Chart"  />
-                <Syncfusion:MenuItemSeparator />
-                <Syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding TradeTicketCommand}" InputGestureText="Ctrl+T" />
-                <Syncfusion:MenuItemAdv Header="Order Ticket" />
             </Syncfusion:MenuItemAdv>
-            <Syncfusion:MenuItemAdv Header="_Window" />
+            <Syncfusion:MenuItemAdv Header="_Window" >
+                <Syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding TradeTicketCommand}" InputGestureText="Ctrl+T" />
+                <Syncfusion:MenuItemAdv Header="Order Ticket" Command="{Binding TradeTicketCommand}" />
+                <Syncfusion:MenuItemAdv Header="Chart" Command="{Binding NewChartCommand}" />
+            </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_Help" >
                 <Syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}" ></Syncfusion:MenuItemAdv>
             </Syncfusion:MenuItemAdv>
@@ -84,13 +85,25 @@
                 <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
                 <Grid Grid.Row="2" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <StackPanel>
-                        <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Selectilate..."
-                                                Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding SelectionChangedCommand}"
-                        Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
+                    <StackPanel Orientation="Horizontal">
+
+                        <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableChartTypes}" AllowMultiSelect="False" DefaultText="Select Chart Type"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding ChartTypeCommand}"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
+
+                        <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableTimeframes}" AllowMultiSelect="True" DefaultText="Select Timeframes"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding TimeframesChangedCommand}"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
+
+                        <Syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Select Indicators"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding IndicatorsChangedCommand}"
+                            Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
+
+                        <Syncfusion:ButtonAdv Label="New Chart Window..." Margin="30,0,0,0" Command="{Binding NewChartCommand}"/>
+                        <Syncfusion:ButtonAdv Label="Open Trade Ticket..." Command="{Binding TradeTicketCommand}" />
 
                     </StackPanel>
                     <Syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD"  >

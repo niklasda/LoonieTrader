@@ -35,21 +35,28 @@ namespace LoonieTrader.App.ViewModels.Windows
             _tradesRequester = tradesRequester;
             _transactionsRequester = transactionsRequester;
 
-            AboutCommand = new RelayCommand(About);
-            TradeTicketCommand = new RelayCommand(TradeTicket);
+            AboutCommand = new RelayCommand(OpenAbout);
+            TradeTicketCommand = new RelayCommand(OpenTradeTicket);
+            NewChartCommand = new RelayCommand(OpenNewChart);
+            ExitApplicationCommand = new RelayCommand(ExitApplication);
+
+            // ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
+            IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
+           // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
+           // TradeTicketCommand = new DelegateCommand<object>(ChartTypeChanged);
 
             if (IsInDesignMode)
             {
-                _instrumentList = new List<InstrumentModel>();
-                _accountSummary = new AccountSummaryModel();
-                _positionList = new List<PositionModel>();
-                _orderList = new List<OrderModel>();
-                _tradeList = new List<TradeModel>();
-                _transactionList = new List<TransactionModel>();
+                _instrumentList = new List<InstrumentModel>() { new InstrumentModel() { Instrument = "EUR/USD" } };
+                _accountSummary = new AccountSummaryModel() { Id = "101" };
+                _positionList = new List<PositionModel>() { new PositionModel() { Instrument = "EUR/USD" } };
+                _orderList = new List<OrderModel>() { new OrderModel() { Instrument = "EUR/USD" } };
+                _tradeList = new List<TradeModel>() { new TradeModel() { Instrument = "EUR/USD" } };
+                _transactionList = new List<TransactionModel>() { new TransactionModel() { Instrument = "EUR/USD" } };
 
-               // var candleRecords = dataLoader.LoadDataFile201603();
-               // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
-               // GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+                // var candleRecords = dataLoader.LoadDataFile201603();
+                // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
+                // GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
                 GraphData = new ObservableCollection<CandleDataViewModel>()
                 {
@@ -110,8 +117,12 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public RelayCommand AboutCommand { get; set; }
-
+        public RelayCommand ExitApplicationCommand { get; set; }
         public RelayCommand TradeTicketCommand { get; set; }
+        public RelayCommand NewChartCommand { get; set; }
+        public ICommand ChartTypeCommand { get; set; }
+        public ICommand IndicatorsChangedCommand { get; set; }
+        public ICommand TimeframesChangedCommand { get; set; }
 
         public IList<InstrumentModel> InstrumentList
         {
@@ -128,8 +139,8 @@ namespace LoonieTrader.App.ViewModels.Windows
              * */
             get
             {
-               // Positions + OpenPositions
-               return _positionList;
+                // Positions + OpenPositions
+                return _positionList;
             }
         }
 
@@ -137,8 +148,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-               // return new[] // Orders + Pending Orders
-               return _orderList;
+                // return new[] // Orders + Pending Orders
+                return _orderList;
 
             }
         }
@@ -148,7 +159,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             get
             {
                 return _transactionList;
-
             }
         }
 
@@ -157,25 +167,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             get
             {
                 return _tradeList;
-
             }
         }
 
 
-        private ICommand selectionChangedCommand;
-        public ICommand SelectionChangedCommand
-        {
-            get
-            {
-                if (selectionChangedCommand == null)
-                {
-                    selectionChangedCommand = new DelegateCommand<object>(SelectionChagned);
-                }
-                return selectionChangedCommand;
-            }
-        }
-
-        public void SelectionChagned(object checkedIndicatorItems)
+        private void IndicatorsChanged(object checkedIndicatorItems)
         {
             var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
             this.MainChart.TechnicalIndicators.Clear();
@@ -183,22 +179,22 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (checkedIndicators != null)
             {
 
-               // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
-               // this.MainChart.TechnicalIndicators.Add(indicator);
+                // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
+                // this.MainChart.TechnicalIndicators.Add(indicator);
 
                 foreach (string indicatorName in checkedIndicators)
                 {
                     var indicator = ApplyIndicator(indicatorName, 1);
 
-                   // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
+                    // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
                     if (indicator != null)
                     {
                         this.MainChart.TechnicalIndicators.Add(indicator);
-                     //   NumericalAxis axis = new NumericalAxis();
-                     //   axis.OpposedPosition = true;
-                     //   axis.ShowGridLines = false;
-                     //   axis.Visibility = Visibility.Collapsed;
-                     //   indicatorAxis.YAxis = axis;
+                        //   NumericalAxis axis = new NumericalAxis();
+                        //   axis.OpposedPosition = true;
+                        //   axis.ShowGridLines = false;
+                        //   axis.Visibility = Visibility.Collapsed;
+                        //   indicatorAxis.YAxis = axis;
                     }
                 }
             }
@@ -229,7 +225,27 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        public void About()
+        public string[] AvailableChartTypes
+        {
+
+            get
+            {
+                string[] technicalIndicators = { "Candles", "OHLC" };
+                return technicalIndicators;
+            }
+        }
+
+        public string[] AvailableTimeframes
+        {
+
+            get
+            {
+                string[] technicalIndicators = { "1m", "5m", "15m", "30m", "60m" };
+                return technicalIndicators;
+            }
+        }
+
+        private void OpenAbout()
         {
             AboutWindow aw = new AboutWindow();
             aw.Owner = Application.Current.MainWindow;
@@ -237,10 +253,21 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        public void TradeTicket()
+        private void OpenTradeTicket()
         {
             TradeTicketWindow tw = new TradeTicketWindow();
             tw.Show();
+        }
+
+        private void OpenNewChart()
+        {
+            ChartWindow tw = new ChartWindow();
+            tw.Show();
+        }
+
+        private void ExitApplication()
+        {
+            Application.Current.Shutdown();
         }
 
         private FinancialTechnicalIndicator ApplyIndicator(string value, int rowIndex)
@@ -322,7 +349,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             binding.Source = series;
             binding.Mode = BindingMode.TwoWay;
             indicator.SetBinding(FinancialTechnicalIndicator.ItemsSourceProperty, binding);
-            
+
 
             return indicator;
         }
