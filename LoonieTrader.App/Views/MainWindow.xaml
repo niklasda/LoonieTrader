@@ -10,6 +10,12 @@
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Window.InputBindings>
         <KeyBinding Key="T" Modifiers="Control" Command="{Binding TradeTicketCommand}"/>
+        <KeyBinding Key="D1" Modifiers="Control" Command="{Binding InstrumentInformationCommand}"/>
+        <KeyBinding Key="D2" Modifiers="Control" Command="{Binding AccountInformationCommand}"/>
+        <KeyBinding Key="D3" Modifiers="Control" Command="{Binding TransactionHistoryCommand}"/>
+        <KeyBinding Key="D4" Modifiers="Control" Command="{Binding OpenOrdersCommand}"/>
+        <KeyBinding Key="D5" Modifiers="Control" Command="{Binding OpenPositionsCommand}"/>
+        <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <Syncfusion:MenuAdv DockPanel.Dock="Top">
@@ -18,14 +24,12 @@
                 <Syncfusion:MenuItemSeparator />
                 <Syncfusion:MenuItemAdv Header="E_xit" InputGestureText="Alt+F4" Command="{Binding ExitApplicationCommand}" />
             </Syncfusion:MenuItemAdv>
-            <Syncfusion:MenuItemAdv Header="_Edit" >
-                <Syncfusion:MenuItemAdv Command="ApplicationCommands.Cut"  />
-                <Syncfusion:MenuItemAdv Command="ApplicationCommands.Copy"  />
-                <Syncfusion:MenuItemAdv Command="ApplicationCommands.Paste"  />
-            </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_View" >
-                <Syncfusion:MenuItemAdv Header="Open Positions" />
-                <Syncfusion:MenuItemAdv Header="Open Orders" />
+                <Syncfusion:MenuItemAdv Header="Instrument Information" Command="{Binding InstrumentInformationCommand}" InputGestureText="Ctrl+1" />
+                <Syncfusion:MenuItemAdv Header="Account Information" Command="{Binding AccountInformationCommand}" InputGestureText="Ctrl+2" />
+                <Syncfusion:MenuItemAdv Header="Transaction History" Command="{Binding TransactionHistoryCommand}" InputGestureText="Ctrl+3" />
+                <Syncfusion:MenuItemAdv Header="Open Orders" Command="{Binding OpenOrdersCommand}" InputGestureText="Ctrl+4" />
+                <Syncfusion:MenuItemAdv Header="Open Positions" Command="{Binding OpenPositionsCommand}" InputGestureText="Ctrl+5" />
             </Syncfusion:MenuItemAdv>
             <Syncfusion:MenuItemAdv Header="_Window" >
                 <Syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding TradeTicketCommand}" InputGestureText="Ctrl+T" />
@@ -51,12 +55,12 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Syncfusion:SfDataGrid  Grid.Row="0" AllowDraggingColumns="True"
+                        <Syncfusion:SfDataGrid  Grid.Row="0" AllowDraggingColumns="True"
                                ShowRowHeader="True"
                                AutoGenerateColumns="True"
                                AllowSelectionOnPointerPressed="True"
                                ColumnSizer="Auto"
-                                    ItemsSource="{Binding InstrumentList}" SelectedItem="{Binding SelectedItem}" />
+                                    ItemsSource="{Binding InstrumentList}" SelectedItem="{Binding SelectedInstrument}" />
             </Grid>
             <GridSplitter Grid.Column="1" Width="7" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>
 
@@ -67,19 +71,21 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Syncfusion:TabControlExt Grid.Row="0" FlowDirection="RightToLeft" AllowDragDrop="False" CloseButtonType="Hide" EnableLabelEdit="False" ShowTabListContextMenu="False" ShowTabItemContextMenu="False" >
+                <Syncfusion:TabControlExt Grid.Row="0" FlowDirection="RightToLeft" AllowDragDrop="False" SelectedIndex="{Binding SelectedTabIndex}" CloseButtonType="Hide" EnableLabelEdit="False" ShowTabListContextMenu="False" ShowTabItemContextMenu="False" >
                     <Syncfusion:TabItemExt Header="Open Positions" FlowDirection="LeftToRight">
-                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllPositions}"  FlowDirection="LeftToRight" />
+                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllPositions}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
                     </Syncfusion:TabItemExt>
                     <Syncfusion:TabItemExt Header="Open Orders" FlowDirection="LeftToRight">
-                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllOrders}"  FlowDirection="LeftToRight" />
+                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllOrders}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
                     </Syncfusion:TabItemExt>
                     <Syncfusion:TabItemExt Header="Transaction History" FlowDirection="LeftToRight">
-                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllTransactions}"  FlowDirection="LeftToRight" />
-
+                        <Syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllTransactions}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
                     </Syncfusion:TabItemExt>
                     <Syncfusion:TabItemExt Header="Account Information" FlowDirection="LeftToRight">
-                        <Syncfusion:PropertyGrid SelectedObject="{Binding AccountSummary}"  FlowDirection="LeftToRight"/>
+                        <Syncfusion:PropertyGrid SelectedObject="{Binding AccountSummary}" FlowDirection="LeftToRight" />
+                    </Syncfusion:TabItemExt>
+                    <Syncfusion:TabItemExt Header="Selected Instrument Information" FlowDirection="LeftToRight">
+                        <Syncfusion:PropertyGrid SelectedObject="{Binding SelectedInstrument}" FlowDirection="LeftToRight" />
                     </Syncfusion:TabItemExt>
                 </Syncfusion:TabControlExt>
                 <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
@@ -102,11 +108,11 @@
                             Syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding IndicatorsChangedCommand}"
                             Syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
 
-                        <Syncfusion:ButtonAdv Label="New Chart Window..." Margin="30,0,0,0" Command="{Binding NewChartCommand}"/>
-                        <Syncfusion:ButtonAdv Label="Open Trade Ticket..." Command="{Binding TradeTicketCommand}" />
+                        <Syncfusion:ButtonAdv Label="New Chart Window..." Margin="30,0,0,0" Command="{Binding NewChartCommand}" SmallIcon="/LoonieTrader.App;component/Images/Cursor-02-WF.png" IconHeight="26" IconWidth="26"/>
+                        <Syncfusion:ButtonAdv Label="Open Trade Ticket..." Command="{Binding TradeTicketCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
 
                     </StackPanel>
-                    <Syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD"  >
+                    <Syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" BorderBrush="Black" BorderThickness="3" >
                         <Syncfusion:SfChart.TechnicalIndicators >
                             <Syncfusion:SimpleAverageIndicator />
                         </Syncfusion:SfChart.TechnicalIndicators>
@@ -119,7 +125,7 @@
                             <Syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
                         </Syncfusion:SfChart.SecondaryAxis>
 
-                        <Syncfusion:CandleSeries Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"  High="High" Open="Open" Close="Close" Low="Low" />
+                        <Syncfusion:CandleSeries Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
                     </Syncfusion:SfChart>
                 </Grid>
             </Grid>

@@ -21,12 +21,12 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             return resp.ToString();
         }
 
-    public class Account
-    {
-        public string id { get; set; }
+        public class Account
+        {
+            public string id { get; set; }
 
-        public string[] tags { get; set; }
-    }
+            public string[] tags { get; set; }
+        }
     }
 }
 

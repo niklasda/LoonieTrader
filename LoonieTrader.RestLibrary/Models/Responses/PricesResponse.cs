@@ -25,72 +25,70 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 
             return resp.ToString();
         }
+
+        public class Price
+        {
+            public Ask[] asks { get; set; }
+            public Bid[] bids { get; set; }
+            public string closeoutAsk { get; set; }
+            public string closeoutBid { get; set; }
+            public string instrument { get; set; }
+            public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
+            public string status { get; set; }
+            public string time { get; set; }
+            public Unitsavailable unitsAvailable { get; set; }
+        }
+
+        public class Quotehomeconversionfactors
+        {
+            public string negativeUnits { get; set; }
+            public string positiveUnits { get; set; }
+        }
+
+        public class Unitsavailable
+        {
+            public Default _default { get; set; }
+            public Openonly openOnly { get; set; }
+            public Reducefirst reduceFirst { get; set; }
+            public Reduceonly reduceOnly { get; set; }
+        }
+
+        public class Default
+        {
+            public string _long { get; set; }
+            public string _short { get; set; }
+        }
+
+        public class Openonly
+        {
+            public string _long { get; set; }
+            public string _short { get; set; }
+        }
+
+        public class Reducefirst
+        {
+            public string _long { get; set; }
+            public string _short { get; set; }
+        }
+
+        public class Reduceonly
+        {
+            public string _long { get; set; }
+            public string _short { get; set; }
+        }
+
+        public class Ask
+        {
+            public int liquidity { get; set; }
+            public string price { get; set; }
+        }
+
+        public class Bid
+        {
+            public int liquidity { get; set; }
+            public string price { get; set; }
+        }
     }
-
-    public class Price
-    {
-        public Ask[] asks { get; set; }
-        public Bid[] bids { get; set; }
-        public string closeoutAsk { get; set; }
-        public string closeoutBid { get; set; }
-        public string instrument { get; set; }
-        public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
-        public string status { get; set; }
-        public string time { get; set; }
-        public Unitsavailable unitsAvailable { get; set; }
-    }
-
-    public class Quotehomeconversionfactors
-    {
-        public string negativeUnits { get; set; }
-        public string positiveUnits { get; set; }
-    }
-
-    public class Unitsavailable
-    {
-        public Default _default { get; set; }
-        public Openonly openOnly { get; set; }
-        public Reducefirst reduceFirst { get; set; }
-        public Reduceonly reduceOnly { get; set; }
-    }
-
-    public class Default
-    {
-        public string _long { get; set; }
-        public string _short { get; set; }
-    }
-
-    public class Openonly
-    {
-        public string _long { get; set; }
-        public string _short { get; set; }
-    }
-
-    public class Reducefirst
-    {
-        public string _long { get; set; }
-        public string _short { get; set; }
-    }
-
-    public class Reduceonly
-    {
-        public string _long { get; set; }
-        public string _short { get; set; }
-    }
-
-    public class Ask
-    {
-        public int liquidity { get; set; }
-        public string price { get; set; }
-    }
-
-    public class Bid
-    {
-        public int liquidity { get; set; }
-        public string price { get; set; }
-    }
-
-
 }
 
 /*

@@ -19,7 +19,9 @@ namespace LoonieTrader.RestLibrary.Models.Responses
                 resp.AppendLine("P/L: " + position.pl);
                 resp.AppendLine("resettable P/L: " + position.resettablePL);
                 resp.AppendLine("unrealized P/L: " + position.unrealizedPL);
+                resp.AppendLine("long units: " + position.@long.units);
                 resp.AppendLine("long P/L: " + position.@long.pl);
+                resp.AppendLine("short units: " + position.@short.units);
                 resp.AppendLine("short P/L: " + position.@short.pl);
             }
 
@@ -52,10 +54,8 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string unrealizedPL { get; set; }
         }
     }
-
-    /*
-    {"lastTransactionID":"16","positions":[]}
-    
-
-    */
 }
+
+/*
+{"lastTransactionID":"16","positions":[]}
+*/

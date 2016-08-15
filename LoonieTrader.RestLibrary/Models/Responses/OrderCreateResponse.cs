@@ -63,7 +63,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             }
         }
 
-
         public class Ordercreatetransaction
         {
             public string accountID { get; set; }
@@ -115,11 +114,7 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string tradeID { get; set; }
             public string units { get; set; }
         }
-
     }
-
-
-
 }
 
 /*
@@ -164,4 +159,4 @@ namespace LoonieTrader.RestLibrary.Models.Responses
  "time":"2016-08-05T13:29:31.477223240Z","timeInForce":"GTC","triggerCondition":"TRIGGER_DEFAULT","type":"LIMIT_ORDER","units":"1000","userID":3904511},
  "relatedTransactionIDs":["40","41"]}
 
- * */
+ */

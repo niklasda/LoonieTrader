@@ -1,4 +1,6 @@
+using System.Globalization;
 using AutoMapper;
+using AutoMapper.Configuration.Conventions;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Models.Responses;
@@ -9,6 +11,7 @@ namespace LoonieTrader.App.Locator
     {
         public IMapper CreateMapper()
         {
+           // Mapper.Initialize(cfg => cfg.DefaultMemberConfig.AddName<CaseInsensitiveName>());
             var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
             return config.CreateMapper();
         }
@@ -17,23 +20,25 @@ namespace LoonieTrader.App.Locator
         {
             public MappingProfile()
             {
-                CreateMap<AccountInstrumentsResponse.Instrument, InstrumentModel>()
-                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.displayName));
+                var sourceCulture = new CultureInfo("en-US");
 
-                CreateMap<AccountSummaryResponse.AccountSummary, AccountSummaryModel>()
-                    .ForMember(i => i.Id, m => m.MapFrom(r => r.id));
+                CreateMap<AccountInstrumentsResponse.Instrument, InstrumentViewModel>();
+              //      .ForMember(i => i.Instrument, m => m.MapFrom(r => r.displayName));
 
-                CreateMap<PositionsResponse.Position, PositionModel>()
-                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+                CreateMap<AccountSummaryResponse.AccountSummary, AccountSummaryViewModel>();
+//                    .ForMember(i => i.Id, m => m.MapFrom(r => r.id));
 
-                CreateMap<OrdersResponse.Order, OrderModel>()
-                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+                CreateMap<PositionsResponse.Position, PositionViewModel>()
+                    .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)));
 
-                CreateMap<TradesResponse.Trade, TradeModel>()
-                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+                CreateMap<OrdersResponse.Order, OrderViewModel>();
+//                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
 
-                CreateMap<TransactionsResponse.Transaction, TransactionModel>()
-                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+                CreateMap<TradesResponse.Trade, TradeModel>();
+//                    .ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+
+                CreateMap<TransactionsResponse.Transaction, TransactionViewModel>()
+                    .ForMember(i => i.AccountBalance, m => m.MapFrom(r => decimal.Parse(r.accountBalance ?? "0", sourceCulture)));
 
 
                 CreateMap<CandleDataRecord, CandleDataViewModel>();//.ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));

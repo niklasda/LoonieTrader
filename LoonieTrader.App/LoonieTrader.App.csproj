@@ -116,14 +116,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Locator\AutoMappings.cs" />
-    <Compile Include="ViewModels\AccountSummaryModel.cs" />
-    <Compile Include="ViewModels\TradeModel .cs" />
-    <Compile Include="ViewModels\TransactionModel.cs" />
-    <Compile Include="ViewModels\OrderModel.cs" />
+    <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
+    <Compile Include="ViewModels\TradeViewModel .cs" />
+    <Compile Include="ViewModels\TransactionViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
-    <Compile Include="ViewModels\InstrumentModel.cs" />
+    <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
-    <Compile Include="ViewModels\PositionModel.cs" />
+    <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>

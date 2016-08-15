@@ -37,21 +37,19 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string state { get; set; }
             public string unrealizedPL { get; set; }
         }
-
-
     }
-
-    /*
-   {"lastTransactionID":"53",
-   "trade":{"currentUnits":"1000",
-   "financing":"0.0000",
-   "id":"37",
-   "initialUnits":"1000",
-   "instrument":"EUR_USD",
-   "openTime":"2016-08-05T12:55:42.268686450Z",
-   "price":"1.10852",
-   "realizedPL":"0.0000",
-   "state":"OPEN",
-   "unrealizedPL":"0.0902"}}
-    */
 }
+
+/*
+{"lastTransactionID":"53",
+"trade":{"currentUnits":"1000",
+"financing":"0.0000",
+"id":"37",
+"initialUnits":"1000",
+"instrument":"EUR_USD",
+"openTime":"2016-08-05T12:55:42.268686450Z",
+"price":"1.10852",
+"realizedPL":"0.0000",
+"state":"OPEN",
+"unrealizedPL":"0.0902"}}
+*/

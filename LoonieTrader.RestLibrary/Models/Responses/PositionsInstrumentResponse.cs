@@ -50,12 +50,9 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string units { get; set; }
             public string unrealizedPL { get; set; }
         }
-
     }
-
-    /*
-
-    {"lastTransactionID":"53","position":{"instrument":"EUR_USD","long":{"averagePrice":"1.10806","pl":"-1.7538","resettablePL":"-1.7538","tradeIDs":["18","29","31","33","35","37"],"units":"15000","unrealizedPL":"14.4239"},"pl":"24.6101","resettablePL":"24.6101","short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},"unrealizedPL":"14.4239"}}
-
-    */
 }
+
+/*
+{"lastTransactionID":"53","position":{"instrument":"EUR_USD","long":{"averagePrice":"1.10806","pl":"-1.7538","resettablePL":"-1.7538","tradeIDs":["18","29","31","33","35","37"],"units":"15000","unrealizedPL":"14.4239"},"pl":"24.6101","resettablePL":"24.6101","short":{"pl":"26.3639","resettablePL":"26.3639","units":"0","unrealizedPL":"0.0000"},"unrealizedPL":"14.4239"}}
+*/

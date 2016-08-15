@@ -38,49 +38,49 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             return resp.ToString();
         }
 
-    public class Transaction
-    {
-        public string accountID { get; set; }
-        public int accountNumber { get; set; }
-        public int accountUserID { get; set; }
-        public string batchID { get; set; }
-        public int divisionID { get; set; }
-        public string homeCurrency { get; set; }
-        public string id { get; set; }
-        public int siteID { get; set; }
-        public string time { get; set; }
-        public string type { get; set; }
-        public int userID { get; set; }
-        public string alias { get; set; }
-        public string marginRate { get; set; }
-        public string accountBalance { get; set; }
-        public string amount { get; set; }
-        public string fundingReason { get; set; }
-        public string instrument { get; set; }
-        public string positionFill { get; set; }
-        public string reason { get; set; }
-        public string timeInForce { get; set; }
-        public string units { get; set; }
-        public string orderID { get; set; }
-        public string gtdTime { get; set; }
-        public string price { get; set; }
-        public Stoplossonfill stopLossOnFill { get; set; }
-        public Takeprofitonfill takeProfitOnFill { get; set; }
-        public string triggerCondition { get; set; }
-    }
+        public class Transaction
+        {
+            public string accountID { get; set; }
+            public int accountNumber { get; set; }
+            public int accountUserID { get; set; }
+            public string batchID { get; set; }
+            public int divisionID { get; set; }
+            public string homeCurrency { get; set; }
+            public string id { get; set; }
+            public int siteID { get; set; }
+            public string time { get; set; }
+            public string type { get; set; }
+            public int userID { get; set; }
+            public string alias { get; set; }
+            public string marginRate { get; set; }
+            public string accountBalance { get; set; }
+            public string amount { get; set; }
+            public string fundingReason { get; set; }
+            public string instrument { get; set; }
+            public string positionFill { get; set; }
+            public string reason { get; set; }
+            public string timeInForce { get; set; }
+            public string units { get; set; }
+            public string orderID { get; set; }
+            public string gtdTime { get; set; }
+            public string price { get; set; }
+            public Stoplossonfill stopLossOnFill { get; set; }
+            public Takeprofitonfill takeProfitOnFill { get; set; }
+            public string triggerCondition { get; set; }
+        }
 
-    public class Stoplossonfill
-    {
-        public string price { get; set; }
-        public string timeInForce { get; set; }
-    }
+        public class Stoplossonfill
+        {
+            public string price { get; set; }
+            public string timeInForce { get; set; }
+        }
 
-    public class Takeprofitonfill
-    {
-        public string price { get; set; }
-        public string timeInForce { get; set; }
+        public class Takeprofitonfill
+        {
+            public string price { get; set; }
+            public string timeInForce { get; set; }
+        }
     }
-}
 }
 
 /*

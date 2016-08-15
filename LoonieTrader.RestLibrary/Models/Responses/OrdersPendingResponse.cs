@@ -50,9 +50,9 @@ namespace LoonieTrader.RestLibrary.Models.Responses
 }
 
 /*
-  
+
 {"lastTransactionID":"181","orders":[{"createTime":"2016-08-07T21:00:00.927691378Z","id":"177","price":"1.00000","state":"PENDING","timeInForce":"GTC","tradeID":"176","triggerCondition":"TRIGGER_DEFAULT","type":"STOP_LOSS"}]}
-  
+
 {"lastTransactionID":"16","orders":[]}
 
 {"lastTransactionID":"17","orders":[

@@ -47,7 +47,6 @@ namespace LoonieTrader.RestLibrary.Models.Responses
             public string price { get; set; }
             public string timeInForce { get; set; }
         }
-
     }
 }
 
