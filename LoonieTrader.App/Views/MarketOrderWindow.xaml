@@ -2,10 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="LoonieTrader.App.Views.MarketOrderWindow"
+        x:Class="LoonieTrader.App.Views.MarketOrderWindow"
         DataContext="{Binding MarketOrder, Source={StaticResource Locator}}"
         Title="Market Order"
-        Height="377" Width="383">
+        Height="380" Width="380">
     <Grid>
 
         <Grid.RowDefinitions>

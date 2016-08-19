@@ -2,15 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="LoonieTrader.App.Views.CompositeOrderWindow"
+        x:Class="LoonieTrader.App.Views.CompositeOrderWindow"
         DataContext="{Binding CompositeOrder, Source={StaticResource Locator}}"
         Title="Composite Order"
-        Height="377" Width="383">
+        Height="480" Width="380">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="14"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -61,7 +61,49 @@
             <TextBlock Grid.Column="2" Text="Sell" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
-        <syncfusion:SfChart Grid.Row="3" Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
+        <syncfusion:TaskBar Grid.Row="3" syncfusion:TaskBar.IsOpened="False" >
+            <syncfusion:TaskBarItem Header="Market Depth" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1">ASD</TextBlock>
+                </Grid>
+            </syncfusion:TaskBarItem>
+            <syncfusion:TaskBarItem Header="Take-Profit">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1">ASD</TextBox>
+                </Grid>
+            </syncfusion:TaskBarItem>
+            <syncfusion:TaskBarItem Header="Stop-Loss">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1">ASD</TextBox>
+                </Grid>
+            </syncfusion:TaskBarItem>
+            <syncfusion:TaskBarItem Header="Chart"  >
+
+                <syncfusion:SfChart Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
 
             <syncfusion:SfChart.PrimaryAxis>
                 <syncfusion:CategoryAxis Header="Time"/>
@@ -73,6 +115,10 @@
 
             <syncfusion:CandleSeries Label="Selected Instrument" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
         </syncfusion:SfChart>
+            </syncfusion:TaskBarItem>
+        </syncfusion:TaskBar>
     </Grid>
 </Window>
+
+
 
