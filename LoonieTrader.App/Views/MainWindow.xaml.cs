@@ -19,5 +19,14 @@ namespace LoonieTrader.App.Views
                 mvm.MainChart = this.MainChart;
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var mvm = this.DataContext as MainWindowViewModel;
+            if (mvm != null)
+            {
+                mvm.ExitApplicationCommand.Execute(e);
+            }
+        }
     }
 }

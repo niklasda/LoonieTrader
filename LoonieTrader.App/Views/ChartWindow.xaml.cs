@@ -3,7 +3,7 @@
 namespace LoonieTrader.App.Views
 {
     /// <summary>
-    /// Interaction logic for Chart.xaml
+    /// Interaction logic for ChartWindow.xaml
     /// </summary>
     public partial class ChartWindow : Window
     {

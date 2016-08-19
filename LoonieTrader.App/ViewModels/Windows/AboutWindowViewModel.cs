@@ -1,10 +1,11 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
-    public class AboutWindowViewModel
+    public class AboutWindowViewModel : ViewModelBase
     {
         public AboutWindowViewModel()
         {

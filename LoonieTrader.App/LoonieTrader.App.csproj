@@ -120,6 +120,9 @@
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Windows\CompositeOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\MarketOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ChartWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
@@ -135,14 +138,14 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CompositeOrderWindow.xaml.cs">
+      <DependentUpon>CompositeOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TestWindow.xaml.cs">
-      <DependentUpon>TestWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TradeTicketWindow.xaml.cs">
-      <DependentUpon>TradeTicketWindow.xaml</DependentUpon>
+    <Compile Include="Views\MarketOrderWindow.xaml.cs">
+      <DependentUpon>MarketOrderWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AboutWindow.xaml">
       <SubType>Designer</SubType>
@@ -168,15 +171,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CompositeOrderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TestWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TradeTicketWindow.xaml">
+    <Page Include="Views\MarketOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +231,7 @@
     <Resource Include="Images\Graph-03.png" />
     <Resource Include="Images\Stcok-Exchange-03-WF.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

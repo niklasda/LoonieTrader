@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -10,6 +11,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
+using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
@@ -36,7 +38,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             _transactionsRequester = transactionsRequester;
 
             AboutCommand = new RelayCommand(OpenAbout);
-            TradeTicketCommand = new RelayCommand(OpenTradeTicket);
+            MarketOrderCommand = new RelayCommand(OpenMarketOrderWindow);
+            CompositeOrderCommand = new RelayCommand(OpenCompositeOrderWindow);
             NewChartCommand = new RelayCommand(OpenNewChart);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
@@ -52,7 +55,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             if (IsInDesignMode)
             {
-                _instrumentList = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" } };
+                _allInstrument = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
                 _accountSummary = new AccountSummaryViewModel() { Id = "101" };
                 _positionList = new List<PositionViewModel>() { new PositionViewModel() { Instrument = "EUR/USD" } };
                 _orderList = new List<OrderViewModel>() { new OrderViewModel() { Instrument = "EUR/USD" } };
@@ -87,14 +90,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                 TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
                 TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
 
-                _instrumentList = mapper.Map<IList<InstrumentViewModel>>(instrumentsResponse.instruments);
+                InstrumentCache.Instruments = instrumentsResponse.instruments;
+
+                _allInstrument = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
                 _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
                 _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
                 _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
                 _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                 _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
-
-
             }
 
         }
@@ -110,7 +113,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly ITransactionsRequester _transactionsRequester;
 
         private AccountSummaryViewModel _accountSummary;
-        private IList<InstrumentViewModel> _instrumentList;
+        private IList<InstrumentViewModel> _allInstrument;
         private IList<PositionViewModel> _positionList;
         private IList<OrderViewModel> _orderList;
         private IList<TradeModel> _tradeList;
@@ -123,7 +126,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public RelayCommand AboutCommand { get; set; }
         public RelayCommand ExitApplicationCommand { get; set; }
-        public RelayCommand TradeTicketCommand { get; set; }
+        public RelayCommand MarketOrderCommand { get; set; }
+        public RelayCommand CompositeOrderCommand { get; set; }
         public RelayCommand NewChartCommand { get; set; }
         public RelayCommand OpenPositionsCommand { get; set; }
         public RelayCommand OpenOrdersCommand { get; set; }
@@ -135,11 +139,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand IndicatorsChangedCommand { get; set; }
         public ICommand TimeframesChangedCommand { get; set; }
 
-        public IList<InstrumentViewModel> InstrumentList
+        public IList<InstrumentViewModel> AllInstrument
         {
             get
             {
-                return _instrumentList;
+                return _allInstrument;
             }
         }
 
@@ -181,6 +185,16 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        public RelayCommand<CancelEventArgs> WindowClosing
+        {
+            get
+            {
+                return new RelayCommand<CancelEventArgs>(
+                    (args) => {
+                                  args.Cancel = true;
+                    });
+            }
+        }
 
         private void IndicatorsChanged(object checkedIndicatorItems)
         {
@@ -285,10 +299,16 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        private void OpenTradeTicket()
+        private void OpenMarketOrderWindow()
         {
-            TradeTicketWindow tw = new TradeTicketWindow();
-            tw.Show();
+            MarketOrderWindow mow = new MarketOrderWindow();
+            mow.Show();
+        }
+
+        private void OpenCompositeOrderWindow()
+        {
+            CompositeOrderWindow cow = new CompositeOrderWindow();
+            cow.Show();
         }
 
         private void OpenNewChart()

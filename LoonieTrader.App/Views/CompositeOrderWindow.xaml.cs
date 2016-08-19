@@ -3,11 +3,11 @@
 namespace LoonieTrader.App.Views
 {
     /// <summary>
-    /// Interaction logic for TestWindow.xaml
+    /// Interaction logic for CompositeOrderWindow.xaml
     /// </summary>
-    public partial class TestWindow : Window
+    public partial class CompositeOrderWindow : Window
     {
-        public TestWindow()
+        public CompositeOrderWindow()
         {
             InitializeComponent();
         }
