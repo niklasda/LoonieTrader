@@ -37,10 +37,12 @@ namespace LoonieTrader.App.ViewModels.Windows
             _tradesRequester = tradesRequester;
             _transactionsRequester = transactionsRequester;
 
-            AboutCommand = new RelayCommand(OpenAbout);
+            AboutCommand = new RelayCommand(OpenAboutWindow);
             MarketOrderCommand = new RelayCommand(OpenMarketOrderWindow);
             CompositeOrderCommand = new RelayCommand(OpenCompositeOrderWindow);
-            NewChartCommand = new RelayCommand(OpenNewChart);
+            NewChartCommand = new RelayCommand(OpenNewChartWindow);
+            SettingsCommand = new RelayCommand(OpenSettingsWindow);
+            LogOutCommand = new RelayCommand(LogOut);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -125,6 +127,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public RelayCommand AboutCommand { get; set; }
+        public RelayCommand SettingsCommand { get; set; }
+        public RelayCommand LogOutCommand { get; set; }
         public RelayCommand ExitApplicationCommand { get; set; }
         public RelayCommand MarketOrderCommand { get; set; }
         public RelayCommand CompositeOrderCommand { get; set; }
@@ -291,7 +295,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private void OpenAbout()
+        private void OpenAboutWindow()
         {
             AboutWindow aw = new AboutWindow();
             aw.Owner = Application.Current.MainWindow;
@@ -311,10 +315,18 @@ namespace LoonieTrader.App.ViewModels.Windows
             cow.Show();
         }
 
-        private void OpenNewChart()
+        private void OpenNewChartWindow()
         {
             ChartWindow tw = new ChartWindow();
             tw.Show();
+        }
+        private void OpenSettingsWindow()
+        {
+            SettingsWindow sw = new SettingsWindow();
+            sw.Show();
+        }
+        private void LogOut()
+        {
         }
 
         private void ExitApplication()

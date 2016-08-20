@@ -21,7 +21,9 @@
     <DockPanel LastChildFill="True">
         <syncfusion:MenuAdv DockPanel.Dock="Top">
             <syncfusion:MenuItemAdv Header="_File" >
-                <syncfusion:MenuItemAdv Header="_Settings" ></syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemAdv Header="_Settings" Command="{Binding SettingsCommand}" ></syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemSeparator />
+                <syncfusion:MenuItemAdv Header="_Log Out" Command="{Binding LogOutCommand}"></syncfusion:MenuItemAdv>
                 <syncfusion:MenuItemSeparator />
                 <syncfusion:MenuItemAdv Header="E_xit" InputGestureText="Alt+F4" Command="{Binding ExitApplicationCommand}" />
             </syncfusion:MenuItemAdv>

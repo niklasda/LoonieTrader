@@ -5,7 +5,7 @@
         x:Class="LoonieTrader.App.Views.CompositeOrderWindow"
         DataContext="{Binding CompositeOrder, Source={StaticResource Locator}}"
         Title="Composite Order"
-        Height="480" Width="380">
+        Height="480" Width="380" Loaded="Window_Loaded">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -61,8 +61,21 @@
             <TextBlock Grid.Column="2" Text="Sell" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
-        <syncfusion:TaskBar Grid.Row="3" syncfusion:TaskBar.IsOpened="False" >
-            <syncfusion:TaskBarItem Header="Market Depth" >
+        <syncfusion:TaskBar Grid.Row="3" IsOpened="False" >
+            <syncfusion:TaskBarItem Header="Order Data" x:Name="Section1" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">werwer</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1">ASwerwD</TextBox>
+                </Grid>
+            </syncfusion:TaskBarItem>
+                <syncfusion:TaskBarItem Header="Market Depth" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"></RowDefinition>

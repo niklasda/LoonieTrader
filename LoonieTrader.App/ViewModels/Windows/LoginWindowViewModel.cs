@@ -20,7 +20,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             ApiKey = settings.ApiKey;
             SelectedEnvironmentKey = settings.Environment;
 
-            _availableEnvironments =  new[] { Environments.Sandbox, Environments.Practice, Environments.Live };
+            _availableEnvironments =  new[] { Environments.Practice, Environments.Live };
         }
 
         private readonly IAccountsRequester _accountsRequester;
