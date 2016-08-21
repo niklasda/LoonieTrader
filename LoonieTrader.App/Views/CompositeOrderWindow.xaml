@@ -65,40 +65,48 @@
             <syncfusion:TaskBarItem Header="Order Data" x:Name="Section1" >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">werwer</TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1">ASwerwD</TextBox>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Amount</TextBlock>
+                    <syncfusion:IntegerTextBox Grid.Row="0" Grid.Column="1" Text="100" />
+                    <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
+                    <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Watermark="Skampi" Mask="" ></syncfusion:SfMaskedEdit>
+
                 </Grid>
             </syncfusion:TaskBarItem>
                 <syncfusion:TaskBarItem Header="Market Depth" >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
                     <TextBlock Grid.Row="0" Grid.Column="1">ASD</TextBlock>
                 </Grid>
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Take-Profit">
+            <syncfusion:TaskBarItem Header="Take-Profit"  >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
+                        <RowDefinition Height="24"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1">ASD</TextBox>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1">1,22</TextBox>
+                    <TextBlock Grid.Row="1" Grid.Column="0">ASD</TextBlock>
+                    <syncfusion:SfDomainUpDown Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllAmounts}"  />
                 </Grid>
             </syncfusion:TaskBarItem>
             <syncfusion:TaskBarItem Header="Stop-Loss">
@@ -108,10 +116,10 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1">ASD</TextBox>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
+                    <TextBox Grid.Row="0" Grid.Column="1">1,100</TextBox>
                 </Grid>
             </syncfusion:TaskBarItem>
             <syncfusion:TaskBarItem Header="Chart"  >
@@ -132,6 +140,10 @@
         </syncfusion:TaskBar>
     </Grid>
 </Window>
+
+
+
+
 
 
 

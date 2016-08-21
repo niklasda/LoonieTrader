@@ -1,8 +1,19 @@
 ﻿<Window x:Class="LoonieTrader.App.Views.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Settings" Height="300" Width="300">
+        Title="Settings" Height="400" Width="480">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"></RowDefinition>
+            <RowDefinition Height="24"></RowDefinition>
+            <RowDefinition Height="24"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0"  TextWrapping="Wrap" Text="Culture for number formatting" />
+        <TextBlock Grid.Column="0" Grid.Row="1"  TextWrapping="Wrap" Text="One-click trading" />
+
     </Grid>
 </Window>

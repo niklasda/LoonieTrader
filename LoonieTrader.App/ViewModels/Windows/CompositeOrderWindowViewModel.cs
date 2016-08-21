@@ -46,5 +46,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
+        public IList<string> AllAmounts
+        {
+            get { return new[] {"1 000", "10 000", "1000 000"}; }
+        }
     }
 }
