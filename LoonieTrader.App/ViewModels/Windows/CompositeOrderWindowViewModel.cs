@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.App.Views;
 using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.HistoricalData;
+using LoonieTrader.RestLibrary.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
     public class CompositeOrderWindowViewModel : ViewModelBase
     {
-        public CompositeOrderWindowViewModel(IMapper mapper)
+        public CompositeOrderWindowViewModel(IMapper mapper, ISettings settings, IPricingRequester pricePricingRequester)
         {
+            _settings = settings;
+            _pricePricingRequester = pricePricingRequester;
             if (IsInDesignMode)
             {
                 _allInstruments = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
@@ -32,6 +33,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                 this._allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
             }
         }
+
+        private readonly ISettings _settings;
+        private readonly IPricingRequester _pricePricingRequester;
 
         private IList<InstrumentViewModel> _allInstruments;
         public IList<InstrumentViewModel> AllInstruments
@@ -63,8 +67,19 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void LoadPrice(InstrumentViewModel instrument)
         {
+            BuyButtonEnabled = false;
+            BuyButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
+
+            SellButtonEnabled = false;
+            SellButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
+
+            // todo should be async
+            var prices = _pricePricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
+            BuyButtonLabel = prices.prices[0].asks[0].price;
             BuyButtonEnabled = true;
-            BuyButtonLabel = instrument.DisplayName;
+            SellButtonLabel = prices.prices[0].bids[0].price;
+            SellButtonEnabled = true;
+
         }
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
@@ -74,7 +89,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return new[] {"1 000", "10 000", "1000 000"}; }
         }
 
-        private string _buyButtonLabel="asdasd";
+        private string _buyButtonLabel="BUY";
         public string BuyButtonLabel
         {
             get { return _buyButtonLabel; }
@@ -97,6 +112,34 @@ namespace LoonieTrader.App.ViewModels.Windows
                 if (_buyButtonEnabled != value)
                 {
                     _buyButtonEnabled = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private string _sellButtonLabel = "SELL";
+        public string SellButtonLabel
+        {
+            get { return _sellButtonLabel; }
+            set
+            {
+                if (_sellButtonLabel != value)
+                {
+                    _sellButtonLabel = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private bool _sellButtonEnabled = false;
+        public bool SellButtonEnabled
+        {
+            get { return _sellButtonEnabled; }
+            set
+            {
+                if (_sellButtonEnabled != value)
+                {
+                    _sellButtonEnabled = value;
                     RaisePropertyChanged();
                 }
             }

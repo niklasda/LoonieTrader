@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{Binding Source={StaticResource Locator}, Path=Settings}"
         Title="Settings"
-        Height="400" Width="480">
+        Height="400" Width="480" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>

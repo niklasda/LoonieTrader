@@ -5,7 +5,7 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Chart}"
         Title="Chart"
         Height="419"
-        Width="473">
+        Width="473" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>

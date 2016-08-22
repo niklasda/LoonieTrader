@@ -7,7 +7,7 @@
         Title="Composite Order"
         Height="480" MinHeight="400"
         Width="380" MinWidth="300"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -26,7 +26,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel, Mode=TwoWay}" IsEnabled="{Binding BuyButtonEnabled, Mode=TwoWay}"  Margin="10" >
+            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" Margin="10" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -35,7 +35,7 @@
                     </LinearGradientBrush>
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
-            <syncfusion:ButtonAdv Grid.Column="1" Label="SELL" Margin="10">
+            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" Margin="10">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -51,9 +51,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Buy" TextAlignment="Left" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="0" Text="Buy at bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
             <TextBlock Grid.Column="1" Text="Spread" TextAlignment="Center" FontSize="8" />
-            <TextBlock Grid.Column="2" Text="Sell" TextAlignment="Right" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="2" Text="Sell for ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
         <syncfusion:TaskBar Grid.Row="3" IsOpened="True" >

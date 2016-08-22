@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using Syncfusion.Windows.Tools.Controls;
+﻿using System.ComponentModel;
 
 namespace LoonieTrader.App.ViewModels
 {

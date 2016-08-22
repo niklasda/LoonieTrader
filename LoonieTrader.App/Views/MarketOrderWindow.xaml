@@ -5,7 +5,7 @@
         x:Class="LoonieTrader.App.Views.MarketOrderWindow"
         DataContext="{Binding MarketOrder, Source={StaticResource Locator}}"
         Title="Market Order"
-        Height="380" Width="380">
+        Height="380" Width="380" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
 
         <Grid.RowDefinitions>
