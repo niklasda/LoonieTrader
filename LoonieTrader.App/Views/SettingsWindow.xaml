@@ -1,7 +1,9 @@
 ﻿<Window x:Class="LoonieTrader.App.Views.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Settings" Height="400" Width="480">
+        DataContext="{Binding Source={StaticResource Locator}, Path=Settings}"
+        Title="Settings"
+        Height="400" Width="480">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>

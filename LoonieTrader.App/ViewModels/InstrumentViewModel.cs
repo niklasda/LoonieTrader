@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using Syncfusion.Windows.Tools.Controls;
 
 namespace LoonieTrader.App.ViewModels
 {
@@ -28,5 +30,6 @@ namespace LoonieTrader.App.ViewModels
         public int TradeUnitsPrecision { get; set; }
         [ReadOnly(true)]
         public string Type { get; set; }
+
     }
 }

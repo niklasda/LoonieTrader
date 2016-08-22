@@ -121,12 +121,17 @@
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Windows\CompositeOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\WorkbenchWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MarketOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ChartWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
+    <Compile Include="Views\WorkbenchWindow.xaml.cs">
+      <DependentUpon>WorkbenchWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
@@ -147,6 +152,10 @@
     <Compile Include="Views\MarketOrderWindow.xaml.cs">
       <DependentUpon>MarketOrderWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\WorkbenchWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

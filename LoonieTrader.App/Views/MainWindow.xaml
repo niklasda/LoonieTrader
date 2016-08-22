@@ -34,10 +34,11 @@
                 <syncfusion:MenuItemAdv Header="Open Orders" Command="{Binding OpenOrdersCommand}" InputGestureText="Ctrl+4" />
                 <syncfusion:MenuItemAdv Header="Open Positions" Command="{Binding OpenPositionsCommand}" InputGestureText="Ctrl+5" />
             </syncfusion:MenuItemAdv>
-            <syncfusion:MenuItemAdv Header="_Window" >
+            <syncfusion:MenuItemAdv Header="_Windows" >
                 <syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding MarketOrderCommand}" InputGestureText="Ctrl+M" />
                 <syncfusion:MenuItemAdv Header="Order Ticket" Command="{Binding CompositeOrderCommand}" InputGestureText="Ctrl+O" />
                 <syncfusion:MenuItemAdv Header="Chart" Command="{Binding NewChartCommand}" />
+                <syncfusion:MenuItemAdv Header="Indicator Workbench" Command="{Binding WorkbenchCommand}" />
             </syncfusion:MenuItemAdv>
             <syncfusion:MenuItemAdv Header="_Help" >
                 <syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}" ></syncfusion:MenuItemAdv>

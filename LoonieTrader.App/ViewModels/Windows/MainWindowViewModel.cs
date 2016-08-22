@@ -40,6 +40,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutCommand = new RelayCommand(OpenAboutWindow);
             MarketOrderCommand = new RelayCommand(OpenMarketOrderWindow);
             CompositeOrderCommand = new RelayCommand(OpenCompositeOrderWindow);
+            WorkbenchCommand = new RelayCommand(OpenWorkbenchWindow);
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
@@ -132,6 +133,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand ExitApplicationCommand { get; set; }
         public RelayCommand MarketOrderCommand { get; set; }
         public RelayCommand CompositeOrderCommand { get; set; }
+        public RelayCommand WorkbenchCommand { get; set; }
         public RelayCommand NewChartCommand { get; set; }
         public RelayCommand OpenPositionsCommand { get; set; }
         public RelayCommand OpenOrdersCommand { get; set; }
@@ -300,7 +302,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutWindow aw = new AboutWindow();
             aw.Owner = Application.Current.MainWindow;
             aw.ShowDialog();
-
         }
 
         private void OpenMarketOrderWindow()
@@ -315,16 +316,24 @@ namespace LoonieTrader.App.ViewModels.Windows
             cow.Show();
         }
 
+        private void OpenWorkbenchWindow()
+        {
+            WorkbenchWindow ww = new WorkbenchWindow();
+            ww.Show();
+        }
+
         private void OpenNewChartWindow()
         {
             ChartWindow tw = new ChartWindow();
             tw.Show();
         }
+
         private void OpenSettingsWindow()
         {
             SettingsWindow sw = new SettingsWindow();
             sw.Show();
         }
+
         private void LogOut()
         {
         }

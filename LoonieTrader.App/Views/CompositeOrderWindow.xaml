@@ -5,35 +5,30 @@
         x:Class="LoonieTrader.App.Views.CompositeOrderWindow"
         DataContext="{Binding CompositeOrder, Source={StaticResource Locator}}"
         Title="Composite Order"
-        Height="480" Width="380" Loaded="Window_Loaded">
+        Height="480" MinHeight="400"
+        Width="380" MinWidth="300"
+        Loaded="Window_Loaded">
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="38"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="14"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <syncfusion:ComboBoxAdv  Grid.Column="0" ItemsSource="{Binding AllInstruments}" AllowMultiSelect="False" DefaultText="Select Instrument"
-                                DisplayMemberPath="DisplayName"/>
-
-            <syncfusion:SfTextBoxExt  Grid.Column="1" AutoCompleteMode="Suggest" AutoCompleteSource="{Binding AllInstruments}" SearchItemPath="DisplayName"
-                Watermark="Type here or select from dropdown"
-                />
+            <syncfusion:AutoComplete CustomSource="{Binding AllInstruments}" IsAutoAppend="true" StringMode="StartChar" EnableDropDown="True" EnableSorting="True" IsFilter="True"
+                                    Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" />
         </Grid>
         <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <syncfusion:ButtonAdv Grid.Column="0" Label="BUY"  Margin="10" >
+
+            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel, Mode=TwoWay}" IsEnabled="{Binding BuyButtonEnabled, Mode=TwoWay}"  Margin="10" >
                 <syncfusion:ButtonAdv.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
                         <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
                         <GradientStop Color="Red" Offset="1"/>
@@ -61,7 +56,7 @@
             <TextBlock Grid.Column="2" Text="Sell" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
-        <syncfusion:TaskBar Grid.Row="3" IsOpened="False" >
+        <syncfusion:TaskBar Grid.Row="3" IsOpened="True" >
             <syncfusion:TaskBarItem Header="Order Data" x:Name="Section1" >
                 <Grid>
                     <Grid.RowDefinitions>
@@ -77,6 +72,20 @@
                     <syncfusion:IntegerTextBox Grid.Row="0" Grid.Column="1" Text="100" />
                     <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
                     <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Watermark="Skampi" Mask="" ></syncfusion:SfMaskedEdit>
+                    <TextBlock Grid.Row="2" Grid.Column="0">Expiry</TextBlock>
+                    <syncfusion:DropDownButtonAdv Grid.Row="2" Grid.Column="1" Label="Select expiry" >
+                        <syncfusion:DropDownMenuGroup>
+
+                            <syncfusion:DropDownMenuItem Header="GTC"/>
+
+                            <syncfusion:DropDownMenuItem Header="1 Week"/>
+
+                            <syncfusion:DropDownMenuItem Header="Select date...">
+                                <syncfusion:CalendarEdit />
+                            </syncfusion:DropDownMenuItem>
+
+                        </syncfusion:DropDownMenuGroup>
+                    </syncfusion:DropDownButtonAdv>
 
                 </Grid>
             </syncfusion:TaskBarItem>
@@ -105,8 +114,20 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
                     <TextBox Grid.Row="0" Grid.Column="1">1,22</TextBox>
-                    <TextBlock Grid.Row="1" Grid.Column="0">ASD</TextBlock>
-                    <syncfusion:SfDomainUpDown Grid.Row="1" Grid.Column="1" ItemsSource="{Binding AllAmounts}"  />
+                    <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
+                    <syncfusion:DropDownButtonAdv Grid.Row="1" Grid.Column="1" Label="Price selection" >
+                        <syncfusion:DropDownMenuGroup>
+
+                            <syncfusion:DropDownMenuItem Header="100"/>
+
+                            <syncfusion:DropDownMenuItem Header="10 000"/>
+
+                            <syncfusion:DropDownMenuItem Header="Select Amount...">
+                                <syncfusion:IntegerTextBox />
+                            </syncfusion:DropDownMenuItem>
+
+                        </syncfusion:DropDownMenuGroup>
+                    </syncfusion:DropDownButtonAdv>
                 </Grid>
             </syncfusion:TaskBarItem>
             <syncfusion:TaskBarItem Header="Stop-Loss">

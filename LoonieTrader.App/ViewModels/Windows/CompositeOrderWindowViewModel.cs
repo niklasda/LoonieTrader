@@ -30,8 +30,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             else
             {
                 this._allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
-
-               
             }
         }
 
@@ -44,11 +42,64 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private InstrumentViewModel _selectedInstrument;
+        public InstrumentViewModel SelectedInstrument
+        {
+            get
+            {
+                return _selectedInstrument;
+            }
+            set
+            {
+                if (_selectedInstrument != value)
+                {
+                    _selectedInstrument = value;
+                    RaisePropertyChanged();
+
+                    LoadPrice(_selectedInstrument);
+                }
+            }
+        }
+
+        private void LoadPrice(InstrumentViewModel instrument)
+        {
+            BuyButtonEnabled = true;
+            BuyButtonLabel = instrument.DisplayName;
+        }
+
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public IList<string> AllAmounts
         {
             get { return new[] {"1 000", "10 000", "1000 000"}; }
+        }
+
+        private string _buyButtonLabel="asdasd";
+        public string BuyButtonLabel
+        {
+            get { return _buyButtonLabel; }
+            set
+            {
+                if (_buyButtonLabel != value)
+                {
+                    _buyButtonLabel = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private bool _buyButtonEnabled=false;
+        public bool BuyButtonEnabled
+        {
+            get { return _buyButtonEnabled; }
+            set
+            {
+                if (_buyButtonEnabled != value)
+                {
+                    _buyButtonEnabled = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
     }
 }
