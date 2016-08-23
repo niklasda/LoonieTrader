@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
-            <syncfusion:AutoComplete CustomSource="{Binding AllInstruments}" IsAutoAppend="true" StringMode="StartChar" EnableDropDown="True" EnableSorting="True" IsFilter="True"
+            <syncfusion:AutoComplete CustomSource="{Binding AllInstruments}" IsAutoAppend="true" StringMode="StartChar" EnableDropDown="True" EnableSorting="True" IsFilter="False"
                                     Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" />
         </Grid>
         <Grid Grid.Row="1" >
@@ -51,9 +51,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Buy at bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="0" Text="Buy at ask" TextAlignment="Left" FontSize="8" Padding="10,0" />
             <TextBlock Grid.Column="1" Text="Spread" TextAlignment="Center" FontSize="8" />
-            <TextBlock Grid.Column="2" Text="Sell for ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="2" Text="Sell for bid" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
         <syncfusion:TaskBar Grid.Row="3" IsOpened="True" >
@@ -71,9 +71,16 @@
                     <TextBlock Grid.Row="0" Grid.Column="0">Amount</TextBlock>
                     <syncfusion:IntegerTextBox Grid.Row="0" Grid.Column="1" Text="100" />
                     <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
-                    <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Watermark="Skampi" Mask="" ></syncfusion:SfMaskedEdit>
+                    <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Mask="" ></syncfusion:SfMaskedEdit>
                     <TextBlock Grid.Row="2" Grid.Column="0">Expiry</TextBlock>
-                    <syncfusion:DropDownButtonAdv Grid.Row="2" Grid.Column="1" Label="Select expiry" >
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <syncfusion:DateTimeEdit Grid.Column="0"  Text="{Binding SelectedExpiryDate[0]}"
+                                MinDateTime="{Binding EarliestExpiryDate, Mode=OneWay}" MaxDateTime="{Binding LatestExpiryDate, Mode=OneWay}" Pattern="ShortDate" CustomPattern="yyyy-MM-dd" IsReadOnly="True" IsButtonPopUpEnabled="False" IsCalendarEnabled="False" CultureInfo="sv-SE" />
+                    <syncfusion:DropDownButtonAdv Grid.Column="1" Label="&lt;- Expiry" >
                         <syncfusion:DropDownMenuGroup>
 
                             <syncfusion:DropDownMenuItem Header="GTC"/>
@@ -81,28 +88,19 @@
                             <syncfusion:DropDownMenuItem Header="1 Week"/>
 
                             <syncfusion:DropDownMenuItem Header="Select date...">
-                                <syncfusion:CalendarEdit />
+                                <syncfusion:CalendarEdit AllowMultiplySelection="False"   SelectedDates="{Binding SelectedExpiryDate}"
+                                                         MinDate="{Binding EarliestExpiryDate}" MaxDate="{Binding LatestExpiryDate}"/>
                             </syncfusion:DropDownMenuItem>
 
                         </syncfusion:DropDownMenuGroup>
                     </syncfusion:DropDownButtonAdv>
-
+                    </Grid>
                 </Grid>
             </syncfusion:TaskBarItem>
-                <syncfusion:TaskBarItem Header="Market Depth" >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="24"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">ASD</TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1">ASD</TextBlock>
-                </Grid>
+            <syncfusion:TaskBarItem Header="Market Depth" >
+                <syncfusion:SfDataGrid  ItemsSource="{Binding AllDepth}" ColumnSizer="Star" BorderThickness="0" />
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Take-Profit"  >
+            <syncfusion:TaskBarItem Header="Take-Profit" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"></RowDefinition>
@@ -115,7 +113,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
                     <TextBox Grid.Row="0" Grid.Column="1">1,22</TextBox>
                     <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
-                    <syncfusion:DropDownButtonAdv Grid.Row="1" Grid.Column="1" Label="Price selection" >
+                    <syncfusion:DropDownButtonAdv Grid.Row="1" Grid.Column="1" Label="Price selection" Width="180">
                         <syncfusion:DropDownMenuGroup>
 
                             <syncfusion:DropDownMenuItem Header="100"/>
@@ -123,7 +121,7 @@
                             <syncfusion:DropDownMenuItem Header="10 000"/>
 
                             <syncfusion:DropDownMenuItem Header="Select Amount...">
-                                <syncfusion:IntegerTextBox />
+                                <syncfusion:IntegerTextBox Width="100" />
                             </syncfusion:DropDownMenuItem>
 
                         </syncfusion:DropDownMenuGroup>
@@ -161,6 +159,14 @@
         </syncfusion:TaskBar>
     </Grid>
 </Window>
+
+
+
+
+
+
+
+
 
 
 

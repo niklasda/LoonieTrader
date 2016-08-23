@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -44,6 +48,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
+           ReloadChartCommand = new RelayCommand(ReloadChart);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -82,9 +87,12 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                var candleRecords = dataLoader.LoadDataFile201603();
-                var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
-                GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+              //  var candleRecords = _dataLoader.LoadDataFile201603();
+              //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+               // GraphData = new ConcurrentBag<CandleDataViewModel>();
+                GraphData = new ObservableCollection<CandleDataViewModel>();
+
+               // Task.Run(()=> PlayTheData(candleList));
 
                 AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
                 AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
@@ -104,6 +112,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
 
         }
+
+       
 
         private readonly ISettings _settings;
         private readonly IMapper _mapper;
@@ -133,6 +143,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand ExitApplicationCommand { get; set; }
         public RelayCommand MarketOrderCommand { get; set; }
         public RelayCommand CompositeOrderCommand { get; set; }
+        public RelayCommand ReloadChartCommand { get; set; }
         public RelayCommand WorkbenchCommand { get; set; }
         public RelayCommand NewChartCommand { get; set; }
         public RelayCommand OpenPositionsCommand { get; set; }
@@ -191,16 +202,16 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        public RelayCommand<CancelEventArgs> WindowClosing
-        {
-            get
-            {
-                return new RelayCommand<CancelEventArgs>(
-                    (args) => {
-                                  args.Cancel = true;
-                    });
-            }
-        }
+        //public RelayCommand<CancelEventArgs> WindowClosing
+        //{
+        //    get
+        //    {
+        //        return new RelayCommand<CancelEventArgs>(
+        //            (args) => {
+        //                          args.Cancel = true;
+        //            });
+        //    }
+        //}
 
         private void IndicatorsChanged(object checkedIndicatorItems)
         {
@@ -302,6 +313,45 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutWindow aw = new AboutWindow();
             aw.Owner = Application.Current.MainWindow;
             aw.ShowDialog();
+        }
+
+        private void ReloadChart()
+        {
+            while (GraphData.Count>0)
+            {
+                GraphData.RemoveAt(0);
+
+            }
+
+            var candleRecords = _dataLoader.LoadDataFile201603();
+
+            var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+            foreach (var candleDataViewModel in candleList)
+            {
+                GraphData.Add(candleDataViewModel);
+            }
+            // PlayTheData(candleList);
+        }
+
+        private void PlayTheData(List<CandleDataViewModel> candleList)
+        {
+            ConcurrentQueue<CandleDataViewModel> q = new ConcurrentQueue<CandleDataViewModel>(candleList);
+            Timer t = new Timer((o) =>
+            {
+                var dd = new CandleDataViewModel();
+                bool ok = q.TryDequeue(out dd);
+                GraphData.Add(dd);
+            },null,1000,500);
+
+ //           foreach (var candleData in candleList)
+   //         {
+     //           Task.Delay(500).Wait();
+
+       //         Dispatcher.CurrentDispatcher.Invoke(() => );
+
+         //   }
+            //            GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+
         }
 
         private void OpenMarketOrderWindow()

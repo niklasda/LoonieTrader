@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.Models.Responses;
+using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -46,6 +49,37 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        public IList<PriceDepthViewModel> AllDepth
+        {
+            get
+            {
+                if (_latestPrice != null)
+                {
+                    // todo do this with automapper
+
+                    IEnumerable<PriceDepthViewModel> depths = _latestPrice.prices[0].bids.Select(
+                        x =>
+                            new PriceDepthViewModel()
+                            {
+                                Bid = x.liquidity.ToString(),
+                                Price = x.price,
+                            });
+
+                    IEnumerable<PriceDepthViewModel> depths2 = _latestPrice.prices[0].asks.Select(
+                        x =>
+                            new PriceDepthViewModel()
+                            {
+                                Ask = x.liquidity.ToString(),
+                                Price = x.price,
+                            });
+
+                    var d2 = depths.Concat(depths2).ToArray();
+                    return d2;
+                }
+                return new List<PriceDepthViewModel>(0);
+            }
+        }
+
         private InstrumentViewModel _selectedInstrument;
         public InstrumentViewModel SelectedInstrument
         {
@@ -65,22 +99,70 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private PricesResponse _latestPrice;
+        public PricesResponse LatestPrice
+        {
+            get
+            {
+                return _latestPrice;
+            }
+            set
+            {
+                if (_latestPrice != value)
+                {
+                    _latestPrice = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged("AllDepth");
+                }
+            }
+        }
+
         private void LoadPrice(InstrumentViewModel instrument)
         {
-            BuyButtonEnabled = false;
-            BuyButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
+            if (InstrumentExists(instrument))
+            {
+                BuyButtonEnabled = false;
+                BuyButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
 
-            SellButtonEnabled = false;
-            SellButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
+                SellButtonEnabled = false;
+                SellButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
 
-            // todo should be async
-            var prices = _pricePricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
-            BuyButtonLabel = prices.prices[0].asks[0].price;
-            BuyButtonEnabled = true;
-            SellButtonLabel = prices.prices[0].bids[0].price;
-            SellButtonEnabled = true;
+                // todo should be async
+                LatestPrice = _pricePricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
+                if (LatestPrice.prices.Length > 0 && LatestPrice.prices[0].asks.Length > 0)
+                {
+                    BuyButtonLabel = LatestPrice.prices[0].asks[0].price;
+                    BuyButtonEnabled = true;
+                }
+                else
+                {
+                    BuyButtonLabel = "No Ask Price";
+                    BuyButtonEnabled = false;
+                }
 
+                if (LatestPrice.prices.Length > 0 && LatestPrice.prices[0].bids.Length > 0)
+                {
+                    SellButtonLabel = LatestPrice.prices[0].bids[0].price;
+                    SellButtonEnabled = true;
+                }
+                else
+                {
+                    SellButtonLabel = "No Bid Price";
+                    SellButtonEnabled = false;
+                }
+            }
         }
+
+        private bool InstrumentExists(InstrumentViewModel instrument)
+        {
+            if (!string.IsNullOrEmpty(instrument?.Name))
+            {
+                return InstrumentCache.Instruments.Any(x => x.name == instrument.Name);
+            }
+
+            return false;
+        }
+
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
@@ -103,7 +185,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private bool _buyButtonEnabled=false;
+        private bool _buyButtonEnabled;
         public bool BuyButtonEnabled
         {
             get { return _buyButtonEnabled; }
@@ -131,7 +213,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private bool _sellButtonEnabled = false;
+        private bool _sellButtonEnabled;
         public bool SellButtonEnabled
         {
             get { return _sellButtonEnabled; }
@@ -143,6 +225,37 @@ namespace LoonieTrader.App.ViewModels.Windows
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        private DatesCollection _selectedExpiryDate = new DatesCollection() {DateTime.Today.AddDays(4)};
+        public DatesCollection SelectedExpiryDate
+        {
+            get
+            {
+                return _selectedExpiryDate;
+            }
+            set
+            {
+                _selectedExpiryDate = value;
+            }
+        }
+
+        public string SelectedExpiryDateText
+        {
+            get
+            {
+                return _selectedExpiryDate[0].ToShortDateString();
+            }
+        }
+
+        public DateTime EarliestExpiryDate
+        {
+            get { return DateTime.Today.AddDays(1); }
+        }
+
+        public DateTime LatestExpiryDate
+        {
+            get { return DateTime.Today.AddMonths(2); }
         }
     }
 }

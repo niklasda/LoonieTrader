@@ -61,11 +61,8 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <syncfusion:SfDataGrid  Grid.Row="0"
-                               ShowRowHeader="True"
-                               AutoGenerateColumns="False"
-                               AllowSelectionOnPointerPressed="True"
-                               ColumnSizer="Auto"
-                                    ItemsSource="{Binding AllInstrument}" SelectedItem="{Binding SelectedInstrument}" ShowSortNumbers="True" Margin="0" >
+                        ShowRowHeader="True" AutoGenerateColumns="False" AllowSelectionOnPointerPressed="True" ColumnSizer="Auto"
+                        ItemsSource="{Binding AllInstrument}" SelectedItem="{Binding SelectedInstrument}" ShowSortNumbers="True" Margin="0" >
                     <syncfusion:SfDataGrid.Columns>
                         <syncfusion:GridTextColumn DisplayBinding="{Binding DisplayName, Mode=OneWay}" HeaderText="Instruments" />
                         <syncfusion:GridTextColumn DisplayBinding="{Binding Type, Mode=OneWay}" HeaderText="Type"/>
@@ -126,21 +123,37 @@
                         <syncfusion:ButtonAdv Label="Market Order..." Command="{Binding MarketOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
                         <syncfusion:ButtonAdv Label="Composite Order..." Command="{Binding CompositeOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
 
+                        <syncfusion:ButtonAdv Label="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}" />
+
                     </StackPanel>
-                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
+                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" 
+                                        BorderBrush="Gainsboro" BorderThickness="1" >
                         <syncfusion:SfChart.TechnicalIndicators >
-                            <syncfusion:SimpleAverageIndicator />
+                            <syncfusion:SimpleAverageIndicator Label="SimpAvg" Stroke="Aqua" />
                         </syncfusion:SfChart.TechnicalIndicators>
 
-                        <syncfusion:SfChart.PrimaryAxis>
-                            <syncfusion:CategoryAxis Header="Time"/>
+                        <syncfusion:SfChart.Legend>
+                            <syncfusion:ChartLegend CheckBoxVisibility="Visible" />
+                        </syncfusion:SfChart.Legend>
+
+                        <syncfusion:SfChart.Behaviors>
+                            <syncfusion:ChartSelectionBehavior SelectionStyle="Single" EnableSegmentSelection="True"/>
+                        </syncfusion:SfChart.Behaviors>
+                        
+                        <syncfusion:SfChart.PrimaryAxis >
+                            <syncfusion:CategoryAxis Header="Time" ZoomFactor="0.8" ZoomPosition="1" EnableAutoIntervalOnZooming="True"/>
                         </syncfusion:SfChart.PrimaryAxis>
 
                         <syncfusion:SfChart.SecondaryAxis>
-                            <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
+                            <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price"  />
                         </syncfusion:SfChart.SecondaryAxis>
 
-                        <syncfusion:CandleSeries Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
+                        <syncfusion:CandleSeries ListenPropertyChange="True" Label="EURUSD" ItemsSource="{Binding GraphData}" 
+                                                 XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" >
+                            <syncfusion:CandleSeries.Trendlines>
+                                <syncfusion:Trendline Label="Trend" IsTrendlineVisible="True" Type="Exponential" Stroke="DarkBlue" />
+                            </syncfusion:CandleSeries.Trendlines>
+                        </syncfusion:CandleSeries>
                     </syncfusion:SfChart>
                 </Grid>
             </Grid>
