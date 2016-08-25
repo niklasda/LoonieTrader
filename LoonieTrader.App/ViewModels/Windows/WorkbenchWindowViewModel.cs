@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
+using Syncfusion.Calculate;
+using Syncfusion.Windows.Calculate;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -9,9 +11,10 @@ namespace LoonieTrader.App.ViewModels.Windows
     {
         public WorkbenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester)
         {
+            
             //if (IsInDesignMode)
-           // {
-                SampleData = new List<CandleDataViewModel>()
+            // {
+            SampleData = new List<CandleDataViewModel>()
                 {
                     new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
                     new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160809", Time = "162000", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
