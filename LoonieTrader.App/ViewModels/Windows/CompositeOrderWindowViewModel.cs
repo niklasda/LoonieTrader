@@ -20,7 +20,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             _pricePricingRequester = pricePricingRequester;
             if (IsInDesignMode)
             {
-                _allInstruments = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
+                _allInstruments = new List<InstrumentViewModel>()
+                {
+                    new InstrumentViewModel() { DisplayName = "EUR/USD" },
+                    new InstrumentViewModel() { DisplayName = "USD/CAD" }
+                };
 
                 GraphData = new ObservableCollection<CandleDataViewModel>()
                 {
@@ -29,7 +33,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                     new CandleDataViewModel() {Date = "20160810", Time = "162000", High = 2m, Low = 1m, Open = 1m, Close = 2m},
                     new CandleDataViewModel() {Date = "20160811", Time = "162000", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
                 };
-
             }
             else
             {
@@ -162,7 +165,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             return false;
         }
-
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 

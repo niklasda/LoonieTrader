@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Text;
 using AutoMapper;
 using FileHelpers;
-using Jil;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Tests.Locator;

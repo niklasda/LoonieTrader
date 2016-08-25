@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.App.Views;
-using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
-    public class WorkbgenchWindowViewModel : ViewModelBase
+    public class WorkbenchWindowViewModel : ViewModelBase
     {
-        public WorkbgenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester)
+        public WorkbenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester)
         {
+            //if (IsInDesignMode)
+           // {
+                SampleData = new List<CandleDataViewModel>()
+                {
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160809", Time = "162000", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160810", Time = "162000", High = 2m, Low = 1m, Open = 1m, Close = 2m},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160811", Time = "162000", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
+                };
+           // }
+        }
+
+        private IList<CandleDataViewModel> _sampleData;
+        public IList<CandleDataViewModel> SampleData
+        {
+            get { return _sampleData; }
+            set { _sampleData = value; }
         }
 
     }

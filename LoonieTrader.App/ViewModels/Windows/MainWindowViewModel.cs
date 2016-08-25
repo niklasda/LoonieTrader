@@ -1,22 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Threading;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
 using LoonieTrader.RestLibrary.Caches;
-using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Models.Responses;
@@ -30,7 +22,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester, ITransactionsRequester transactionsRequester)
         {
-
             _settings = settings;
             _mapper = mapper;
             _dataLoader = dataLoader;
@@ -48,7 +39,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
-           ReloadChartCommand = new RelayCommand(ReloadChart);
+            ReloadChartCommand = new RelayCommand(ReloadChart);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -81,14 +72,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                     new CandleDataViewModel() {Date = "20160810", Time = "162000", High = 2m, Low = 1m, Open = 1m, Close = 2m},
                     new CandleDataViewModel() {Date = "20160811", Time = "162000", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
                 };
-
-
-
             }
             else
             {
-              //  var candleRecords = _dataLoader.LoadDataFile201603();
-              //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+               //  var candleRecords = _dataLoader.LoadDataFile201603();
+               //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
                // GraphData = new ConcurrentBag<CandleDataViewModel>();
                 GraphData = new ObservableCollection<CandleDataViewModel>();
 
@@ -110,10 +98,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                 _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
             }
-
         }
-
-       
 
         private readonly ISettings _settings;
         private readonly IMapper _mapper;
@@ -131,7 +116,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         private IList<OrderViewModel> _orderList;
         private IList<TradeModel> _tradeList;
         private IList<TransactionViewModel> _transactionList;
-
 
         public SfChart MainChart { get; set; }
 
@@ -202,17 +186,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        //public RelayCommand<CancelEventArgs> WindowClosing
-        //{
-        //    get
-        //    {
-        //        return new RelayCommand<CancelEventArgs>(
-        //            (args) => {
-        //                          args.Cancel = true;
-        //            });
-        //    }
-        //}
-
         private void IndicatorsChanged(object checkedIndicatorItems)
         {
             var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
@@ -264,7 +237,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string[] AvailableIndicators
         {
-
             get
             {
                 string[] technicalIndicators = { "Bollinger Band", "Accumulation Distribution", "Exponential Average",
@@ -331,27 +303,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 GraphData.Add(candleDataViewModel);
             }
             // PlayTheData(candleList);
-        }
-
-        private void PlayTheData(List<CandleDataViewModel> candleList)
-        {
-            ConcurrentQueue<CandleDataViewModel> q = new ConcurrentQueue<CandleDataViewModel>(candleList);
-            Timer t = new Timer((o) =>
-            {
-                var dd = new CandleDataViewModel();
-                bool ok = q.TryDequeue(out dd);
-                GraphData.Add(dd);
-            },null,1000,500);
-
- //           foreach (var candleData in candleList)
-   //         {
-     //           Task.Delay(500).Wait();
-
-       //         Dispatcher.CurrentDispatcher.Invoke(() => );
-
-         //   }
-            //            GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
-
         }
 
         private void OpenMarketOrderWindow()

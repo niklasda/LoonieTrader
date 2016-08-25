@@ -4,6 +4,7 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         DataContext="{Binding Source={StaticResource Locator}, Path=Chart}"
         Title="Chart"
+        ResizeMode="CanResizeWithGrip"
         Height="419"
         Width="473" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>

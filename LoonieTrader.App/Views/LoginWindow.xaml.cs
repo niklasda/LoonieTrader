@@ -3,9 +3,6 @@ using LoonieTrader.App.ViewModels.Windows;
 
 namespace LoonieTrader.App.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         public LoginWindow()

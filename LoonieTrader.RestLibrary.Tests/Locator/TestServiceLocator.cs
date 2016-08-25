@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using LoonieTrader.RestLibrary.Locator;
+﻿using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
 namespace LoonieTrader.RestLibrary.Tests.Locator
@@ -8,8 +7,6 @@ namespace LoonieTrader.RestLibrary.Tests.Locator
     {
         public static IContainer Initialize()
         {
-           
-
             var container = new Container(c =>
             {
                 c.AddRegistry<ServiceRegistry>();

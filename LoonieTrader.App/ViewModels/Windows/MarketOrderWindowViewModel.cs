@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.App.Views;
 using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.HistoricalData;
 
@@ -31,7 +28,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 this._allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
 
-               
             }
         }
 

@@ -4,6 +4,7 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=About}"
         Title="About"
         WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
         Height="300"
         Width="300" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>

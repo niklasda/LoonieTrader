@@ -18,15 +18,6 @@ namespace LoonieTrader.App.Locator
 
                 c.AddRegistry<ServiceRegistry>();
             });
-
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////}
         }
 
         private readonly Container _container;
@@ -54,13 +45,13 @@ namespace LoonieTrader.App.Locator
         {
             get { return _container.GetInstance<LoginWindowViewModel>(); }
         }
-        public LoginWindowViewModel Workbench
+        public WorkbenchWindowViewModel Workbench
         {
-            get { return _container.GetInstance<LoginWindowViewModel>(); }
+            get { return _container.GetInstance<WorkbenchWindowViewModel>(); }
         }
-        public LoginWindowViewModel Settings
+        public SettingsWindowViewModel Settings
         {
-            get { return _container.GetInstance<LoginWindowViewModel>(); }
+            get { return _container.GetInstance<SettingsWindowViewModel>(); }
         }
 
         public AboutWindowViewModel About

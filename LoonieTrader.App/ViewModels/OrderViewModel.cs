@@ -20,8 +20,6 @@ namespace LoonieTrader.App.ViewModels
         public string Price { get; set; }
         [ReadOnly(true)]
         public string State { get; set; }
-        //public StopLossOnFill stopLossOnFill { get; set; }
-        //public TakeProfitOnFill takeProfitOnFill { get; set; }
         [ReadOnly(true)]
         public string TimeInForce { get; set; }
         [ReadOnly(true)]
