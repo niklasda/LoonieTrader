@@ -18,6 +18,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             _settings = settings;
             _pricePricingRequester = pricePricingRequester;
+            _takeProfitPriceStep = 0.0001m;
+            _takeProfitPriceDecimals = 4;
             if (IsInDesignMode)
             {
                 _allInstruments = new List<InstrumentViewModel>()
@@ -170,10 +172,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public IList<string> AllAmounts
         {
-            get { return new[] {"1 000", "10 000", "1000 000"}; }
+            get { return new[] { "1 000", "10 000", "1000 000" }; }
         }
 
-        private string _buyButtonLabel="BUY";
+        private string _buyButtonLabel = "BUY";
         public string BuyButtonLabel
         {
             get { return _buyButtonLabel; }
@@ -229,7 +231,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private DatesCollection _selectedExpiryDate = new DatesCollection() {DateTime.Today.AddDays(4)};
+        private DatesCollection _selectedExpiryDate = new DatesCollection() { DateTime.Today.AddDays(4) };
         public DatesCollection SelectedExpiryDate
         {
             get
@@ -258,6 +260,50 @@ namespace LoonieTrader.App.ViewModels.Windows
         public DateTime LatestExpiryDate
         {
             get { return DateTime.Today.AddMonths(2); }
+        }
+
+        private decimal _takeProfitPrice;
+        public decimal TakeProfitPrice
+        {
+            get { return _takeProfitPrice; }
+            set
+            {
+                if (_takeProfitPrice != value)
+                {
+                    _takeProfitPrice = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private decimal _takeProfitPriceStep;
+
+        public decimal TakeProfitPriceStep
+        {
+            get { return _takeProfitPriceStep; }
+            set
+            {
+                if (_takeProfitPriceStep != value)
+                {
+                    _takeProfitPriceStep = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private int _takeProfitPriceDecimals;
+
+        public int TakeProfitPriceDecimals
+        {
+            get { return _takeProfitPriceDecimals; }
+            set
+            {
+                if (_takeProfitPriceDecimals != value)
+                {
+                    _takeProfitPriceDecimals = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
     }
 }

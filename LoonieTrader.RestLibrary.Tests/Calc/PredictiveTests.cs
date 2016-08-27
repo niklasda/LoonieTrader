@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
+using System.Resources;
 using NUnit.Framework;
 using Syncfusion.PMML;
 
@@ -12,18 +15,26 @@ namespace LoonieTrader.RestLibrary.Tests.Calc
         {
             var anonymousType = new
             {
-                Sepal_Length = 4.3,
-                Sepal_Width = 3.2,
-                Petal_Length = 0.4,
-                Petal_Width = 1.1
+                Employment = "SelfEmp",
+                Education = "Master",
+                Marital = "Married",
+                Occupation = "Professional",
+                Gender = "Male",
+                Age = 41,
+                Income = 30123.5,
+                Deductions = 1022.5,
+                Hours = 40
             };
 
-            string pmmlFilePath = "Sample.pmml";
-            PMMLEvaluator PMMLEvaluator = new PMMLEvaluatorFactory().GetPMMLEvaluatorInstance(pmmlFilePath);
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "LoonieTrader.RestLibrary.Tests.Calc.sample.pmml";
 
-            //Gets the predicted result
-            PredictedResult predictedResult = PMMLEvaluator.GetResult(anonymousType, null);
-            Console.WriteLine(predictedResult.PredictedValue);
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                PMMLEvaluator evaluator = new PMMLEvaluatorFactory().GetPMMLEvaluatorInstance(stream);
+                PredictedResult predictedResult = evaluator.GetResult(anonymousType, null);
+                Console.WriteLine(predictedResult.PredictedValue);
+            }
         }
 
 
@@ -32,29 +43,30 @@ namespace LoonieTrader.RestLibrary.Tests.Calc
         {
             var anonymousType = new
             {
-                total_bill = 23.68,
-                sex = "Male",
-                smoker = "No",
-                day = "Sun",
-                time = "Dinner",
-                size = 2
+                Employment = "SelfEmp",
+                Education = "Master",
+                Marital = "Married",
+                Occupation = "Professional",
+                Gender = "Male",
+                Age = 41,
+                Income = 30123.5,
+                Deductions = 1022.5,
+                Hours = 40
             };
 
-            string pmmlFilePath = "Sample.pmml";
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "LoonieTrader.RestLibrary.Tests.Calc.sample.pmml";
 
-            //Create instance for PMML Document
-            PMMLDocument pmmlDocument = new PMMLDocument(pmmlFilePath);
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            {
+                PMMLDocument pmmlDocument = new PMMLDocument(stream);
+                RegressionModelEvaluator regressionModel = new RegressionModelEvaluator(pmmlDocument);
+                PredictedResult predictedResult = regressionModel.GetResult(anonymousType, null);
+                regressionModel.Dispose();
+                Console.WriteLine(predictedResult.PredictedValue);
 
-            //Create instance for Mining model
-            RegressionModelEvaluator regressionModel = new RegressionModelEvaluator(pmmlDocument);
 
-            //Gets the predicted result
-            PredictedResult predictedResult = regressionModel.GetResult(anonymousType, null);
-
-            regressionModel.Dispose();
-            //Displays the predicted result
-
-            Console.WriteLine(predictedResult.PredictedValue);
+            }
         }
     }
 }

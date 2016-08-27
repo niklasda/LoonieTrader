@@ -13,6 +13,10 @@ namespace LoonieTrader.App.Views
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             TaskBar.SetIsOpened(Section1, true);
+            TaskBar.SetIsOpened(Section2, false);
+            TaskBar.SetIsOpened(Section3, false);
+            TaskBar.SetIsOpened(Section4, false);
+            TaskBar.SetIsOpened(Section5, false);
         }
     }
 }

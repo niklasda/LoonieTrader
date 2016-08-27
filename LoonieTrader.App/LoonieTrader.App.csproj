@@ -148,8 +148,8 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CompositeOrderWindow.xaml.cs">
-      <DependentUpon>CompositeOrderWindow.xaml</DependentUpon>
+    <Compile Include="Views\ComplexOrderWindow.xaml.cs">
+      <DependentUpon>ComplexOrderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -185,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CompositeOrderWindow.xaml">
+    <Page Include="Views\ComplexOrderWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

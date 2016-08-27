@@ -22,7 +22,17 @@
                     <ColumnDefinition Width="30"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Information about price, time, depth, periods and stuff" TextWrapping="Wrap"></TextBlock>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Information about price, time, depth, periods (time frames) and stuff" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="Select instrument to show" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Row="2" Text="Optionally require specific time frame" TextWrapping="Wrap"></TextBlock>
+
+                </Grid>
 
 
                 <syncfusion:SfDataGrid  Grid.Column="2"

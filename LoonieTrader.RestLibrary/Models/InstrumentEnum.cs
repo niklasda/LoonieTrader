@@ -5,11 +5,11 @@ namespace LoonieTrader.RestLibrary.Models
     {
         UNKNOWN,
         CURRENCY,
-        INDEX,
-        BOND,
-        COMMODITY,
+        //INDEX,
+        //BOND,
+        //COMMODITY,
         TEST,
-        BASKET,
+        //BASKET,
         CFD,
         METAL
     }

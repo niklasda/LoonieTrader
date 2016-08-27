@@ -11,6 +11,8 @@
     <Window.InputBindings>
         <KeyBinding Key="M" Modifiers="Control" Command="{Binding MarketOrderCommand}"/>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding CompositeOrderCommand}"/>
+        <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
+        <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
         <KeyBinding Key="D1" Modifiers="Control" Command="{Binding InstrumentInformationCommand}"/>
         <KeyBinding Key="D2" Modifiers="Control" Command="{Binding AccountInformationCommand}"/>
         <KeyBinding Key="D3" Modifiers="Control" Command="{Binding TransactionHistoryCommand}"/>
@@ -35,13 +37,13 @@
                 <syncfusion:MenuItemAdv Header="Open Positions" Command="{Binding OpenPositionsCommand}" InputGestureText="Ctrl+5" />
             </syncfusion:MenuItemAdv>
             <syncfusion:MenuItemAdv Header="_Windows" >
-                <syncfusion:MenuItemAdv Header="Trade Ticket" Command="{Binding MarketOrderCommand}" InputGestureText="Ctrl+M" />
-                <syncfusion:MenuItemAdv Header="Order Ticket" Command="{Binding CompositeOrderCommand}" InputGestureText="Ctrl+O" />
-                <syncfusion:MenuItemAdv Header="Chart" Command="{Binding NewChartCommand}" />
-                <syncfusion:MenuItemAdv Header="Indicator Workbench" Command="{Binding WorkbenchCommand}" />
+                <syncfusion:MenuItemAdv Header="_Market Order" Command="{Binding MarketOrderCommand}" InputGestureText="Ctrl+M" />
+                <syncfusion:MenuItemAdv Header="Complex _Order" Command="{Binding CompositeOrderCommand}" InputGestureText="Ctrl+O" />
+                <syncfusion:MenuItemAdv Header="C_hart" Command="{Binding NewChartCommand}" InputGestureText="Ctrl+H" />
+                <syncfusion:MenuItemAdv Header="_Indicator Workbench" Command="{Binding WorkbenchCommand}" InputGestureText="Ctrl+I" />
             </syncfusion:MenuItemAdv>
             <syncfusion:MenuItemAdv Header="_Help" >
-                <syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}" ></syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}"  InputGestureText="F1"/>
             </syncfusion:MenuItemAdv>
         </syncfusion:MenuAdv>
         <StatusBar  DockPanel.Dock="Bottom">
@@ -96,7 +98,7 @@
                         <syncfusion:PropertyGrid SelectedObject="{Binding AccountSummary}" FlowDirection="LeftToRight" />
                     </syncfusion:TabItemExt>
                     <syncfusion:TabItemExt Header="Instrument Information" FlowDirection="LeftToRight">
-                        <syncfusion:PropertyGrid SelectedObject="{Binding SelectedInstrument}" FlowDirection="LeftToRight" />
+                        <syncfusion:PropertyGrid SelectedObject="{Binding SelectedInstrument}" FlowDirection="LeftToRight" SearchBoxVisibility="Collapsed" ButtonPanelVisibility="Collapsed"  />
                     </syncfusion:TabItemExt>
                 </syncfusion:TabControlExt>
                 <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
@@ -119,9 +121,9 @@
                             syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding IndicatorsChangedCommand}"
                             syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
 
-                        <syncfusion:ButtonAdv Label="New Chart Window..." Margin="30,0,0,0" Command="{Binding NewChartCommand}" SmallIcon="/LoonieTrader.App;component/Images/Cursor-02-WF.png" IconHeight="26" IconWidth="26"/>
-                        <syncfusion:ButtonAdv Label="Market Order..." Command="{Binding MarketOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
-                        <syncfusion:ButtonAdv Label="Composite Order..." Command="{Binding CompositeOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
+                        <syncfusion:ButtonAdv Label="_Market Order..." Margin="30,0,0,0" Command="{Binding MarketOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
+                        <syncfusion:ButtonAdv Label="Complex _Order..." Command="{Binding CompositeOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
+                        <syncfusion:ButtonAdv Label="New C_hart Window..." Command="{Binding NewChartCommand}" SmallIcon="/LoonieTrader.App;component/Images/Cursor-02-WF.png" IconHeight="26" IconWidth="26"/>
 
                         <syncfusion:ButtonAdv Label="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}" />
 

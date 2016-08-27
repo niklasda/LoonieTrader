@@ -97,10 +97,10 @@
                     </Grid>
                 </Grid>
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Market Depth" >
+            <syncfusion:TaskBarItem Header="Market Depth" x:Name="Section2" >
                 <syncfusion:SfDataGrid  ItemsSource="{Binding AllDepth}" ColumnSizer="Star" BorderThickness="0" />
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Take-Profit" >
+            <syncfusion:TaskBarItem Header="Take-Profit"  x:Name="Section3">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"></RowDefinition>
@@ -111,24 +111,13 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1">1,22</TextBox>
-                    <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
-                    <syncfusion:DropDownButtonAdv Grid.Row="1" Grid.Column="1" Label="Price selection" Width="180">
-                        <syncfusion:DropDownMenuGroup>
-
-                            <syncfusion:DropDownMenuItem Header="100"/>
-
-                            <syncfusion:DropDownMenuItem Header="10 000"/>
-
-                            <syncfusion:DropDownMenuItem Header="Select Amount...">
-                                <syncfusion:IntegerTextBox Width="100" />
-                            </syncfusion:DropDownMenuItem>
-
-                        </syncfusion:DropDownMenuGroup>
-                    </syncfusion:DropDownButtonAdv>
+                    <syncfusion:SfTextBoxExt Grid.Row="0" Grid.Column="1">1,22</syncfusion:SfTextBoxExt>
+                    <TextBlock Grid.Row="1" Grid.Column="0">Alt. Price Level box</TextBlock>
+                    <syncfusion:UpDown Grid.Row="1" Grid.Column="1" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
+                                       Value="{Binding TakeProfitPrice}" Step="{Binding TakeProfitPriceStep}" NumberDecimalDigits="{Binding TakeProfitPriceDecimals}" TextAlignment="Right" />
                 </Grid>
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Stop-Loss">
+            <syncfusion:TaskBarItem Header="Stop-Loss" x:Name="Section4">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"></RowDefinition>
@@ -141,7 +130,7 @@
                     <TextBox Grid.Row="0" Grid.Column="1">1,100</TextBox>
                 </Grid>
             </syncfusion:TaskBarItem>
-            <syncfusion:TaskBarItem Header="Chart"  >
+            <syncfusion:TaskBarItem Header="Chart"  x:Name="Section5" >
 
                 <syncfusion:SfChart Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
 
