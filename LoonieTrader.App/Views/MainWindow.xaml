@@ -43,6 +43,8 @@
                 <syncfusion:MenuItemAdv Header="_Indicator Workbench" Command="{Binding WorkbenchCommand}" InputGestureText="Ctrl+I" />
             </syncfusion:MenuItemAdv>
             <syncfusion:MenuItemAdv Header="_Help" >
+                <syncfusion:MenuItemAdv Header="_Log" Command="{Binding LogCommand}" />
+                <syncfusion:MenuItemSeparator />
                 <syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}"  InputGestureText="F1"/>
             </syncfusion:MenuItemAdv>
         </syncfusion:MenuAdv>
@@ -128,7 +130,7 @@
                         <syncfusion:ButtonAdv Label="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}" />
 
                     </StackPanel>
-                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" 
+                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD"
                                         BorderBrush="Gainsboro" BorderThickness="1" >
                         <syncfusion:SfChart.TechnicalIndicators >
                             <syncfusion:SimpleAverageIndicator Label="SimpAvg" Stroke="Aqua" />
@@ -141,7 +143,7 @@
                         <syncfusion:SfChart.Behaviors>
                             <syncfusion:ChartSelectionBehavior SelectionStyle="Single" EnableSegmentSelection="True"/>
                         </syncfusion:SfChart.Behaviors>
-                        
+
                         <syncfusion:SfChart.PrimaryAxis >
                             <syncfusion:CategoryAxis Header="Time" ZoomFactor="0.8" ZoomPosition="1" EnableAutoIntervalOnZooming="True"/>
                         </syncfusion:SfChart.PrimaryAxis>
@@ -150,7 +152,7 @@
                             <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price"  />
                         </syncfusion:SfChart.SecondaryAxis>
 
-                        <syncfusion:CandleSeries ListenPropertyChange="True" Label="EURUSD" ItemsSource="{Binding GraphData}" 
+                        <syncfusion:CandleSeries ListenPropertyChange="True" Label="EURUSD" ItemsSource="{Binding GraphData}"
                                                  XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" >
                             <syncfusion:CandleSeries.Trendlines>
                                 <syncfusion:Trendline Label="Trend" IsTrendlineVisible="True" Type="Exponential" Stroke="DarkBlue" />

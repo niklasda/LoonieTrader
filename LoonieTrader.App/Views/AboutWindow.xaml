@@ -13,8 +13,8 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="20"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox  HorizontalAlignment="Left" TextWrapping="Wrap" Margin="5" Text="{Binding AboutText, Mode=OneWay}" VerticalAlignment="Top" />
-                <Image Source="/LoonieTrader.App;component/Images/AppBitmap.bmp" Stretch="None"/>
-            </Grid>
+            <TextBox TextWrapping="Wrap" Margin="5" Text="{Binding AboutText, Mode=OneWay}"  />
+            <Image Grid.Row="0" Source="/LoonieTrader.App;component/Images/AppBitmap.bmp" Stretch="None"/>
+        </Grid>
     </Grid>
 </Window>

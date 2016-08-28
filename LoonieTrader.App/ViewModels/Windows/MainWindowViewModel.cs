@@ -32,6 +32,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             _tradesRequester = tradesRequester;
             _transactionsRequester = transactionsRequester;
 
+            LogCommand = new RelayCommand(OpenLogWindow);
             AboutCommand = new RelayCommand(OpenAboutWindow);
             MarketOrderCommand = new RelayCommand(OpenMarketOrderWindow);
             CompositeOrderCommand = new RelayCommand(OpenCompositeOrderWindow);
@@ -121,6 +122,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
+        public RelayCommand LogCommand { get; set; }
         public RelayCommand AboutCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
         public RelayCommand LogOutCommand { get; set; }
@@ -285,6 +287,13 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutWindow aw = new AboutWindow();
             aw.Owner = Application.Current.MainWindow;
             aw.ShowDialog();
+        }
+
+        private void OpenLogWindow()
+        {
+            LogWindow aw = new LogWindow();
+            aw.Owner = Application.Current.MainWindow;
+            aw.Show();
         }
 
         private void ReloadChart()

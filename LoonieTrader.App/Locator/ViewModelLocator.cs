@@ -58,5 +58,10 @@ namespace LoonieTrader.App.Locator
         {
             get { return _container.GetInstance<AboutWindowViewModel>(); }
         }
+
+        public LogWindowViewModel Log
+        {
+            get { return _container.GetInstance<LogWindowViewModel>(); }
+        }
     }
 }
