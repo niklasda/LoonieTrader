@@ -78,9 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Caches\LogCache.cs" />
     <Compile Include="Caches\AccountCache.cs" />
     <Compile Include="Caches\InstrumentCache.cs" />
     <Compile Include="Caches\PriceCache.cs" />
+    <Compile Include="Configuration\LogEntry.cs" />
+    <Compile Include="Configuration\ExtendedLogger.cs" />
     <Compile Include="Configuration\FileReaderWriter.cs" />
     <Compile Include="Configuration\Environments.cs" />
     <Compile Include="HistoricalData\CandleDataConverter.cs" />
@@ -89,6 +92,7 @@
     <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="HistoricalData\HistoricalDataLoader.cs" />
+    <Compile Include="Interfaces\IExtendedLogger.cs" />
     <Compile Include="Interfaces\IHistoricalDataLoader.cs" />
     <Compile Include="Interfaces\IFileReaderWriter.cs" />
     <Compile Include="Interfaces\ITransactionsRequester.cs" />

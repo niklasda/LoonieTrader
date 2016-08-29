@@ -2,3 +2,5 @@
 in LocalApplicationData/LoonieTrader/Config.yaml
 
 Log all json
+
+instrument träd

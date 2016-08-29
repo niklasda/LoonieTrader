@@ -14,10 +14,10 @@ namespace LoonieTrader.RestLibrary.Locator
             IFileReaderWriter cr = new FileReaderWriter();
             ISettings settings = cr.LoadConfiguration();
 
-            ILogger logger = CreateLogger(cr);
+            IExtendedLogger exLogger = CreateExLogger(cr);
 
             ForSingletonOf<ISettings>().Use(settings);
-            ForSingletonOf<ILogger>().Use(logger);
+            ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
             For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
             For<IFileReaderWriter>().Use<FileReaderWriter>();
@@ -30,7 +30,7 @@ namespace LoonieTrader.RestLibrary.Locator
             For<ITransactionsRequester>().Use<TransactionsRequester>();
         }
 
-        private ILogger CreateLogger(IFileReaderWriter cr)
+        private IExtendedLogger CreateExLogger(IFileReaderWriter cr)
         {
             var logFilePattern = cr.GetLogFilePattern();
 
@@ -39,7 +39,9 @@ namespace LoonieTrader.RestLibrary.Locator
                .WriteTo.RollingFile(logFilePattern)
                .CreateLogger();
 
-            return logger;
+            IExtendedLogger exLogger = new ExtendedLogger(logger);
+
+            return exLogger;
         }
     }
 }

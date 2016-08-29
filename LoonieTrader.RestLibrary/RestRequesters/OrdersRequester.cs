@@ -11,7 +11,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class OrdersRequester : RequesterBase, IOrdersRequester
     {
-        public OrdersRequester(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger) : base(settings, fileReaderWriter, logger)
+        public OrdersRequester(ISettings settings, IFileReaderWriter fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
         {
         }
 

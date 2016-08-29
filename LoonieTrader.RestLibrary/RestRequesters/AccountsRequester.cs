@@ -12,7 +12,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public class AccountsRequester : RequesterBase, IAccountsRequester
     {
-        public AccountsRequester(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger) : base(settings, fileReaderWriter, logger)
+        public AccountsRequester(ISettings settings, IFileReaderWriter fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -51,9 +51,9 @@ namespace LoonieTrader.RestLibrary.RestRequesters
                     var ar = JSON.Deserialize<AccountsResponse>(input);
                     return ar;
                 }
+
             }
         }
-
 
         public AccountDetailsResponse GetAccountDetails(string accountId)
         {

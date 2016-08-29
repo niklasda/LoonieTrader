@@ -11,10 +11,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="32"></RowDefinition>
             </Grid.RowDefinitions>
-            <syncfusion:SfTextBoxExt Grid.Row="0" TextWrapping="Wrap" Margin="5" Text="{Binding LogText, Mode=OneWay}" />
-            <syncfusion:SfTextBoxExt Grid.Row="1" TextWrapping="Wrap" Margin="5" Text="{Binding LogFileInfo, Mode=OneWay}" />
-            </Grid>
+            <syncfusion:SfDataGrid ItemsSource="{Binding LogEntries,Mode=OneWay}" AutoGenerateColumns="True" ColumnSizer="Auto" />
+        </Grid>
     </Grid>
 </Window>

@@ -7,7 +7,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 {
     public abstract class RequesterBase
     {
-        protected RequesterBase(ISettings settings, IFileReaderWriter fileReaderWriter, ILogger logger)
+        protected RequesterBase(ISettings settings, IFileReaderWriter fileReaderWriter, IExtendedLogger logger)
         {
             _apiKey = settings.ApiKey;
             _fileReaderWriter = fileReaderWriter;
@@ -16,7 +16,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
 
         private readonly string _apiKey;
         private readonly IFileReaderWriter _fileReaderWriter;
-        private readonly ILogger _logger;
+        private readonly IExtendedLogger _logger;
 
         private string BearerApiKey
         {
@@ -28,7 +28,7 @@ namespace LoonieTrader.RestLibrary.RestRequesters
             return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, arg);
         }
 
-        protected ILogger Logger
+        protected IExtendedLogger Logger
         {
             get { return _logger; }
         }
@@ -45,12 +45,14 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
             _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, json);
             _logger.Information("Saved a file with {0}#{1}", fileNamePart1, fileNamePart2);
+            _logger.Debug(json);
         }
 
         protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json)
         {
             _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, fileNamePart3, json);
             _logger.Information("Saved a file with {0}#{1}#{2}", fileNamePart1, fileNamePart2, fileNamePart3);
+            _logger.Debug(json);
         }
     }
 }
