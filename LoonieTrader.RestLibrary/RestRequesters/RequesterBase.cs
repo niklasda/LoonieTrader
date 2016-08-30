@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using JsonPrettyPrinterPlus;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
 using Serilog;
@@ -45,14 +46,14 @@ namespace LoonieTrader.RestLibrary.RestRequesters
         {
             _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, json);
             _logger.Information("Saved a file with {0}#{1}", fileNamePart1, fileNamePart2);
-            _logger.Debug(json);
+            _logger.Debug(json.PrettyPrintJson());
         }
 
         protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json)
         {
             _fileReaderWriter.SaveLocalJson(fileNamePart1, fileNamePart2, fileNamePart3, json);
             _logger.Information("Saved a file with {0}#{1}#{2}", fileNamePart1, fileNamePart2, fileNamePart3);
-            _logger.Debug(json);
+            _logger.Debug(json.PrettyPrintJson());
         }
     }
 }

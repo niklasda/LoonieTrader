@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.Expando;
-using LoonieTrader.RestLibrary.Caches;
-using LoonieTrader.RestLibrary.Interfaces;
-using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 
 namespace LoonieTrader.RestLibrary.Configuration

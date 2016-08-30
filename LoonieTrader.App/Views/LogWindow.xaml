@@ -12,7 +12,17 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <syncfusion:SfDataGrid ItemsSource="{Binding LogEntries,Mode=OneWay}" AutoGenerateColumns="True" ColumnSizer="Auto" />
+            <syncfusion:SfDataGrid ItemsSource="{Binding LogEntries,Mode=OneWay}" AllowSorting="False" AutoGenerateColumns="True" ColumnSizer="AutoLastColumnFill"  QueryRowHeight="SfDataGrid_OnQueryRowHeight" >
+                <syncfusion:SfDataGrid.AlternatingRowStyle>
+                    <Style TargetType="syncfusion:VirtualizingCellsControl">
+                        <Setter Property="Background" Value="Silver" />
+                    </Style>
+                </syncfusion:SfDataGrid.AlternatingRowStyle>
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn MappingName="Level" TextWrapping="Wrap" />
+                    <syncfusion:GridTextColumn MappingName="Message" TextWrapping="Wrap" />
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
         </Grid>
     </Grid>
 </Window>

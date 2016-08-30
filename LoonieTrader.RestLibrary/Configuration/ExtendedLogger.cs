@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Runtime.InteropServices.Expando;
 using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.Interfaces;
 using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 
 namespace LoonieTrader.RestLibrary.Configuration
@@ -22,7 +20,7 @@ namespace LoonieTrader.RestLibrary.Configuration
             _logger.Debug(message, args);
 
             var l = new LogEntry(LogEventLevel.Debug, null, args.Length >0 ? string.Format(message, args) : message);
-            LogCache.LogEntries.Add(l);
+            LogCache.LogEntries.Insert(0, l);
         }
 
         public void Information(string message, params object[] args)
@@ -30,7 +28,7 @@ namespace LoonieTrader.RestLibrary.Configuration
             _logger.Information(message, args);
 
             var l = new LogEntry(LogEventLevel.Information, null, args.Length > 0 ? string.Format(message, args) : message);
-            LogCache.LogEntries.Add(l);
+            LogCache.LogEntries.Insert(0, l);
         }
 
         public void Warning(Exception exception, string message, params object[] args)
@@ -38,7 +36,7 @@ namespace LoonieTrader.RestLibrary.Configuration
             _logger.Warning(exception,  message, args);
 
             var l = new LogEntry(LogEventLevel.Warning, exception, args.Length > 0 ? string.Format(message, args) : message);
-            LogCache.LogEntries.Add(l);
+            LogCache.LogEntries.Insert(0, l);
         }
 
         public void Error(Exception exception, string message, params object[] args)
@@ -46,7 +44,7 @@ namespace LoonieTrader.RestLibrary.Configuration
             _logger.Error(exception, message, args);
 
             var l = new LogEntry(LogEventLevel.Error, exception, args.Length > 0 ? string.Format(message, args) : message);
-            LogCache.LogEntries.Add(l);
+            LogCache.LogEntries.Insert(0, l);
         }
     }
 }
