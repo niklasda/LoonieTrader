@@ -106,11 +106,12 @@
     <Compile Include="Interfaces\IOrdersRequester.cs" />
     <Compile Include="Interfaces\IAccountsRequester.cs" />
     <Compile Include="Interfaces\ISettings.cs" />
-    <Compile Include="Models\TransactionEnums.cs" />
-    <Compile Include="Models\InstrumentEnum.cs" />
-    <Compile Include="Models\TradeEnums.cs" />
-    <Compile Include="Models\AccountEnums.cs" />
-    <Compile Include="Models\OrderEnums.cs" />
+    <Compile Include="Models\InstrumentType.cs" />
+    <Compile Include="Models\Enums\TransactionEnums.cs" />
+    <Compile Include="Models\Enums\InstrumentEnum.cs" />
+    <Compile Include="Models\Enums\TradeEnums.cs" />
+    <Compile Include="Models\Enums\AccountEnums.cs" />
+    <Compile Include="Models\Enums\OrderEnums.cs" />
     <Compile Include="Models\Responses\AccountDetailsResponse.cs" />
     <Compile Include="Models\Responses\OrderCreateResponse.cs" />
     <Compile Include="Models\Responses\PositionsInstrumentResponse.cs" />

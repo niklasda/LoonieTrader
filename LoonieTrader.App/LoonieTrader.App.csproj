@@ -121,7 +121,9 @@
     </ApplicationDefinition>
     <Compile Include="Locator\AutoMappings.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />

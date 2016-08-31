@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -55,7 +56,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             if (IsInDesignMode)
             {
-                _allInstrument = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
+                _allInstruments = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
                 _accountSummary = new AccountSummaryViewModel() { Id = "101" };
                 _positionList = new List<PositionViewModel>() { new PositionViewModel() { Instrument = "EUR/USD" } };
                 _orderList = new List<OrderViewModel>() { new OrderViewModel() { Instrument = "EUR/USD" } };
@@ -92,7 +93,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 InstrumentCache.Instruments = instrumentsResponse.instruments;
 
-                _allInstrument = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+                _allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+
+                // todo automapper
+                var groups = _allInstruments.Select(x => x).GroupBy(x => x.Type);
+                List<InstrumentTypeViewModel> its = groups.Select(x => new InstrumentTypeViewModel { Type = x.Key, Instruments = x.ToArray() }).ToList();
+
+                _allInstrumentTypes = its;
+
                 _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
                 _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
                 _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
@@ -112,7 +120,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly ITransactionsRequester _transactionsRequester;
 
         private AccountSummaryViewModel _accountSummary;
-        private IList<InstrumentViewModel> _allInstrument;
+        private IList<InstrumentTypeViewModel> _allInstrumentTypes;
+        private IList<InstrumentViewModel> _allInstruments;
         private IList<PositionViewModel> _positionList;
         private IList<OrderViewModel> _orderList;
         private IList<TradeModel> _tradeList;
@@ -142,12 +151,14 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand IndicatorsChangedCommand { get; set; }
         public ICommand TimeframesChangedCommand { get; set; }
 
-        public IList<InstrumentViewModel> AllInstrument
+        public IList<InstrumentViewModel> AllInstruments
         {
-            get
-            {
-                return _allInstrument;
-            }
+            get { return _allInstruments; }
+        }
+
+        public IList<InstrumentTypeViewModel> AllInstrumentTypes
+        {
+            get { return _allInstrumentTypes; }
         }
 
         public IList<PositionViewModel> AllPositions
@@ -219,14 +230,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private InstrumentViewModel _selectedInstrument;
 
-        public InstrumentViewModel SelectedInstrument
+        public object SelectedInstrument
         {
             get { return _selectedInstrument; }
             set
             {
                 if (_selectedInstrument != value)
                 {
-                    _selectedInstrument = value;
+                    _selectedInstrument = value as InstrumentViewModel;
                     RaisePropertyChanged();
                 }
             }

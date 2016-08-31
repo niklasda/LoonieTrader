@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace LoonieTrader.RestLibrary.Models
+namespace LoonieTrader.RestLibrary.Models.Enums
 {
     public enum TransactionType
     {

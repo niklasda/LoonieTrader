@@ -26,7 +26,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" Margin="10" >
+            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}"
+                                 Command="{Binding BuyCommand}" Margin="10" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -35,7 +36,8 @@
                     </LinearGradientBrush>
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
-            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" Margin="10">
+            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}"
+                                   Command="{Binding SellCommand}" Margin="10">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>

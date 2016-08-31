@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AutoMapper;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
@@ -20,6 +21,10 @@ namespace LoonieTrader.App.ViewModels.Windows
             _pricePricingRequester = pricePricingRequester;
             _takeProfitPriceStep = 0.0001m;
             _takeProfitPriceDecimals = 4;
+
+            BuyCommand = new RelayCommand(CreateBuyOrder);
+            SellCommand = new RelayCommand(CreateSellOrder);
+
             if (IsInDesignMode)
             {
                 _allInstruments = new List<InstrumentViewModel>()
@@ -42,6 +47,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        public RelayCommand BuyCommand { get; set; }
+        public RelayCommand SellCommand { get; set; }
         private readonly ISettings _settings;
         private readonly IPricingRequester _pricePricingRequester;
 
@@ -120,6 +127,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                     RaisePropertyChanged("AllDepth");
                 }
             }
+        }
+
+        private void CreateBuyOrder()
+        {
+        }
+
+        private void CreateSellOrder()
+        {
         }
 
         private void LoadPrice(InstrumentViewModel instrument)
@@ -305,5 +320,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 }
             }
         }
+        
     }
 }
