@@ -82,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="HistoricalData\Samples\dkc.csv" />
     <Compile Include="RestApi\Caches\AccountCache.cs" />
     <Compile Include="RestApi\Caches\InstrumentCache.cs" />
     <Compile Include="RestApi\Caches\PriceCache.cs" />
@@ -90,9 +91,6 @@
     <Compile Include="Logging\ExtendedLogger.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
     <Compile Include="Configuration\Environments.cs" />
-    <Compile Include="HistoricalData\CandleDataConverter.cs" />
-    <Compile Include="HistoricalData\CandleDataType2ViewModel.cs" />
-    <Compile Include="HistoricalData\CandleDataType2Record.cs" />
     <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="HistoricalData\HistoricalDataLoader.cs" />

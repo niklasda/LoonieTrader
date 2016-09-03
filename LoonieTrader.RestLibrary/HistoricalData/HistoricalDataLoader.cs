@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using FileHelpers;
-using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Services;
 
@@ -15,7 +13,7 @@ namespace LoonieTrader.RestLibrary.HistoricalData
             var engine = new FileHelperEngine<CandleDataRecord>();
             var frw = new FileReaderWriterService();
             var hdPath = frw.GetHistoricalDataFolderPath();
-            CandleDataRecord[] records = engine.ReadFile(Path.Combine(hdPath, "EURUSD201603.txt"));
+            CandleDataRecord[] records = engine.ReadFile(Path.Combine(hdPath, "EURUSD201603.txt")); // todo hardcoded
 
             return records;
         }

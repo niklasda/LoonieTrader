@@ -16,7 +16,6 @@ namespace LoonieTrader.RestLibrary.Tests.Locator
             public MappingProfile()
             {
                 CreateMap<CandleDataRecord, CandleDataViewModel>();
-                CreateMap<CandleDataType2Record, CandleDataType2ViewModel>();
             }
         }
     }

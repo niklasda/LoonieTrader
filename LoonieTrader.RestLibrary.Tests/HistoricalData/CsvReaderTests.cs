@@ -21,7 +21,7 @@ namespace LoonieTrader.RestLibrary.Tests.HistoricalData
             var engine = new FileHelperEngine<CandleDataRecord>();
             var frw = new FileReaderWriterService();
             var hdPath = frw.GetHistoricalDataFolderPath();
-            var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2016.txt"));
+            var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2016.txt")); // todo hardcoded
 
             Assert.AreEqual(212445, records.Length);
 
@@ -33,28 +33,7 @@ namespace LoonieTrader.RestLibrary.Tests.HistoricalData
             Assert.IsTrue(candleViewModels.TrueForAll(x => x.Close > 1));
             Assert.IsTrue(candleViewModels.TrueForAll(x => x.DatePlusTime.Year > 2001));
         }
-
-        [Test]
-        public void TestEurUsdCsv()
-        {
-            TestAutoMappings ams = new TestAutoMappings();
-            IMapper mapper = ams.CreateMapper();
-
-            var engine = new FileHelperEngine<CandleDataType2Record>();
-            var frw = new FileReaderWriterService();
-            var hdPath = frw.GetHistoricalDataFolderPath();
-            var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD_M1_UTC+0_00.csv"));
-
-            Assert.AreEqual(1139, records.Length);
-
-            var candleType2ViewModels = mapper.Map<List<CandleDataType2ViewModel>>(records);
-            Assert.AreEqual(1139, candleType2ViewModels.Count);
-            Assert.IsTrue(candleType2ViewModels.TrueForAll(x => x.Open > 1));
-            Assert.IsTrue(candleType2ViewModels.TrueForAll(x => x.High > 1));
-            Assert.IsTrue(candleType2ViewModels.TrueForAll(x => x.Low > 1));
-            Assert.IsTrue(candleType2ViewModels.TrueForAll(x => x.Close > 1));
-            Assert.IsTrue(candleType2ViewModels.TrueForAll(x => x.DatePlusTime.Year > 2001));
-        }
+        
 
     }
 }
