@@ -4,6 +4,7 @@ using AutoMapper;
 using FileHelpers;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
+using LoonieTrader.RestLibrary.Services;
 using LoonieTrader.RestLibrary.Tests.Locator;
 using NUnit.Framework;
 
@@ -18,7 +19,7 @@ namespace LoonieTrader.RestLibrary.Tests.HistoricalData
             IMapper mapper = ams.CreateMapper();
 
             var engine = new FileHelperEngine<CandleDataRecord>();
-            var frw = new FileReaderWriter();
+            var frw = new FileReaderWriterService();
             var hdPath = frw.GetHistoricalDataFolderPath();
             var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2016.txt"));
 
@@ -40,7 +41,7 @@ namespace LoonieTrader.RestLibrary.Tests.HistoricalData
             IMapper mapper = ams.CreateMapper();
 
             var engine = new FileHelperEngine<CandleDataType2Record>();
-            var frw = new FileReaderWriter();
+            var frw = new FileReaderWriterService();
             var hdPath = frw.GetHistoricalDataFolderPath();
             var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD_M1_UTC+0_00.csv"));
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
 using LoonieTrader.RestLibrary.Tests.Locator;
 
 namespace LoonieTrader.RestLibrary.Tests.RestRequesters

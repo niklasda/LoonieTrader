@@ -1,7 +1,9 @@
-﻿using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.HistoricalData;
+﻿using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestRequesters;
+using LoonieTrader.RestLibrary.Logging;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Requesters;
+using LoonieTrader.RestLibrary.Services;
 using Serilog;
 using StructureMap;
 
@@ -11,7 +13,7 @@ namespace LoonieTrader.RestLibrary.Locator
     {
         public ServiceRegistry()
         {
-            IFileReaderWriter cr = new FileReaderWriter();
+            IFileReaderWriterService cr = new FileReaderWriterService();
             ISettings settings = cr.LoadConfiguration();
 
             IExtendedLogger exLogger = CreateExLogger(cr);
@@ -20,7 +22,7 @@ namespace LoonieTrader.RestLibrary.Locator
             ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
             For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
-            For<IFileReaderWriter>().Use<FileReaderWriter>();
+            For<IFileReaderWriterService>().Use<FileReaderWriterService>();
 
             For<IAccountsRequester>().Use<AccountsRequester>();
             For<IOrdersRequester>().Use<OrdersRequester>();
@@ -30,7 +32,7 @@ namespace LoonieTrader.RestLibrary.Locator
             For<ITransactionsRequester>().Use<TransactionsRequester>();
         }
 
-        private IExtendedLogger CreateExLogger(IFileReaderWriter cr)
+        private IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
         {
             var logFilePattern = cr.GetLogFilePattern();
 

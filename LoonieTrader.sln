@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "Loo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.App", "LoonieTrader.App\LoonieTrader.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary", "LoonieTrader.RestLibrary\LoonieTrader.RestLibrary.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library", "LoonieTrader.RestLibrary\LoonieTrader.Library.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

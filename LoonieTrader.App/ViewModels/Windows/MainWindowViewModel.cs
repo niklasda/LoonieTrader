@@ -9,10 +9,11 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
-using LoonieTrader.RestLibrary.Caches;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Models.Responses;
+using LoonieTrader.RestLibrary.RestApi.Caches;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Responses;
 using Syncfusion.UI.Xaml.Charts;
 using Syncfusion.Windows.Shared;
 

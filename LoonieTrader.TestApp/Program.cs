@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net;
 using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestRequesters;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Requesters;
 using LoonieTrader.TestApp.Locator;
 using Serilog;
 

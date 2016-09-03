@@ -1,4 +1,5 @@
 using AutoMapper;
+using LoonieTrader.App.Mapper;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
@@ -36,9 +37,9 @@ namespace LoonieTrader.App.Locator
         {
             get { return _container.GetInstance<MarketOrderWindowViewModel>(); }
         }
-        public CompositeOrderWindowViewModel CompositeOrder
+        public ComplexOrderWindowViewModel ComplexOrder
         {
-            get { return _container.GetInstance<CompositeOrderWindowViewModel>(); }
+            get { return _container.GetInstance<ComplexOrderWindowViewModel>(); }
         }
 
         public LoginWindowViewModel Login

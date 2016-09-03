@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

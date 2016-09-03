@@ -70,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.RestLibrary.csproj">
+    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.Library.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
-      <Name>LoonieTrader.RestLibrary</Name>
+      <Name>LoonieTrader.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

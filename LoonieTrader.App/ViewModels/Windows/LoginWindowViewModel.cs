@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
 using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

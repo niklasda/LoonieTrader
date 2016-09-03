@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         xmlns:viewModels="clr-namespace:LoonieTrader.App.ViewModels"
+        xmlns:converters="clr-namespace:LoonieTrader.App.ViewModels.Converters"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="LoonieTrader"
         ResizeMode="CanResizeWithGrip"
@@ -70,10 +71,10 @@
                         <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <syncfusion:TreeViewAdv Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes}" 
+                    <syncfusion:TreeViewAdv Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes}"
                                             SelectedTreeItem="{Binding SelectedInstrument}" >
                         <syncfusion:TreeViewAdv.Resources>
-                            <viewModels:InstrumentTypeConverter x:Key="HierarchicalConverter" />
+                            <converters:InstrumentTypeConverter x:Key="HierarchicalConverter" />
 
                             <!-- data template for Farm instances -->
                             <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentTypeViewModel}">

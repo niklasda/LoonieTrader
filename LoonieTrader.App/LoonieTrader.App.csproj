@@ -119,16 +119,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Locator\AutoMappings.cs" />
+    <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
-    <Compile Include="ViewModels\InstrumentTypeConverter.cs" />
+    <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\Windows\LogWindowViewModel.cs" />
-    <Compile Include="ViewModels\Windows\CompositeOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ComplexOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\WorkbenchWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\MarketOrderWindowViewModel.cs" />
@@ -238,9 +238,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.RestLibrary.csproj">
+    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.Library.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
-      <Name>LoonieTrader.RestLibrary</Name>
+      <Name>LoonieTrader.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
