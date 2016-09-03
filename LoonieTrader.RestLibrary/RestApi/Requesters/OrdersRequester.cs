@@ -3,6 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Jil;
+using JsonPrettyPrinterPlus;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Responses;
@@ -74,11 +75,13 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 var orderJson = JSON.Serialize(order, new Options(excludeNulls:true));
+                base.Logger.Debug(orderJson.PrettyPrintJson());
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 
                 var responseBytes = wc.UploadData(string.Format(urlCreateOrder, accountId), "POST", orderBytes);
 
                 var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.Logger.Debug(responseString.PrettyPrintJson());
 
                 using (var input = new StringReader(responseString))
                 {

@@ -12,13 +12,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <syncfusion:SfDataGrid ItemsSource="{Binding LogEntries,Mode=OneWay}" AllowSorting="False" AutoGenerateColumns="True" ColumnSizer="AutoLastColumnFill"  QueryRowHeight="SfDataGrid_OnQueryRowHeight" >
+            <syncfusion:SfDataGrid ItemsSource="{Binding LogEntries,Mode=OneWay}" AutoGenerateColumns="True" ColumnSizer="AutoLastColumnFill" QueryRowHeight="SfDataGrid_OnQueryRowHeight" 
+                                   AllowEditing="True" AllowGrouping="False" AllowSorting="False" AllowFiltering="False">
                 <syncfusion:SfDataGrid.AlternatingRowStyle>
                     <Style TargetType="syncfusion:VirtualizingCellsControl">
                         <Setter Property="Background" Value="Silver" />
                     </Style>
                 </syncfusion:SfDataGrid.AlternatingRowStyle>
                 <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn MappingName="TimeStamp" TextWrapping="Wrap" />
                     <syncfusion:GridTextColumn MappingName="Level" TextWrapping="Wrap" />
                     <syncfusion:GridTextColumn MappingName="Message" TextWrapping="Wrap" />
                 </syncfusion:SfDataGrid.Columns>

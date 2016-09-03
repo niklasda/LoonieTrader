@@ -18,7 +18,7 @@ namespace LoonieTrader.RestLibrary.Logging
         {
             _logger.Debug(message, args);
 
-            var l = new LogEntry(LogEventLevel.Debug, null, args.Length >0 ? string.Format(message, args) : message);
+            var l = new LogEntry(DateTime.Now, LogEventLevel.Debug, null, args.Length >0 ? string.Format(message, args) : message);
             LogCache.LogEntries.Insert(0, l);
         }
 
@@ -26,7 +26,7 @@ namespace LoonieTrader.RestLibrary.Logging
         {
             _logger.Information(message, args);
 
-            var l = new LogEntry(LogEventLevel.Information, null, args.Length > 0 ? string.Format(message, args) : message);
+            var l = new LogEntry(DateTime.Now, LogEventLevel.Information, null, args.Length > 0 ? string.Format(message, args) : message);
             LogCache.LogEntries.Insert(0, l);
         }
 
@@ -34,7 +34,7 @@ namespace LoonieTrader.RestLibrary.Logging
         {
             _logger.Warning(exception,  message, args);
 
-            var l = new LogEntry(LogEventLevel.Warning, exception, args.Length > 0 ? string.Format(message, args) : message);
+            var l = new LogEntry(DateTime.Now, LogEventLevel.Warning, exception, args.Length > 0 ? string.Format(message, args) : message);
             LogCache.LogEntries.Insert(0, l);
         }
 
@@ -42,7 +42,7 @@ namespace LoonieTrader.RestLibrary.Logging
         {
             _logger.Error(exception, message, args);
 
-            var l = new LogEntry(LogEventLevel.Error, exception, args.Length > 0 ? string.Format(message, args) : message);
+            var l = new LogEntry(DateTime.Now, LogEventLevel.Error, exception, args.Length > 0 ? string.Format(message, args) : message);
             LogCache.LogEntries.Insert(0, l);
         }
     }

@@ -16,12 +16,27 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class ComplexOrderWindowViewModel : ViewModelBase
     {
-        public ComplexOrderWindowViewModel(IMapper mapper, ISettings settings, IPricingRequester pricePricingRequester)
+        public ComplexOrderWindowViewModel(IMapper mapper, ISettings settings, IPricingRequester pricingRequester, IOrdersRequester orderRequester)
         {
+            _mapper = mapper;
             _settings = settings;
-            _pricePricingRequester = pricePricingRequester;
-            _takeProfitPriceStep = 0.0001m; // todo fetch/calculate from instrument information
-            _takeProfitPriceDecimals = 4;
+            _pricingRequester = pricingRequester;
+            _orderRequester = orderRequester;
+
+            MainPriceStep = 0.0001m; // todo fetch/calculate from instrument information
+            MainPriceDecimals = 4;
+            MainPrice = 1.4m;
+
+            TakeProfitPriceStep = 0.0001m; // todo fetch/calculate from instrument information
+            TakeProfitPriceDecimals = 4;
+            TakeProfitPrice = 1.5m;
+
+            StopLossPriceStep = 0.0001m; // todo fetch/calculate from instrument information
+            StopLossPriceDecimals = 4;
+            StopLossPrice = 1.3m;
+
+            Amount = 100000m;
+            AmountStep = 1000m;
 
             BuyCommand = new RelayCommand(CreateBuyOrder);
             SellCommand = new RelayCommand(CreateSellOrder);
@@ -44,14 +59,16 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                this._allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+                this._allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
             }
         }
 
         public RelayCommand BuyCommand { get; set; }
         public RelayCommand SellCommand { get; set; }
+        private readonly IMapper _mapper;
         private readonly ISettings _settings;
-        private readonly IPricingRequester _pricePricingRequester;
+        private readonly IPricingRequester _pricingRequester;
+        private readonly IOrdersRequester _orderRequester;
 
         private IList<InstrumentViewModel> _allInstruments;
         public IList<InstrumentViewModel> AllInstruments
@@ -132,10 +149,20 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void CreateBuyOrder()
         {
+            var od = new OrderCreateResponse.OrderDefinition();
+            od.order = _mapper.Map<OrderCreateResponse.OrderDefinition.Order>(this);
+            OrderCreateResponse ocr = _orderRequester.PostCreateOrder(_settings.DefaultAccountId, od);
         }
 
         private void CreateSellOrder()
         {
+            var od = new OrderCreateResponse.OrderDefinition();
+            od.order = _mapper.Map<OrderCreateResponse.OrderDefinition.Order>(this);
+            if (this.Amount > 0)
+            {
+                od.order.units = (-this.Amount).ToString();
+            }
+            OrderCreateResponse ocr = _orderRequester.PostCreateOrder(_settings.DefaultAccountId, od);
         }
 
         private void LoadPrice(InstrumentViewModel instrument)
@@ -149,7 +176,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 SellButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
 
                 // todo should be async
-                LatestPrice = _pricePricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
+                LatestPrice = _pricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
                 if (LatestPrice.prices.Length > 0 && LatestPrice.prices[0].asks.Length > 0)
                 {
                     BuyButtonLabel = LatestPrice.prices[0].asks[0].price;
@@ -278,6 +305,76 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return DateTime.Today.AddMonths(2); }
         }
 
+        private decimal _amount;
+        public decimal Amount
+        {
+            get { return _amount; }
+            set
+            {
+                if (_amount != value)
+                {
+                    _amount = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private decimal _amountStep;
+        public decimal AmountStep
+        {
+            get { return _amountStep; }
+            set
+            {
+                if (_amountStep != value)
+                {
+                    _amountStep = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private decimal _mainPrice;
+        public decimal MainPrice
+        {
+            get { return _mainPrice; }
+            set
+            {
+                if (_mainPrice != value)
+                {
+                    _mainPrice = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private decimal _mainPriceStep;
+        public decimal MainPriceStep
+        {
+            get { return _mainPriceStep; }
+            set
+            {
+                if (_mainPriceStep != value)
+                {
+                    _mainPriceStep = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private int _mainPriceDecimals;
+        public int MainPriceDecimals
+        {
+            get { return _mainPriceDecimals; }
+            set
+            {
+                if (_mainPriceDecimals != value)
+                {
+                    _mainPriceDecimals = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         private decimal _takeProfitPrice;
         public decimal TakeProfitPrice
         {
@@ -293,7 +390,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         private decimal _takeProfitPriceStep;
-
         public decimal TakeProfitPriceStep
         {
             get { return _takeProfitPriceStep; }
@@ -308,7 +404,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         private int _takeProfitPriceDecimals;
-
         public int TakeProfitPriceDecimals
         {
             get { return _takeProfitPriceDecimals; }
@@ -321,6 +416,48 @@ namespace LoonieTrader.App.ViewModels.Windows
                 }
             }
         }
-        
+
+        private decimal _stopLossPrice;
+        public decimal StopLossPrice
+        {
+            get { return _stopLossPrice; }
+            set
+            {
+                if (_stopLossPrice != value)
+                {
+                    _stopLossPrice = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private decimal _stopLossPriceStep;
+        public decimal StopLossPriceStep
+        {
+            get { return _stopLossPriceStep; }
+            set
+            {
+                if (_stopLossPriceStep != value)
+                {
+                    _stopLossPriceStep = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private int _stopLossPriceDecimals;
+        public int StopLossPriceDecimals
+        {
+            get { return _stopLossPriceDecimals; }
+            set
+            {
+                if (_stopLossPriceDecimals != value)
+                {
+                    _stopLossPriceDecimals = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
     }
 }

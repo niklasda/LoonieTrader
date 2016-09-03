@@ -1,6 +1,7 @@
 using System.Globalization;
 using AutoMapper;
 using LoonieTrader.App.ViewModels;
+using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.RestApi.Responses;
 
@@ -23,6 +24,15 @@ namespace LoonieTrader.App.Mapper
                 CreateMap<AccountInstrumentsResponse.Instrument, InstrumentViewModel>();
 
                 CreateMap<AccountSummaryResponse.AccountSummary, AccountSummaryViewModel>();
+
+                CreateMap<ComplexOrderWindowViewModel, OrderCreateResponse.OrderDefinition.Order>()
+                    .ForMember(i => i.instrument, m => m.MapFrom(r => r.SelectedInstrument.Name))
+                    //.ForMember(i => i.type, m => m.MapFrom(r => r.SelectedInstrument.Name))
+                    .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice))
+                    .ForMember(i => i.units, m => m.MapFrom(r => r.Amount));
+//                    .ForMember(i => i.stopLossOnFill.price, m => m.MapFrom(r => r.StopLossPrice));
+                    //.ForMember(i => i.timeInForce, m => m.MapFrom(r => r.SelectedInstrument.Name))
+                    //.ForMember(i => i.positionFill, m => m.MapFrom(r => r.SelectedInstrument.Name));
 
                 CreateMap<PositionsResponse.Position, PositionViewModel>()
                     .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)));

@@ -68,7 +68,6 @@
             <Grid Grid.Column="0">
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <syncfusion:TreeViewAdv Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes}"
@@ -95,18 +94,6 @@
                             </HierarchicalDataTemplate>
                         </syncfusion:TreeViewAdv.Resources>
                     </syncfusion:TreeViewAdv>
-                <syncfusion:SfDataGrid  Grid.Row="1"
-                        ShowRowHeader="True" AutoGenerateColumns="False" AllowSelectionOnPointerPressed="True" ColumnSizer="Auto"
-                        ItemsSource="{Binding AllInstruments}" SelectedItem="{Binding SelectedInstrument}" ShowSortNumbers="True" Margin="0" >
-                    <syncfusion:SfDataGrid.Columns>
-                        <syncfusion:GridTextColumn DisplayBinding="{Binding DisplayName, Mode=OneWay}" HeaderText="Instruments" />
-                        <syncfusion:GridTextColumn DisplayBinding="{Binding Type, Mode=OneWay}" HeaderText="Type"/>
-                    </syncfusion:SfDataGrid.Columns>
-                    <syncfusion:SfDataGrid.SortColumnDescriptions>
-                        <syncfusion:SortColumnDescription ColumnName="Type"  SortDirection="Ascending" />
-                        <syncfusion:SortColumnDescription ColumnName="DisplayName"  SortDirection="Ascending" />
-                    </syncfusion:SfDataGrid.SortColumnDescriptions>
-                </syncfusion:SfDataGrid>
                 </Grid>
             </Grid>
             <GridSplitter Grid.Column="1" Width="7" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>

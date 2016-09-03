@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.RestLibrary.RestApi.Enums;
 using LoonieTrader.RestLibrary.RestApi.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Responses;
 using LoonieTrader.RestLibrary.Tests.Locator;
@@ -50,9 +51,9 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             var od = new OrderCreateResponse.OrderDefinition();
             od.order.units = "1000";
             od.order.instrument = "EUR_USD";
-            od.order.timeInForce = "FOK";
-            od.order.type = "MARKET";
-            od.order.positionFill = "DEFAULT";
+            od.order.timeInForce = TimeInForce.FOK.ToString();
+            od.order.type = OrderTypes.MARKET.ToString();
+            od.order.positionFill = OrderPositionFill.DEFAULT.ToString();
 
             OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
             Assert.NotNull(aodr);
@@ -67,12 +68,12 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             od.order.price = "1.200";
             od.order.units = "1000";
             od.order.instrument = "EUR_USD";
-            od.order.timeInForce = "GTC";
-            od.order.type = "LIMIT";
-            od.order.positionFill = "DEFAULT";
+            od.order.timeInForce = TimeInForce.GTC.ToString();
+            od.order.type = OrderTypes.LIMIT.ToString();
+            od.order.positionFill = OrderPositionFill.DEFAULT.ToString();
 
             od.order.stopLossOnFill = new OrderCreateResponse.OrderDefinition.StopLossOnFill();
-            od.order.stopLossOnFill.timeInForce = "GTC";
+            od.order.stopLossOnFill.timeInForce = TimeInForce.GTC.ToString();
             od.order.stopLossOnFill.price = "1.000";
 
 

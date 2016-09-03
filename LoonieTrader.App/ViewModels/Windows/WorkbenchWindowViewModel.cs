@@ -3,8 +3,8 @@ using GalaSoft.MvvmLight;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using Syncfusion.Calculate;
-using Syncfusion.Windows.Calculate;
+//using Syncfusion.Calculate;
+//using Syncfusion.Windows.Calculate;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

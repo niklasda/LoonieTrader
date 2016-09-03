@@ -5,15 +5,17 @@ namespace LoonieTrader.RestLibrary.Logging
 {
     public class LogEntry
     {
-        public LogEntry( LogEventLevel level, Exception exception, string message)
+        public LogEntry(DateTime timeStamp, LogEventLevel level, Exception exception, string message)
         {
+            TimeStamp = timeStamp;
             Level = level;
             Exception = exception;
             Message = message;
         }
 
-        public LogEventLevel Level { get; set; }
-        public Exception Exception { get; set; }
-        public string Message { get; set; }
+        public DateTime TimeStamp { get; private set; }
+        public LogEventLevel Level { get; private set; }
+        public Exception Exception { get; private set; }
+        public string Message { get; private set; }
     }
 }

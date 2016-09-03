@@ -71,9 +71,11 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">Amount</TextBlock>
-                    <syncfusion:IntegerTextBox Grid.Row="0" Grid.Column="1" Text="100" />
+                    <syncfusion:UpDown Grid.Row="0" Grid.Column="1" MinValue="10.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
+                                       Value="{Binding Amount}" Step="{Binding AmountStep}" NumberDecimalDigits="0" TextAlignment="Right" GroupSeperatorEnabled="True" />
                     <TextBlock Grid.Row="1" Grid.Column="0">Price</TextBlock>
-                    <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Mask="" ></syncfusion:SfMaskedEdit>
+                    <syncfusion:UpDown Grid.Row="1" Grid.Column="1" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
+                                       Value="{Binding MainPrice}" Step="{Binding MainPriceStep}" NumberDecimalDigits="{Binding MainPriceDecimals}" TextAlignment="Right" />
                     <TextBlock Grid.Row="2" Grid.Column="0">Expiry</TextBlock>
                     <Grid Grid.Row="2" Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -106,16 +108,13 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="24"></RowDefinition>
-                        <RowDefinition Height="24"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
-                    <syncfusion:SfTextBoxExt Grid.Row="0" Grid.Column="1">1,22</syncfusion:SfTextBoxExt>
-                    <TextBlock Grid.Row="1" Grid.Column="0">Alt. Price Level box</TextBlock>
-                    <syncfusion:UpDown Grid.Row="1" Grid.Column="1" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
+                    <syncfusion:UpDown Grid.Row="0" Grid.Column="1" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
                                        Value="{Binding TakeProfitPrice}" Step="{Binding TakeProfitPriceStep}" NumberDecimalDigits="{Binding TakeProfitPriceDecimals}" TextAlignment="Right" />
                 </Grid>
             </syncfusion:TaskBarItem>
@@ -129,23 +128,24 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
-                    <TextBox Grid.Row="0" Grid.Column="1">1,100</TextBox>
+                    <syncfusion:UpDown Grid.Row="0" Grid.Column="1" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
+                                       Value="{Binding StopLossPrice}" Step="{Binding StopLossPriceStep}" NumberDecimalDigits="{Binding StopLossPriceDecimals}" TextAlignment="Right" />
                 </Grid>
             </syncfusion:TaskBarItem>
             <syncfusion:TaskBarItem Header="Chart"  x:Name="Section5" >
 
                 <syncfusion:SfChart Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
 
-            <syncfusion:SfChart.PrimaryAxis>
-                <syncfusion:CategoryAxis Header="Time"/>
-            </syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:SfChart.PrimaryAxis>
+                        <syncfusion:CategoryAxis Header="Time"/>
+                    </syncfusion:SfChart.PrimaryAxis>
 
-            <syncfusion:SfChart.SecondaryAxis>
-                <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
-            </syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:SfChart.SecondaryAxis>
+                        <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
+                    </syncfusion:SfChart.SecondaryAxis>
 
-            <syncfusion:CandleSeries Label="Selected Instrument" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
-        </syncfusion:SfChart>
+                    <syncfusion:CandleSeries Label="Selected Instrument" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
+                </syncfusion:SfChart>
             </syncfusion:TaskBarItem>
         </syncfusion:TaskBar>
     </Grid>
