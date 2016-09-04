@@ -12,7 +12,8 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
 {
     public class OrdersRequester : RequesterBase, IOrdersRequester
     {
-        public OrdersRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
+        public OrdersRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+            : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -50,7 +51,6 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
             }
         }
 
-
         public OrderDetailsResponse GetOrderDetails(string accountId, string orderId)
         {
             string urlOrderDetails = base.GetRestUrl("accounts/{0}/orders/{1}");
@@ -74,7 +74,7 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var orderJson = JSON.Serialize(order, new Options(excludeNulls:true));
+                var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
                 base.Logger.Debug(orderJson.PrettyPrintJson());
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 

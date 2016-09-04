@@ -16,13 +16,13 @@ namespace LoonieTrader.App
 
         private void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Unhandled Dispatcher Exception:" + Environment.NewLine + e.Exception.Message, "Error Type 1");
+            MessageBox.Show("Unhandled Dispatcher Exception:" + Environment.NewLine + e.Exception.Message, "Dispatcher Error");
             e.Handled = true;
         }
 
         private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Unhandled AppDomain Exception", "Error Type 2");
+            MessageBox.Show("Unhandled AppDomain Exception", "AppDomain Error");
         }
 
     }
