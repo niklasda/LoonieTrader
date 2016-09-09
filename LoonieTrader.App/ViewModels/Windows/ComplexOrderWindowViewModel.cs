@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -80,9 +81,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public RelayCommand BuyCommand { get; set; }
         public RelayCommand SellCommand { get; set; }
-        public RelayCommand IsTrailingToggleCommand { get; set; }
-        public RelayCommand IsGtcToggleCommand { get; set; }
-        public RelayCommand IsMarketToggleCommand { get; set; }
+        //public RelayCommand IsTrailingToggleCommand { get; set; }
+        // public RelayCommand IsGtcToggleCommand { get; set; }
+        // public RelayCommand IsMarketToggleCommand { get; set; }
 
         private readonly IMapper _mapper;
         private readonly ISettings _settings;
@@ -152,7 +153,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     _isGtcExpiry = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged(()=>IsNotGtcExpiry);
+                    RaisePropertyChanged(() => IsNotGtcExpiry);
                 }
             }
         }
@@ -173,7 +174,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     _isMarketOrder = value;
                     RaisePropertyChanged();
-                    RaisePropertyChanged(()=> IsNotMarketOrder);
+                    RaisePropertyChanged(() => IsNotMarketOrder);
                 }
             }
         }
@@ -262,12 +263,22 @@ namespace LoonieTrader.App.ViewModels.Windows
                 SellButtonEnabled = false;
                 SellButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
 
+                decimal buyPrice = 0m;
+                decimal sellPrice = 0m;
+
                 // todo should be async
                 LatestPrice = _pricingRequester.GetPrices(_settings.DefaultAccountId, instrument.Name);
                 if (LatestPrice.prices.Length > 0 && LatestPrice.prices[0].asks.Length > 0)
                 {
                     BuyButtonLabel = LatestPrice.prices[0].asks[0].price;
                     BuyButtonEnabled = true;
+
+                    if (decimal.TryParse(LatestPrice.prices[0].asks[0].price, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentUICulture, out buyPrice))
+                    {
+                        MainPrice = buyPrice;
+                        TakeProfitPrice = buyPrice + 0.2m;
+                        StopLossPrice = buyPrice - 0.2m;
+                    }
                 }
                 else
                 {
@@ -279,11 +290,24 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     SellButtonLabel = LatestPrice.prices[0].bids[0].price;
                     SellButtonEnabled = true;
+
+                    if (decimal.TryParse(LatestPrice.prices[0].bids[0].price, NumberStyles.AllowDecimalPoint, CultureInfo.CurrentUICulture, out sellPrice))
+                    {
+                        MainPrice = sellPrice;
+                        TakeProfitPrice = sellPrice + 0.2m;
+                        StopLossPrice = sellPrice - 0.2m;
+                    }
                 }
                 else
                 {
                     SellButtonLabel = "No Bid Price";
                     SellButtonEnabled = false;
+                }
+
+                if (buyPrice != 0m && sellPrice != 0m)
+                {
+                    var spread =  Math.Abs(10000*buyPrice - 10000*sellPrice).ToString();
+                    BuySellSpread = string.Format("Spread: {0} pips", spread);
                 }
             }
         }
@@ -546,6 +570,18 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-       
+        private string _buySellSpread;
+        public string BuySellSpread
+        {
+            get { return _buySellSpread; }
+            set
+            {
+                if (_buySellSpread != value)
+                {
+                    _buySellSpread = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
     }
 }

@@ -138,7 +138,7 @@
                             syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding TimeframesChangedCommand}"
                             syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
 
-                        <syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Indicators"
+                        <syncfusion:ComboBoxAdv ItemsSource="{Binding AvailableIndicators}" AllowMultiSelect="True" DefaultText="Indicators" SelectedItems="{Binding SelectedIndicators}"
                             syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding IndicatorsChangedCommand}"
                             syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
 
@@ -149,11 +149,10 @@
                         <syncfusion:ButtonAdv Label="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}" />
 
                     </StackPanel>
-                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD"
-                                        BorderBrush="Gainsboro" BorderThickness="1" >
-                        <syncfusion:SfChart.TechnicalIndicators >
+                    <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
+                       <!-- <syncfusion:SfChart.TechnicalIndicators >
                             <syncfusion:SimpleAverageIndicator Label="SimpAvg" Stroke="Aqua" />
-                        </syncfusion:SfChart.TechnicalIndicators>
+                        </syncfusion:SfChart.TechnicalIndicators>-->
 
                         <syncfusion:SfChart.Legend>
                             <syncfusion:ChartLegend CheckBoxVisibility="Visible" />

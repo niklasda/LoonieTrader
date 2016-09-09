@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
+using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App
 {
@@ -22,7 +23,7 @@ namespace LoonieTrader.App
 
         private void AppDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Unhandled AppDomain Exception", "AppDomain Error");
+            MessageBox.Show("Unhandled AppDomain Exception: " + Environment.NewLine + e.ExceptionObject.ToString(), "AppDomain Error");
         }
 
     }

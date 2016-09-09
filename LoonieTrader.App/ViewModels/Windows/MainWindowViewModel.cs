@@ -50,7 +50,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             AccountInformationCommand = new RelayCommand(() => SelectedTabIndex = 3);
             InstrumentInformationCommand = new RelayCommand(() => SelectedTabIndex = 4);
 
-            // ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
+            ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
             IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
             // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
             // TradeTicketCommand = new DelegateCommand<object>(ChartTypeChanged);
@@ -200,13 +200,50 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private void ChartTypeChanged(object checkedChartTypeItems)
+        {
+            var checkedChartTypes = checkedChartTypeItems as ObservableCollection<object>;
+            if (checkedChartTypes != null)
+            {
+                this.MainChart.Series.Clear();
+
+                foreach (string chartTypeName in checkedChartTypes)
+                {
+                    FinancialSeriesBase series = null;
+                    if (chartTypeName == "Candles")
+                    {
+                        series = new CandleSeries();
+                        series.Label = "Candles";
+                    }
+                    else if (chartTypeName == "OHLC")
+                    {
+                        series = new HiLoOpenCloseSeries();
+                        series.Label = "OHLC";
+                    }
+
+                    if (series != null)
+                    {
+                        series.ItemsSource = GraphData;
+                        series.Open = "Open";
+                        series.High = "High";
+                        series.Low = "Low";
+                        series.Close = "Close";
+                        series.XBindingPath = "Date";
+                        series.ListenPropertyChange = true;
+
+                        this.MainChart.Series.Add(series);
+                    }
+                }
+            }
+        }
+
         private void IndicatorsChanged(object checkedIndicatorItems)
         {
             var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
-            this.MainChart.TechnicalIndicators.Clear();
 
             if (checkedIndicators != null)
             {
+                this.MainChart.TechnicalIndicators.Clear();
 
                 // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
                 // this.MainChart.TechnicalIndicators.Add(indicator);
@@ -257,6 +294,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                                              "MACD", "Average True Range", "Momentum", "RSI", "Simple Average", "Stochastic",
                                              "Triangular Average"};
                 return technicalIndicators;
+            }
+        }
+        public ObservableCollection<object> SelectedIndicators
+        {
+            get
+            {
+                // Required to make first Command call work
+                return new ObservableCollection<object>();
             }
         }
 
@@ -371,60 +416,96 @@ namespace LoonieTrader.App.ViewModels.Windows
             switch (value)
             {
                 case "Accumulation Distribution":
-                    indicator = new AccumulationDistributionIndicator();
+                    indicator = new AccumulationDistributionIndicator
+                    {
+                        Label = "Accumulation",
+                        SignalLineColor = Brushes.Black
+                    };
                     break;
 
                 case "Average True Range":
-                    indicator = new AverageTrueRangeIndicator()
+                    indicator = new AverageTrueRangeIndicator
                     {
-                        Period = 1
+                        Label = "Average",
+                        SignalLineColor = Brushes.Black,
+                        Period = 3
                     };
                     break;
 
                 case "Bollinger Band":
-                    indicator = new BollingerBandIndicator()
+                    indicator = new BollingerBandIndicator
                     {
-                        UpperLineColor = Brushes.Green,
+                        Label = "Bollinger",
+                        UpperLineColor = Brushes.Blue,
+                        LowerLineColor = Brushes.Red,
+                        SignalLineColor = Brushes.Black,
                         Period = 3
                     };
                     break;
                 case "Exponential Average":
-                    indicator = new ExponentialAverageIndicator();
+                    indicator = new ExponentialAverageIndicator
+                    {
+                        Label = "Exponential",
+                        Period = 3
+                    };
                     break;
 
                 case "MACD":
-                    indicator = new MACDTechnicalIndicator()
+                    indicator = new MACDTechnicalIndicator
                     {
-                        Period = 5,
-                        LongPeriod = 12,
-                        ShortPeriod = 6,
-                        ConvergenceLineColor = Brushes.Green
+                        Label = "MACD",
+                        Period = 2,
+                        ShortPeriod = 3,
+                        LongPeriod = 6,
+                        SignalLineColor = Brushes.Black,
+                        ConvergenceLineColor = Brushes.Green,
+                        DivergenceLineColor = Brushes.Blue,
                     };
                     break;
                 case "Momentum":
-                    indicator = new MomentumTechnicalIndicator()
+                    indicator = new MomentumTechnicalIndicator
                     {
-                        Period = 4
+                        Label = "Momentum",
+                        Period = 4,
+                        CenterLineColor = Brushes.Blue
                     };
                     break;
                 case "RSI":
-                    indicator = new RSITechnicalIndicator()
+                    indicator = new RSITechnicalIndicator
                     {
+                        Label = "RSI",
                         Period = 4,
-                        UpperLineColor = Brushes.Green
+                        SignalLineColor = Brushes.Black,
+                        UpperLineColor = Brushes.Green,
+                        LowerLineColor = Brushes.Red,
                     };
                     break;
                 case "Simple Average":
-                    indicator = new SimpleAverageIndicator();
+                    indicator = new SimpleAverageIndicator
+                    {
+                        Label = "Simple",
+                        Period = 3
+                    };
                     break;
                 case "Stochastic":
-                    indicator = new StochasticTechnicalIndicator()
+                    indicator = new StochasticTechnicalIndicator
                     {
-                        UpperLineColor = Brushes.Green
+                        Label = "Stochastic",
+                        Period = 4,
+                        KPeriod = 8,
+                        DPeriod = 5,
+                        UpperLineColor = Brushes.Blue,
+                        LowerLineColor = Brushes.Green,
+                        SignalLineColor = Brushes.Black,
                     };
                     break;
                 case "Triangular Average":
-                    indicator = new TriangularAverageIndicator();
+                    indicator = new TriangularAverageIndicator
+                    {
+                        Label = "Triangular",
+                        Period = 4,
+                        SignalLineColor = Brushes.Black
+                    };
                     break;
                 default:
                     return null;
@@ -436,14 +517,14 @@ namespace LoonieTrader.App.ViewModels.Windows
             indicator.High = "High";
             indicator.Low = "Low";
             indicator.Open = "Open";
-            indicator.Close = "Last";
+            indicator.Close = "Close";
             indicator.Volume = "Volume";
 
             Binding binding = new Binding();
             binding.Path = new PropertyPath("ItemsSource");
             binding.Source = series;
             binding.Mode = BindingMode.TwoWay;
-            indicator.SetBinding(FinancialTechnicalIndicator.ItemsSourceProperty, binding);
+            indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
 
 
             return indicator;
