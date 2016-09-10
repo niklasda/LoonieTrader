@@ -6,6 +6,7 @@ namespace LoonieTrader.App.ViewModels
     {
         [ReadOnly(true)]
         public string Instrument { get; set; }
+
         public string Price { get; set; }
     }
 }
