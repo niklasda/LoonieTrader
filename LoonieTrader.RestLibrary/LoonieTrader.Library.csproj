@@ -76,19 +76,22 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="YamlDotNet, Version=3.9.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.3.9.0\lib\net35\YamlDotNet.dll</HintPath>
+    <Reference Include="YamlDotNet, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YamlDotNet.4.0.0\lib\net35\YamlDotNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="HistoricalData\Samples\dkc.csv" />
+    <Compile Include="Configuration\Constants.cs" />
     <Compile Include="RestApi\Caches\AccountCache.cs" />
     <Compile Include="RestApi\Caches\InstrumentCache.cs" />
     <Compile Include="RestApi\Caches\PriceCache.cs" />
     <Compile Include="Logging\LogCache.cs" />
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\ExtendedLogger.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
     <Compile Include="Configuration\Environments.cs" />
     <Compile Include="HistoricalData\CandleDataViewModel.cs" />

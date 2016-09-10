@@ -1,6 +1,8 @@
 using AutoMapper;
 using LoonieTrader.App.Mapper;
+using LoonieTrader.App.UiServices;
 using LoonieTrader.App.ViewModels.Windows;
+using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.Locator;
 using StructureMap;
 
@@ -16,6 +18,8 @@ namespace LoonieTrader.App.Locator
             _container = new Container(c =>
             {
                 c.ForSingletonOf<IMapper>().Use(mapper);
+                c.For<IDialogService>().Use<DialogService>();
+                c.ForSingletonOf<MainWindowViewModel>().Use<MainWindowViewModel>();
 
                 c.AddRegistry<ServiceRegistry>();
             });

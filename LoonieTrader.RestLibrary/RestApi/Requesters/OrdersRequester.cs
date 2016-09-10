@@ -79,7 +79,6 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
                 var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 
                 var responseBytes = wc.UploadData(string.Format(urlCreateOrder, accountId), "POST", orderBytes);
-
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.Logger.Debug(responseString.PrettyPrintJson());
 

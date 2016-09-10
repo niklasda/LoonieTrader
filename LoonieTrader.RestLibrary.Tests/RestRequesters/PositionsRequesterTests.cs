@@ -42,5 +42,13 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }
+
+        [Test]
+        public void TestCloseAccountInstrumentPositions()
+        {
+            var resp = _por.PutClosePosition(_s.DefaultAccountId, "EUR_USD");
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
+        }
     }
 }

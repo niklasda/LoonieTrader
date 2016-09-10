@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
+using LoonieTrader.RestLibrary.Configuration;
 using LoonieTrader.RestLibrary.HistoricalData;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Caches;
@@ -21,12 +23,13 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader,
+        public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader, IDialogService dialogService,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester, ITransactionsRequester transactionsRequester)
         {
             _settings = settings;
             _mapper = mapper;
             _dataLoader = dataLoader;
+            _dialogService = dialogService;
 
             _accountsRequester = accountsRequester;
             _ordersRequester = ordersRequester;
@@ -49,6 +52,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             TransactionHistoryCommand = new RelayCommand(() => SelectedTabIndex = 2);
             AccountInformationCommand = new RelayCommand(() => SelectedTabIndex = 3);
             InstrumentInformationCommand = new RelayCommand(() => SelectedTabIndex = 4);
+            ClosePositionContextCommand = new RelayCommand(ClosePosition);
+            CancelOrderContextCommand = new RelayCommand(CancelOrder);
+            ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
 
             ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
             IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
@@ -78,12 +84,12 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-               //  var candleRecords = _dataLoader.LoadDataFile201603();
-               //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
-               // GraphData = new ConcurrentBag<CandleDataViewModel>();
+                //  var candleRecords = _dataLoader.LoadDataFile201603();
+                //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+                // GraphData = new ConcurrentBag<CandleDataViewModel>();
                 GraphData = new ObservableCollection<CandleDataViewModel>();
 
-               // Task.Run(()=> PlayTheData(candleList));
+                // Task.Run(()=> PlayTheData(candleList));
 
                 AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
                 AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
@@ -98,7 +104,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 // todo automapper
                 var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
-                List<InstrumentTypeViewModel> its = groups.Select(x => new InstrumentTypeViewModel { Type = x.Key, Instruments = x.OrderBy(o=>o.DisplayName).ToArray() }).ToList();
+                List<InstrumentTypeViewModel> its = groups.Select(x => new InstrumentTypeViewModel { Type = x.Key, Instruments = x.OrderBy(o => o.DisplayName).ToArray() }).ToList();
 
                 _allInstrumentTypes = its;
 
@@ -113,6 +119,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly ISettings _settings;
         private readonly IMapper _mapper;
         private IHistoricalDataLoader _dataLoader;
+        private readonly IDialogService _dialogService;
 
         private readonly IAccountsRequester _accountsRequester;
         private readonly IOrdersRequester _ordersRequester;
@@ -148,14 +155,18 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand AccountInformationCommand { get; set; }
         public RelayCommand InstrumentInformationCommand { get; set; }
 
+        public RelayCommand ClosePositionContextCommand { get; set; }
+        public RelayCommand CancelOrderContextCommand { get; set; }
+        public RelayCommand ModifyOrderContextCommand { get; set; }
+
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
         public ICommand TimeframesChangedCommand { get; set; }
 
         //public IList<InstrumentViewModel> AllInstruments
-       // {
-       //     get { return _allInstruments; }
-       // }
+        // {
+        //     get { return _allInstruments; }
+        // }
 
         public IList<InstrumentTypeViewModel> AllInstrumentTypes
         {
@@ -339,6 +350,34 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private PositionViewModel _selectedPosition;
+        public PositionViewModel SelectedPosition
+        {
+            get { return _selectedPosition; }
+            set
+            {
+                if (_selectedPosition != value)
+                {
+                    _selectedPosition = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private OrderViewModel _selectedOrder;
+        public OrderViewModel SelectedOrder
+        {
+            get { return _selectedOrder; }
+            set
+            {
+                if (_selectedOrder != value)
+                {
+                    _selectedOrder = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         private void OpenAboutWindow()
         {
             AboutWindow aw = new AboutWindow();
@@ -353,21 +392,50 @@ namespace LoonieTrader.App.ViewModels.Windows
             aw.Show();
         }
 
+        private void ClosePosition()
+        {
+            Console.WriteLine(SelectedPosition.Instrument);
+
+            var message = string.Format("Close entire position in {0}", SelectedPosition.Instrument);
+
+            if (_dialogService.AskYesNo(message))
+            {
+                _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
+            }
+        }
+
+        private void CancelOrder()
+        {
+            Console.WriteLine(SelectedOrder.Instrument);
+
+            //MessageBox.Show(SelectedOrder.Instrument);
+        }
+
+        private void ModifyOrder()
+        {
+            Console.WriteLine(SelectedOrder.Instrument);
+
+            //MessageBox.Show(SelectedOrder.Instrument);
+        }
+
         private void ReloadChart()
         {
-            while (GraphData.Count>0)
-            {
-                GraphData.RemoveAt(0);
+            /*            while (GraphData.Count>0)
+                        {
+                            GraphData.RemoveAt(0);
 
-            }
+                        }*/
 
             var candleRecords = _dataLoader.LoadDataFile201603();
 
             var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
-            foreach (var candleDataViewModel in candleList)
+            /*foreach (var candleDataViewModel in candleList)
             {
                 GraphData.Add(candleDataViewModel);
             }
+            */
+            GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+
             // PlayTheData(candleList);
         }
 
@@ -427,8 +495,8 @@ namespace LoonieTrader.App.ViewModels.Windows
                     indicator = new AverageTrueRangeIndicator
                     {
                         Label = "Average",
+                        Period = 3,
                         SignalLineColor = Brushes.Black,
-                        Period = 3
                     };
                     break;
 
@@ -436,25 +504,27 @@ namespace LoonieTrader.App.ViewModels.Windows
                     indicator = new BollingerBandIndicator
                     {
                         Label = "Bollinger",
+                        Period = 3,
                         UpperLineColor = Brushes.Blue,
                         LowerLineColor = Brushes.Red,
                         SignalLineColor = Brushes.Black,
-                        Period = 3
                     };
                     break;
                 case "Exponential Average":
                     indicator = new ExponentialAverageIndicator
                     {
                         Label = "Exponential",
-                        Period = 3
+                        Period = 3,
+                        SignalLineColor = Brushes.Black
                     };
                     break;
 
-                case "MACD":
+                case "MACD": // Moving Average Convergence/Divergence
                     indicator = new MACDTechnicalIndicator
                     {
                         Label = "MACD",
                         Period = 2,
+                        Type = MACDType.Line,
                         ShortPeriod = 3,
                         LongPeriod = 6,
                         SignalLineColor = Brushes.Black,
@@ -467,16 +537,18 @@ namespace LoonieTrader.App.ViewModels.Windows
                     {
                         Label = "Momentum",
                         Period = 4,
-                        CenterLineColor = Brushes.Blue
+                        CenterLineColor = Brushes.Blue,
+                        MomentumLineColor = Brushes.Black
+
                     };
                     break;
-                case "RSI":
+                case "RSI": // Relative Strength Index
                     indicator = new RSITechnicalIndicator
                     {
                         Label = "RSI",
                         Period = 4,
                         SignalLineColor = Brushes.Black,
-                        UpperLineColor = Brushes.Green,
+                        UpperLineColor = Brushes.Blue,
                         LowerLineColor = Brushes.Red,
                     };
                     break;
@@ -495,8 +567,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                         KPeriod = 8,
                         DPeriod = 5,
                         UpperLineColor = Brushes.Blue,
-                        LowerLineColor = Brushes.Green,
+                        LowerLineColor = Brushes.Red,
                         SignalLineColor = Brushes.Black,
+                        PeriodLineColor = Brushes.Green
                     };
                     break;
                 case "Triangular Average":

@@ -59,7 +59,9 @@ namespace LoonieTrader.RestLibrary.Services
             var fileContent = File.ReadAllText(GetConfigFilePath());
             var input = new StringReader(fileContent);
 
-            var deserializer = new Deserializer(namingConvention: new PascalCaseNamingConvention());
+            //var deserializer = new Deserializer(namingConvention: new PascalCaseNamingConvention());
+            var desBuilder = new DeserializerBuilder();
+            var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
 
             var config = deserializer.Deserialize<Settings>(input);
             return config;

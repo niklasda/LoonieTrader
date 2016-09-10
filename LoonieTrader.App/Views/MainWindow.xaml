@@ -8,7 +8,7 @@
         Title="LoonieTrader"
         ResizeMode="CanResizeWithGrip"
         Height="700" MinHeight="600"
-        Width="980" MinWidth="960"
+        Width="1080" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
     <Window.InputBindings>
         <KeyBinding Key="M" Modifiers="Control" Command="{Binding MarketOrderCommand}"/>
@@ -107,10 +107,25 @@
                 </Grid.RowDefinitions>
                 <syncfusion:TabControlExt Grid.Row="0" FlowDirection="RightToLeft" AllowDragDrop="False" SelectedIndex="{Binding SelectedTabIndex}" CloseButtonType="Hide" EnableLabelEdit="False" ShowTabListContextMenu="False" ShowTabItemContextMenu="False" >
                     <syncfusion:TabItemExt Header="Open Positions" FlowDirection="LeftToRight">
-                        <syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllPositions}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
+                        <syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllPositions}" FlowDirection="LeftToRight" ColumnSizer="Auto" SelectedItem="{Binding SelectedPosition}" >
+                            <syncfusion:SfDataGrid.RecordContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Close Position..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ClosePositionContextCommand}" />
+
+                                </ContextMenu>
+                            </syncfusion:SfDataGrid.RecordContextMenu>
+                        </syncfusion:SfDataGrid>
                     </syncfusion:TabItemExt>
                     <syncfusion:TabItemExt Header="Open Orders" FlowDirection="LeftToRight">
-                        <syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllOrders}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
+                        <syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllOrders}" FlowDirection="LeftToRight" ColumnSizer="Auto"  SelectedItem="{Binding SelectedOrder}">
+                            <syncfusion:SfDataGrid.RecordContextMenu>
+                                <ContextMenu >
+                                    <MenuItem Header="Cancel Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
+                                    <MenuItem Header="Modify Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
+
+                                </ContextMenu>
+                            </syncfusion:SfDataGrid.RecordContextMenu>
+                        </syncfusion:SfDataGrid>
                     </syncfusion:TabItemExt>
                     <syncfusion:TabItemExt Header="Transaction History" FlowDirection="LeftToRight">
                         <syncfusion:SfDataGrid AutoGenerateColumns="True" ItemsSource="{Binding AllTransactions}" FlowDirection="LeftToRight" ColumnSizer="Auto" />
@@ -163,7 +178,7 @@
                         </syncfusion:SfChart.Behaviors>
 
                         <syncfusion:SfChart.PrimaryAxis >
-                            <syncfusion:CategoryAxis Header="Time" ZoomFactor="0.8" ZoomPosition="1" EnableAutoIntervalOnZooming="True"/>
+                            <syncfusion:CategoryAxis Header="Time" ZoomFactor="1.0" ZoomPosition="1" EnableAutoIntervalOnZooming="True"/>
                         </syncfusion:SfChart.PrimaryAxis>
 
                         <syncfusion:SfChart.SecondaryAxis>

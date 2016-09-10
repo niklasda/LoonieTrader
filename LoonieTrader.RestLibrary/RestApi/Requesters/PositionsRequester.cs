@@ -2,6 +2,7 @@
 using System.Net;
 using System.Text;
 using Jil;
+using JsonPrettyPrinterPlus;
 using LoonieTrader.RestLibrary.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Interfaces;
 using LoonieTrader.RestLibrary.RestApi.Responses;
@@ -60,6 +61,34 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
                 using (var input = new StringReader(responseString))
                 {
                     var apr = JSON.Deserialize<PositionsInstrumentResponse>(input);
+                    return apr;
+                }
+            }
+        }
+
+        public PositionsCloseResponse PutClosePosition(string accountId, string instrument)
+        {
+            string urlInstrumentClose = base.GetRestUrl("accounts/{0}/positions/{1}/close");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var parameters = new PositionsCloseResponse.ClosePositionParameters()
+                {
+                    longUnits = "1",
+                    shortUnits = null
+                };
+
+                var parametersJson = JSON.Serialize(parameters, new Options(excludeNulls: true));
+                base.Logger.Debug(parametersJson.PrettyPrintJson());
+                var parametersBytes = Encoding.UTF8.GetBytes(parametersJson);
+
+                var responseBytes = wc.UploadData(string.Format(urlInstrumentClose, accountId, instrument), "PUT", parametersBytes);
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.Logger.Debug(responseString.PrettyPrintJson());
+
+                using (var input = new StringReader(responseString))
+                {
+                    var apr = JSON.Deserialize<PositionsCloseResponse>(input);
                     return apr;
                 }
             }
