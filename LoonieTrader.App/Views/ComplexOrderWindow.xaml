@@ -26,8 +26,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" FontSize="14"
-                                 Command="{Binding BuyCommand}" Margin="10" >
+            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
+                                 Command="{Binding BuyCommand}" Margin="10" ToolTip="Buy" SmallIcon="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -36,8 +36,8 @@
                     </LinearGradientBrush>
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
-            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" FontSize="14"
-                                   Command="{Binding SellCommand}" Margin="10">
+            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
+                                   Command="{Binding SellCommand}" Margin="10" ToolTip="Sell" SmallIcon="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>

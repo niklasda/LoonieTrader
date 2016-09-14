@@ -63,7 +63,7 @@
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.1.0\lib\net45\Serilog.dll</HintPath>
+      <HintPath>..\packages\Serilog.2.2.1\lib\net46\Serilog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
@@ -250,7 +250,10 @@
     <Resource Include="Images\Graph-03.png" />
     <Resource Include="Images\Stcok-Exchange-03-WF.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Arrow BottomRight 01-WF.png" />
+    <Resource Include="Images\Arrow TopRight 01-WF.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -140,7 +140,7 @@
                 <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
                 <Grid Grid.Row="2" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="46"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
@@ -157,9 +157,9 @@
                             syncfusion:ComboBoxAdvSelectionChangedCommand.Command="{Binding IndicatorsChangedCommand}"
                             syncfusion:ComboBoxAdvSelectionChangedCommand.CommandParameter="{Binding Path=SelectedItems,RelativeSource={RelativeSource Self}}" />
 
-                        <syncfusion:ButtonAdv Label="_Market Order..." Margin="30,0,0,0" Command="{Binding MarketOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
-                        <syncfusion:ButtonAdv Label="Complex _Order..." Command="{Binding CompositeOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" IconHeight="26" IconWidth="26" />
-                        <syncfusion:ButtonAdv Label="New C_hart Window..." Command="{Binding NewChartCommand}" SmallIcon="/LoonieTrader.App;component/Images/Cursor-02-WF.png" IconHeight="26" IconWidth="26"/>
+                        <syncfusion:ButtonAdv Label="_Market Order..." Margin="30,0,0,0" Command="{Binding MarketOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" FontSize="14" IconHeight="26" IconWidth="26" />
+                        <syncfusion:ButtonAdv Label="Complex _Order..." Command="{Binding CompositeOrderCommand}" SmallIcon="/LoonieTrader.App;component/Images/Stcok-Exchange-03-WF.png" FontSize="14" IconHeight="26" IconWidth="26" />
+                        <syncfusion:ButtonAdv Label="New C_hart Window..." Command="{Binding NewChartCommand}" SmallIcon="/LoonieTrader.App;component/Images/Cursor-02-WF.png" FontSize="14" IconHeight="26" IconWidth="26"/>
 
                         <syncfusion:ButtonAdv Label="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}" />
 
