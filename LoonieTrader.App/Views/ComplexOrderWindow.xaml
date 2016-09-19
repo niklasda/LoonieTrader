@@ -26,8 +26,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
-                                 Command="{Binding BuyCommand}" Margin="10" ToolTip="Buy" SmallIcon="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" >
+            <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
+                                 Command="{Binding SellCommand}" Margin="10" ToolTip="Buy" SmallIcon="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -36,8 +36,8 @@
                     </LinearGradientBrush>
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
-            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
-                                   Command="{Binding SellCommand}" Margin="10" ToolTip="Sell" SmallIcon="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png">
+            <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
+                                   Command="{Binding BuyCommand}" Margin="10" ToolTip="Sell" SmallIcon="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -53,9 +53,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Buy at ask" TextAlignment="Left" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="0" Text="Sell for bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
             <TextBlock Grid.Column="1" Text="{Binding BuySellSpread}" TextAlignment="Center" FontSize="8" />
-            <TextBlock Grid.Column="2" Text="Sell for bid" TextAlignment="Right" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="2" Text="Buy at ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
         <syncfusion:TaskBar Grid.Row="3" IsOpened="True" IsOpenedChanged="TaskBar_OnIsOpenedChanged" >
@@ -95,9 +95,9 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="70"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DatePicker DisplayDateStart="{Binding EarliestExpiryDate, Mode=OneWay}" IsEnabled="{Binding IsNotGtcExpiry, Mode=OneWay}" 
+                        <DatePicker DisplayDateStart="{Binding EarliestExpiryDate, Mode=OneWay}" IsEnabled="{Binding IsNotGtcExpiry, Mode=OneWay}"
                                     DisplayDateEnd="{Binding LatestExpiryDate, Mode=OneWay}" FirstDayOfWeek="Monday" SelectedDate="{Binding SelectedExpiryDate[0]}"/>
-                       
+
                         <CheckBox Grid.Column="1" Content="GTC" Margin="5,5,0,5"  IsChecked="{Binding IsGtcExpiry}" />
                     </Grid>
                 </Grid>
@@ -122,7 +122,7 @@
                         </Grid.ColumnDefinitions>
                         <syncfusion:UpDown Grid.Column="0" Margin="0,2" MinValue="0.0" EnableNegativeColors="False" ApplyZeroColor="False" AnimationSpeed="0"
                                        Value="{Binding TakeProfitPrice}" Step="{Binding TakeProfitPriceStep}" NumberDecimalDigits="{Binding TakeProfitPriceDecimals}" TextAlignment="Right" />
-                       
+
                     </Grid>
                 </Grid>
             </syncfusion:TaskBarItem>

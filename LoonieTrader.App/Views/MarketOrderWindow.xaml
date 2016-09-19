@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <syncfusion:ButtonAdv Grid.Column="0" Label="BUY"  Margin="10" >
+            <syncfusion:ButtonAdv Grid.Column="0" Label="SELL"  Margin="10" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -40,7 +40,7 @@
                     </LinearGradientBrush>
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
-            <syncfusion:ButtonAdv Grid.Column="1" Label="SELL" Margin="10">
+            <syncfusion:ButtonAdv Grid.Column="1" Label="BUY" Margin="10">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -56,9 +56,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Buy" TextAlignment="Left" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="0" Text="Bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
             <TextBlock Grid.Column="1" Text="Spread" TextAlignment="Center" FontSize="8" />
-            <TextBlock Grid.Column="2" Text="Sell" TextAlignment="Right" FontSize="8" Padding="10,0" />
+            <TextBlock Grid.Column="2" Text="Ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
         <syncfusion:SfChart Grid.Row="3" Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
