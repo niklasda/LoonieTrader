@@ -194,6 +194,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     _selectedInstrument = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged(() => WindowTitle);
 
                     LoadPrice(_selectedInstrument);
                 }
@@ -582,6 +583,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public string WindowTitle
+        {
+            get { return string.Format("Complex Order: {0}", SelectedInstrument?.DisplayName); }
         }
     }
 }

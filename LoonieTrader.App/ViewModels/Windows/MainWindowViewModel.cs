@@ -442,12 +442,14 @@ namespace LoonieTrader.App.ViewModels.Windows
         private void OpenMarketOrderWindow()
         {
             MarketOrderWindow mow = new MarketOrderWindow();
+            mow.Owner = Application.Current.MainWindow;
             mow.Show();
         }
 
         private void OpenCompositeOrderWindow()
         {
             CompositeOrderWindow cow = new CompositeOrderWindow();
+            cow.Owner = Application.Current.MainWindow;
             cow.Show();
         }
 

@@ -67,5 +67,24 @@ namespace LoonieTrader.RestLibrary.RestApi.Requesters
                 }
             }
         }
+
+        public TransactionDetailsResponse GetTransactionStream(string accountId)
+        {
+            // todo might not be available yet
+            string urlTransactionDetails = base.GetRestUrl("accounts/{0}/transactions/steam/");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var responseBytes = wc.DownloadData(string.Format(urlTransactionDetails, accountId));
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+           //     base.SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
+
+                using (var input = new StringReader(responseString))
+                {
+                    var atr = JSON.Deserialize<TransactionDetailsResponse>(input);
+                    return atr;
+                }
+            }
+        }
     }
 }

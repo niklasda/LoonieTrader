@@ -33,11 +33,18 @@ namespace LoonieTrader.RestLibrary.Tests.RestRequesters
             Assert.NotNull(resp);
         }
 
-
         [Test]
         public void TestGetAccountTransactionDetails()
         {
             var resp = _txr.GetTransactionDetails(_s.DefaultAccountId, "37");
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
+        }
+
+        [Test, Explicit("might not be available yet")]
+        public void TestGetAccountTransactionStream()
+        {
+            var resp = _txr.GetTransactionStream(_s.DefaultAccountId);
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }

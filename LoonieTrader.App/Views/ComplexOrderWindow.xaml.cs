@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using Syncfusion.Windows.Tools.Controls;
 
 namespace LoonieTrader.App.Views
@@ -38,6 +39,15 @@ namespace LoonieTrader.App.Views
                         item.Header = string.Format("Take-Profit {0}", willBeOpen ? "" : "[Not specified]");
                     }
                 }
+            }
+        }
+
+        private void UIElement_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
+                base.MoveFocus(request);
             }
         }
     }

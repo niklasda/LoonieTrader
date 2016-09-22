@@ -63,8 +63,8 @@
       <HintPath>..\packages\Sigil.4.7.0\lib\net45\Sigil.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.4.1\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -91,6 +91,10 @@
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\ExtendedLogger.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="RestApi\Interfaces\IPricingHistoryRequester.cs" />
+    <Compile Include="RestApi\Interfaces\IStreamingRequester.cs" />
+    <Compile Include="RestApi\Requesters\PricingHistoryRequester.cs" />
+    <Compile Include="RestApi\Requesters\StreamingRequester.cs" />
     <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
     <Compile Include="Configuration\Environments.cs" />

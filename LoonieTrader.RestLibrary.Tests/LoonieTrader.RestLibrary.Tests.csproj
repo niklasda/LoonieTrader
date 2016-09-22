@@ -50,8 +50,8 @@
       <HintPath>..\packages\Sigil.4.7.0\lib\net45\Sigil.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.4.1\lib\net45\StructureMap.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Syncfusion.Calculate.Base, Version=14.2460.0.28, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
@@ -78,7 +78,9 @@
     <Compile Include="Locator\TestAutoMappings.cs" />
     <Compile Include="Locator\TestServiceLocator.cs" />
     <Compile Include="RestRequesters\PricingRequesterTests.cs" />
+    <Compile Include="RestRequesters\PricingHistoryRequesterTests.cs" />
     <Compile Include="RestRequesters\TradesRequesterTests.cs" />
+    <Compile Include="RestRequesters\StreamingRequesterTests.cs" />
     <Compile Include="RestRequesters\TransactionsRequesterTests.cs" />
     <Compile Include="RestRequesters\PositionsRequesterTests.cs" />
     <Compile Include="RestRequesters\OrdersRequesterTests.cs" />

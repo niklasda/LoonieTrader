@@ -30,6 +30,8 @@ namespace LoonieTrader.RestLibrary.Locator
             For<IPricingRequester>().Use<PricingRequester>();
             For<ITradesRequester>().Use<TradesRequester>();
             For<ITransactionsRequester>().Use<TransactionsRequester>();
+            For<IStreamingRequester>().Use<StreamingRequester>();
+            For<IPricingHistoryRequester>().Use<PricingHistoryRequester>();
         }
 
         private IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
