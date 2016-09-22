@@ -10,12 +10,12 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
-using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Caches;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Responses;
+using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Caches;
+using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 using Syncfusion.UI.Xaml.Charts;
 using Syncfusion.Windows.Shared;
 

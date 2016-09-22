@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.Services;
+using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Services;
 
-namespace LoonieTrader.RestLibrary.Tests.Configuration
+namespace LoonieTrader.Library.Tests.Configuration
 {
     public class ConfigurationReaderTests
     {

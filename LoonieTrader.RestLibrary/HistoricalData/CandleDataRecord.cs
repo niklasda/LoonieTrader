@@ -1,6 +1,6 @@
 ﻿using FileHelpers;
 
-namespace LoonieTrader.RestLibrary.HistoricalData
+namespace LoonieTrader.Library.HistoricalData
 {
     [DelimitedRecord(",")]
     [IgnoreFirst]

@@ -1,6 +1,6 @@
-﻿using LoonieTrader.RestLibrary.RestApi.Responses;
+﻿using LoonieTrader.Library.RestApi.Responses;
 
-namespace LoonieTrader.RestLibrary.RestApi.Caches
+namespace LoonieTrader.Library.RestApi.Caches
 {
     public static class AccountCache
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LoonieTrader.RestLibrary.Configuration
+namespace LoonieTrader.Library.Configuration
 {
     public static class Environments
     {

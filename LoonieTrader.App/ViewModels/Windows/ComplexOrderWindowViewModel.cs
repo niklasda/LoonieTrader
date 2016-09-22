@@ -8,11 +8,12 @@ using System.Windows;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Caches;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Responses;
+using LoonieTrader.Library.Extensions;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Caches;
+using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
@@ -307,7 +308,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 if (buyPrice != 0m && sellPrice != 0m)
                 {
-                    var spread =  Math.Abs(10000*buyPrice - 10000*sellPrice).ToString();
+                  //  instrument.PipLocation
+                   // var multiplier = Math.Pow(10, Math.Abs(instrument.PipLocation));
+                    var multiplier = MathEx.IntPow(10, Math.Abs(instrument.PipLocation));
+                    var spread =  Math.Abs(multiplier * buyPrice - multiplier * sellPrice).ToString();
                     BuySellSpread = string.Format("Spread: {0} pips", spread);
                 }
             }

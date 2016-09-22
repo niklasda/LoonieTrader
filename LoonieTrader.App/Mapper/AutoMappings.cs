@@ -2,8 +2,8 @@ using System.Globalization;
 using AutoMapper;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.RestApi.Responses;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.App.Mapper
 {

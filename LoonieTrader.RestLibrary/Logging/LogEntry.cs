@@ -1,7 +1,7 @@
 ﻿using System;
 using Serilog.Events;
 
-namespace LoonieTrader.RestLibrary.Logging
+namespace LoonieTrader.Library.Logging
 {
     public class LogEntry
     {

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Syncfusion.Windows.Calculate;
 
-namespace LoonieTrader.RestLibrary.Tests.Calc
+namespace LoonieTrader.Library.Tests.Calc
 {
     public class QuickCalcTests
     {

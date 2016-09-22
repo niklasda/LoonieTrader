@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using JsonPrettyPrinterPlus;
-using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Interfaces;
 
-namespace LoonieTrader.RestLibrary.RestApi.Requesters
+namespace LoonieTrader.Library.RestApi.Requesters
 {
     public abstract class RequesterBase
     {

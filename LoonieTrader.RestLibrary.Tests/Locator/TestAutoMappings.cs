@@ -1,7 +1,7 @@
 using AutoMapper;
-using LoonieTrader.RestLibrary.HistoricalData;
+using LoonieTrader.Library.HistoricalData;
 
-namespace LoonieTrader.RestLibrary.Tests.Locator
+namespace LoonieTrader.Library.Tests.Locator
 {
     public class TestAutoMappings
     {

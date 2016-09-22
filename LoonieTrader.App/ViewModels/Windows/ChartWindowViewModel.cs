@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using LoonieTrader.RestLibrary.HistoricalData;
+using LoonieTrader.Library.HistoricalData;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

@@ -1,7 +1,7 @@
-﻿using LoonieTrader.RestLibrary.Locator;
+﻿using LoonieTrader.Library.Locator;
 using StructureMap;
 
-namespace LoonieTrader.RestLibrary.Tests.Locator
+namespace LoonieTrader.Library.Tests.Locator
 {
     public static class TestServiceLocator
     {

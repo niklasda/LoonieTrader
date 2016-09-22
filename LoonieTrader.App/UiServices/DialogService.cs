@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.Library.Interfaces;
 
-using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.Library.Configuration;
 
 namespace LoonieTrader.App.UiServices
 {

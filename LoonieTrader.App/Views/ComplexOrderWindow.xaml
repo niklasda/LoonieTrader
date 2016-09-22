@@ -16,11 +16,15 @@
             <RowDefinition Height="14"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
             <syncfusion:AutoComplete CustomSource="{Binding AllInstruments}" IsAutoAppend="true" StringMode="StartChar" EnableDropDown="True" EnableSorting="True" IsFilter="False"
-                                    Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" FontSize="14" KeyUp="UIElement_OnKeyUp" />
+                  Margin="10,0"                Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" FontSize="14" KeyUp="UIElement_OnKeyUp" />
         </Grid>
-        <Grid Grid.Row="1" >
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -47,7 +51,7 @@
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -58,7 +62,7 @@
             <TextBlock Grid.Column="2" Text="Buy at ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
         </Grid>
-        <syncfusion:TaskBar Grid.Row="3" IsOpened="True" IsOpenedChanged="TaskBar_OnIsOpenedChanged" >
+        <syncfusion:TaskBar Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" IsOpened="True" IsOpenedChanged="TaskBar_OnIsOpenedChanged" >
             <syncfusion:TaskBarItem Header="Order Data" x:Name="SectionOrderData" >
                 <Grid>
                     <Grid.RowDefinitions>

@@ -7,8 +7,8 @@
     <ProjectGuid>{442E127C-5965-4377-894F-2464C2F340DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoonieTrader.RestLibrary</RootNamespace>
-    <AssemblyName>LoonieTrader.RestLibrary</AssemblyName>
+    <RootNamespace>LoonieTrader.Library</RootNamespace>
+    <AssemblyName>LoonieTrader.Library</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -84,6 +84,7 @@
   <ItemGroup>
     <None Include="HistoricalData\Samples\dkc.csv" />
     <Compile Include="Configuration\Constants.cs" />
+    <Compile Include="Extensions\MathEx.cs" />
     <Compile Include="RestApi\Caches\AccountCache.cs" />
     <Compile Include="RestApi\Caches\InstrumentCache.cs" />
     <Compile Include="RestApi\Caches\PriceCache.cs" />

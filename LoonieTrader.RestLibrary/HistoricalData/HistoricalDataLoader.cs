@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using FileHelpers;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Services;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.Services;
 
-namespace LoonieTrader.RestLibrary.HistoricalData
+namespace LoonieTrader.Library.HistoricalData
 {
     public class HistoricalDataLoader : IHistoricalDataLoader
     {

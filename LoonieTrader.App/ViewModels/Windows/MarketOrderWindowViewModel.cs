@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.RestApi.Caches;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.RestApi.Caches;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

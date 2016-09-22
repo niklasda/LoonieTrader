@@ -5,7 +5,7 @@ using System.Resources;
 using NUnit.Framework;
 using Syncfusion.PMML;
 
-namespace LoonieTrader.RestLibrary.Tests.Calc
+namespace LoonieTrader.Library.Tests.Calc
 {
     public class PredictiveTests
     {
@@ -27,7 +27,7 @@ namespace LoonieTrader.RestLibrary.Tests.Calc
             };
 
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "LoonieTrader.RestLibrary.Tests.Calc.sample.pmml";
+            var resourceName = "LoonieTrader.Library.Tests.Calc.sample.pmml";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {
@@ -55,7 +55,7 @@ namespace LoonieTrader.RestLibrary.Tests.Calc
             };
 
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "LoonieTrader.RestLibrary.Tests.Calc.sample.pmml";
+            var resourceName = "LoonieTrader.Library.Tests.Calc.sample.pmml";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             {

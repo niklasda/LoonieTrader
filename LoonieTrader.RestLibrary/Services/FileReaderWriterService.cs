@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Interfaces;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace LoonieTrader.RestLibrary.Services
+namespace LoonieTrader.Library.Services
 {
     public class FileReaderWriterService : IFileReaderWriterService
     {

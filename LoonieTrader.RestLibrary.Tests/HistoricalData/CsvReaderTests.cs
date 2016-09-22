@@ -2,13 +2,13 @@
 using System.IO;
 using AutoMapper;
 using FileHelpers;
-using LoonieTrader.RestLibrary.Configuration;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.Services;
-using LoonieTrader.RestLibrary.Tests.Locator;
+using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Services;
+using LoonieTrader.Library.Tests.Locator;
 using NUnit.Framework;
 
-namespace LoonieTrader.RestLibrary.Tests.HistoricalData
+namespace LoonieTrader.Library.Tests.HistoricalData
 {
     public class CsvReaderTests
     {

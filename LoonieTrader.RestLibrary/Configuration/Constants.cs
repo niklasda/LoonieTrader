@@ -1,4 +1,4 @@
-﻿namespace LoonieTrader.RestLibrary.Configuration
+﻿namespace LoonieTrader.Library.Configuration
 {
     public static class Constants
     {

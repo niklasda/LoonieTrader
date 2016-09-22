@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using LoonieTrader.RestLibrary.Configuration;
+using LoonieTrader.Library.Configuration;
 
-namespace LoonieTrader.RestLibrary.Logging
+namespace LoonieTrader.Library.Logging
 {
     public static class LogCache
     {

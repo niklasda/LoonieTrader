@@ -1,12 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Enums;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Responses;
-using LoonieTrader.RestLibrary.Tests.Locator;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Enums;
+using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Library.Tests.Locator;
 
-namespace LoonieTrader.RestLibrary.Tests.RestRequesters
+namespace LoonieTrader.Library.Tests.RestRequesters
 {
     public class OrdersRequesterTests
     {

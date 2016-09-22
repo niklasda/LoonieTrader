@@ -1,13 +1,13 @@
-﻿using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.Logging;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Requesters;
-using LoonieTrader.RestLibrary.Services;
+﻿using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.Logging;
+using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Requesters;
+using LoonieTrader.Library.Services;
 using Serilog;
 using StructureMap;
 
-namespace LoonieTrader.RestLibrary.Locator
+namespace LoonieTrader.Library.Locator
 {
     public class ServiceRegistry : Registry
     {

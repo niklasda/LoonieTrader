@@ -1,4 +1,4 @@
-﻿namespace LoonieTrader.RestLibrary.RestApi.Caches
+﻿namespace LoonieTrader.Library.RestApi.Caches
 {
     public class PriceCache
     {

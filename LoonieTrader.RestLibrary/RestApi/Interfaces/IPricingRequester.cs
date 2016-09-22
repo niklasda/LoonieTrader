@@ -1,7 +1,7 @@
 ﻿
-using LoonieTrader.RestLibrary.RestApi.Responses;
+using LoonieTrader.Library.RestApi.Responses;
 
-namespace LoonieTrader.RestLibrary.RestApi.Interfaces
+namespace LoonieTrader.Library.RestApi.Interfaces
 {
     public interface IPricingRequester
     {

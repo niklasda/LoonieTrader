@@ -1,4 +1,4 @@
-﻿namespace LoonieTrader.RestLibrary.Interfaces
+﻿namespace LoonieTrader.Library.Interfaces
 {
     public interface ISettings
     {

@@ -2,11 +2,11 @@
 using System.Net;
 using System.Text;
 using Jil;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Responses;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 
-namespace LoonieTrader.RestLibrary.RestApi.Requesters
+namespace LoonieTrader.Library.RestApi.Requesters
 {
     public class StreamingRequester : RequesterBase, IStreamingRequester
     {

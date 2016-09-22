@@ -1,9 +1,9 @@
 ﻿using System;
-using LoonieTrader.RestLibrary.Interfaces;
+using LoonieTrader.Library.Interfaces;
 using Serilog;
 using Serilog.Events;
 
-namespace LoonieTrader.RestLibrary.Logging
+namespace LoonieTrader.Library.Logging
 {
     public class ExtendedLogger : IExtendedLogger
     {

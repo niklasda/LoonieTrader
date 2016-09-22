@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using LoonieTrader.RestLibrary.HistoricalData;
+using LoonieTrader.Library.HistoricalData;
 
-namespace LoonieTrader.RestLibrary.Interfaces
+namespace LoonieTrader.Library.Interfaces
 {
     public interface IHistoricalDataLoader
     {

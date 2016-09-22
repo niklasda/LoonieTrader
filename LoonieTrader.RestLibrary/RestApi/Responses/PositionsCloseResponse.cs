@@ -1,5 +1,5 @@
 ﻿
-namespace LoonieTrader.RestLibrary.RestApi.Responses
+namespace LoonieTrader.Library.RestApi.Responses
 {
     public class PositionsCloseResponse
     {

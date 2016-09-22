@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
-using LoonieTrader.RestLibrary.HistoricalData;
-using LoonieTrader.RestLibrary.Interfaces;
-using LoonieTrader.RestLibrary.RestApi.Interfaces;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Interfaces;
 //using Syncfusion.Calculate;
 //using Syncfusion.Windows.Calculate;
 

@@ -1,6 +1,6 @@
-﻿using LoonieTrader.RestLibrary.RestApi.Responses;
+﻿using LoonieTrader.Library.RestApi.Responses;
 
-namespace LoonieTrader.RestLibrary.Models
+namespace LoonieTrader.Library.Models
 {
     public class InstrumentType
     {

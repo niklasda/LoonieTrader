@@ -7,8 +7,8 @@
     <ProjectGuid>{0F1DBA22-02B2-4D76-818C-C8EBCD133887}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoonieTrader.RestLibrary.Tests</RootNamespace>
-    <AssemblyName>LoonieTrader.RestLibrary.Tests</AssemblyName>
+    <RootNamespace>LoonieTrader.Library.Tests</RootNamespace>
+    <AssemblyName>LoonieTrader.Library.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

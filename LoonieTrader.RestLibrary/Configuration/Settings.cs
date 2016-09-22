@@ -1,6 +1,6 @@
-﻿using LoonieTrader.RestLibrary.Interfaces;
+﻿using LoonieTrader.Library.Interfaces;
 
-namespace LoonieTrader.RestLibrary.Configuration
+namespace LoonieTrader.Library.Configuration
 {
     public class Settings : ISettings
     {

@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		todo.md = todo.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestLibrary.Tests", "LoonieTrader.RestLibrary.Tests\LoonieTrader.RestLibrary.Tests.csproj", "{0F1DBA22-02B2-4D76-818C-C8EBCD133887}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library.Tests", "LoonieTrader.RestLibrary.Tests\LoonieTrader.Library.Tests.csproj", "{0F1DBA22-02B2-4D76-818C-C8EBCD133887}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "LoonieTrader.TestApp\LoonieTrader.TestApp.csproj", "{C9B926E0-7066-4CDF-8D03-1472D8CB4412}"
 EndProject
