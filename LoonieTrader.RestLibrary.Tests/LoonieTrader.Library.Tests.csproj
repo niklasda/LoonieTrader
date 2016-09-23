@@ -74,6 +74,7 @@
     <Compile Include="Calc\PredictiveTests.cs" />
     <Compile Include="Calc\QuickCalcTests.cs" />
     <Compile Include="Configuration\ConfigurationReaderTests.cs" />
+    <Compile Include="Extensions\MathExTests.cs" />
     <Compile Include="HistoricalData\CsvReaderTests.cs" />
     <Compile Include="Locator\TestAutoMappings.cs" />
     <Compile Include="Locator\TestServiceLocator.cs" />

@@ -311,7 +311,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                   //  instrument.PipLocation
                    // var multiplier = Math.Pow(10, Math.Abs(instrument.PipLocation));
                     var multiplier = MathEx.IntPow(10, Math.Abs(instrument.PipLocation));
-                    var spread =  Math.Abs(multiplier * buyPrice - multiplier * sellPrice).ToString("F",CultureInfo.CurrentUICulture);
+                    var spread =  Math.Abs(multiplier * buyPrice - multiplier * sellPrice).ToString("F", CultureInfo.CurrentUICulture);
                     BuySellSpread = string.Format("Spread: {0} pips", spread);
                 }
             }

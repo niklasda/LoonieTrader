@@ -48,31 +48,32 @@ namespace LoonieTrader.Library.Tests.RestRequesters
             AccountInstrumentsResponse air = _ar.GetInstruments(_s.DefaultAccountId);
             Assert.NotNull(air);
 
-            Assert.AreEqual(23, air.instruments.Count(x => x.type == "METAL"));
             Assert.AreEqual(28, air.instruments.Count(x => x.type == "CFD"));
             Assert.AreEqual(71, air.instruments.Count(x => x.type == "CURRENCY"));
+            Assert.AreEqual(23, air.instruments.Count(x => x.type == "METAL"));
         }
 
         [Test]
-        public void TestGetAccountInstrumentHierarchy()
+        public void TestGetAccountInstrumentSortedHierarchy()
         {
             AccountInstrumentsResponse air = _ar.GetInstruments(_s.DefaultAccountId);
             Assert.NotNull(air);
 
-            IEnumerable<IGrouping<string, AccountInstrumentsResponse.Instrument>> groups = air.instruments.Select(x => x).GroupBy(x => x.type);
+            IEnumerable<IGrouping<string, AccountInstrumentsResponse.Instrument>> groups = air.instruments.Select(x => x).OrderBy(y => y.type).GroupBy(x => x.type);
 
             List<InstrumentType> its = groups.Select(x => new InstrumentType {Type = x.Key, Instruments = x.ToArray()}).ToList();
 
             Assert.AreEqual(3, its.Count);
 
-            Assert.AreEqual("METAL", its[0].Type);
-            Assert.AreEqual(23, its[0].Instruments.Length);
 
-            Assert.AreEqual("CFD", its[1].Type);
-            Assert.AreEqual(28, its[1].Instruments.Length);
+            Assert.AreEqual("CFD", its[0].Type);
+            Assert.AreEqual(28, its[0].Instruments.Length);
 
-            Assert.AreEqual("CURRENCY", its[2].Type);
-            Assert.AreEqual(71, its[2].Instruments.Length);
+            Assert.AreEqual("CURRENCY", its[1].Type);
+            Assert.AreEqual(71, its[1].Instruments.Length);
+
+            Assert.AreEqual("METAL", its[2].Type);
+            Assert.AreEqual(23, its[2].Instruments.Length);
 
         }
     }
