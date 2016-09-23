@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using Syncfusion.Windows.Tools.Controls;
 
@@ -32,11 +33,11 @@ namespace LoonieTrader.App.Views
                 {
                     if (item == SectionStopLoss)
                     {
-                        item.Header = string.Format("Stop-Loss {0}", willBeOpen ? "" : "[Not specified]");
+                        item.Header = $"Stop-Loss {(willBeOpen ? "" : "[Not specified]")}";
                     }
                     else if (item == SectionTakeProfit)
                     {
-                        item.Header = string.Format("Take-Profit {0}", willBeOpen ? "" : "[Not specified]");
+                        item.Header = $"Take-Profit {(willBeOpen ? "" : "[Not specified]")}";
                     }
                 }
             }
@@ -48,6 +49,20 @@ namespace LoonieTrader.App.Views
             {
                 TraversalRequest request = new TraversalRequest(FocusNavigationDirection.Next);
                 base.MoveFocus(request);
+            }
+        }
+
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var autoComplete = sender as AutoComplete;
+            if (autoComplete != null)
+            {
+                Popup pop = autoComplete.Template.FindName("PART_Popup", autoComplete) as Popup;
+                if (pop != null)
+                {
+                    pop.AllowsTransparency = true;
+                    pop.Child.Opacity = 0.8;
+                }
             }
         }
     }

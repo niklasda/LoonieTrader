@@ -116,6 +116,7 @@
     <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="UiServices\DialogService.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
+    <Compile Include="ViewModels\ChartViewModel.cs" />
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />

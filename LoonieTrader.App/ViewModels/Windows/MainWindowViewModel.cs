@@ -45,7 +45,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
-            ReloadChartCommand = new RelayCommand(ReloadChart);
+            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"}));
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -74,7 +74,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
                 // GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
-                GraphData = new ObservableCollection<CandleDataViewModel>()
+                ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>()
                 {
                     new CandleDataViewModel() {Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
                     new CandleDataViewModel() {Date = "20160809", Time = "162000", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
@@ -87,7 +87,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 //  var candleRecords = _dataLoader.LoadDataFile201603();
                 //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
                 // GraphData = new ConcurrentBag<CandleDataViewModel>();
-                GraphData = new ObservableCollection<CandleDataViewModel>();
+                ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>();
 
                 // Task.Run(()=> PlayTheData(candleList));
 
@@ -113,6 +113,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
                 _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                 _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+
+               // SetChartType("OHLC");
+
             }
         }
 
@@ -137,7 +140,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public SfChart MainChart { get; set; }
 
-        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
+//        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public RelayCommand LogCommand { get; set; }
         public RelayCommand AboutCommand { get; set; }
@@ -211,40 +214,60 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        public void ChangeChartInstrument(InstrumentViewModel instrument)
+        {
+            ReloadChart(instrument);
+        }
+
         private void ChartTypeChanged(object checkedChartTypeItems)
         {
             var checkedChartTypes = checkedChartTypeItems as ObservableCollection<object>;
             if (checkedChartTypes != null)
             {
+
+//                foreach (string chartTypeName in checkedChartTypes)
+  //              {
+                string chartTypeName = checkedChartTypes.Cast<string>().FirstOrDefault();
+                SetChartType(chartTypeName, "asd"); // todo fix
+                // todo also move to chart view model
+
+                //            }
+            }
+        }
+
+        private string _chartType = "Candles";
+
+        private void SetChartType(string chartTypeName, string currencyCode)
+        {
+
+            FinancialSeriesBase series = null;
+            if (chartTypeName == "Candles")
+            {
+                _chartType = "Candles";
+
+                series = new CandleSeries();
+                series.Label = currencyCode;
+            }
+            else if (chartTypeName == "OHLC")
+            {
+                _chartType = "OHLC";
+
+                series = new HiLoOpenCloseSeries();
+                series.Label = currencyCode;
+            }
+
+            if (series != null && this.MainChart != null)
+            {
+                series.ItemsSource = ChartModel.GraphData;
+                series.Open = "Open";
+                series.High = "High";
+                series.Low = "Low";
+                series.Close = "Close";
+                series.XBindingPath = "Date";
+                series.ListenPropertyChange = true;
+
                 this.MainChart.Series.Clear();
-
-                foreach (string chartTypeName in checkedChartTypes)
-                {
-                    FinancialSeriesBase series = null;
-                    if (chartTypeName == "Candles")
-                    {
-                        series = new CandleSeries();
-                        series.Label = "Candles";
-                    }
-                    else if (chartTypeName == "OHLC")
-                    {
-                        series = new HiLoOpenCloseSeries();
-                        series.Label = "OHLC";
-                    }
-
-                    if (series != null)
-                    {
-                        series.ItemsSource = GraphData;
-                        series.Open = "Open";
-                        series.High = "High";
-                        series.Low = "Low";
-                        series.Close = "Close";
-                        series.XBindingPath = "Date";
-                        series.ListenPropertyChange = true;
-
-                        this.MainChart.Series.Add(series);
-                    }
-                }
+                this.MainChart.Series.Add(series);
             }
         }
 
@@ -378,6 +401,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        public ChartViewModel ChartModel { get; } = new ChartViewModel();
+
         private void OpenAboutWindow()
         {
             AboutWindow aw = new AboutWindow();
@@ -418,7 +443,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             //MessageBox.Show(SelectedOrder.Instrument);
         }
 
-        private void ReloadChart()
+        private void ReloadChart(InstrumentViewModel instrument)
         {
             /*            while (GraphData.Count>0)
                         {
@@ -434,8 +459,10 @@ namespace LoonieTrader.App.ViewModels.Windows
                 GraphData.Add(candleDataViewModel);
             }
             */
-            GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+            ChartModel.CurrencyCode =instrument.DisplayName;
+            ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
+            SetChartType(_chartType,instrument.DisplayName);
             // PlayTheData(candleList);
         }
 

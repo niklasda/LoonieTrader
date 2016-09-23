@@ -1,6 +1,9 @@
 ﻿using System.Windows;
+using System.Windows.Input;
+using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
 using Syncfusion.Windows.Shared;
+using Syncfusion.Windows.Tools.Controls;
 
 namespace LoonieTrader.App.Views
 {
@@ -16,7 +19,6 @@ namespace LoonieTrader.App.Views
             {
                 mvm.MainChart = this.MainChart;
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -26,6 +28,24 @@ namespace LoonieTrader.App.Views
             {
                 mvm.ExitApplicationCommand.Execute(e);
             }
+        }
+
+        private void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TreeViewAdv tree = sender as TreeViewAdv;
+            if (tree != null)
+            {
+                InstrumentViewModel instrument = tree.SelectedItem as InstrumentViewModel;
+                if (instrument != null)
+                {
+                    var mvm = this.DataContext as MainWindowViewModel;
+                    if (mvm != null)
+                    {
+                        mvm.ChangeChartInstrument(instrument);
+                    }
+                }
+            }
+
         }
     }
 }

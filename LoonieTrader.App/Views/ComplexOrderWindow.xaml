@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0">
             <syncfusion:AutoComplete CustomSource="{Binding AllInstruments}" IsAutoAppend="true" StringMode="StartChar" EnableDropDown="True" EnableSorting="True" IsFilter="False"
-                  Margin="10,0"                Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" FontSize="14" KeyUp="UIElement_OnKeyUp" />
+                  Margin="10,0"   Loaded="FrameworkElement_OnLoaded"           Source="Custom" SelectionMode="Single" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedInstrument}" FontSize="14" KeyUp="UIElement_OnKeyUp" />
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
             <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
             </Grid.ColumnDefinitions>
 
             <syncfusion:ButtonAdv Grid.Column="0" Label="{Binding SellButtonLabel}" IsEnabled="{Binding SellButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
-                                 Command="{Binding SellCommand}" Margin="10" ToolTip="Buy" SmallIcon="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" >
+                                 Command="{Binding SellCommand}" Margin="10" SmallIcon="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" >
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -41,7 +41,7 @@
                 </syncfusion:ButtonAdv.Background>
             </syncfusion:ButtonAdv>
             <syncfusion:ButtonAdv Grid.Column="1" Label="{Binding BuyButtonLabel}" IsEnabled="{Binding BuyButtonEnabled}" FontSize="14" IconHeight="26" IconWidth="26"
-                                   Command="{Binding BuyCommand}" Margin="10" ToolTip="Sell" SmallIcon="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png">
+                                   Command="{Binding BuyCommand}" Margin="10" SmallIcon="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png">
                 <syncfusion:ButtonAdv.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="#FFECECEC" Offset="0.469"/>
@@ -118,7 +118,7 @@
                         <ColumnDefinition Width="140"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -139,7 +139,7 @@
                         <ColumnDefinition Width="140"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0">Price</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
                     <Grid Grid.Row="0" Grid.Column="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
