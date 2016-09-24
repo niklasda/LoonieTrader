@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Text;
 using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -12,7 +11,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public class AccountsRequester : RequesterBase, IAccountsRequester
     {
-        public AccountsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
+        public AccountsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 
+            : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -20,7 +20,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             var accounts = GetAccounts();
             IList<AccountSummaryResponse> accountSummaries = new List<AccountSummaryResponse>();
-            foreach (var account in accounts.accounts)
+            foreach (var account  in accounts.accounts)
             {
                 try
                 {
@@ -43,9 +43,10 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(urlAccounts);
-                var responseString = Encoding.UTF8.GetString(responseBytes);
-                base.SaveLocalJson("accounts", "All", responseString);
+                var responseString = DownloadData(wc, urlAccounts);
+                //var responseBytes = wc.DownloadData(urlAccounts);
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                base.SaveLocalJson("accounts", "all", responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ar = JSON.Deserialize<AccountsResponse>(input);
@@ -61,8 +62,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlAccountDetails, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlAccountDetails, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlAccountDetails, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("accountDetails", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -78,8 +80,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlAccountSummary, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("accountSummary", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -95,8 +98,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlInstruments, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlInstruments, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlInstruments, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("accountInstruments", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {

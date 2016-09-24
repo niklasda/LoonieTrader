@@ -10,7 +10,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public class PricingRequester : RequesterBase, IPricingRequester
     {
-        public PricingRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
+        public PricingRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 
+            : base(settings, fileReaderWriter, logger)
         {
         }
 

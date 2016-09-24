@@ -90,31 +90,48 @@ namespace LoonieTrader.App.ViewModels.Windows
                 ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>();
 
                 // Task.Run(()=> PlayTheData(candleList));
+                try
+                {
+                    AccountInstrumentsResponse instrumentsResponse =
+                        _accountsRequester.GetInstruments(settings.DefaultAccountId);
+                    AccountSummaryResponse accountSummaryResponse =
+                        _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
+                    OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
+                    PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
+                    TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
+                    TransactionsResponse transactionsResponse =
+                        _transactionsRequester.GetTransactions(settings.DefaultAccountId);
 
-                AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
-                AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
-                OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
-                PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
-                TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
-                TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
+                    InstrumentCache.Instruments = instrumentsResponse.instruments;
 
-                InstrumentCache.Instruments = instrumentsResponse.instruments;
+                    var allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
 
-                var allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+                    // todo automapper
+                    var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
+                    List<InstrumentTypeViewModel> its =
+                        groups.Select(
+                            x =>
+                                new InstrumentTypeViewModel
+                                {
+                                    Type = x.Key,
+                                    Instruments = x.OrderBy(o => o.DisplayName).ToArray()
+                                }).ToList();
 
-                // todo automapper
-                var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
-                List<InstrumentTypeViewModel> its = groups.Select(x => new InstrumentTypeViewModel { Type = x.Key, Instruments = x.OrderBy(o => o.DisplayName).ToArray() }).ToList();
+                    _allInstrumentTypes = its;
 
-                _allInstrumentTypes = its;
+                    _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
+                    _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
+                    _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
+                    _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
+                    _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+                }
+                catch (Exception ex)
+                {
+                    string msg = ex.Message;
 
-                _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
-                _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
-                _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
-                _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
-                _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
-
-               // SetChartType("OHLC");
+                    MessageBox.Show("Failed to start application", Constants.ApplicationName);
+                }
+                // SetChartType("OHLC");
 
             }
         }

@@ -78,6 +78,7 @@
     <Compile Include="HistoricalData\CsvReaderTests.cs" />
     <Compile Include="Locator\TestAutoMappings.cs" />
     <Compile Include="Locator\TestServiceLocator.cs" />
+    <Compile Include="RestRequesters\HealthRequesterTests.cs" />
     <Compile Include="RestRequesters\PricingRequesterTests.cs" />
     <Compile Include="RestRequesters\PricingHistoryRequesterTests.cs" />
     <Compile Include="RestRequesters\TradesRequesterTests.cs" />

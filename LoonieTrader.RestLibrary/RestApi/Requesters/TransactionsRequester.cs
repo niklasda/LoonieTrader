@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-using System.Text;
 using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -10,7 +9,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public class TransactionsRequester : RequesterBase, ITransactionsRequester
     {
-        public TransactionsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
+        public TransactionsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 
+            : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -20,8 +20,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTransactionPages, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlTransactionPages, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTransactionPages, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("transactionPages", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -38,8 +39,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTransactions, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlTransactions, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTransactions, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("transactions", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -56,8 +58,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTransactionDetails, accountId, transactionId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlTransactionDetails, accountId, transactionId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTransactionDetails, accountId, transactionId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -71,13 +74,16 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public TransactionDetailsResponse GetTransactionStream(string accountId)
         {
             // todo might not be available yet
-            string urlTransactionDetails = base.GetRestUrl("accounts/{0}/transactions/steam/");
+            string urlTransactionStream = base.GetRestUrl("accounts/{0}/transactions/steam/");
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTransactionDetails, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
-           //     base.SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
+                var responseString = DownloadData(wc, urlTransactionStream, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTransactionStream, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
+
+                // todo what will be saved here?
+                base.SaveLocalJson("transactionStream", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
                 {

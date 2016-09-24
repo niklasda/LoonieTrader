@@ -10,7 +10,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public class TradesRequester : RequesterBase, ITradesRequester
     {
-        public TradesRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) : base(settings, fileReaderWriter, logger)
+        public TradesRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+            : base(settings, fileReaderWriter, logger)
         {
         }
 
@@ -21,8 +22,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTrades, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlTrades, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTrades, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("trades", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -38,8 +40,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlOpenTrades, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlOpenTrades, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlOpenTrades, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("tradesOpen", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -56,8 +59,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlTradeDetails, accountId, tradeId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlTradeDetails, accountId, tradeId);
+                //var responseBytes = wc.DownloadData(string.Format(urlTradeDetails, accountId, tradeId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
 
                 using (var input = new StringReader(responseString))

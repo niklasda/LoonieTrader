@@ -23,8 +23,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlOrders, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlOrders, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlOrders, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("orders", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -40,8 +41,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlPendingOrders, accountId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlPendingOrders, accountId);
+                //var responseBytes = wc.DownloadData(string.Format(urlPendingOrders, accountId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("ordersPending", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -57,8 +59,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseBytes = wc.DownloadData(string.Format(urlOrderDetails, accountId, orderId));
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = DownloadData(wc, urlOrderDetails, accountId, orderId);
+                //var responseBytes = wc.DownloadData(string.Format(urlOrderDetails, accountId, orderId));
+                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("orderDetails", accountId, orderId, responseString);
                 using (var input = new StringReader(responseString))
                 {

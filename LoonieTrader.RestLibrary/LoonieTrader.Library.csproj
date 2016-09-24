@@ -92,8 +92,10 @@
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\ExtendedLogger.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="RestApi\Interfaces\IHealthRequester.cs" />
     <Compile Include="RestApi\Interfaces\IPricingHistoryRequester.cs" />
     <Compile Include="RestApi\Interfaces\IStreamingRequester.cs" />
+    <Compile Include="RestApi\Requesters\HealthRequester.cs" />
     <Compile Include="RestApi\Requesters\PricingHistoryRequester.cs" />
     <Compile Include="RestApi\Requesters\StreamingRequester.cs" />
     <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
