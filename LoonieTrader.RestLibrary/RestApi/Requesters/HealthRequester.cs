@@ -14,7 +14,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
-        public AccountsResponse GetServiceList()
+        public ServiceListResponse GetServiceList()
         {
             string urlServiceList = base.GetHttpRestUrl("service-lists");
 
@@ -24,14 +24,14 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 base.SaveLocalJson("service-list", "all", responseString);
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
-                    return ar;
+                    var slr = JSON.Deserialize<ServiceListResponse>(input);
+                    return slr;
                 }
 
             }
         }
 
-        public AccountsResponse GetServices()
+        public ServicesResponse GetServices()
         {
             string urlServices = base.GetHttpRestUrl("services");
 
@@ -41,13 +41,13 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 base.SaveLocalJson("services", "all", responseString);
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
-                    return ar;
+                    var sr = JSON.Deserialize<ServicesResponse>(input);
+                    return sr;
                 }
             }
         }
 
-        public AccountsResponse GetService(string serviceId)
+        public ServicesResponse.Service GetService(string serviceId)
         {
             string urlService = base.GetHttpRestUrl("services/{0}");
 
@@ -57,13 +57,13 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 base.SaveLocalJson("services", serviceId, responseString);
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
-                    return ar;
+                    var srs = JSON.Deserialize<ServicesResponse.Service>(input);
+                    return srs;
                 }
             }
         }
 
-        public AccountsResponse GetStatuses()
+        public StatusesResponse GetStatuses()
         {
             string urlStatuses = base.GetHttpRestUrl("statuses");
 
@@ -73,13 +73,13 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 base.SaveLocalJson("statuses", "all", responseString);
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
-                    return ar;
+                    var sr = JSON.Deserialize<StatusesResponse>(input);
+                    return sr;
                 }
             }
         }
 
-        public AccountsResponse GetStatus(string statusId)
+        public StatusesResponse.Status GetStatus(string statusId)
         {
             string urlStatus = base.GetHttpRestUrl("statuses/{0}");
 
@@ -89,11 +89,42 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 base.SaveLocalJson("statuses", statusId, responseString);
                 using (var input = new StringReader(responseString))
                 {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
-                    return ar;
+                    var srs = JSON.Deserialize<StatusesResponse.Status>(input);
+                    return srs;
                 }
             }
         }
 
+        public ServiceEventsResponse GetServiceEvents(string serviceId)
+        {
+            string urlService = base.GetHttpRestUrl("services/{0}/events");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var responseString = DownloadData(wc, urlService, serviceId);
+                base.SaveLocalJson("serviceEvents", serviceId, responseString);
+                using (var input = new StringReader(responseString))
+                {
+                    var ser = JSON.Deserialize<ServiceEventsResponse>(input);
+                    return ser;
+                }
+            }
+        }
+
+        public ServiceEventsResponse.Event GetServiceEvent(string serviceId, string eventId)
+        {
+            string urlService = base.GetHttpRestUrl("services/{0}/events/{1}");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var responseString = DownloadData(wc, urlService, serviceId, eventId);
+                base.SaveLocalJson("serviceEvent", serviceId, eventId, responseString);
+                using (var input = new StringReader(responseString))
+                {
+                    var ser = JSON.Deserialize<ServiceEventsResponse.Event>(input);
+                    return ser;
+                }
+            }
+        }
     }
 }

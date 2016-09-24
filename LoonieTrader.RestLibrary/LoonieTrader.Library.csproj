@@ -98,6 +98,10 @@
     <Compile Include="RestApi\Requesters\HealthRequester.cs" />
     <Compile Include="RestApi\Requesters\PricingHistoryRequester.cs" />
     <Compile Include="RestApi\Requesters\StreamingRequester.cs" />
+    <Compile Include="RestApi\Responses\ServiceListResponse.cs" />
+    <Compile Include="RestApi\Responses\ServiceEventsResponse.cs" />
+    <Compile Include="RestApi\Responses\ServicesResponse.cs" />
+    <Compile Include="RestApi\Responses\StatusesResponse.cs" />
     <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
     <Compile Include="Configuration\Environments.cs" />
