@@ -45,7 +45,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
-            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"}));
+            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() { DisplayName = "EUR/USD" }));
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -92,15 +92,12 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // Task.Run(()=> PlayTheData(candleList));
                 try
                 {
-                    AccountInstrumentsResponse instrumentsResponse =
-                        _accountsRequester.GetInstruments(settings.DefaultAccountId);
-                    AccountSummaryResponse accountSummaryResponse =
-                        _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
-                    OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
+                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
+                    AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
+                   // OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
                     PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
-                    TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
-                    TransactionsResponse transactionsResponse =
-                        _transactionsRequester.GetTransactions(settings.DefaultAccountId);
+                   // TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
+                   // TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
 
                     InstrumentCache.Instruments = instrumentsResponse.instruments;
 
@@ -121,9 +118,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                     _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
                     _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
-                    _orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
-                    _tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
-                    _transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+                    //_orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
+                    //_tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
+                    //_transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
                 }
                 catch (Exception ex)
                 {
@@ -157,7 +154,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public SfChart MainChart { get; set; }
 
-//        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
+        //        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public RelayCommand LogCommand { get; set; }
         public RelayCommand AboutCommand { get; set; }
@@ -210,6 +207,12 @@ namespace LoonieTrader.App.ViewModels.Windows
             get
             {
                 // return new[] // Orders + Pending Orders
+
+                // todo, maybe not reload everytime
+
+                var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
+                _orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
+
                 return _orderList;
 
             }
@@ -219,6 +222,10 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
+                // todo, maybe not reload everytime
+                TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(_settings.DefaultAccountId);
+                _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+
                 return _transactionList;
             }
         }
@@ -227,6 +234,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
+                // todo not used
                 return _tradeList;
             }
         }
@@ -242,8 +250,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (checkedChartTypes != null)
             {
 
-//                foreach (string chartTypeName in checkedChartTypes)
-  //              {
+                //                foreach (string chartTypeName in checkedChartTypes)
+                //              {
                 string chartTypeName = checkedChartTypes.Cast<string>().FirstOrDefault();
                 SetChartType(chartTypeName, "asd"); // todo fix
                 // todo also move to chart view model
@@ -476,10 +484,10 @@ namespace LoonieTrader.App.ViewModels.Windows
                 GraphData.Add(candleDataViewModel);
             }
             */
-            ChartModel.CurrencyCode =instrument.DisplayName;
+            ChartModel.CurrencyCode = instrument.DisplayName;
             ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
-            SetChartType(_chartType,instrument.DisplayName);
+            SetChartType(_chartType, instrument.DisplayName);
             // PlayTheData(candleList);
         }
 

@@ -26,8 +26,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             var ar = _accountsRequester.GetAccountSummaries();
             _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
 
-            var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Prima3ry ", StringComparison.CurrentCultureIgnoreCase));
-            if (prim.Key!=null)
+            var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
+            if (prim.Key != null)
             {
                 SelectedAccountKey = prim.Key;
             }
