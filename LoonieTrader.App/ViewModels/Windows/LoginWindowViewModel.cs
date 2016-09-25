@@ -22,10 +22,20 @@ namespace LoonieTrader.App.ViewModels.Windows
             SelectedEnvironmentKey = settings.Environment;
 
             _availableEnvironments =  new[] { Environments.Practice, Environments.Live };
+
+            var ar = _accountsRequester.GetAccountSummaries();
+            _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
+
+            var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Prima3ry ", StringComparison.CurrentCultureIgnoreCase));
+            if (prim.Key!=null)
+            {
+                SelectedAccountKey = prim.Key;
+            }
         }
 
         private readonly IAccountsRequester _accountsRequester;
         private KeyValuePair<string, string>[] _availableEnvironments;
+        private KeyValuePair<string, string>[] _availableAccounts;
 
         public bool CanClose
         {
@@ -33,6 +43,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 return !string.IsNullOrWhiteSpace(SelectedEnvironmentKey)
                     && !string.IsNullOrWhiteSpace(ApiKey)
+                    && !string.IsNullOrWhiteSpace(SelectedAccountKey)
                     && ApiKey.Length == 65
                     && ApiKey.Split('-').Length == 2;
             }
@@ -55,11 +66,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public IList<KeyValuePair<string, string>> AvailableAccounts
         {
-            get
-            {
-                var ar = _accountsRequester.GetAccountSummaries();
-                return ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToList();
-            }
+            get { return _availableAccounts; }
         }
 
         private void Login()
