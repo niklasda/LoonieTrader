@@ -68,5 +68,10 @@ namespace LoonieTrader.App.Locator
         {
             get { return _container.GetInstance<LogWindowViewModel>(); }
         }
+
+        public ServiceStatusWindowViewModel ServiceStatus
+        {
+            get { return _container.GetInstance<ServiceStatusWindowViewModel>(); }
+        }
     }
 }

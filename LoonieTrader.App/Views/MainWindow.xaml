@@ -47,6 +47,25 @@
             <syncfusion:MenuItemAdv Header="_Help" >
                 <syncfusion:MenuItemAdv Header="_Log" Command="{Binding LogCommand}" />
                 <syncfusion:MenuItemSeparator />
+                <syncfusion:MenuItemAdv Header="_Service Status"  >
+                    <syncfusion:MenuItemAdv Header="Practice Environment" Command="{Binding ServiceStatusPracticeCommand}" />
+                    <syncfusion:MenuItemAdv Header="Live Environment" Command="{Binding ServiceStatusLiveCommand}" />
+                </syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemSeparator />
+                <syncfusion:MenuItemAdv Header="L_inks">
+                    <syncfusion:MenuItemAdv Header="Local Settings Folder" Command="{Binding GotoLocalSettingsFolderCommand}" />
+                    <syncfusion:MenuItemSeparator />
+                    <syncfusion:MenuItemAdv Header="Oanda" Command="{Binding GotoOandaCommand}" />
+                    <syncfusion:MenuItemAdv Header="Oanda API" Command="{Binding GotoOandaApiCommand}" />
+                    <syncfusion:MenuItemAdv Header="Oanda Dev Forum" Command="{Binding GotoOandaDevCommand}" />
+                    <syncfusion:MenuItemAdv Header="Market Pulse " Command="{Binding GotoMarketPulseCommand}" />
+                    <syncfusion:MenuItemAdv Header="Market Pulse Calendar " Command="{Binding GotoMarketPulseCalendarCommand}" />
+                    <syncfusion:MenuItemAdv Header="Fiancial News" Command="{Binding GotoNewsCommand}" />
+                    <syncfusion:MenuItemAdv Header="Google Finance" Command="{Binding GotoGoogleFinanceCommand}" />
+                    <syncfusion:MenuItemAdv Header="Yahoo Finance" Command="{Binding GotoYahooFinanceCommand}" />
+
+                </syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemSeparator />
                 <syncfusion:MenuItemAdv Header="_About" Command="{Binding AboutCommand}"  InputGestureText="F1"/>
             </syncfusion:MenuItemAdv>
         </syncfusion:MenuAdv>
@@ -70,7 +89,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <syncfusion:TreeViewAdv Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes, Mode=OneWay}" AllowDragDrop="False" 
+                    <syncfusion:TreeViewAdv Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes, Mode=OneWay}" AllowDragDrop="False"
                                             SelectedTreeItem="{Binding SelectedInstrument}" MouseDoubleClick="Control_OnMouseDoubleClick" >
 
                         <syncfusion:TreeViewAdv.Resources>

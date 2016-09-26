@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ServiceStatusWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\LogWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ComplexOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
@@ -135,6 +136,9 @@
     <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="Views\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceStatusWindow.xaml.cs">
+      <DependentUpon>ServiceStatusWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WorkbenchWindow.xaml.cs">
       <DependentUpon>WorkbenchWindow.xaml</DependentUpon>
@@ -162,6 +166,10 @@
     <Page Include="Views\LogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ServiceStatusWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WorkbenchWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

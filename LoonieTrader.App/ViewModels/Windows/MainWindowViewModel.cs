@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -21,10 +23,25 @@ using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
+
     public class MainWindowViewModel : ViewModelBase
     {
+        enum GotoLocations
+        {
+            LocalAppData,
+            Oanda,
+            OandaApi,
+            OandaDevForum,
+            MarketPulse,
+            MarketPulseCalendar,
+            OandaNews,
+            GoogleFinance,
+            YahooFinance
+        }
+
         public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader, IDialogService dialogService,
-            IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester, ITransactionsRequester transactionsRequester)
+            IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
+            ITransactionsRequester transactionsRequester)
         {
             _settings = settings;
             _mapper = mapper;
@@ -45,7 +62,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(OpenNewChartWindow);
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
-            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() { DisplayName = "EUR/USD" }));
+            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"}));
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -56,6 +73,19 @@ namespace LoonieTrader.App.ViewModels.Windows
             CancelOrderContextCommand = new RelayCommand(CancelOrder);
             ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
 
+            ServiceStatusPracticeCommand = new RelayCommand(() => OpenServiceStatus(Environments.Practice));
+            ServiceStatusLiveCommand = new RelayCommand(() => OpenServiceStatus(Environments.Live));
+
+            GotoLocalSettingsFolderCommand = new RelayCommand(() => GotoLocation(GotoLocations.LocalAppData));
+            GotoOandaCommand = new RelayCommand(() => GotoLocation(GotoLocations.Oanda));
+            GotoOandaApiCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaApi));
+            GotoOandaDevCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaDevForum));
+            GotoMarketPulseCommand = new RelayCommand(() => GotoLocation(GotoLocations.MarketPulse));
+            GotoMarketPulseCalendarCommand = new RelayCommand(() => GotoLocation(GotoLocations.MarketPulseCalendar));
+            GotoNewsCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaNews));
+            GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
+            GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
+
             ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
             IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
             // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
@@ -64,11 +94,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (IsInDesignMode)
             {
                 //_allInstruments = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
-                _accountSummary = new AccountSummaryViewModel() { Id = "101" };
-                _positionList = new List<PositionViewModel>() { new PositionViewModel() { Instrument = "EUR/USD" } };
-                _orderList = new List<OrderViewModel>() { new OrderViewModel() { Instrument = "EUR/USD" } };
-                _tradeList = new List<TradeModel>() { new TradeModel() { Instrument = "EUR/USD" } };
-                _transactionList = new List<TransactionViewModel>() { new TransactionViewModel() { Instrument = "EUR/USD" } };
+                _accountSummary = new AccountSummaryViewModel() {Id = "101"};
+                _positionList = new List<PositionViewModel>() {new PositionViewModel() {Instrument = "EUR/USD"}};
+                _orderList = new List<OrderViewModel>() {new OrderViewModel() {Instrument = "EUR/USD"}};
+                _tradeList = new List<TradeModel>() {new TradeModel() {Instrument = "EUR/USD"}};
+                _transactionList = new List<TransactionViewModel>() {new TransactionViewModel() {Instrument = "EUR/USD"}};
 
                 // var candleRecords = dataLoader.LoadDataFile201603();
                 // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
@@ -94,10 +124,10 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
                     AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
-                   // OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
+                    // OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
                     PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
-                   // TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
-                   // TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
+                    // TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
+                    // TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
 
                     InstrumentCache.Instruments = instrumentsResponse.instruments;
 
@@ -132,6 +162,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             }
         }
+
+        private void OpenServiceStatus(KeyValuePair<string, string> env)
+        {
+            ServiceStatusWindow aw = new ServiceStatusWindow();
+            aw.Owner = Application.Current.MainWindow;
+            aw.Show();
+        }
+
 
         private readonly ISettings _settings;
         private readonly IMapper _mapper;
@@ -179,6 +217,18 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
         public ICommand TimeframesChangedCommand { get; set; }
+        public ICommand ServiceStatusPracticeCommand { get; set; }
+        public ICommand ServiceStatusLiveCommand { get; set; }
+
+        public ICommand GotoLocalSettingsFolderCommand { get; set; }
+        public ICommand GotoOandaCommand { get; set; }
+        public ICommand GotoOandaApiCommand { get; set; }
+        public ICommand GotoOandaDevCommand { get; set; }
+        public ICommand GotoMarketPulseCommand { get; set; }
+        public ICommand GotoMarketPulseCalendarCommand { get; set; }
+        public ICommand GotoNewsCommand { get; set; }
+        public ICommand GotoGoogleFinanceCommand { get; set; }
+        public ICommand GotoYahooFinanceCommand { get; set; }
 
         //public IList<InstrumentViewModel> AllInstruments
         // {
@@ -238,6 +288,57 @@ namespace LoonieTrader.App.ViewModels.Windows
                 return _tradeList;
             }
         }
+
+        private void GotoLocation(GotoLocations location)
+        {
+            switch (location)
+            {
+                case GotoLocations.LocalAppData:
+                    SafeStart("%localappdata%\\LoonieTrader");
+                    break;
+                case GotoLocations.Oanda:
+                    SafeStart("http://www.oanda.com");
+                    break;
+                case GotoLocations.OandaApi:
+                    SafeStart("http://developer.oanda.com/rest-live-v20/introduction/");
+                    break;
+                case GotoLocations.OandaDevForum:
+                    SafeStart("https://fxtrade.oanda.com/community/forex-forum/93/");
+                    break;
+                case GotoLocations.MarketPulse:
+                    SafeStart("http://www.marketpulse.com/");
+                    break;
+                case GotoLocations.MarketPulseCalendar:
+                    SafeStart("http://www.marketpulse.com/economic-events/");
+                    break;
+                case GotoLocations.OandaNews:
+                    SafeStart("https://www.oanda.com/forex-trading/analysis/");
+                    break;
+                case GotoLocations.GoogleFinance:
+                    SafeStart("https://www.google.com/finance?q=eurusd");
+                    break;
+                case GotoLocations.YahooFinance:
+                    SafeStart("http://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(location), location, null);
+            }
+
+        }
+
+        private void SafeStart(string url)
+        {
+            try
+            {
+                Uri uri = new Uri(url);
+                Process.Start(uri.ToString());
+
+            }
+            catch
+            {
+            }
+        }
+
 
         public void ChangeChartInstrument(InstrumentViewModel instrument)
         {
@@ -427,6 +528,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         public ChartViewModel ChartModel { get; } = new ChartViewModel();
+
 
         private void OpenAboutWindow()
         {
