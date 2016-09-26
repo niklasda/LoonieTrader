@@ -242,12 +242,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoonieTrader.RestLibrary\LoonieTrader.Library.csproj">
-      <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
-      <Name>LoonieTrader.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\AppBitmap.bmp" />
     <Resource Include="Images\AppIcon.ico" />
   </ItemGroup>
@@ -262,6 +256,12 @@
   <ItemGroup>
     <Resource Include="Images\Arrow BottomRight 01-WF.png" />
     <Resource Include="Images\Arrow TopRight 01-WF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoonieTrader.Library\LoonieTrader.Library.csproj">
+      <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
+      <Name>LoonieTrader.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
