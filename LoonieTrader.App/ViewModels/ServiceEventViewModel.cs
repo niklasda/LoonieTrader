@@ -5,9 +5,9 @@ namespace LoonieTrader.App.ViewModels
     public class ServiceEventViewModel
     {
         [ReadOnly(true)]
-        public string message { get; set; }
+        public string Message { get; set; }
         [ReadOnly(true)]
-        public string timestamp { get; set; }
+        public string Timestamp { get; set; }
 
     }
 }
