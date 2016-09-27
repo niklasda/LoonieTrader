@@ -4,17 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:LoonieTrader.App.Views.Parts"
+             xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="500">
+             d:DesignHeight="400" d:DesignWidth="500"
+            >
+    <UserControl.Resources>
+        <Style x:Key="AlternatingRowStyle" TargetType="syncfusion:VirtualizingCellsControl">
+            <Setter Property="Background" Value="Gainsboro" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
-            <syncfusion:TabControlExt >
+            <syncfusion:TabControlExt  d:DataContext="{d:DesignInstance Type=windows:ServiceStatusLiveWindowViewModel}">
             <syncfusion:TabItemExt  Header="  API  ">
-                <syncfusion:SfDataGrid  ItemsSource="{Binding RestEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" />
-
+                <syncfusion:SfDataGrid  ItemsSource="{Binding RestEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" AlternatingRowStyle="{StaticResource AlternatingRowStyle}"/>
             </syncfusion:TabItemExt>
             <syncfusion:TabItemExt  Header ="  Stream  ">
-                <syncfusion:SfDataGrid  ItemsSource="{Binding StreamEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" />
-
+                <syncfusion:SfDataGrid  ItemsSource="{Binding StreamEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" AlternatingRowStyle="{StaticResource AlternatingRowStyle}" />
             </syncfusion:TabItemExt>
         </syncfusion:TabControlExt>
     </Grid>
