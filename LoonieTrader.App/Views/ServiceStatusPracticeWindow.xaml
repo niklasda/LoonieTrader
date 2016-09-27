@@ -1,16 +1,17 @@
-﻿<Window x:Class="LoonieTrader.App.Views.ServiceStatusWindow"
+﻿<Window x:Class="LoonieTrader.App.Views.ServiceStatusPracticeWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoonieTrader.App.Views"
+        xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
         mc:Ignorable="d"
-        DataContext="{Binding Source={StaticResource Locator}, Path=Log}"
-        Title="Service Status"
+        DataContext="{Binding Source={StaticResource Locator}, Path=ServiceStatusPractice}"
+        Title="Service Status - Practice"
         ResizeMode="CanResizeWithGrip"
-        Height="300" Width="400"
+        Height="400" Width="500"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
-
+        <parts:ServiceStatusPartView DataContext="{Binding }" ></parts:ServiceStatusPartView>
     </Grid>
 </Window>

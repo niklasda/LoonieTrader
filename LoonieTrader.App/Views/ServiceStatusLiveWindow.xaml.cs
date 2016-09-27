@@ -17,9 +17,9 @@ namespace LoonieTrader.App.Views
     /// <summary>
     /// Interaction logic for ServiceStatus.xaml
     /// </summary>
-    public partial class ServiceStatusWindow : Window
+    public partial class ServiceStatusLiveWindow : Window
     {
-        public ServiceStatusWindow()
+        public ServiceStatusLiveWindow()
         {
             InitializeComponent();
         }

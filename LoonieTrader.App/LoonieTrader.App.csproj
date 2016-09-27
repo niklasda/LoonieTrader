@@ -120,10 +120,12 @@
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
+    <Compile Include="ViewModels\ServiceEventViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
-    <Compile Include="ViewModels\Windows\ServiceStatusWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ServiceStatusPracticeWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\ServiceStatusLiveWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\LogWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ComplexOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
@@ -137,8 +139,17 @@
     <Compile Include="Views\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServiceStatusWindow.xaml.cs">
-      <DependentUpon>ServiceStatusWindow.xaml</DependentUpon>
+    <Compile Include="Views\Parts\ChartPartView.xaml.cs">
+      <DependentUpon>ChartPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\ServiceStatusPartView.xaml.cs">
+      <DependentUpon>ServiceStatusPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceStatusLiveWindow.xaml.cs">
+      <DependentUpon>ServiceStatusLiveWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceStatusPracticeWindow.xaml.cs">
+      <DependentUpon>ServiceStatusPracticeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WorkbenchWindow.xaml.cs">
       <DependentUpon>WorkbenchWindow.xaml</DependentUpon>
@@ -167,7 +178,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ServiceStatusWindow.xaml">
+    <Page Include="Views\Parts\ChartPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\ServiceStatusPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServiceStatusLiveWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ServiceStatusPracticeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,21 @@
+﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  x:Class="LoonieTrader.App.Views.Parts.ServiceStatusPartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:LoonieTrader.App.Views.Parts"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="500">
+    <Grid>
+            <syncfusion:TabControlExt >
+            <syncfusion:TabItemExt  Header="  API  ">
+                <syncfusion:SfDataGrid  ItemsSource="{Binding RestEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" />
+
+            </syncfusion:TabItemExt>
+            <syncfusion:TabItemExt  Header ="  Stream  ">
+                <syncfusion:SfDataGrid  ItemsSource="{Binding StreamEvents}" ColumnSizer="Star" BorderThickness="0" AllowSorting="False" />
+
+            </syncfusion:TabItemExt>
+        </syncfusion:TabControlExt>
+    </Grid>
+</UserControl>

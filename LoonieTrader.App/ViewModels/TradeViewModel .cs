@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.App.ViewModels
 {
-    public class TradeModel
+    public class TradeViewModel
     {
         [ReadOnly(true)]
         public string Instrument { get; set; }

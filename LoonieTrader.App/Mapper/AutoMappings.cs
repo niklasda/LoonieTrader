@@ -38,8 +38,9 @@ namespace LoonieTrader.App.Mapper
                     .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)));
 
                 CreateMap<OrdersResponse.Order, OrderViewModel>();
+                CreateMap<ServiceEventsResponse.Event, ServiceEventViewModel>();
 
-                CreateMap<TradesResponse.Trade, TradeModel>();
+                CreateMap<TradesResponse.Trade, TradeViewModel>();
 
                 CreateMap<TransactionsResponse.Transaction, TransactionViewModel>()
                     .ForMember(i => i.AccountBalance, m => m.MapFrom(r => decimal.Parse(r.accountBalance ?? "0", sourceCulture)));

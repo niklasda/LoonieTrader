@@ -97,7 +97,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _accountSummary = new AccountSummaryViewModel() {Id = "101"};
                 _positionList = new List<PositionViewModel>() {new PositionViewModel() {Instrument = "EUR/USD"}};
                 _orderList = new List<OrderViewModel>() {new OrderViewModel() {Instrument = "EUR/USD"}};
-                _tradeList = new List<TradeModel>() {new TradeModel() {Instrument = "EUR/USD"}};
+                _tradeList = new List<TradeViewModel>() {new TradeViewModel() {Instrument = "EUR/USD"}};
                 _transactionList = new List<TransactionViewModel>() {new TransactionViewModel() {Instrument = "EUR/USD"}};
 
                 // var candleRecords = dataLoader.LoadDataFile201603();
@@ -165,9 +165,18 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void OpenServiceStatus(KeyValuePair<string, string> env)
         {
-            ServiceStatusWindow aw = new ServiceStatusWindow();
-            aw.Owner = Application.Current.MainWindow;
-            aw.Show();
+            Window window;
+            if (env.Key == Environments.Live.Key)
+            {
+                window = new ServiceStatusLiveWindow();
+            }
+            else
+            {
+                window = new ServiceStatusPracticeWindow();
+            }
+
+            window.Owner = Application.Current.MainWindow;
+            window.Show();
         }
 
 
@@ -187,7 +196,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         //private IList<InstrumentViewModel> _allInstruments;
         private IList<PositionViewModel> _positionList;
         private IList<OrderViewModel> _orderList;
-        private IList<TradeModel> _tradeList;
+        private IList<TradeViewModel> _tradeList;
         private IList<TransactionViewModel> _transactionList;
 
         public SfChart MainChart { get; set; }
@@ -280,7 +289,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        public IList<TradeModel> AllTrades
+        public IList<TradeViewModel> AllTrades
         {
             get
             {
