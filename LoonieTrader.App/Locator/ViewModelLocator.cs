@@ -45,6 +45,10 @@ namespace LoonieTrader.App.Locator
         {
             get { return _container.GetInstance<ComplexOrderWindowViewModel>(); }
         }
+        public LiveChartWindowViewModel LiveChart
+        {
+            get { return _container.GetInstance<LiveChartWindowViewModel>(); }
+        }
 
         public LoginWindowViewModel Login
         {

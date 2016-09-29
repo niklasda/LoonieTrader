@@ -626,6 +626,9 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             ChartWindow tw = new ChartWindow();
             tw.Show();
+
+            LiveChartWindow tdw = new LiveChartWindow();
+            tdw.Show();
         }
 
         private void OpenSettingsWindow()
