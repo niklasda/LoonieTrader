@@ -1,7 +1,8 @@
 ﻿<Window x:Class="LoonieTrader.App.Views.WorkbenchWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         DataContext="{Binding Source={StaticResource Locator}, Path=Workbench}"
         Title="Indicator Workbench"
         ResizeMode="CanResizeWithGrip"
@@ -12,8 +13,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid>
@@ -35,11 +36,11 @@
                 </Grid>
 
 
-                <syncfusion:SfDataGrid  Grid.Column="2"
-                        ShowRowHeader="True" AutoGenerateColumns="True" AllowSelectionOnPointerPressed="True" ColumnSizer="Auto"
+                <xcdg:DataGridControl  Grid.Column="2"
+
                         ItemsSource="{Binding SampleData}" Margin="0" >
 
-                </syncfusion:SfDataGrid>
+                </xcdg:DataGridControl>
 
 
             </Grid>
@@ -47,16 +48,23 @@
                 <TextBox Grid.Row="1"  Text="f(x) = ((x-1)+(x)+(x+1))/3"></TextBox>
             <GridSplitter Grid.Row="2"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
 
+            <wpf:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}">
+                <wpf:CartesianChart.AxisX>
+                    <wpf:Axis Labels="{Binding Labels}"/>
+                </wpf:CartesianChart.AxisX>
+            </wpf:CartesianChart>
 
-            <syncfusion:SfChart Grid.Row="3" x:Name="MainChart" Header="Indicator for EUR/USD"
-                                        BorderBrush="Gainsboro" BorderThickness="1" >
-                <syncfusion:CandleSeries ListenPropertyChange="True" Label="EURUSD" ItemsSource="{Binding SampleData}"
-                                                 XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" >
-                </syncfusion:CandleSeries>
-            </syncfusion:SfChart>
         </Grid>
     </Grid>
 </Window>
+
+
+
+
+
+
+
+
 
 
 

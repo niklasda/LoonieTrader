@@ -1,7 +1,7 @@
 ﻿<Window x:Class="LoonieTrader.App.Views.ChartWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         DataContext="{Binding Source={StaticResource Locator}, Path=Chart}"
         Title="Chart"
         ResizeMode="CanResizeWithGrip"
@@ -12,18 +12,15 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <syncfusion:SfChart Grid.Row="1" x:Name="MainChart" Header="EUR/USD" BorderBrush="Gainsboro" BorderThickness="1" >
-
-            <syncfusion:SfChart.PrimaryAxis>
-                <syncfusion:CategoryAxis Header="Time"/>
-            </syncfusion:SfChart.PrimaryAxis>
-
-            <syncfusion:SfChart.SecondaryAxis>
-                <syncfusion:NumericalAxis StartRangeFromZero="False" Header="Price" />
-            </syncfusion:SfChart.SecondaryAxis>
-
-            <syncfusion:CandleSeries Label="EURUSD" ItemsSource="{Binding GraphData}" XBindingPath="Date"   High="High" Open="Open" Close="Close" Low="Low" />
-        </syncfusion:SfChart>
+        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" BorderThickness="1" BorderBrush="Gainsboro">
+            <wpf:CartesianChart.AxisX>
+                <wpf:Axis Labels="{Binding Labels}"/>
+            </wpf:CartesianChart.AxisX>
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis Labels="{Binding Labels}"/>
+            </wpf:CartesianChart.AxisY>
+        </wpf:CartesianChart>
+        
     </Grid>
 </Window>
 

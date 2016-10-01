@@ -4,7 +4,7 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Settings}"
         Title="Settings"
         Height="400" Width="480" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
-    <Grid>
+    <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>

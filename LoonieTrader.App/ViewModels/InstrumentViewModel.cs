@@ -2,6 +2,7 @@
 
 namespace LoonieTrader.App.ViewModels
 {
+    [DisplayName(@"Instrument: ")]
     public class InstrumentViewModel
     {
         [ReadOnly(true)]

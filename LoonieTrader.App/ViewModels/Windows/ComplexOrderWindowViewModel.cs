@@ -14,7 +14,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
-using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -76,7 +75,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                this._allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+                this._allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x=>x.Type).ThenBy(y=>y.DisplayName).ToList();
             }
         }
 
@@ -94,9 +93,15 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private IList<InstrumentViewModel> _allInstruments;
 
-        public IList<InstrumentViewModel> AllInstruments
+        public ObservableCollection<InstrumentViewModel> AllInstruments
         {
-            get { return _allInstruments; }
+            get
+            {
+                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.Where(x=>x.DisplayName.ToUpper().Contains((InstrumentText??"").ToUpper())|| x.Type.ToUpper().Contains((InstrumentText ?? "").ToUpper())).ToList();
+                filteredInstrumentList.AddRange(_allInstruments.Except(filteredInstrumentList));
+                return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
+
+            }
         }
 
         public IList<PriceDepthViewModel> AllDepth
@@ -390,8 +395,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private DatesCollection _selectedExpiryDate = new DatesCollection() { DateTime.Today.AddDays(4) };
-        public DatesCollection SelectedExpiryDate
+        private DateTime[] _selectedExpiryDate = new DateTime[] { DateTime.Today.AddDays(4) };
+        public DateTime[] SelectedExpiryDate
         {
             get
             {
@@ -592,6 +597,22 @@ namespace LoonieTrader.App.ViewModels.Windows
         public string WindowTitle
         {
             get { return string.Format("Complex Order: {0}", SelectedInstrument?.DisplayName); }
+        }
+
+        private string _instrumentTest;
+        public string InstrumentText
+        {
+            get { return _instrumentTest; }
+            set
+            {
+                if (_instrumentTest != value)
+                {
+                    _instrumentTest = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged(()=>AllInstruments);
+
+                }
+            }
         }
     }
 }

@@ -2,18 +2,16 @@
 
 namespace LoonieTrader.App.ViewModels
 {
+    [DisplayName("Account Information")]
     public class AccountSummaryViewModel
     {
         [ReadOnly(true), DisplayName("Net Asset Value (NAV)")]
         public string NAV { get; set; }
 
-        [ReadOnly(true)]
         public string Alias { get; set; }
 
-        [ReadOnly(true)]
         public string Balance { get; set; }
 
-        [ReadOnly(true)]
         public int CreatedByUserID { get; set; }
 
         [ReadOnly(true)]

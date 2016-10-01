@@ -6,8 +6,8 @@ http://developer.oanda.com/rest-live-v20/account-ep/
 
 https://fxtrade.oanda.com/community/forex-forum/93/
 
-Requires SyncFusion 
-http://help.syncfusion.com/wpf/welcome-to-syncfusion-essential-wpf
+Requires Extended WPF Toolkit (Xceed) 
+LiveCharts
 
 
 GET /api/v1/service-lists

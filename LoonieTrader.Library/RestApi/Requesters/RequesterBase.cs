@@ -81,7 +81,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             catch (Exception ex)
             {
                 _logger.Error(ex, "Failed to Load data");
-                throw new Exception("Failed");
+                throw new Exception("Failed to load data", ex);
             }
         }
     }

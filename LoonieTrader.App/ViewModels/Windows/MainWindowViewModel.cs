@@ -11,6 +11,9 @@ using System.Windows.Media;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.HistoricalData;
@@ -18,12 +21,9 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
-using Syncfusion.UI.Xaml.Charts;
-using Syncfusion.Windows.Shared;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
-
     public class MainWindowViewModel : ViewModelBase
     {
         enum GotoLocations
@@ -86,8 +86,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
-            ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
-            IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
+          //  ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
+          //  IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
             // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
             // TradeTicketCommand = new DelegateCommand<object>(ChartTypeChanged);
 
@@ -151,6 +151,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                     //_orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
                     //_tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                     //_transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+                   ;
                 }
                 catch (Exception ex)
                 {
@@ -161,6 +162,10 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // SetChartType("OHLC");
 
             }
+            SeriesCollection = new SeriesCollection();
+
+            ReloadChart(new InstrumentViewModel() {DisplayName = "EURUSD"});
+            
         }
 
         private void OpenServiceStatus(KeyValuePair<string, string> env)
@@ -199,7 +204,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private IList<TradeViewModel> _tradeList;
         private IList<TransactionViewModel> _transactionList;
 
-        public SfChart MainChart { get; set; }
+        //public SfChart MainChart { get; set; }
 
         //        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
@@ -298,6 +303,22 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private List<string> _labels;
+
+
+        public SeriesCollection SeriesCollection { get; set; }
+
+        public List<string> Labels
+        {
+            get { return _labels; }
+            set
+            {
+                _labels = value;
+                RaisePropertyChanged();
+                //       OnPropertyChanged("Labels");
+            }
+        }
+
         private void GotoLocation(GotoLocations location)
         {
             switch (location)
@@ -354,86 +375,86 @@ namespace LoonieTrader.App.ViewModels.Windows
             ReloadChart(instrument);
         }
 
-        private void ChartTypeChanged(object checkedChartTypeItems)
-        {
-            var checkedChartTypes = checkedChartTypeItems as ObservableCollection<object>;
-            if (checkedChartTypes != null)
-            {
+        //private void ChartTypeChanged(object checkedChartTypeItems)
+        //{
+        //    var checkedChartTypes = checkedChartTypeItems as ObservableCollection<object>;
+        //    if (checkedChartTypes != null)
+        //    {
 
-                //                foreach (string chartTypeName in checkedChartTypes)
-                //              {
-                string chartTypeName = checkedChartTypes.Cast<string>().FirstOrDefault();
-                SetChartType(chartTypeName, "asd"); // todo fix
-                // todo also move to chart view model
+        //        //                foreach (string chartTypeName in checkedChartTypes)
+        //        //              {
+        //        string chartTypeName = checkedChartTypes.Cast<string>().FirstOrDefault();
+        //        SetChartType(chartTypeName, "asd"); // todo fix
+        //        // todo also move to chart view model
 
-                //            }
-            }
-        }
+        //        //            }
+        //    }
+        //}
 
-        private string _chartType = "Candles";
+        //private string _chartType = "Candles";
 
-        private void SetChartType(string chartTypeName, string currencyCode)
-        {
+        //private void SetChartType(string chartTypeName, string currencyCode)
+        //{
 
-            FinancialSeriesBase series = null;
-            if (chartTypeName == "Candles")
-            {
-                _chartType = "Candles";
+        //    FinancialSeriesBase series = null;
+        //    if (chartTypeName == "Candles")
+        //    {
+        //        _chartType = "Candles";
 
-                series = new CandleSeries();
-                series.Label = currencyCode;
-            }
-            else if (chartTypeName == "OHLC")
-            {
-                _chartType = "OHLC";
+        //        series = new CandleSeries();
+        //        series.Label = currencyCode;
+        //    }
+        //    else if (chartTypeName == "OHLC")
+        //    {
+        //        _chartType = "OHLC";
 
-                series = new HiLoOpenCloseSeries();
-                series.Label = currencyCode;
-            }
+        //        series = new HiLoOpenCloseSeries();
+        //        series.Label = currencyCode;
+        //    }
 
-            if (series != null && this.MainChart != null)
-            {
-                series.ItemsSource = ChartModel.GraphData;
-                series.Open = "Open";
-                series.High = "High";
-                series.Low = "Low";
-                series.Close = "Close";
-                series.XBindingPath = "Date";
-                series.ListenPropertyChange = true;
+        //    if (series != null && this.MainChart != null)
+        //    {
+        //        series.ItemsSource = ChartModel.GraphData;
+        //        series.Open = "Open";
+        //        series.High = "High";
+        //        series.Low = "Low";
+        //        series.Close = "Close";
+        //        series.XBindingPath = "Date";
+        //        series.ListenPropertyChange = true;
 
-                this.MainChart.Series.Clear();
-                this.MainChart.Series.Add(series);
-            }
-        }
+        //        this.MainChart.Series.Clear();
+        //        this.MainChart.Series.Add(series);
+        //    }
+        //}
 
-        private void IndicatorsChanged(object checkedIndicatorItems)
-        {
-            var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
+        //private void IndicatorsChanged(object checkedIndicatorItems)
+        //{
+        //    var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
 
-            if (checkedIndicators != null)
-            {
-                this.MainChart.TechnicalIndicators.Clear();
+        //    if (checkedIndicators != null)
+        //    {
+        //        this.MainChart.TechnicalIndicators.Clear();
 
-                // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
-                // this.MainChart.TechnicalIndicators.Add(indicator);
+        //        // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
+        //        // this.MainChart.TechnicalIndicators.Add(indicator);
 
-                foreach (string indicatorName in checkedIndicators)
-                {
-                    var indicator = ApplyIndicator(indicatorName, 1);
+        //        foreach (string indicatorName in checkedIndicators)
+        //        {
+        //            var indicator = ApplyIndicator(indicatorName, 1);
 
-                    // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
-                    if (indicator != null)
-                    {
-                        this.MainChart.TechnicalIndicators.Add(indicator);
-                        //   NumericalAxis axis = new NumericalAxis();
-                        //   axis.OpposedPosition = true;
-                        //   axis.ShowGridLines = false;
-                        //   axis.Visibility = Visibility.Collapsed;
-                        //   indicatorAxis.YAxis = axis;
-                    }
-                }
-            }
-        }
+        //            // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
+        //            if (indicator != null)
+        //            {
+        //                this.MainChart.TechnicalIndicators.Add(indicator);
+        //                //   NumericalAxis axis = new NumericalAxis();
+        //                //   axis.OpposedPosition = true;
+        //                //   axis.ShowGridLines = false;
+        //                //   axis.Visibility = Visibility.Collapsed;
+        //                //   indicatorAxis.YAxis = axis;
+        //            }
+        //        }
+        //    }
+        //}
 
         private InstrumentViewModel _selectedInstrument;
 
@@ -465,12 +486,19 @@ namespace LoonieTrader.App.ViewModels.Windows
                 return technicalIndicators;
             }
         }
-        public ObservableCollection<object> SelectedIndicators
+
+        private string _selectedIndicator;
+        public string SelectedIndicator
         {
             get
             {
                 // Required to make first Command call work
-                return new ObservableCollection<object>();
+                return _selectedIndicator;
+            }
+            set
+            {
+                _selectedIndicator = value; 
+                ApplyIndicator(_selectedIndicator,0);
             }
         }
 
@@ -567,14 +595,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void CancelOrder()
         {
-            Console.WriteLine(SelectedOrder.Instrument);
+            Console.WriteLine("Cancel: " + SelectedOrder.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
 
         private void ModifyOrder()
         {
-            Console.WriteLine(SelectedOrder.Instrument);
+            Console.WriteLine("Modify: " + SelectedOrder.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
@@ -595,10 +623,44 @@ namespace LoonieTrader.App.ViewModels.Windows
                 GraphData.Add(candleDataViewModel);
             }
             */
-            ChartModel.CurrencyCode = instrument.DisplayName;
-            ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
+            //ChartModel.CurrencyCode = instrument.DisplayName;
+            //ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
-            SetChartType(_chartType, instrument.DisplayName);
+
+            SeriesCollection.Add(
+                new OhlcSeries()
+                {
+                Title = "Reloaded",
+                IncreaseBrush = Brushes.Green,
+                DecreaseBrush = Brushes.Red,
+                    Values = new ChartValues<OhlcPoint>
+                    {
+                        new OhlcPoint(32, 35, 30, 32),
+                        new OhlcPoint(33, 38, 31, 37),
+                        new OhlcPoint(35, 42, 30, 40),
+                        new OhlcPoint(37, 40, 35, 38),
+                        new OhlcPoint(35, 38, 32, 33)
+                    }
+                });
+            
+            SeriesCollection.Add(
+                new LineSeries
+                {
+                    Title = "Line",
+                    Values = new ChartValues<double> {30, 32, 35, 30},
+                    Fill = Brushes.Transparent
+                }
+            );
+
+            Labels = new List<string>()
+            {
+                DateTime.Now.ToString("dd MMM"),
+                DateTime.Now.AddDays(1).ToString("dd MMM"),
+                DateTime.Now.AddDays(2).ToString("dd MMM"),
+                DateTime.Now.AddDays(3).ToString("dd MMM"),
+                DateTime.Now.AddDays(4).ToString("dd MMM"),
+            };
+            // SetChartType(_chartType, instrument.DisplayName);
             // PlayTheData(candleList);
         }
 
@@ -646,130 +708,192 @@ namespace LoonieTrader.App.ViewModels.Windows
             Application.Current.Shutdown();
         }
 
-        private FinancialTechnicalIndicator ApplyIndicator(string value, int rowIndex)
+        private void ApplyIndicator(string value, int rowIndex)
         {
-            FinancialTechnicalIndicator indicator;
             switch (value)
             {
                 case "Accumulation Distribution":
-                    indicator = new AccumulationDistributionIndicator
-                    {
-                        Label = "Accumulation",
-                        SignalLineColor = Brushes.Black
-                    };
                     break;
 
                 case "Average True Range":
-                    indicator = new AverageTrueRangeIndicator
-                    {
-                        Label = "Average",
-                        Period = 3,
-                        SignalLineColor = Brushes.Black,
-                    };
                     break;
 
                 case "Bollinger Band":
-                    indicator = new BollingerBandIndicator
-                    {
-                        Label = "Bollinger",
-                        Period = 3,
-                        UpperLineColor = Brushes.Blue,
-                        LowerLineColor = Brushes.Red,
-                        SignalLineColor = Brushes.Black,
-                    };
                     break;
                 case "Exponential Average":
-                    indicator = new ExponentialAverageIndicator
-                    {
-                        Label = "Exponential",
-                        Period = 3,
-                        SignalLineColor = Brushes.Black
-                    };
                     break;
 
                 case "MACD": // Moving Average Convergence/Divergence
-                    indicator = new MACDTechnicalIndicator
-                    {
-                        Label = "MACD",
-                        Period = 2,
-                        Type = MACDType.Line,
-                        ShortPeriod = 3,
-                        LongPeriod = 6,
-                        SignalLineColor = Brushes.Black,
-                        ConvergenceLineColor = Brushes.Green,
-                        DivergenceLineColor = Brushes.Blue,
-                    };
                     break;
                 case "Momentum":
-                    indicator = new MomentumTechnicalIndicator
-                    {
-                        Label = "Momentum",
-                        Period = 4,
-                        CenterLineColor = Brushes.Blue,
-                        MomentumLineColor = Brushes.Black
-
-                    };
                     break;
                 case "RSI": // Relative Strength Index
-                    indicator = new RSITechnicalIndicator
-                    {
-                        Label = "RSI",
-                        Period = 4,
-                        SignalLineColor = Brushes.Black,
-                        UpperLineColor = Brushes.Blue,
-                        LowerLineColor = Brushes.Red,
-                    };
                     break;
                 case "Simple Average":
-                    indicator = new SimpleAverageIndicator
-                    {
-                        Label = "Simple",
-                        Period = 3
-                    };
                     break;
                 case "Stochastic":
-                    indicator = new StochasticTechnicalIndicator
-                    {
-                        Label = "Stochastic",
-                        Period = 4,
-                        KPeriod = 8,
-                        DPeriod = 5,
-                        UpperLineColor = Brushes.Blue,
-                        LowerLineColor = Brushes.Red,
-                        SignalLineColor = Brushes.Black,
-                        PeriodLineColor = Brushes.Green
-                    };
                     break;
                 case "Triangular Average":
-                    indicator = new TriangularAverageIndicator
-                    {
-                        Label = "Triangular",
-                        Period = 4,
-                        SignalLineColor = Brushes.Black
-                    };
                     break;
                 default:
-                    return null;
+                    break;
             }
 
-            var index = rowIndex == 0 ? 1 : 0;
-            ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
-            indicator.XBindingPath = "Date";
-            indicator.High = "High";
-            indicator.Low = "Low";
-            indicator.Open = "Open";
-            indicator.Close = "Close";
-            indicator.Volume = "Volume";
+            SeriesCollection.Add(new CandleSeries()
+            {
+                Title = value,
+                IncreaseBrush = Brushes.GreenYellow,
+                DecreaseBrush = Brushes.OrangeRed,
+                Values = new ChartValues<OhlcPoint>
+                    {
+                        new OhlcPoint(30, 5, 30, 32),
+                        new OhlcPoint(30, 8, 31, 37),
+                        new OhlcPoint(30, 2, 30, 40),
+                        new OhlcPoint(30, 0, 35, 38)
+                        }});
 
-            Binding binding = new Binding();
-            binding.Path = new PropertyPath("ItemsSource");
-            binding.Source = series;
-            binding.Mode = BindingMode.TwoWay;
-            indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
+            //var index = rowIndex == 0 ? 1 : 0;
+            //ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
+            //indicator.XBindingPath = "Date";
+            //indicator.High = "High";
+            //indicator.Low = "Low";
+            //indicator.Open = "Open";
+            //indicator.Close = "Close";
+            //indicator.Volume = "Volume";
+
+            //Binding binding = new Binding();
+            //binding.Path = new PropertyPath("ItemsSource");
+            //binding.Source = series;
+            //binding.Mode = BindingMode.TwoWay;
+            //indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
 
 
-            return indicator;
         }
+
+        //private FinancialTechnicalIndicator ApplyIndicator(string value, int rowIndex)
+        //{
+        //    FinancialTechnicalIndicator indicator;
+        //    switch (value)
+        //    {
+        //        case "Accumulation Distribution":
+        //            indicator = new AccumulationDistributionIndicator
+        //            {
+        //                Label = "Accumulation",
+        //                SignalLineColor = Brushes.Black
+        //            };
+        //            break;
+
+        //        case "Average True Range":
+        //            indicator = new AverageTrueRangeIndicator
+        //            {
+        //                Label = "Average",
+        //                Period = 3,
+        //                SignalLineColor = Brushes.Black,
+        //            };
+        //            break;
+
+        //        case "Bollinger Band":
+        //            indicator = new BollingerBandIndicator
+        //            {
+        //                Label = "Bollinger",
+        //                Period = 3,
+        //                UpperLineColor = Brushes.Blue,
+        //                LowerLineColor = Brushes.Red,
+        //                SignalLineColor = Brushes.Black,
+        //            };
+        //            break;
+        //        case "Exponential Average":
+        //            indicator = new ExponentialAverageIndicator
+        //            {
+        //                Label = "Exponential",
+        //                Period = 3,
+        //                SignalLineColor = Brushes.Black
+        //            };
+        //            break;
+
+        //        case "MACD": // Moving Average Convergence/Divergence
+        //            indicator = new MACDTechnicalIndicator
+        //            {
+        //                Label = "MACD",
+        //                Period = 2,
+        //                Type = MACDType.Line,
+        //                ShortPeriod = 3,
+        //                LongPeriod = 6,
+        //                SignalLineColor = Brushes.Black,
+        //                ConvergenceLineColor = Brushes.Green,
+        //                DivergenceLineColor = Brushes.Blue,
+        //            };
+        //            break;
+        //        case "Momentum":
+        //            indicator = new MomentumTechnicalIndicator
+        //            {
+        //                Label = "Momentum",
+        //                Period = 4,
+        //                CenterLineColor = Brushes.Blue,
+        //                MomentumLineColor = Brushes.Black
+
+        //            };
+        //            break;
+        //        case "RSI": // Relative Strength Index
+        //            indicator = new RSITechnicalIndicator
+        //            {
+        //                Label = "RSI",
+        //                Period = 4,
+        //                SignalLineColor = Brushes.Black,
+        //                UpperLineColor = Brushes.Blue,
+        //                LowerLineColor = Brushes.Red,
+        //            };
+        //            break;
+        //        case "Simple Average":
+        //            indicator = new SimpleAverageIndicator
+        //            {
+        //                Label = "Simple",
+        //                Period = 3
+        //            };
+        //            break;
+        //        case "Stochastic":
+        //            indicator = new StochasticTechnicalIndicator
+        //            {
+        //                Label = "Stochastic",
+        //                Period = 4,
+        //                KPeriod = 8,
+        //                DPeriod = 5,
+        //                UpperLineColor = Brushes.Blue,
+        //                LowerLineColor = Brushes.Red,
+        //                SignalLineColor = Brushes.Black,
+        //                PeriodLineColor = Brushes.Green
+        //            };
+        //            break;
+        //        case "Triangular Average":
+        //            indicator = new TriangularAverageIndicator
+        //            {
+        //                Label = "Triangular",
+        //                Period = 4,
+        //                SignalLineColor = Brushes.Black
+        //            };
+        //            break;
+        //        default:
+        //            return null;
+        //    }
+
+        //    var index = rowIndex == 0 ? 1 : 0;
+        //    ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
+        //    indicator.XBindingPath = "Date";
+        //    indicator.High = "High";
+        //    indicator.Low = "Low";
+        //    indicator.Open = "Open";
+        //    indicator.Close = "Close";
+        //    indicator.Volume = "Volume";
+
+        //    Binding binding = new Binding();
+        //    binding.Path = new PropertyPath("ItemsSource");
+        //    binding.Source = series;
+        //    binding.Mode = BindingMode.TwoWay;
+        //    indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
+
+
+        //    return indicator;
+        //}
     }
 
 }
