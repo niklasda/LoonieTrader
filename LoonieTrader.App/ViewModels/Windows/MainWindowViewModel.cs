@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LiveCharts;
+using LiveCharts.Configurations;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using LoonieTrader.App.Views;
@@ -107,9 +109,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                 ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>()
                 {
                     new CandleDataViewModel() {Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
-                    new CandleDataViewModel() {Date = "20160809", Time = "162000", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
-                    new CandleDataViewModel() {Date = "20160810", Time = "162000", High = 2m, Low = 1m, Open = 1m, Close = 2m},
-                    new CandleDataViewModel() {Date = "20160811", Time = "162000", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
+                    new CandleDataViewModel() {Date = "20160809", Time = "162100", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
+                    new CandleDataViewModel() {Date = "20160810", Time = "162200", High = 2m, Low = 1m, Open = 1m, Close = 2m},
+                    new CandleDataViewModel() {Date = "20160811", Time = "162300", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
                 };
             }
             else
@@ -144,6 +146,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                                     Instruments = x.OrderBy(o => o.DisplayName).ToArray()
                                 }).ToList();
 
+                    its.Insert(0,new InstrumentTypeViewModel()
+                    {
+                        Type="Favourites",
+                        Instruments=new InstrumentViewModel[]{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
+                    });
                     _allInstrumentTypes = its;
 
                     _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
@@ -162,10 +169,19 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // SetChartType("OHLC");
 
             }
-            SeriesCollection = new SeriesCollection();
+
+            var dayConfig = Mappers.Financial<CandleDataViewModel>()
+                .X(dayModel => (double) dayModel.DatePlusTime.Ticks / TimeSpan.FromHours(1).Ticks)
+                .Open(dayModel => (double) dayModel.Open)
+                .High(dayModel => (double) dayModel.High)
+                .Low(dayModel => (double) dayModel.Low)
+                .Close(dayModel => (double) dayModel.Close);
+            SeriesCollection = new SeriesCollection(dayConfig);
+
+            Formatter = value => new DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("s");
 
             ReloadChart(new InstrumentViewModel() {DisplayName = "EURUSD"});
-            
+
         }
 
         private void OpenServiceStatus(KeyValuePair<string, string> env)
@@ -497,7 +513,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             set
             {
-                _selectedIndicator = value; 
+                _selectedIndicator = value;
                 ApplyIndicator(_selectedIndicator,0);
             }
         }
@@ -615,9 +631,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                         }*/
 
-            var candleRecords = _dataLoader.LoadDataFile201603();
+            IList<CandleDataRecord> candleRecords = _dataLoader.LoadDataFile201603();
 
             var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+            //var candleList2 = _mapper.Map<List<OhlcPoint>>(candleRecords);
             /*foreach (var candleDataViewModel in candleList)
             {
                 GraphData.Add(candleDataViewModel);
@@ -626,43 +643,49 @@ namespace LoonieTrader.App.ViewModels.Windows
             //ChartModel.CurrencyCode = instrument.DisplayName;
             //ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
 
-
-            SeriesCollection.Add(
-                new OhlcSeries()
-                {
-                Title = "Reloaded",
-                IncreaseBrush = Brushes.Green,
-                DecreaseBrush = Brushes.Red,
-                    Values = new ChartValues<OhlcPoint>
-                    {
-                        new OhlcPoint(32, 35, 30, 32),
-                        new OhlcPoint(33, 38, 31, 37),
-                        new OhlcPoint(35, 42, 30, 40),
-                        new OhlcPoint(37, 40, 35, 38),
-                        new OhlcPoint(35, 38, 32, 33)
-                    }
-                });
-            
-            SeriesCollection.Add(
-                new LineSeries
-                {
-                    Title = "Line",
-                    Values = new ChartValues<double> {30, 32, 35, 30},
-                    Fill = Brushes.Transparent
-                }
-            );
-
-            Labels = new List<string>()
+            if (SeriesCollection.Count < 1)
             {
-                DateTime.Now.ToString("dd MMM"),
-                DateTime.Now.AddDays(1).ToString("dd MMM"),
-                DateTime.Now.AddDays(2).ToString("dd MMM"),
-                DateTime.Now.AddDays(3).ToString("dd MMM"),
-                DateTime.Now.AddDays(4).ToString("dd MMM"),
-            };
+                SeriesCollection.Add(
+                    new OhlcSeries()
+                    {
+                        Title = "Reloaded",
+                        IncreaseBrush = Brushes.Green,
+                        DecreaseBrush = Brushes.Red,
+                        Values = new ChartValues<CandleDataViewModel>
+                        {
+                            new CandleDataViewModel() {Open=1.1m, High= 1.3m, Low=1.0m, Close=1.2m,Date = DateTime.Now.ToString("yyyyMMdd"), Time=DateTime.Now.ToString("HHmmss"), Ticker = "NIX"},
+                        }
+                    });
+
+                //SeriesCollection.Add(
+                //    new LineSeries
+                //    {
+                //        Title = "Line",
+                //        Values = new ChartValues<double> {1.0, 1.0, 1.0, 1.0},
+                //        Fill = Brushes.Transparent
+                //    }
+          //      );
+
+                //Labels = new List<string>()
+                //{
+                //    DateTime.Now.ToString("dd MMM"),
+                //    DateTime.Now.AddDays(1).ToString("dd MMM"),
+                //    DateTime.Now.AddDays(2).ToString("dd MMM"),
+                //    DateTime.Now.AddDays(3).ToString("dd MMM"),
+                //    DateTime.Now.AddDays(4).ToString("dd MMM"),
+                //};
+            }
+            else
+            {
+                SeriesCollection[0].Values.Add(new CandleDataViewModel() { Open = 1.1m, High = 1.3m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss"), Ticker = "NIX" });
+            //    Labels.Add("New");
+            }
+
             // SetChartType(_chartType, instrument.DisplayName);
             // PlayTheData(candleList);
         }
+
+        public Func<double, string> Formatter { get; set; }
 
         private void OpenMarketOrderWindow()
         {
@@ -701,6 +724,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void LogOut()
         {
+            LoginWindow login = new LoginWindow();
+            login.Owner = Application.Current.MainWindow;
+            login.ShowDialog();
         }
 
         private void ExitApplication()

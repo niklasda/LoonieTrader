@@ -212,7 +212,7 @@
                     </StackPanel>
                     <wpf:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" LegendLocation="Top">
                         <wpf:CartesianChart.AxisX>
-                            <wpf:Axis Labels="{Binding Labels}"/>
+                            <wpf:Axis LabelFormatter="{Binding Formatter}"/>
                         </wpf:CartesianChart.AxisX>
                     </wpf:CartesianChart>
 
