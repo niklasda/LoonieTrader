@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "Loo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.App", "LoonieTrader.App\LoonieTrader.App.csproj", "{1F27DB4F-A869-4F60-9233-DB1856722817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.StockSharp", "LoonieTrader.StockSharp\LoonieTrader.StockSharp.csproj", "{44E9A31B-9F60-48A0-A958-EB4D76D86108}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library.Tests", "LoonieTrader.Library.Tests\LoonieTrader.Library.Tests.csproj", "{0F1DBA22-02B2-4D76-818C-C8EBCD133887}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library", "LoonieTrader.Library\LoonieTrader.Library.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
@@ -38,10 +36,6 @@ Global
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F27DB4F-A869-4F60-9233-DB1856722817}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44E9A31B-9F60-48A0-A958-EB4D76D86108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44E9A31B-9F60-48A0-A958-EB4D76D86108}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44E9A31B-9F60-48A0-A958-EB4D76D86108}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44E9A31B-9F60-48A0-A958-EB4D76D86108}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F1DBA22-02B2-4D76-818C-C8EBCD133887}.Release|Any CPU.ActiveCfg = Release|Any CPU
