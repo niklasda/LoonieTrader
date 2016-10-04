@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using LoonieTrader.Library.Interfaces;
-
 using LoonieTrader.Library.Configuration;
 
 namespace LoonieTrader.App.UiServices

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
@@ -28,7 +27,6 @@ namespace LoonieTrader.Library.Tests.RestRequesters
         {
             Assert.NotNull(_ar.GetAccounts());
         }
-
 
         [Test]
         public void TestGetAccountDetails()

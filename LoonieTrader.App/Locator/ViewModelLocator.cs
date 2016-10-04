@@ -27,15 +27,9 @@ namespace LoonieTrader.App.Locator
 
         private readonly Container _container;
 
-        public MainWindowViewModel Main
-        {
-            get { return _container.GetInstance<MainWindowViewModel>(); }
-        }
+        public MainWindowViewModel Main => _container.GetInstance<MainWindowViewModel>();
 
-        public ChartWindowViewModel Chart
-        {
-            get { return _container.GetInstance<ChartWindowViewModel>(); }
-        }
+        public ChartWindowViewModel Chart => _container.GetInstance<ChartWindowViewModel>();
 
         public MarketOrderWindowViewModel MarketOrder
         {

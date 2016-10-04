@@ -2,7 +2,6 @@
 using System.IO;
 using AutoMapper;
 using FileHelpers;
-using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Services;
 using LoonieTrader.Library.Tests.Locator;
@@ -33,7 +32,5 @@ namespace LoonieTrader.Library.Tests.HistoricalData
             Assert.IsTrue(candleViewModels.TrueForAll(x => x.Close > 1));
             Assert.IsTrue(candleViewModels.TrueForAll(x => x.DatePlusTime.Year > 2001));
         }
-        
-
     }
 }

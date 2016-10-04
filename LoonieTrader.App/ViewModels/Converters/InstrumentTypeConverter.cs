@@ -5,6 +5,7 @@ using System.Windows.Data;
 
 namespace LoonieTrader.App.ViewModels.Converters
 {
+    // Used in treeView hierarchy
     public class InstrumentTypeConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)

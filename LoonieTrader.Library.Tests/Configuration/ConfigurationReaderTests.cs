@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.Services;
 
 namespace LoonieTrader.Library.Tests.Configuration

@@ -100,7 +100,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 List<InstrumentViewModel> filteredInstrumentList = _allInstruments.Where(x=>x.DisplayName.ToUpper().Contains((InstrumentText??"").ToUpper())|| x.Type.ToUpper().Contains((InstrumentText ?? "").ToUpper())).ToList();
                 filteredInstrumentList.AddRange(_allInstruments.Except(filteredInstrumentList));
                 return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
-
             }
         }
 

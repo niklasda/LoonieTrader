@@ -93,7 +93,11 @@
                     </Grid.RowDefinitions>
                     <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes, Mode=OneWay}" x:Name="instrumentTree"
                                              MouseDoubleClick="Control_OnMouseDoubleClick" >
-
+                        <TreeView.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Make Favourite"/>
+                            </ContextMenu>
+                        </TreeView.ContextMenu>
                         <TreeView.Resources>
 
                             <converters:InstrumentTypeConverter x:Key="HierarchicalConverter" />

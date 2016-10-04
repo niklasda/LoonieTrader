@@ -41,5 +41,10 @@ namespace LoonieTrader.App.ViewModels
         [ReadOnly(true)]
         public string Type { get; set; }
 
+        public override string ToString()
+        {
+            // Used by filter function
+            return string.Format("{0}{1}{2}{3}", DisplayName, Name, Type, Name.Replace("_",""));
+        }
     }
 }

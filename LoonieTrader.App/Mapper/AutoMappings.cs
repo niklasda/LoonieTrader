@@ -31,8 +31,6 @@ namespace LoonieTrader.App.Mapper
                     //.ForMember(i => i.type, m => m.MapFrom(r => r.SelectedInstrument.Name))
                     .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice))
                     .ForMember(i => i.units, m => m.MapFrom(r => r.Amount));
-//                    .ForMember(i => i.stopLossOnFill.price, m => m.MapFrom(r => r.StopLossPrice));
-                    //.ForMember(i => i.timeInForce, m => m.MapFrom(r => r.SelectedInstrument.Name))
                     //.ForMember(i => i.positionFill, m => m.MapFrom(r => r.SelectedInstrument.Name));
 
                 CreateMap<PositionsResponse.Position, PositionViewModel>()
@@ -47,8 +45,8 @@ namespace LoonieTrader.App.Mapper
                     .ForMember(i => i.AccountBalance, m => m.MapFrom(r => decimal.Parse(r.accountBalance ?? "0", sourceCulture)));
 
 
-                CreateMap<CandleDataRecord, CandleDataViewModel>();//.ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
-                CreateMap<CandleDataRecord, OhlcPoint>();//.ForMember(i => i.Instrument, m => m.MapFrom(r => r.instrument));
+                CreateMap<CandleDataRecord, CandleDataViewModel>();
+                CreateMap<CandleDataRecord, OhlcPoint>();
             }
         }
     }

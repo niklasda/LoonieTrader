@@ -4,7 +4,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.TestApp.Locator;
-using Serilog;
 
 namespace LoonieTrader.TestApp
 {

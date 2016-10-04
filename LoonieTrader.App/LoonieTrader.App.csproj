@@ -158,6 +158,7 @@
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
+    <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
     <Compile Include="Views\LiveChartWindow.xaml.cs">
       <DependentUpon>LiveChartWindow.xaml</DependentUpon>
     </Compile>
