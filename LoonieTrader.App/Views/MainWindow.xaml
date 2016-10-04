@@ -6,6 +6,8 @@
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:command="clr-namespace:GalaSoft.MvvmLight.CommandWpf;assembly=GalaSoft.MvvmLight.Platform"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="LoonieTrader"
         ResizeMode="CanResizeWithGrip"
@@ -91,13 +93,18 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes, Mode=OneWay}" x:Name="instrumentTree"
-                                             MouseDoubleClick="Control_OnMouseDoubleClick" >
+                    <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="Control_OnMouseDoubleClick" x:Name="InstrumentTree">
                         <TreeView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Make Favourite"/>
+                                <MenuItem Header="Make Favourite" Command="{Binding AddToFavouritesCommand}"/>
                             </ContextMenu>
                         </TreeView.ContextMenu>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectedItemChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
+                                   CommandParameter="{Binding ElementName=InstrumentTree,Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <TreeView.Resources>
 
                             <converters:InstrumentTypeConverter x:Key="HierarchicalConverter" />
@@ -130,7 +137,7 @@
                 </Grid.RowDefinitions>
                 <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
                     <TabItem Header="Open Positions" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllPositions}" FlowDirection="LeftToRight" SelectedItem="{Binding SelectedPosition}" >
+                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" FlowDirection="LeftToRight" SelectedItem="{Binding SelectedPosition}" >
                             <xcdg:DataGridControl.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Close Position..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ClosePositionContextCommand}" />
@@ -150,7 +157,7 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Open Orders" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllOrders}" FlowDirection="LeftToRight"   SelectedItem="{Binding SelectedOrder}">
+                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" FlowDirection="LeftToRight"   SelectedItem="{Binding SelectedOrder}">
                             <xcdg:DataGridControl.ContextMenu>
                                 <ContextMenu >
                                     <MenuItem Header="Cancel Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
@@ -171,7 +178,7 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Transaction History" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions}" FlowDirection="LeftToRight" ReadOnly="True">
+                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" FlowDirection="LeftToRight" ReadOnly="True">
                             <xcdg:DataGridControl.View>
                             <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                                 <xcdg:TableView.FixedHeaders>
@@ -185,11 +192,11 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Account Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding AccountSummary}" FlowDirection="LeftToRight" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
+                        <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" FlowDirection="LeftToRight" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
                                            ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
                     </TabItem>
                     <TabItem Header="Instrument Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding ElementName=instrumentTree,Path=SelectedItem}" FlowDirection="LeftToRight" 
+                        <xctk:PropertyGrid SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" FlowDirection="LeftToRight"
                                            ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
                     </TabItem>
                 </TabControl>

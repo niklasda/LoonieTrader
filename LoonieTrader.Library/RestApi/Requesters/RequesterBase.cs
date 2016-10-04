@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using JsonPrettyPrinterPlus;
 using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 
 namespace LoonieTrader.Library.RestApi.Requesters

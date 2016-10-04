@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using AutoMapper;
@@ -16,8 +13,9 @@ using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using LoonieTrader.App.Constants;
 using LoonieTrader.App.Views;
-using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
@@ -28,19 +26,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        enum GotoLocations
-        {
-            LocalAppData,
-            Oanda,
-            OandaApi,
-            OandaDevForum,
-            MarketPulse,
-            MarketPulseCalendar,
-            OandaNews,
-            GoogleFinance,
-            YahooFinance
-        }
-
         public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader, IDialogService dialogService,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
             ITransactionsRequester transactionsRequester)
@@ -88,8 +73,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
-          //  ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
-          //  IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
+            AddToFavouritesCommand = new RelayCommand(AddToFavourites);
+            SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
+
+            //  ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
+            //  IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
             // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
             // TradeTicketCommand = new DelegateCommand<object>(ChartTypeChanged);
 
@@ -164,7 +152,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     string msg = ex.Message;
 
-                    MessageBox.Show("Failed to start application", Constants.ApplicationName);
+                    MessageBox.Show("Failed to start application", AppProperties.ApplicationName);
                 }
                 // SetChartType("OHLC");
 
@@ -224,25 +212,27 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         //        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
-        public RelayCommand LogCommand { get; set; }
-        public RelayCommand AboutCommand { get; set; }
-        public RelayCommand SettingsCommand { get; set; }
-        public RelayCommand LogOutCommand { get; set; }
-        public RelayCommand ExitApplicationCommand { get; set; }
-        public RelayCommand MarketOrderCommand { get; set; }
-        public RelayCommand CompositeOrderCommand { get; set; }
-        public RelayCommand ReloadChartCommand { get; set; }
-        public RelayCommand WorkbenchCommand { get; set; }
-        public RelayCommand NewChartCommand { get; set; }
-        public RelayCommand OpenPositionsCommand { get; set; }
-        public RelayCommand OpenOrdersCommand { get; set; }
-        public RelayCommand TransactionHistoryCommand { get; set; }
-        public RelayCommand AccountInformationCommand { get; set; }
-        public RelayCommand InstrumentInformationCommand { get; set; }
+        public ICommand LogCommand { get; set; }
+        public ICommand AboutCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
+        public ICommand ExitApplicationCommand { get; set; }
+        public ICommand MarketOrderCommand { get; set; }
+        public ICommand CompositeOrderCommand { get; set; }
+        public ICommand ReloadChartCommand { get; set; }
+        public ICommand WorkbenchCommand { get; set; }
+        public ICommand NewChartCommand { get; set; }
+        public ICommand OpenPositionsCommand { get; set; }
+        public ICommand OpenOrdersCommand { get; set; }
+        public ICommand TransactionHistoryCommand { get; set; }
+        public ICommand AccountInformationCommand { get; set; }
+        public ICommand InstrumentInformationCommand { get; set; }
 
-        public RelayCommand ClosePositionContextCommand { get; set; }
-        public RelayCommand CancelOrderContextCommand { get; set; }
-        public RelayCommand ModifyOrderContextCommand { get; set; }
+        public ICommand ClosePositionContextCommand { get; set; }
+        public ICommand CancelOrderContextCommand { get; set; }
+        public ICommand ModifyOrderContextCommand { get; set; }
+
+        public ICommand AddToFavouritesCommand { get; set; }
 
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
@@ -332,6 +322,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _labels = value;
                 RaisePropertyChanged();
                 //       OnPropertyChanged("Labels");
+            }
+        }
+
+        private void AddToFavourites()
+        {
+            if (SelectedInstrument != null)
+            {
+                Console.WriteLine(SelectedInstrument);
             }
         }
 
@@ -474,14 +472,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private InstrumentViewModel _selectedInstrument;
 
-        public object SelectedInstrument
+        public InstrumentViewModel SelectedInstrument
         {
             get { return _selectedInstrument; }
             set
             {
                 if (_selectedInstrument != value)
                 {
-                    _selectedInstrument = value as InstrumentViewModel;
+                    _selectedInstrument = value;
                     RaisePropertyChanged();
                 }
             }
@@ -686,6 +684,27 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         public Func<double, string> Formatter { get; set; }
+
+        public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
+
+        public void SelectedInstrumentChanged(object o)
+        {
+            InstrumentViewModel instrument = o as InstrumentViewModel;
+            InstrumentTypeViewModel instrumentType = o as InstrumentTypeViewModel;
+
+            if (instrument != null)
+            {
+                SelectedInstrument = instrument;
+                Console.WriteLine(instrument.DisplayName);
+            }
+            if (instrumentType != null)
+            {
+                SelectedInstrument = null;
+                Console.WriteLine(instrumentType.Type);
+            }
+        }
+       // public InstrumentViewModel SelectedCluster { get; private set; }
+
 
         private void OpenMarketOrderWindow()
         {

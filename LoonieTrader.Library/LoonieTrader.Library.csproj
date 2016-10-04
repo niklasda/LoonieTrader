@@ -83,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HistoricalData\Samples\dkc.csv" />
-    <Compile Include="Configuration\Constants.cs" />
+    <Compile Include="Constants\AppProperties.cs" />
     <Compile Include="Extensions\MathEx.cs" />
     <Compile Include="RestApi\Caches\AccountCache.cs" />
     <Compile Include="RestApi\Caches\InstrumentCache.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="RestApi\Responses\StatusesResponse.cs" />
     <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
-    <Compile Include="Configuration\Environments.cs" />
+    <Compile Include="Constants\Environments.cs" />
     <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="HistoricalData\HistoricalDataLoader.cs" />

@@ -1,6 +1,6 @@
-﻿namespace LoonieTrader.Library.Configuration
+﻿namespace LoonieTrader.Library.Constants
 {
-    public static class Constants
+    public static class AppProperties
     {
         public static string ApplicationName { get; set; } = "LoonieTrader";
 

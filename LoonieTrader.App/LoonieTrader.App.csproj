@@ -134,6 +134,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants\Enums.cs" />
     <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="UiServices\DialogService.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.Configuration;
+using LoonieTrader.Library.Constants;
 
 namespace LoonieTrader.App.UiServices
 {
@@ -8,7 +8,7 @@ namespace LoonieTrader.App.UiServices
     {
         public bool AskYesNo(string message)
         {
-            var res = MessageBox.Show(message, Constants.ApplicationName, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            var res = MessageBox.Show(message, AppProperties.ApplicationName, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             return res == MessageBoxResult.Yes;
         }
     }

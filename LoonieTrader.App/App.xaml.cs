@@ -24,6 +24,5 @@ namespace LoonieTrader.App
         {
             MessageBox.Show("Unhandled AppDomain Exception: " + Environment.NewLine + e.ExceptionObject.ToString(), "AppDomain Error");
         }
-
     }
 }
