@@ -47,7 +47,7 @@ namespace LoonieTrader.Library.RestApi.Responses
 
         public class Unitsavailable
         {
-            public Default _default { get; set; }
+            public Default @default { get; set; }
             public Openonly openOnly { get; set; }
             public Reducefirst reduceFirst { get; set; }
             public Reduceonly reduceOnly { get; set; }
@@ -55,26 +55,26 @@ namespace LoonieTrader.Library.RestApi.Responses
 
         public class Default
         {
-            public string _long { get; set; }
-            public string _short { get; set; }
+            public string @long { get; set; }
+            public string @short { get; set; }
         }
 
         public class Openonly
         {
-            public string _long { get; set; }
-            public string _short { get; set; }
+            public string @long { get; set; }
+            public string @short { get; set; }
         }
 
         public class Reducefirst
         {
-            public string _long { get; set; }
-            public string _short { get; set; }
+            public string @long { get; set; }
+            public string @short { get; set; }
         }
 
         public class Reduceonly
         {
-            public string _long { get; set; }
-            public string _short { get; set; }
+            public string @long { get; set; }
+            public string @short { get; set; }
         }
 
         public class Ask

@@ -71,7 +71,7 @@
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.2.1\lib\net46\Serilog.dll</HintPath>
+      <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
@@ -153,16 +153,12 @@
     <Compile Include="ViewModels\Windows\ComplexOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\WorkbenchWindowViewModel.cs" />
-    <Compile Include="ViewModels\Windows\MarketOrderWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ChartWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
-    <Compile Include="Views\LiveChartWindow.xaml.cs">
-      <DependentUpon>LiveChartWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
@@ -201,13 +197,6 @@
     <Compile Include="Views\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MarketOrderWindow.xaml.cs">
-      <DependentUpon>MarketOrderWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\LiveChartWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\LogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -265,10 +254,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SettingsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MarketOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

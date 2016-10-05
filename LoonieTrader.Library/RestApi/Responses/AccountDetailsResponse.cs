@@ -64,10 +64,10 @@ namespace LoonieTrader.Library.RestApi.Responses
         public class Position
         {
             public string instrument { get; set; }
-            public Long _long { get; set; }
+            public Long @long { get; set; }
             public string pl { get; set; }
             public string resettablePL { get; set; }
-            public Short _short { get; set; }
+            public Short @short { get; set; }
             public string unrealizedPL { get; set; }
         }
 

@@ -93,10 +93,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="Control_OnMouseDoubleClick" x:Name="InstrumentTree">
+                    <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown">
                         <TreeView.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Make Favourite" Command="{Binding AddToFavouritesCommand}"/>
+                                <MenuItem Header="Add to Favourites" Command="{Binding AddInstrumentToFavouritesContextCommand}"/>
+                                <Separator/>
+                                <MenuItem Header="Open in Main window" Command="{Binding OpenInstrumentInMainContextCommand}"/>
+                                <MenuItem Header="Open Chart..." Command="{Binding OpenInstrumentInNewChartContextCommand}"/>
+                                <MenuItem Header="Trade Instrument..." Command="{Binding OpenInstrumentInTradeContextCommand}"/>
                             </ContextMenu>
                         </TreeView.ContextMenu>
                         <i:Interaction.Triggers>
@@ -106,7 +110,6 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <TreeView.Resources>
-
                             <converters:InstrumentTypeConverter x:Key="HierarchicalConverter" />
 
                             <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentTypeViewModel}">
@@ -116,7 +119,7 @@
                                     </MultiBinding>
                                 </HierarchicalDataTemplate.ItemsSource>
 
-                                <TextBlock Text="{Binding Path=Type,Mode=OneWay}" Margin="2" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Path=Type,Mode=OneWay}"  Margin="2" FontWeight="Bold"/>
                             </HierarchicalDataTemplate>
 
                             <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentViewModel}" >
@@ -137,10 +140,11 @@
                 </Grid.RowDefinitions>
                 <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
                     <TabItem Header="Open Positions" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" FlowDirection="LeftToRight" SelectedItem="{Binding SelectedPosition}" >
+                        <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
                             <xcdg:DataGridControl.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Close Position..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ClosePositionContextCommand}" />
+                                    <MenuItem Header="Trade Instrument..."  Command="{Binding ModifyPositionContextCommand}" />
 
                                 </ContextMenu>
                             </xcdg:DataGridControl.ContextMenu>
@@ -157,7 +161,7 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Open Orders" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" FlowDirection="LeftToRight"   SelectedItem="{Binding SelectedOrder}">
+                        <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" SelectedItem="{Binding SelectedOrder}">
                             <xcdg:DataGridControl.ContextMenu>
                                 <ContextMenu >
                                     <MenuItem Header="Cancel Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
@@ -178,7 +182,7 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Transaction History" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" FlowDirection="LeftToRight" ReadOnly="True">
+                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" ReadOnly="True">
                             <xcdg:DataGridControl.View>
                             <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                                 <xcdg:TableView.FixedHeaders>
@@ -192,11 +196,11 @@
                         </xcdg:DataGridControl>
                     </TabItem>
                     <TabItem Header="Account Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" FlowDirection="LeftToRight" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
+                        <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
                                            ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
                     </TabItem>
                     <TabItem Header="Instrument Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" FlowDirection="LeftToRight"
+                        <xctk:PropertyGrid SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
                                            ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
                     </TabItem>
                 </TabControl>
@@ -214,11 +218,10 @@
 
                         <xctk:WatermarkComboBox ItemsSource="{Binding AvailableIndicators}"  Watermark="Indicators"  SelectedItem="{Binding SelectedIndicator}" />
 
-                        <Button Content="_Market Order..." Margin="30,0,0,0" Command="{Binding MarketOrderCommand}"  FontSize="14" Padding="10" />
-                        <Button Content="Complex _Order..." Command="{Binding CompositeOrderCommand}" FontSize="14"  Padding="10" />
+                        <Button Content="Complex _Order..." Command="{Binding ComplexOrderCommand}" FontSize="14"  Padding="10" Margin="30,0,0,0" />
                         <Button Content="New C_hart Window..." Command="{Binding NewChartCommand}"  FontSize="14" Padding="10" />
 
-                        <Button Content="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}"  Padding="10"/>
+                        <Button Content="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}"  FontSize="14" Padding="10"/>
 
                     </StackPanel>
                     <wpf:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" LegendLocation="Top">

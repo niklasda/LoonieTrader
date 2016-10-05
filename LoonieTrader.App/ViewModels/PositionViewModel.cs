@@ -1,19 +1,21 @@
 ﻿using System.ComponentModel;
+using GalaSoft.MvvmLight;
+using LoonieTrader.Library.RestApi.Caches;
 
 namespace LoonieTrader.App.ViewModels
 {
     public class PositionViewModel
     {
-        [ReadOnly(true)]
+        public string DisplayName { get { return InstrumentCache.LookupDisplayName(Instrument); } }
+
         public string Instrument { get; set; }
 
-        [ReadOnly(true)]
         public decimal ProfitLoss { get; set; }
 
-        [ReadOnly(true), DisplayName("Resettable P/L")]
+        [DisplayName(@"Resettable P/L")]
         public string ResettablePL { get; set; }
 
-        [ReadOnly(true), DisplayName("Unrealized P/L")]
+        [DisplayName(@"Unrealized P/L")]
         public string UnrealizedPL { get; set; }
     }
 }

@@ -43,10 +43,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             LogCommand = new RelayCommand(OpenLogWindow);
             AboutCommand = new RelayCommand(OpenAboutWindow);
-            MarketOrderCommand = new RelayCommand(OpenMarketOrderWindow);
-            CompositeOrderCommand = new RelayCommand(OpenCompositeOrderWindow);
+            ComplexOrderCommand = new RelayCommand(()=>OpenComplexOrderWindow(null));
             WorkbenchCommand = new RelayCommand(OpenWorkbenchWindow);
-            NewChartCommand = new RelayCommand(OpenNewChartWindow);
+            NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
             ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"}));
@@ -57,6 +56,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             AccountInformationCommand = new RelayCommand(() => SelectedTabIndex = 3);
             InstrumentInformationCommand = new RelayCommand(() => SelectedTabIndex = 4);
             ClosePositionContextCommand = new RelayCommand(ClosePosition);
+            ModifyPositionContextCommand = new RelayCommand(ModifyPosition);
             CancelOrderContextCommand = new RelayCommand(CancelOrder);
             ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
 
@@ -73,8 +73,13 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
-            AddToFavouritesCommand = new RelayCommand(AddToFavourites);
+            //AddToFavouritesCommand = new RelayCommand(AddInstrumentToFavourites);
             SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
+
+            AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
+            OpenInstrumentInMainContextCommand = new RelayCommand(OpenInstrumentInMain);
+            OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
+            OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
 
             //  ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
             //  IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
@@ -146,7 +151,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                     //_orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
                     //_tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                     //_transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
-                   ;
+
                 }
                 catch (Exception ex)
                 {
@@ -217,8 +222,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand SettingsCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         public ICommand ExitApplicationCommand { get; set; }
-        public ICommand MarketOrderCommand { get; set; }
-        public ICommand CompositeOrderCommand { get; set; }
+        public ICommand ComplexOrderCommand { get; set; }
         public ICommand ReloadChartCommand { get; set; }
         public ICommand WorkbenchCommand { get; set; }
         public ICommand NewChartCommand { get; set; }
@@ -229,10 +233,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand InstrumentInformationCommand { get; set; }
 
         public ICommand ClosePositionContextCommand { get; set; }
+        public ICommand ModifyPositionContextCommand { get; set; }
         public ICommand CancelOrderContextCommand { get; set; }
         public ICommand ModifyOrderContextCommand { get; set; }
 
-        public ICommand AddToFavouritesCommand { get; set; }
+       // public ICommand AddToFavouritesCommand { get; set; }
 
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
@@ -325,11 +330,38 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private void AddToFavourites()
+        private void AddInstrumentToFavourites()
         {
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
+            }
+        }
+
+        private void OpenInstrumentInMain()
+        {
+            if (SelectedInstrument != null)
+            {
+                Console.WriteLine(SelectedInstrument);
+                ReloadChart(SelectedInstrument);
+            }
+        }
+
+        private void OpenInstrumentInNewChart()
+        {
+            if (SelectedInstrument != null)
+            {
+                Console.WriteLine(SelectedInstrument);
+                OpenNewChartWindow(SelectedInstrument);
+            }
+        }
+
+        private void OpenInstrumentInTrade()
+        {
+            if (SelectedInstrument != null)
+            {
+                Console.WriteLine(SelectedInstrument);
+                OpenComplexOrderWindow(SelectedInstrument);
             }
         }
 
@@ -606,6 +638,12 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
             }
         }
+        private void ModifyPosition()
+        {
+            Console.WriteLine(SelectedPosition.Instrument);
+
+            OpenComplexOrderWindow(null);
+        }
 
         private void CancelOrder()
         {
@@ -646,12 +684,12 @@ namespace LoonieTrader.App.ViewModels.Windows
                 SeriesCollection.Add(
                     new OhlcSeries()
                     {
-                        Title = "Reloaded",
+                        Title = string.Format("Reloaded {0}", instrument.DisplayName),
                         IncreaseBrush = Brushes.Green,
                         DecreaseBrush = Brushes.Red,
                         Values = new ChartValues<CandleDataViewModel>
                         {
-                            new CandleDataViewModel() {Open=1.1m, High= 1.3m, Low=1.0m, Close=1.2m,Date = DateTime.Now.ToString("yyyyMMdd"), Time=DateTime.Now.ToString("HHmmss"), Ticker = "NIX"},
+                            new CandleDataViewModel() {Open=1.1m, High= 1.3m, Low=1.0m, Close=1.2m,Date = DateTime.Now.ToString("yyyyMMdd"), Time=DateTime.Now.ToString("HHmmss"), Ticker = instrument.DisplayName},
                         }
                     });
 
@@ -675,7 +713,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                SeriesCollection[0].Values.Add(new CandleDataViewModel() { Open = 1.1m, High = 1.3m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss"), Ticker = "NIX" });
+                SeriesCollection[0].Values.Add(new CandleDataViewModel() { Open = 1.1m, High = 1.3m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss"), Ticker = instrument.DisplayName });
             //    Labels.Add("New");
             }
 
@@ -687,7 +725,15 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
 
-        public void SelectedInstrumentChanged(object o)
+        public ICommand AddInstrumentToFavouritesContextCommand { get; private set; }
+
+        public ICommand OpenInstrumentInMainContextCommand { get; private set; }
+
+        public ICommand OpenInstrumentInNewChartContextCommand { get; private set; }
+
+        public ICommand OpenInstrumentInTradeContextCommand { get; private set; }
+
+        private void SelectedInstrumentChanged(object o)
         {
             InstrumentViewModel instrument = o as InstrumentViewModel;
             InstrumentTypeViewModel instrumentType = o as InstrumentTypeViewModel;
@@ -706,38 +752,37 @@ namespace LoonieTrader.App.ViewModels.Windows
        // public InstrumentViewModel SelectedCluster { get; private set; }
 
 
-        private void OpenMarketOrderWindow()
-        {
-            MarketOrderWindow mow = new MarketOrderWindow();
-            mow.Owner = Application.Current.MainWindow;
-            mow.Show();
-        }
-
-        private void OpenCompositeOrderWindow()
+        private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {
             CompositeOrderWindow cow = new CompositeOrderWindow();
             cow.Owner = Application.Current.MainWindow;
-            cow.Show();
+            cow.ShowInstrument(instrument);
+            //cow.Show();
         }
 
         private void OpenWorkbenchWindow()
         {
             WorkbenchWindow ww = new WorkbenchWindow();
+            ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
 
-        private void OpenNewChartWindow()
+        private void OpenNewChartWindow(InstrumentViewModel instrument)
         {
             ChartWindow tw = new ChartWindow();
-            tw.Show();
+            tw.Owner = Application.Current.MainWindow;
+            tw.ShowInstrument(instrument);
+            //tw.Show();
 
-            LiveChartWindow tdw = new LiveChartWindow();
-            tdw.Show();
+            //LiveChartWindow tdw = new LiveChartWindow();
+            //tdw.Owner = Application.Current.MainWindow;
+            //tdw.Show();
         }
 
         private void OpenSettingsWindow()
         {
             SettingsWindow sw = new SettingsWindow();
+            sw.Owner = Application.Current.MainWindow;
             sw.Show();
         }
 

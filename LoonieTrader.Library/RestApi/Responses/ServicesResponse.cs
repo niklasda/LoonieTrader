@@ -76,7 +76,7 @@ namespace LoonieTrader.Library.RestApi.Responses
         {
             public string description { get; set; }
             public string level { get; set; }
-            public bool _default { get; set; }
+            public bool @default { get; set; }
             public string image { get; set; }
             public string url { get; set; }
             public string id { get; set; }

@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
+using GalaSoft.MvvmLight;
 
 namespace LoonieTrader.App.ViewModels
 {
-    public class ServiceEventViewModel
+    public class ServiceEventViewModel : ViewModelBase
     {
-        [ReadOnly(true)]
         public string Message { get; set; }
-        [ReadOnly(true)]
+
         public string Timestamp { get; set; }
 
     }

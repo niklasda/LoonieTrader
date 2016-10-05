@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using LiveCharts.Defaults;
@@ -31,7 +32,15 @@ namespace LoonieTrader.App.Mapper
                     //.ForMember(i => i.type, m => m.MapFrom(r => r.SelectedInstrument.Name))
                     .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice))
                     .ForMember(i => i.units, m => m.MapFrom(r => r.Amount));
-                    //.ForMember(i => i.positionFill, m => m.MapFrom(r => r.SelectedInstrument.Name));
+                //.ForMember(i => i.positionFill, m => m.MapFrom(r => r.SelectedInstrument.Name));
+
+                CreateMap<PricesResponse.Bid, PriceDepthViewModel>()
+                    .ForMember(i => i.Bid, m => m.MapFrom(r => r.liquidity))
+                    .ForMember(i => i.Price, m => m.MapFrom(r => r.price));
+
+                CreateMap<PricesResponse.Ask, PriceDepthViewModel>()
+                    .ForMember(i => i.Ask, m => m.MapFrom(r => r.liquidity))
+                    .ForMember(i => i.Price, m => m.MapFrom(r => r.price));
 
                 CreateMap<PositionsResponse.Position, PositionViewModel>()
                     .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)));

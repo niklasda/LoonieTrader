@@ -132,7 +132,7 @@
             </Expander>
             <Expander  Header="Market Depth" Margin="2"  >
 
-                <xcdg:DataGridControl  ItemsSource="{Binding AllDepth,Mode=OneWay}" AutoCreateColumns="True" Margin="20,2,1,2" ReadOnly="True" SelectionMode="Single" >
+                <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding AllDepth,Mode=OneWay}" Margin="20,2,1,2" ReadOnly="True" SelectionMode="Single" >
                     <xcdg:DataGridControl.View>
                         <xcdg:TableflowView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                             <xcdg:TableView.FixedHeaders>
@@ -142,7 +142,11 @@
                             </xcdg:TableView.FixedHeaders>
                         </xcdg:TableflowView>
                     </xcdg:DataGridControl.View>
-
+                    <xcdg:DataGridControl.Columns>
+                        <xcdg:Column FieldName="Bid" AllowGroup="False" Title="Bid"  />
+                        <xcdg:Column FieldName="Ask" AllowGroup="False"  Title="Ask"/>
+                        <xcdg:Column FieldName="Price" AllowGroup="False"  Title="Price"/>
+                    </xcdg:DataGridControl.Columns>
                 </xcdg:DataGridControl>
             </Expander>
         <Expander  Header="Take-Profit" Margin="2" >

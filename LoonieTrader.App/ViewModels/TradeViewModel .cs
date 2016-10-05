@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
+using GalaSoft.MvvmLight;
 
 namespace LoonieTrader.App.ViewModels
 {
-    public class TradeViewModel
+    public class TradeViewModel : ViewModelBase
     {
-        [ReadOnly(true)]
         public string Instrument { get; set; }
 
         public string Price { get; set; }

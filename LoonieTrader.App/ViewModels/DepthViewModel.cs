@@ -1,7 +1,9 @@
 ﻿
+using GalaSoft.MvvmLight;
+
 namespace LoonieTrader.App.ViewModels
 {
-    public class PriceDepthViewModel
+    public class PriceDepthViewModel : ViewModelBase
     {
         public string Bid { get; set; }
 

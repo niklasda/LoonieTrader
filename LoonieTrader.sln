@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.Library", "LoonieTrader.Library\LoonieTrader.Library.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.RestClient", "LoonieTrader.RestClient\LoonieTrader.RestClient.csproj", "{75834CF7-9B79-416F-939A-D0EFC0CDD1DB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,10 +42,6 @@ Global
 		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75834CF7-9B79-416F-939A-D0EFC0CDD1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75834CF7-9B79-416F-939A-D0EFC0CDD1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75834CF7-9B79-416F-939A-D0EFC0CDD1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75834CF7-9B79-416F-939A-D0EFC0CDD1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

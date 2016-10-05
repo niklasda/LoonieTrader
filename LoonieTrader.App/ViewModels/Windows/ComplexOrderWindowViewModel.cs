@@ -103,34 +103,36 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        public IList<PriceDepthViewModel> AllDepth
+        public ObservableCollection<PriceDepthViewModel> AllDepth
         {
             get
             {
                 if (_latestPrice != null)
                 {
-                    // todo do this with automapper
+                    IEnumerable<PriceDepthViewModel> bidDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].bids);
+                    IEnumerable<PriceDepthViewModel> askDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].asks);
 
-                    IEnumerable<PriceDepthViewModel> depths = _latestPrice.prices[0].bids.Select(
-                        x =>
-                            new PriceDepthViewModel()
-                            {
-                                Bid = x.liquidity.ToString(),
-                                Price = x.price,
-                            });
+                    //IEnumerable<PriceDepthViewModel> depths = _latestPrice.prices[0].bids.Select(
+                    //    x =>
+                    //        new PriceDepthViewModel()
+                    //        {
+                    //            Bid = x.liquidity.ToString(),
+                    //            Price = x.price,
+                    //        });
 
-                    IEnumerable<PriceDepthViewModel> depths2 = _latestPrice.prices[0].asks.Select(
-                        x =>
-                            new PriceDepthViewModel()
-                            {
-                                Ask = x.liquidity.ToString(),
-                                Price = x.price,
-                            });
+                    //IEnumerable<PriceDepthViewModel> depths2 = _latestPrice.prices[0].asks.Select(
+                    //    x =>
+                    //        new PriceDepthViewModel()
+                    //        {
+                    //            Ask = x.liquidity.ToString(),
+                    //            Price = x.price,
+                    //        });
 
-                    var d2 = depths.Concat(depths2).ToArray();
-                    return d2;
+                    var depth = bidDepth.Concat(askDepth).ToArray();
+                    return new ObservableCollection<PriceDepthViewModel>(depth);
                 }
-                return new List<PriceDepthViewModel>(0);
+
+                return new ObservableCollection<PriceDepthViewModel>();
             }
         }
 
@@ -613,5 +615,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 }
             }
         }
+
+        public InstrumentViewModel Instrument { get; set; }
     }
 }

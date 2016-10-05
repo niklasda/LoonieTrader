@@ -16,19 +16,14 @@
             <xcdg:DataGridControl AutoCreateColumns="True" Grid.Row="0" ItemsSource="{Binding LogEntries,Mode=OneWay}" ReadOnly="True">
                 <xcdg:DataGridControl.View>
                     <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                    <xcdg:TableView.FixedHeaders>
-                        <DataTemplate>
-                            <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                        </DataTemplate>
-                    </xcdg:TableView.FixedHeaders>
-
+                        <xcdg:TableView.FixedHeaders>
+                            <DataTemplate>
+                                <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
+                            </DataTemplate>
+                        </xcdg:TableView.FixedHeaders>
                     </xcdg:TableView>
                 </xcdg:DataGridControl.View>
-
             </xcdg:DataGridControl>
-
-
-
         </Grid>
     </Grid>
 </Window>
