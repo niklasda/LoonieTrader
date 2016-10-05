@@ -12,6 +12,7 @@
         Height="480" MinHeight="400"
         Width="380" MinWidth="300"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
+    <ScrollViewer>
     <Grid>
 
         <Grid.RowDefinitions>
@@ -201,19 +202,5 @@
         </Expander>
         </StackPanel>
     </Grid>
+    </ScrollViewer>
 </Window>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

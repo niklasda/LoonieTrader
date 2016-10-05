@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using LoonieTrader.App.Views;
-using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -14,29 +14,42 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class LoginWindowViewModel : ViewModelBase
     {
-        public LoginWindowViewModel(ISettings settings, IAccountsRequester accountsRequester)
+        public LoginWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, IDialogService dialogService)
         {
             _accountsRequester = accountsRequester;
+            _dialogService = dialogService;
             LoginCommand = new RelayCommand(Login, () => CanClose);
 
             ApiKey = settings.ApiKey;
             SelectedEnvironmentKey = settings.Environment;
 
-            _availableEnvironments =  new[] { Environments.Practice, Environments.Live };
+            _availableEnvironments = new[] {Environments.Practice, Environments.Live};
 
-            var ar = _accountsRequester.GetAccountSummaries();
-            _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
-
-            var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
-            if (prim.Key != null)
+            try
             {
-                SelectedAccountKey = prim.Key;
+                var ar = _accountsRequester.GetAccountSummaries();
+                _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
+            }
+            catch (Exception ex)
+            {
+                _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
+                RaisePropertyChanged(() => AvailableAccounts);
+            }
+
+            if (_availableAccounts != null)
+            {
+                var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
+                if (prim.Key != null)
+                {
+                    SelectedAccountKey = prim.Key;
+                }
             }
         }
 
         private readonly IAccountsRequester _accountsRequester;
-        private KeyValuePair<string, string>[] _availableEnvironments;
-        private KeyValuePair<string, string>[] _availableAccounts;
+        private readonly IDialogService _dialogService;
+        private readonly KeyValuePair<string, string>[] _availableEnvironments;
+        private readonly KeyValuePair<string, string>[] _availableAccounts;
 
         public bool CanClose
         {
@@ -61,7 +74,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return _availableEnvironments; }
         }
 
-        public RelayCommand LoginCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
 
         public Action CloseAction { get; set; }
 
@@ -72,7 +85,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void Login()
         {
-
             MainWindow mw = new MainWindow();
             mw.Show();
 

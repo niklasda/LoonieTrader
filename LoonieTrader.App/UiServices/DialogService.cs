@@ -11,5 +11,10 @@ namespace LoonieTrader.App.UiServices
             var res = MessageBox.Show(message, AppProperties.ApplicationName, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
             return res == MessageBoxResult.Yes;
         }
+
+        public void WarnOk(string message)
+        {
+            var res = MessageBox.Show(message, AppProperties.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

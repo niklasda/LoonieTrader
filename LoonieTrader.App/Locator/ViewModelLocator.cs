@@ -31,46 +31,22 @@ namespace LoonieTrader.App.Locator
 
         public ChartWindowViewModel Chart => _container.GetInstance<ChartWindowViewModel>();
 
-        public ComplexOrderWindowViewModel ComplexOrder
-        {
-            get { return _container.GetInstance<ComplexOrderWindowViewModel>(); }
-        }
-        public LiveChartWindowViewModel LiveChart
-        {
-            get { return _container.GetInstance<LiveChartWindowViewModel>(); }
-        }
+        public ComplexOrderWindowViewModel ComplexOrder => _container.GetInstance<ComplexOrderWindowViewModel>();
 
-        public LoginWindowViewModel Login
-        {
-            get { return _container.GetInstance<LoginWindowViewModel>(); }
-        }
-        public WorkbenchWindowViewModel Workbench
-        {
-            get { return _container.GetInstance<WorkbenchWindowViewModel>(); }
-        }
-        public SettingsWindowViewModel Settings
-        {
-            get { return _container.GetInstance<SettingsWindowViewModel>(); }
-        }
+        public LiveChartWindowViewModel LiveChart => _container.GetInstance<LiveChartWindowViewModel>();
 
-        public AboutWindowViewModel About
-        {
-            get { return _container.GetInstance<AboutWindowViewModel>(); }
-        }
+        public LoginWindowViewModel Login => _container.GetInstance<LoginWindowViewModel>();
 
-        public LogWindowViewModel Log
-        {
-            get { return _container.GetInstance<LogWindowViewModel>(); }
-        }
+        public WorkbenchWindowViewModel Workbench => _container.GetInstance<WorkbenchWindowViewModel>();
 
-        public ServiceStatusLiveWindowViewModel ServiceStatusLive
-        {
-            get { return _container.GetInstance<ServiceStatusLiveWindowViewModel>(); }
-        }
+        public SettingsWindowViewModel Settings => _container.GetInstance<SettingsWindowViewModel>();
 
-        public ServiceStatusPracticeWindowViewModel ServiceStatusPractice
-        {
-            get { return _container.GetInstance<ServiceStatusPracticeWindowViewModel>(); }
-        }
+        public AboutWindowViewModel About => _container.GetInstance<AboutWindowViewModel>();
+
+        public LogWindowViewModel Log => _container.GetInstance<LogWindowViewModel>();
+
+        public ServiceStatusLiveWindowViewModel ServiceStatusLive => _container.GetInstance<ServiceStatusLiveWindowViewModel>();
+
+        public ServiceStatusPracticeWindowViewModel ServiceStatusPractice => _container.GetInstance<ServiceStatusPracticeWindowViewModel>();
     }
 }
