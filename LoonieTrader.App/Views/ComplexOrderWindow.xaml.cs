@@ -4,9 +4,9 @@ using LoonieTrader.App.ViewModels.Windows;
 
 namespace LoonieTrader.App.Views
 {
-    public partial class CompositeOrderWindow : Window
+    public partial class ComplexOrderWindow : Window
     {
-        public CompositeOrderWindow()
+        public ComplexOrderWindow()
         {
             InitializeComponent();
         }

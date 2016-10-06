@@ -15,7 +15,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Content="Update" Margin="30,5" Command="{Binding UpdateCommand}"/>
-        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" BorderThickness="1" BorderBrush="Gainsboro">
+        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top">
             <wpf:CartesianChart.AxisX>
                 <wpf:Axis Labels="{Binding Labels}"/>
             </wpf:CartesianChart.AxisX>

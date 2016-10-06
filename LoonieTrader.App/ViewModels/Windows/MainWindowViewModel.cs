@@ -754,7 +754,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {
-            CompositeOrderWindow cow = new CompositeOrderWindow();
+            ComplexOrderWindow cow = new ComplexOrderWindow();
             cow.Owner = Application.Current.MainWindow;
             cow.ShowInstrument(instrument);
             //cow.Show();

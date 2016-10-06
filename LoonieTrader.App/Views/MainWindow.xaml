@@ -15,8 +15,7 @@
         Width="1080" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
     <Window.InputBindings>
-        <KeyBinding Key="M" Modifiers="Control" Command="{Binding MarketOrderCommand}"/>
-        <KeyBinding Key="O" Modifiers="Control" Command="{Binding CompositeOrderCommand}"/>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
         <KeyBinding Key="D1" Modifiers="Control" Command="{Binding InstrumentInformationCommand}"/>
@@ -43,8 +42,7 @@
                 <MenuItem Header="Open Positions" Command="{Binding OpenPositionsCommand}" InputGestureText="Ctrl+5" />
             </MenuItem>
             <MenuItem Header="_Windows" >
-                <MenuItem Header="_Market Order" Command="{Binding MarketOrderCommand}" InputGestureText="Ctrl+M" />
-                <MenuItem Header="Complex _Order" Command="{Binding CompositeOrderCommand}" InputGestureText="Ctrl+O" />
+                <MenuItem Header="Complex _Order" Command="{Binding ComplexOrderCommand}" InputGestureText="Ctrl+O" />
                 <MenuItem Header="C_hart" Command="{Binding NewChartCommand}" InputGestureText="Ctrl+H" />
                 <MenuItem Header="_Indicator Workbench" Command="{Binding WorkbenchCommand}" InputGestureText="Ctrl+I" />
             </MenuItem>
@@ -224,7 +222,7 @@
                         <Button Content="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}"  FontSize="14" Padding="10"/>
 
                     </StackPanel>
-                    <wpf:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}" LegendLocation="Top">
+                    <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Top">
                         <wpf:CartesianChart.AxisX>
                             <wpf:Axis LabelFormatter="{Binding Formatter}"/>
                         </wpf:CartesianChart.AxisX>

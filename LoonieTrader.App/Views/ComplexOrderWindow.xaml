@@ -6,7 +6,7 @@
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:wpfControls="http://wpfcontrols.com/"
         xmlns:controls="clr-namespace:LoonieTrader.App.Views.Controls"
-        x:Class="LoonieTrader.App.Views.CompositeOrderWindow"
+        x:Class="LoonieTrader.App.Views.ComplexOrderWindow"
         DataContext="{Binding ComplexOrder, Source={StaticResource Locator}}"
         Title="{Binding WindowTitle}"
         Height="480" MinHeight="400"

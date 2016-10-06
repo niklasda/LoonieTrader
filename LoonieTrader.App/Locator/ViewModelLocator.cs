@@ -33,8 +33,6 @@ namespace LoonieTrader.App.Locator
 
         public ComplexOrderWindowViewModel ComplexOrder => _container.GetInstance<ComplexOrderWindowViewModel>();
 
-        public LiveChartWindowViewModel LiveChart => _container.GetInstance<LiveChartWindowViewModel>();
-
         public LoginWindowViewModel Login => _container.GetInstance<LoginWindowViewModel>();
 
         public WorkbenchWindowViewModel Workbench => _container.GetInstance<WorkbenchWindowViewModel>();
