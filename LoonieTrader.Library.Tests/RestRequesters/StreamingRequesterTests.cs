@@ -6,6 +6,7 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestRequesters
 {
+    [TestFixture, Category("Integration")]
     public class StreamingRequesterTests
     {
         [OneTimeSetUp]
@@ -20,8 +21,9 @@ namespace LoonieTrader.Library.Tests.RestRequesters
         private ISettings _s;
 
         [Test]
-        public void Test()
+        public void TestPricingStream()
         {
+            var pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
         }
 
     }
