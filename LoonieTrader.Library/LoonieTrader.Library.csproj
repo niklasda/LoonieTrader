@@ -94,10 +94,12 @@
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="RestApi\Interfaces\IHealthRequester.cs" />
     <Compile Include="RestApi\Interfaces\IPricingHistoryRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IStreamingRequester.cs" />
+    <Compile Include="RestApi\Interfaces\ITransactionsStreamingRequester.cs" />
+    <Compile Include="RestApi\Interfaces\IPricingStreamingRequester.cs" />
     <Compile Include="RestApi\Requesters\HealthRequester.cs" />
     <Compile Include="RestApi\Requesters\PricingHistoryRequester.cs" />
-    <Compile Include="RestApi\Requesters\StreamingRequester.cs" />
+    <Compile Include="RestApi\Requesters\PricingStreamingRequester.cs" />
+    <Compile Include="RestApi\Requesters\TransactionsStreamingRequester.cs" />
     <Compile Include="RestApi\Responses\ServiceListResponse.cs" />
     <Compile Include="RestApi\Responses\ServiceEventsResponse.cs" />
     <Compile Include="RestApi\Responses\ServicesResponse.cs" />

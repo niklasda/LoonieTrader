@@ -73,8 +73,9 @@
     <Compile Include="RestRequesters\HealthRequesterTests.cs" />
     <Compile Include="RestRequesters\PricingRequesterTests.cs" />
     <Compile Include="RestRequesters\PricingHistoryRequesterTests.cs" />
+    <Compile Include="RestRequesters\TransactionsStreamingRequesterTests.cs" />
     <Compile Include="RestRequesters\TradesRequesterTests.cs" />
-    <Compile Include="RestRequesters\StreamingRequesterTests.cs" />
+    <Compile Include="RestRequesters\PricingStreamingRequesterTests.cs" />
     <Compile Include="RestRequesters\TransactionsRequesterTests.cs" />
     <Compile Include="RestRequesters\PositionsRequesterTests.cs" />
     <Compile Include="RestRequesters\OrdersRequesterTests.cs" />

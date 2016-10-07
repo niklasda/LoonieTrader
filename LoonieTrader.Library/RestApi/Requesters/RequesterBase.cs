@@ -2,7 +2,6 @@
 using System.Net;
 using System.Text;
 using JsonPrettyPrinterPlus;
-using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 
@@ -26,13 +25,19 @@ namespace LoonieTrader.Library.RestApi.Requesters
             get { return string.Format("Bearer {0}", _apiKey); }
         }
 
-        protected string GetRestUrl(string arg)
+        protected string GetRestUrl(string path)
         {
-            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, arg);
+            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, path);
         }
-        protected string GetHttpRestUrl(string arg)
+
+        protected string GetStreamingRestUrl(string path)
         {
-            return string.Format("http://api-status.oanda.com/api/v1/{0}", arg);
+            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.PracticeStreaming.Value, path);
+        }
+
+        protected string GetHttpRestUrl(string env)
+        {
+            return string.Format("http://api-status.oanda.com/api/v1/{0}", env);
         }
 
         protected IExtendedLogger Logger

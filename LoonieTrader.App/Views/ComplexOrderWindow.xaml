@@ -4,203 +4,202 @@
         xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
-        xmlns:wpfControls="http://wpfcontrols.com/"
         xmlns:controls="clr-namespace:LoonieTrader.App.Views.Controls"
         x:Class="LoonieTrader.App.Views.ComplexOrderWindow"
         DataContext="{Binding ComplexOrder, Source={StaticResource Locator}}"
         Title="{Binding WindowTitle}"
         Height="480" MinHeight="400"
-        Width="380" MinWidth="300"
+        Width="390" MinWidth="300"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
-    <ScrollViewer>
-    <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" >
+        <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="38"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="14"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0">
-            <controls:AutoFilteredComboBox ItemsSource="{Binding AllInstruments}" FontSize="14" Padding="2,1" Margin="5" 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="14"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <controls:AutoFilteredComboBox ItemsSource="{Binding AllInstruments}" FontSize="14" Padding="2,1" Margin="5" 
                 SelectedValue="{Binding SelectedInstrument, Mode=TwoWay}" IsCaseSensitive="False" DropDownOnFocus="True" 
                 IsEditable="True" IsTextSearchEnabled="False" DisplayMemberPath="DisplayName"/>
-        </Grid>
-        <Grid Grid.Row="0" Grid.Column="1">
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
 
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0"  IsEnabled="{Binding SellButtonEnabled}" FontSize="14"
+                <Button Grid.Column="0"  IsEnabled="{Binding SellButtonEnabled}" FontSize="14"
                                  Command="{Binding SellCommand}" Margin="10" >
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FFECECEC" Offset="0.469"/>
-                        <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
-                        <GradientStop Color="Red" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <Grid  >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" Height="30" IsEnabled="{Binding SellButtonEnabled}"></Image>
-                    <TextBlock  Grid.Column="1" Text="{Binding SellButtonLabel}"  IsEnabled="{Binding SellButtonEnabled}" Margin="20,10"></TextBlock>
-                </Grid>
-            </Button>
-            <Button Grid.Column="1"  IsEnabled="{Binding BuyButtonEnabled}" FontSize="14"
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FFECECEC" Offset="0.469"/>
+                            <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Grid  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" Height="30" IsEnabled="{Binding SellButtonEnabled}"></Image>
+                        <TextBlock  Grid.Column="1" Text="{Binding SellButtonLabel}"  IsEnabled="{Binding SellButtonEnabled}" Margin="20,10"></TextBlock>
+                    </Grid>
+                </Button>
+                <Button Grid.Column="1"  IsEnabled="{Binding BuyButtonEnabled}" FontSize="14"
                                    Command="{Binding BuyCommand}" Margin="10" >
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFECECEC" Offset="0.469"/>
-                        <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
-                        <GradientStop Color="Green" Offset="0.954"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-                <Grid  >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png" Height="30" IsEnabled="{Binding BuyButtonEnabled}"></Image>
-                    <TextBlock  Grid.Column="1" Text="{Binding BuyButtonLabel}"  IsEnabled="{Binding BuyButtonEnabled}" Margin="20,10"></TextBlock>
-                </Grid>
-            </Button>
-        </Grid>
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Sell for bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
-            <TextBlock Grid.Column="1" Text="{Binding BuySellSpread}" TextAlignment="Center" FontSize="8" />
-            <TextBlock Grid.Column="2" Text="Buy at ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFECECEC" Offset="0.469"/>
+                            <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
+                            <GradientStop Color="Green" Offset="0.954"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Grid  >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png" Height="30" IsEnabled="{Binding BuyButtonEnabled}"></Image>
+                        <TextBlock  Grid.Column="1" Text="{Binding BuyButtonLabel}"  IsEnabled="{Binding BuyButtonEnabled}" Margin="20,10"></TextBlock>
+                    </Grid>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Sell for bid" TextAlignment="Left" FontSize="8" Padding="10,0" />
+                <TextBlock Grid.Column="1" Text="{Binding BuySellSpread}" TextAlignment="Center" FontSize="8" />
+                <TextBlock Grid.Column="2" Text="Buy at ask" TextAlignment="Right" FontSize="8" Padding="10,0" />
 
-        </Grid>
-        <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="2,0,0,0">
-            <Expander Header="Order Data"  IsExpanded="True" Margin="2">
-                <Grid Margin="20,2,1,2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="26"></RowDefinition>
-                        <RowDefinition Height="26"></RowDefinition>
-                        <RowDefinition Height="26"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Amount</TextBlock>
-                    <Grid Grid.Row="0" Grid.Column="1">
+            </Grid>
+            <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="2,0,0,0">
+                <Expander Header="Order Data"  IsExpanded="True" Margin="2">
+                    <Grid Margin="20,2,1,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                            <RowDefinition Height="26"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                    <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="10.0" FormatString="n"
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Amount</TextBlock>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="10.0" FormatString="n"
                                        Value="{Binding Amount}"  />
-                    </Grid>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,2">Price</TextBlock>
-                    <Grid Grid.Row="1" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                    <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" IsEnabled="{Binding IsNotMarketOrder, Mode=OneWay}"
+                        </Grid>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0,2">Price</TextBlock>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" IsEnabled="{Binding IsNotMarketOrder, Mode=OneWay}"
                                        Value="{Binding MainPrice}" FormatString="n" />
-                        <CheckBox Grid.Column="1" Content="Market" Margin="5,5,0,5" IsChecked="{Binding IsMarketOrder}" />
-                    </Grid>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,2">Expiry</TextBlock>
-                    <Grid Grid.Row="2" Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <DatePicker DisplayDateStart="{Binding EarliestExpiryDate, Mode=OneWay}" IsEnabled="{Binding IsNotGtcExpiry, Mode=OneWay}"
+                            <CheckBox Grid.Column="1" Content="Market" Margin="5,5,0,5" IsChecked="{Binding IsMarketOrder}" />
+                        </Grid>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Margin="0,2">Expiry</TextBlock>
+                        <Grid Grid.Row="2" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <DatePicker DisplayDateStart="{Binding EarliestExpiryDate, Mode=OneWay}" IsEnabled="{Binding IsNotGtcExpiry, Mode=OneWay}"
                                     DisplayDateEnd="{Binding LatestExpiryDate, Mode=OneWay}" FirstDayOfWeek="Monday" SelectedDate="{Binding SelectedExpiryDate[0]}"/>
 
-                        <CheckBox Grid.Column="1" Content="GTC" Margin="5,5,0,5"  IsChecked="{Binding IsGtcExpiry}" />
+                            <CheckBox Grid.Column="1" Content="GTC" Margin="5,5,0,5"  IsChecked="{Binding IsGtcExpiry}" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Expander>
-            <Expander  Header="Market Depth" Margin="2"  >
+                </Expander>
+                <Expander  Header="Market Depth" Margin="2"  >
 
-                <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding AllDepth,Mode=OneWay}" Margin="20,2,1,2" ReadOnly="True" SelectionMode="Single" >
-                    <xcdg:DataGridControl.View>
-                        <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                            <xcdg:TableView.FixedHeaders>
-                                <DataTemplate>
-                                    <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                </DataTemplate>
-                            </xcdg:TableView.FixedHeaders>
-                        </xcdg:TableView>
-                    </xcdg:DataGridControl.View>
-                    <xcdg:DataGridControl.Columns>
-                        <xcdg:Column FieldName="Bid" AllowGroup="False" Title="Bid"  />
-                        <xcdg:Column FieldName="Ask" AllowGroup="False"  Title="Ask"/>
-                        <xcdg:Column FieldName="Price" AllowGroup="False"  Title="Price"/>
-                    </xcdg:DataGridControl.Columns>
-                </xcdg:DataGridControl>
-            </Expander>
-        <Expander  Header="Take-Profit" Margin="2" >
-                <Grid Margin="20,2,1,2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="26"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                    <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding AllDepth,Mode=OneWay}" Margin="20,2,1,2" ReadOnly="True" SelectionMode="Single" >
+                        <xcdg:DataGridControl.View>
+                            <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
+                                <xcdg:TableView.FixedHeaders>
+                                    <DataTemplate>
+                                        <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
+                                    </DataTemplate>
+                                </xcdg:TableView.FixedHeaders>
+                            </xcdg:TableView>
+                        </xcdg:DataGridControl.View>
+                        <xcdg:DataGridControl.Columns>
+                            <xcdg:Column FieldName="Bid" AllowGroup="False" Title="Bid"  />
+                            <xcdg:Column FieldName="Ask" AllowGroup="False"  Title="Ask"/>
+                            <xcdg:Column FieldName="Price" AllowGroup="False"  Title="Price"/>
+                        </xcdg:DataGridControl.Columns>
+                    </xcdg:DataGridControl>
+                </Expander>
+                <Expander Header="{Binding TakeProfitHeader}" Margin="2" IsExpanded="{Binding IsTakeProfitExpanded}" >
+                    <Grid Margin="20,2,1,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" FormatString="n"
-                                       Value="{Binding TakeProfitPrice}"   />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" FormatString="n" Value="{Binding TakeProfitPrice}"  />
 
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Expander>
-            <Expander  Header="Stop-Loss" Margin="2" >
-                <Grid Margin="20,2,1,2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="26"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
-                    <Grid Grid.Row="0" Grid.Column="1">
+                </Expander>
+                <Expander  Header="{Binding StopLossHeader}" Margin="2" IsExpanded="{Binding IsStopLossExpanded}">
+                    <Grid Margin="20,2,1,2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="26"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="70"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" FormatString="n"
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0,2">Price</TextBlock>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="70"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <xctk:DecimalUpDown Grid.Column="0" Margin="0,2" Minimum="0.0" FormatString="n"
                                        Value="{Binding StopLossPrice}"  />
-                        <CheckBox Grid.Column="1" Content="Trailing" Margin="5,5,0,5"  IsChecked="{Binding IsTrailingStop}" />
+                            <CheckBox Grid.Column="1" Content="Trailing" Margin="5,5,0,5"  IsChecked="{Binding IsTrailingStop}" />
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Expander>
-            <Expander  Header="Chart" Margin="2"   >
+                </Expander>
+                <Expander  Header="Chart" Margin="2"   >
 
-            <wpf:CartesianChart Grid.Row="2" Series="{Binding SeriesCollection}">
-                <wpf:CartesianChart.AxisX>
-                    <wpf:Axis Labels="{Binding Labels}"/>
-                </wpf:CartesianChart.AxisX>
-            </wpf:CartesianChart>
-        </Expander>
-        </StackPanel>
-    </Grid>
+                    <wpf:CartesianChart Series="{Binding SeriesCollection}">
+                        <wpf:CartesianChart.AxisX>
+                            <wpf:Axis Labels="{Binding Labels}"/>
+                        </wpf:CartesianChart.AxisX>
+                    </wpf:CartesianChart>
+                </Expander>
+            </StackPanel>
+        </Grid>
     </ScrollViewer>
 </Window>
+

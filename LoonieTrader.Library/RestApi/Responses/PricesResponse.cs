@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace LoonieTrader.Library.RestApi.Responses
 {
@@ -33,49 +34,51 @@ namespace LoonieTrader.Library.RestApi.Responses
             public string closeoutAsk { get; set; }
             public string closeoutBid { get; set; }
             public string instrument { get; set; }
-            public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
+           // public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
             public string status { get; set; }
             public string time { get; set; }
-            public Unitsavailable unitsAvailable { get; set; }
+           // public Unitsavailable unitsAvailable { get; set; }
         }
 
-        public class Quotehomeconversionfactors
-        {
-            public string negativeUnits { get; set; }
-            public string positiveUnits { get; set; }
-        }
+        //[Obsolete]
+        //public class Quotehomeconversionfactors
+        //{
+        //    public string negativeUnits { get; set; }
+        //    public string positiveUnits { get; set; }
+        //}
 
-        public class Unitsavailable
-        {
-            public Default @default { get; set; }
-            public Openonly openOnly { get; set; }
-            public Reducefirst reduceFirst { get; set; }
-            public Reduceonly reduceOnly { get; set; }
-        }
+        //[Obsolete]
+        //public class Unitsavailable
+        //{
+        //    public Default @default { get; set; }
+        //    public Openonly openOnly { get; set; }
+        //    public Reducefirst reduceFirst { get; set; }
+        //    public Reduceonly reduceOnly { get; set; }
+        //}
 
-        public class Default
-        {
-            public string @long { get; set; }
-            public string @short { get; set; }
-        }
+        //public class Default
+        //{
+        //    public string @long { get; set; }
+        //    public string @short { get; set; }
+        //}
 
-        public class Openonly
-        {
-            public string @long { get; set; }
-            public string @short { get; set; }
-        }
+        //public class Openonly
+        //{
+        //    public string @long { get; set; }
+        //    public string @short { get; set; }
+        //}
 
-        public class Reducefirst
-        {
-            public string @long { get; set; }
-            public string @short { get; set; }
-        }
+        //public class Reducefirst
+        //{
+        //    public string @long { get; set; }
+        //    public string @short { get; set; }
+        //}
 
-        public class Reduceonly
-        {
-            public string @long { get; set; }
-            public string @short { get; set; }
-        }
+        //public class Reduceonly
+        //{
+        //    public string @long { get; set; }
+        //    public string @short { get; set; }
+        //}
 
         public class Ask
         {

@@ -210,11 +210,11 @@
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
 
-                        <xctk:WatermarkComboBox ItemsSource="{Binding AvailableChartTypes}"  Watermark="Chart types"  />
+                        <ComboBox ItemsSource="{Binding AvailableChartTypes}"   Width="100" SelectedIndex="0" />
 
-                        <xctk:WatermarkComboBox ItemsSource="{Binding AvailableTimeframes}"  Watermark="Time frame"  />
+                        <ComboBox ItemsSource="{Binding AvailableTimeframes}" Width="140"  SelectedIndex="0"   />
 
-                        <xctk:WatermarkComboBox ItemsSource="{Binding AvailableIndicators}"  Watermark="Indicators"  SelectedItem="{Binding SelectedIndicator}" />
+                        <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"    SelectedItem="{Binding SelectedIndicator}"  Width="150"  />
 
                         <Button Content="Complex _Order..." Command="{Binding ComplexOrderCommand}" FontSize="14"  Padding="10" Margin="30,0,0,0" />
                         <Button Content="New C_hart Window..." Command="{Binding NewChartCommand}"  FontSize="14" Padding="10" />
@@ -222,7 +222,7 @@
                         <Button Content="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}"  FontSize="14" Padding="10"/>
 
                     </StackPanel>
-                    <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Top">
+                    <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Top" Margin="0,4">
                         <wpf:CartesianChart.AxisX>
                             <wpf:Axis LabelFormatter="{Binding Formatter}"/>
                         </wpf:CartesianChart.AxisX>

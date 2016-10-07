@@ -526,7 +526,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                string[] technicalIndicators = { "Bollinger Band", "Accumulation Distribution", "Exponential Average",
+                string[] technicalIndicators = { "<No Indicator>", "Bollinger Band", "Accumulation Distribution", "Exponential Average",
                                              "MACD", "Average True Range", "Momentum", "RSI", "Simple Average", "Stochastic",
                                              "Triangular Average"};
                 return technicalIndicators;
@@ -553,7 +553,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             get
             {
-                string[] technicalIndicators = { "Candles", "OHLC" };
+                string[] technicalIndicators = { "<Chart Type>", "Candles", "OHLC" };
                 return technicalIndicators;
             }
         }
@@ -563,7 +563,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             get
             {
-                string[] technicalIndicators = { "1m", "5m", "15m", "30m", "60m" };
+                string[] technicalIndicators = { "<Select Time Frame>", "1 Min", "5 Min", "15 Min", "30 Min", "60 Min" };
                 return technicalIndicators;
             }
         }

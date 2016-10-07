@@ -136,6 +136,46 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private bool _isStopLossExpanded;
+        public bool IsStopLossExpanded
+        {
+            get { return _isStopLossExpanded; }
+            set
+            {
+                if (_isStopLossExpanded != value)
+                {
+                    _isStopLossExpanded = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged(() => StopLossHeader);
+                }
+            }
+        }
+
+        private bool _isTakeProfitExpanded;
+        public bool IsTakeProfitExpanded
+        {
+            get { return _isTakeProfitExpanded; }
+            set
+            {
+                if (_isTakeProfitExpanded != value)
+                {
+                    _isTakeProfitExpanded = value;
+                    RaisePropertyChanged();
+                    RaisePropertyChanged(() => TakeProfitHeader);
+                }
+            }
+        }
+
+        public string TakeProfitHeader
+        {
+            get { return string.Format("Take-Profit {0}", IsTakeProfitExpanded ? "" : "[Not Set]"); }
+        }
+
+        public string StopLossHeader
+        {
+            get { return string.Format("Stop-Loss {0}", IsStopLossExpanded ? "" : "[Not Set]"); }
+        }
+
         private bool _isTrailingStop;
         public bool IsTrailingStop
         {
@@ -149,6 +189,8 @@ namespace LoonieTrader.App.ViewModels.Windows
                 }
             }
         }
+
+
 
         private bool _isGtcExpiry;
         public bool IsGtcExpiry
