@@ -3,6 +3,7 @@ using LoonieTrader.Library.Services;
 
 namespace LoonieTrader.Library.Tests.Configuration
 {
+    [TestFixture, Category("Integration")]
     public class ConfigurationReaderTests
     {
         [Test]

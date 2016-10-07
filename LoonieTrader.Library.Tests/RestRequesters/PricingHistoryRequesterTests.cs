@@ -5,6 +5,7 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestRequesters
 {
+    [TestFixture, Category("Integration")]
     public class PricingHistoryRequesterTests
     {
         [OneTimeSetUp]

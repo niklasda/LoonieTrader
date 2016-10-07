@@ -9,6 +9,7 @@ using NUnit.Framework;
 
 namespace LoonieTrader.Library.Tests.HistoricalData
 {
+    [TestFixture, Category("Integration")]
     public class CsvReaderTests
     {
         [Test]
