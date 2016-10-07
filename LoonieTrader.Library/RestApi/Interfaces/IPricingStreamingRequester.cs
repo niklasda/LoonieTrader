@@ -1,10 +1,9 @@
-﻿using System.IO;
-using LoonieTrader.Library.RestApi.Responses;
+﻿using System;
 
 namespace LoonieTrader.Library.RestApi.Interfaces
 {
     public interface IPricingStreamingRequester
     {
-        StreamReader GetPriceStream(string accountId, string instrument);
+        IObservable<string> GetPriceStream(string accountId, string instrument);
     }
 }

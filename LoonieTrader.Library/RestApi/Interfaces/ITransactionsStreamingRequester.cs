@@ -1,10 +1,9 @@
-﻿using System.IO;
-using LoonieTrader.Library.RestApi.Responses;
+﻿using System;
 
 namespace LoonieTrader.Library.RestApi.Interfaces
 {
     public interface ITransactionsStreamingRequester
     {
-        StreamReader GetTransactionStream(string accountId);
+        IObservable<string> GetTransactionStream(string accountId);
     }
 }

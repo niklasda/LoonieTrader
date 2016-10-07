@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         protected string GetHttpRestUrl(string env)
         {
-            return string.Format("http://api-status.oanda.com/api/v1/{0}", env);
+            return string.Format("http://{0}.oanda.com/api/v1/{1}", Environments.Status.Value, env);
         }
 
         protected IExtendedLogger Logger

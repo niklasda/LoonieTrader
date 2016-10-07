@@ -4,7 +4,7 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 
-namespace LoonieTrader.Library.Tests.RestRequesters
+namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
     [TestFixture, Category("Integration")]
     public class TransactionsRequesterTests
