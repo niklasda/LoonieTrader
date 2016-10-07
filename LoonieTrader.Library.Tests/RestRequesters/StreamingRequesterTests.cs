@@ -13,17 +13,17 @@ namespace LoonieTrader.Library.Tests.RestRequesters
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
-            _txr = container.GetInstance<IStreamingRequester>();
-            _s = container.GetInstance<ISettings>();
+            //_txr = container.GetInstance<IStreamingRequester>();
+            //_s = container.GetInstance<ISettings>();
         }
 
-        private IStreamingRequester _txr;
-        private ISettings _s;
+        //private IStreamingRequester _txr;
+        //private ISettings _s;
 
         [Test]
         public void TestPricingStream()
         {
-            var pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
+            //var pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
         }
 
     }
