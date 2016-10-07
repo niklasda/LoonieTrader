@@ -23,14 +23,14 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 Stream responseStream = wc.OpenRead(string.Format(urlPricesStream, accountId, instrument));
-                
+
 
                     StreamReader sr = new StreamReader(responseStream);
                     //var cnt = sr.ReadLine();
                     return sr;
                     //var responseString = Encoding.UTF8.GetString(responseBytes);
                     //return responseString;
-                Obser
+
             }
         }
     }
