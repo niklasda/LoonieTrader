@@ -19,6 +19,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             _accountsRequester = accountsRequester;
             _dialogService = dialogService;
             LoginCommand = new RelayCommand(Login, () => CanClose);
+            ServerStatusCommand = new RelayCommand(OpenServerStatus);
 
             ApiKey = settings.ApiKey;
             SelectedEnvironmentKey = settings.Environment;
@@ -76,6 +77,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public ICommand LoginCommand { get; set; }
 
+        public ICommand ServerStatusCommand { get; set; }
+
         public Action CloseAction { get; set; }
 
         public IList<KeyValuePair<string, string>> AvailableAccounts
@@ -91,6 +94,24 @@ namespace LoonieTrader.App.ViewModels.Windows
             Application.Current.MainWindow = mw;
 
             CloseAction();
+        }
+
+        private void OpenServerStatus()
+        {
+            if (SelectedEnvironmentKey == Environments.Practice.Key)
+            {
+                var ssw = new ServiceStatusPracticeWindow();
+                ssw.Show();
+            }
+            else if (SelectedEnvironmentKey == Environments.Live.Key)
+            {
+                var ssw = new ServiceStatusLiveWindow();
+                ssw.Show();
+            }
+
+            // Application.Current.MainWindow = mw;
+
+            // CloseAction();
         }
     }
 }

@@ -117,7 +117,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // Task.Run(()=> PlayTheData(candleList));
                 try
                 {
-                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetInstruments(settings.DefaultAccountId);
+                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(settings.DefaultAccountId);
                     AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
                     // OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
                     PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);

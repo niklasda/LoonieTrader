@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
@@ -44,7 +45,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         [Test]
         public void TestGetAccountInstruments()
         {
-            AccountInstrumentsResponse air = _ar.GetInstruments(_s.DefaultAccountId);
+            AccountInstrumentsResponse air = _ar.GetAccountInstruments(_s.DefaultAccountId);
             Assert.NotNull(air);
 
             Assert.AreEqual(28, air.instruments.Count(x => x.type == "CFD"));
@@ -55,7 +56,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         [Test]
         public void TestGetAccountInstrumentSortedHierarchy()
         {
-            AccountInstrumentsResponse air = _ar.GetInstruments(_s.DefaultAccountId);
+            AccountInstrumentsResponse air = _ar.GetAccountInstruments(_s.DefaultAccountId);
             Assert.NotNull(air);
 
             IEnumerable<IGrouping<string, AccountInstrumentsResponse.Instrument>> groups = air.instruments.Select(x => x).OrderBy(y => y.type).GroupBy(x => x.type);
@@ -74,6 +75,14 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             Assert.AreEqual("METAL", its[2].Type);
             Assert.AreEqual(23, its[2].Instruments.Length);
 
+        }
+
+        [Test]
+        public void TestGetAccountConfigurationChanges()
+        {
+            AccountChangesResponse air = _ar.GetAccountChanges(_s.DefaultAccountId, "2920"); // 3337-2920=417
+            Console.WriteLine(air);
+            Assert.NotNull(air);
         }
     }
 }

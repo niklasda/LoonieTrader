@@ -23,9 +23,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlOrders, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlOrders, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlOrders, accountId);
                 base.SaveLocalJson("orders", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -41,9 +39,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlPendingOrders, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlPendingOrders, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlPendingOrders, accountId);
                 base.SaveLocalJson("ordersPending", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -59,9 +55,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlOrderDetails, accountId, orderId);
-                //var responseBytes = wc.DownloadData(string.Format(urlOrderDetails, accountId, orderId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlOrderDetails, accountId, orderId);
                 base.SaveLocalJson("orderDetails", accountId, orderId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -79,10 +73,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
                 base.Logger.Debug(orderJson.PrettyPrintJson());
-                var orderBytes = Encoding.UTF8.GetBytes(orderJson);
 
-                var responseBytes = wc.UploadData(string.Format(urlCreateOrder, accountId), "POST", orderBytes);
-                var responseString = Encoding.UTF8.GetString(responseBytes);
+                string responseString = PostData(wc, orderJson, urlCreateOrder, accountId);
+
                 base.Logger.Debug(responseString.PrettyPrintJson());
 
                 using (var input = new StringReader(responseString))
@@ -96,7 +89,21 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public OrderCreateResponse PutCancelOrder(string accountId, string orderId)
         {
             string urlCancelOrder = base.GetRestUrl("accounts/{0}/orders/{1}/cancel");
-            throw new NotImplementedException();
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                //var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
+                //base.Logger.Debug(orderJson.PrettyPrintJson());
+
+                string responseString = PutData(wc, null, urlCancelOrder, accountId, orderId);
+
+                base.Logger.Debug(responseString.PrettyPrintJson());
+
+                using (var input = new StringReader(responseString))
+                {
+                    var aor = JSON.Deserialize<OrderCreateResponse>(input);
+                    return aor;
+                }
+            }
         }
     }
 }

@@ -43,9 +43,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlAccounts);
-                //var responseBytes = wc.DownloadData(urlAccounts);
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlAccounts);
                 base.SaveLocalJson("accounts", "all", responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -62,9 +60,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlAccountDetails, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlAccountDetails, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlAccountDetails, accountId);
                 base.SaveLocalJson("accountDetails", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -80,9 +76,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlAccountSummary, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlAccountSummary, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlAccountSummary, accountId);
                 base.SaveLocalJson("accountSummary", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
@@ -92,16 +86,46 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
-        public AccountInstrumentsResponse GetInstruments(string accountId)
+        public AccountInstrumentsResponse GetAccountInstruments(string accountId)
         {
             string urlInstruments = base.GetRestUrl("accounts/{0}/instruments");
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlInstruments, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlInstruments, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
+                var responseString = GetData(wc, urlInstruments, accountId);
                 base.SaveLocalJson("accountInstruments", accountId, responseString);
+                using (var input = new StringReader(responseString))
+                {
+                    var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);
+                    return ir;
+                }
+            }
+        }
+
+        public AccountChangesResponse GetAccountChanges(string accountId, string transactionId)
+        {
+            string urlChanges = base.GetRestUrl("accounts/{0}/changes?sinceTransactionID={1}");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var responseString = GetData(wc, urlChanges, accountId, transactionId);
+                base.SaveLocalJson("accountChanges", accountId, responseString);
+                using (var input = new StringReader(responseString))
+                {
+                    var ir = JSON.Deserialize<AccountChangesResponse>(input);
+                    return ir;
+                }
+            }
+        }
+
+        public AccountInstrumentsResponse PatchAccountConfiguration(string accountId)
+        {
+            string urlInstruments = base.GetRestUrl("accounts/{0}/configuration");
+
+            using (WebClient wc = GetAuthenticatedWebClient())
+            {
+                var responseString = PatchData(wc, urlInstruments, accountId);
+                base.SaveLocalJson("accountPatch", accountId, responseString);
                 using (var input = new StringReader(responseString))
                 {
                     var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);

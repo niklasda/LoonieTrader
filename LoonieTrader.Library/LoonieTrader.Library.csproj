@@ -122,6 +122,7 @@
     <Compile Include="RestApi\Requesters\PricingHistoryRequester.cs" />
     <Compile Include="RestApi\Requesters\PricingStreamingRequester.cs" />
     <Compile Include="RestApi\Requesters\TransactionsStreamingRequester.cs" />
+    <Compile Include="RestApi\Responses\AccountChangesResponse.cs" />
     <Compile Include="RestApi\Responses\ServiceListResponse.cs" />
     <Compile Include="RestApi\Responses\ServiceEventsResponse.cs" />
     <Compile Include="RestApi\Responses\ServicesResponse.cs" />

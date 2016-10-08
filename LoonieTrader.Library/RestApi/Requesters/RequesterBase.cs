@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using JsonPrettyPrinterPlus;
 using LoonieTrader.Library.Constants;
@@ -75,18 +76,68 @@ namespace LoonieTrader.Library.RestApi.Requesters
             _logger.Debug(json.PrettyPrintJson());
         }
 
-        protected string DownloadData(WebClient wc, string urlFormat, params object[] args)
+        protected string GetData(WebClient wc, string urlFormat, params object[] args)
         {
             try
             {
-                //return "{}";
-                var responseBytes = wc.DownloadData(string.Format(urlFormat, args));
+                var address = string.Format(urlFormat, args);
+                var responseBytes = wc.DownloadData(address);
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 return responseString;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to Load data");
+                _logger.Error(ex, "Failed to GET data");
+                throw;
+            }
+        }
+
+        protected string PostData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        {
+            try
+            {
+                var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                var address = string.Format(urlFormat, args);
+                var responseBytes = wc.UploadData(address, HttpMethod.Post.Method, dataBytes);
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+                return responseString;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Failed to POST data");
+                throw;
+            }
+        }
+
+        protected string PutData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        {
+            try
+            {
+                var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                var address = string.Format(urlFormat, args);
+                var responseBytes = wc.UploadData(address, HttpMethod.Put.Method, dataBytes);
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+                return responseString;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Failed to PUT data");
+                throw;
+            }
+        }
+
+        protected string PatchData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        {
+            try
+            {
+                var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                var responseBytes = wc.UploadData(string.Format(urlFormat, args), "PATCH", dataBytes);
+                var responseString = Encoding.UTF8.GetString(responseBytes);
+                return responseString;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Failed to PUT data");
                 throw;
             }
         }

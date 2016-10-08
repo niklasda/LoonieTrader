@@ -49,7 +49,7 @@ namespace LoonieTrader.TestApp
                 Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));
 
                 logger.Information("GetInstruments");
-                Console.WriteLine(ar.GetInstruments(cfg.DefaultAccountId));
+                Console.WriteLine(ar.GetAccountInstruments(cfg.DefaultAccountId));
                 logger.Information("GetPrices");
                 Console.WriteLine(prr.GetPrices(cfg.DefaultAccountId, "EUR_USD"));
 

@@ -22,8 +22,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlPositions, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlPositions, accountId));
+                var responseString = GetData(wc, urlPositions, accountId);
+                //var responseBytes = wc.GetData(string.Format(urlPositions, accountId));
                 //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("positions", accountId, responseString);
                 using (var input = new StringReader(responseString))
@@ -40,8 +40,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlOpenPositions, accountId);
-                //var responseBytes = wc.DownloadData(string.Format(urlOpenPositions, accountId));
+                var responseString = GetData(wc, urlOpenPositions, accountId);
+                //var responseBytes = wc.GetData(string.Format(urlOpenPositions, accountId));
                 //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("positionsOpen", accountId, responseString);
                 using (var input = new StringReader(responseString))
@@ -58,8 +58,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                var responseString = DownloadData(wc, urlInstrumentPositions, accountId, instrument);
-                //var responseBytes = wc.DownloadData(string.Format(urlInstrumentPositions, accountId, instrument));
+                var responseString = GetData(wc, urlInstrumentPositions, accountId, instrument);
+                //var responseBytes = wc.GetData(string.Format(urlInstrumentPositions, accountId, instrument));
                 //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
                 using (var input = new StringReader(responseString))

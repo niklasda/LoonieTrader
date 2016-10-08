@@ -37,6 +37,14 @@
             <ComboBox ItemsSource="{Binding AvailableAccounts}" SelectedValue="{Binding SelectedAccountKey}" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
         </StackPanel>
 
-        <Button Content ="_Use" Grid.Column="1" Grid.Row="4" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding LoginCommand}" />
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Content ="_Server Status" Grid.Column="0" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding ServerStatusCommand}" />
+            <Button Content ="_Use" Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding LoginCommand}" />
+        </Grid>
     </Grid>
 </Window>

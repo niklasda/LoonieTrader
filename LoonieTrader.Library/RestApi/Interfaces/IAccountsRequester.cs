@@ -8,8 +8,10 @@ namespace LoonieTrader.Library.RestApi.Interfaces
         AccountsResponse GetAccounts();
         AccountDetailsResponse GetAccountDetails(string accountId);
         AccountSummaryResponse GetAccountSummary(string accountId);
-        AccountInstrumentsResponse GetInstruments(string accountId);
 
         IEnumerable<AccountSummaryResponse> GetAccountSummaries();
+        AccountInstrumentsResponse GetAccountInstruments(string accountId);
+        AccountChangesResponse GetAccountChanges(string accountId, string transactionId);
+        AccountInstrumentsResponse PatchAccountConfiguration(string accountId);
     }
 }
