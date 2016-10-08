@@ -8,6 +8,5 @@ namespace LoonieTrader.App.Views
         {
             InitializeComponent();
         }
-
     }
 }

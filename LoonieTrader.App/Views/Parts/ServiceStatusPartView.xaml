@@ -29,7 +29,7 @@
                     </xcdg:DataGridControl.Columns>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem  Header ="  Stream  ">
+            <TabItem  Header ="  Streaming  ">
                 <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding StreamEvents,Mode=OneWay}" ReadOnly="True" SelectionMode="Single" >
                     <xcdg:DataGridControl.View>
                         <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >

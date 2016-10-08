@@ -326,7 +326,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 _labels = value;
                 RaisePropertyChanged();
-                //       OnPropertyChanged("Labels");
             }
         }
 
@@ -335,6 +334,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
+                AllInstrumentTypes[0].Instruments.a
             }
         }
 
