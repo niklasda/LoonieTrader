@@ -5,15 +5,14 @@
         Title="About"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Height="300"
+        Height="400"
         Width="300" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="20"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBox TextWrapping="Wrap" Margin="5" Text="{Binding AboutText, Mode=OneWay}"  />
+            <TextBox TextWrapping="Wrap" Margin="5" Text="{Binding AboutText, Mode=OneWay}" IsReadOnly="True" />
             <Image Grid.Row="0" Source="/LoonieTrader.App;component/Images/AppBitmap.bmp" Stretch="None"/>
         </Grid>
     </Grid>

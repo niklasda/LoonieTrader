@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
@@ -22,11 +23,11 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private ISettings _s;
 
         [Test]
-        public void TestPricingStream()
+        public void TestTransactionStream()
         {
-            IObservable<string> pss = _txr.GetTransactionStream(_s.DefaultAccountId);
+            IObservable<TransactionsResponse.Transaction> tss = _txr.GetTransactionStream(_s.DefaultAccountId);
 
-            IDisposable l1 = pss.Subscribe(x => Console.WriteLine("Tx1: {0}", x));
+            IDisposable l1 = tss.Subscribe(x => Console.WriteLine("Tx1: {0}", x));
 
             Task.Delay(10000).Wait();
             Console.WriteLine("Done. 10s");
@@ -35,7 +36,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
 
             //            var price = JSON.Deserialize<TransactionsResponse.Transaction>(l1);
             //          Assert.NotNull(price);
-        }
+                }
 
         /*
         {"lastTransactionID":"2871","time":"2016-10-07T14:05:45.434095856Z","type":"HEARTBEAT"}

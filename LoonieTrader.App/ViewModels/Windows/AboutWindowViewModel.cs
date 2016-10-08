@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Reflection;
+using System.Text;
 using GalaSoft.MvvmLight;
+using LoonieTrader.Library.Constants;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -11,7 +14,34 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string AboutText
         {
-            get { return "About it, and credits to used software,  and credits to used software, "+Environment.NewLine+" and credits to used software,  and credits to used software,  and credits to used software, "; }
+            get
+            {
+                var resp = new StringBuilder();
+                resp.Append(AppProperties.ApplicationName);
+                resp.Append(" v");
+                resp.AppendLine(Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                resp.AppendLine();
+
+                resp.AppendLine("The following frameworks has been used:");
+                resp.AppendLine("LiveCharts");
+                resp.AppendLine("Extended WPF Toolkit");
+                resp.AppendLine("Jil");
+                resp.AppendLine("YamlDotNet");
+                resp.AppendLine("AutoMapper");
+                resp.AppendLine("SeriLog");
+                resp.AppendLine("StructureMap");
+                resp.AppendLine("FileHelper");
+                resp.AppendLine("MVVM Light");
+                resp.AppendLine("JsonPrettyPrinter");
+                resp.AppendLine("NUnit");
+                resp.AppendLine("Microsoft Frameworks");
+                resp.AppendLine("");
+                resp.AppendLine("Plus Visual Studio with ReSharper");
+
+                return resp.ToString();
+
+                //return "About it, and credits to used software,  and credits to used software, " +Environment.NewLine+" and credits to used software,  and credits to used software,  and credits to used software, ";
+            }
         }
     }
 }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using Jil;
+using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.Models
 {
-    public class ObservableStream
+    public class ObservableStream<T>
     {
         public ObservableStream(Stream stream)
         {
@@ -15,18 +17,21 @@ namespace LoonieTrader.Library.Models
 
         private readonly Stream _stream;
 
-        public IObservable<string> GetObservable()
+        public IObservable<T> GetObservable()
         {
             return ReadLines(_stream).ToObservable(Scheduler.Default);
         }
 
-        private IEnumerable<string> ReadLines(Stream stream)
+        private IEnumerable<T> ReadLines(Stream stream)
         {
             using (StreamReader reader = new StreamReader(stream))
             {
                 while (!reader.EndOfStream)
                 {
-                    yield return reader.ReadLine();
+                    var line = reader.ReadLine();
+                    T obj = JSON.Deserialize<T>(line);
+
+                    yield return obj;
                 }
             }
         }

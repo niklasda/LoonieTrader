@@ -37,7 +37,42 @@ namespace LoonieTrader.Library.RestApi.Responses
            // public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
             public string status { get; set; }
             public string time { get; set; }
-           // public Unitsavailable unitsAvailable { get; set; }
+            public string type { get; set; } // to support HEARTBEATS in streaming
+            // public Unitsavailable unitsAvailable { get; set; }
+
+            // needed here to support streaming
+            public override string ToString()
+            {
+                var resp = new StringBuilder();
+
+                resp.Append("instrument: ");
+                resp.Append(instrument);
+                resp.Append(", time: ");
+                resp.Append(time);
+                resp.Append(", type: ");
+                resp.Append(type);
+
+                if (asks != null)
+                {
+                    foreach (var ask in asks)
+                    {
+                        resp.Append(", ask price: ");
+                        resp.Append(ask.price);
+                    }
+                }
+
+                if (bids != null)
+                {
+                    foreach (var bid in bids)
+                    {
+                        resp.Append(", bid price: ");
+                        resp.Append(bid.price);
+                    }
+                }
+                resp.AppendLine();
+                return resp.ToString();
+
+            }
         }
 
         //[Obsolete]

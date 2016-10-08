@@ -15,24 +15,7 @@ namespace LoonieTrader.Library.RestApi.Responses
 
             foreach (var transaction in transactions)
             {
-                resp.Append("id: ");
-                resp.Append(transaction.id);
-                resp.Append(", accountID: ");
-                resp.Append(transaction.accountID);
-                resp.Append(", accountNumber: ");
-                resp.Append(transaction.accountNumber);
-                resp.Append(", accountUserID: ");
-                resp.Append(transaction.accountUserID);
-                resp.Append(", accountBalance: ");
-                resp.Append(transaction.accountBalance);
-                resp.Append(", type: ");
-                resp.Append(transaction.type);
-                resp.Append(", instrument: ");
-                resp.Append(transaction.instrument);
-                resp.Append(", amount: ");
-                resp.Append(transaction.amount);
-
-                resp.AppendLine();
+                resp.AppendLine(transaction.ToString());
             }
 
             return resp.ToString();
@@ -67,6 +50,30 @@ namespace LoonieTrader.Library.RestApi.Responses
             public Stoplossonfill stopLossOnFill { get; set; }
             public Takeprofitonfill takeProfitOnFill { get; set; }
             public string triggerCondition { get; set; }
+
+            public override string ToString()
+            {
+                var resp = new StringBuilder();
+
+                resp.Append("id: ");
+                resp.Append(id);
+                resp.Append(", accountID: ");
+                resp.Append(accountID);
+                resp.Append(", accountNumber: ");
+                resp.Append(accountNumber);
+                resp.Append(", accountUserID: ");
+                resp.Append(accountUserID);
+                resp.Append(", accountBalance: ");
+                resp.Append(accountBalance);
+                resp.Append(", type: ");
+                resp.Append(type);
+                resp.Append(", instrument: ");
+                resp.Append(instrument);
+                resp.Append(", amount: ");
+                resp.Append(amount);
+
+                return resp.ToString();
+            }
         }
 
         public class Stoplossonfill

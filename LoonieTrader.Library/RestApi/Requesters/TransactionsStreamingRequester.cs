@@ -21,14 +21,14 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
-        public IObservable<string> GetTransactionStream(string accountId)
+        public IObservable<TransactionsResponse.Transaction> GetTransactionStream(string accountId)
         {
             string urlTransactionStream = base.GetStreamingRestUrl("accounts/{0}/transactions/stream");
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 Stream responseStream = wc.OpenRead(string.Format(urlTransactionStream, accountId));
-                var obsStream = new ObservableStream(responseStream);
+                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
                 return obsStream.GetObservable();
             }
         }
