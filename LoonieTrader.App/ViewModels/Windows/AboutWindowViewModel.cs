@@ -25,15 +25,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                 resp.AppendLine("The following frameworks has been used:");
                 resp.AppendLine("LiveCharts");
                 resp.AppendLine("Extended WPF Toolkit");
-                resp.AppendLine("Jil");
                 resp.AppendLine("YamlDotNet");
                 resp.AppendLine("AutoMapper");
                 resp.AppendLine("SeriLog");
-                resp.AppendLine("StructureMap");
+                resp.AppendLine("Jil");
                 resp.AppendLine("FileHelper");
                 resp.AppendLine("MVVM Light");
+                resp.AppendLine("StructureMap");
                 resp.AppendLine("JsonPrettyPrinter");
-                resp.AppendLine("NUnit");
                 resp.AppendLine("Microsoft Frameworks");
                 resp.AppendLine("");
                 resp.AppendLine("Plus Visual Studio with ReSharper");
