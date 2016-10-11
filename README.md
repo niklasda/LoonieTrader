@@ -1,5 +1,8 @@
 ﻿LoonieTrader
 
+https://ci.appveyor.com/api/projects/status/8i5v9m09d94uh65y
+
+
 http://developer.oanda.com/rest-live-v20/development-guide/
 
 http://developer.oanda.com/rest-live-v20/account-ep/
@@ -10,13 +13,3 @@ Requires Extended WPF Toolkit (Xceed)
 LiveCharts
 
 
-GET /api/v1/service-lists
-http://api-status.oanda.com/api/v1/services
-http://api-status.oanda.com/api/v1/services/fxtrade-practice-rest-api
-http://api-status.oanda.com/api/v1/services/fxtrade-practice-streaming-api
-http://api-status.oanda.com/api/v1/services/fxtrade-rest-api
-http://api-status.oanda.com/api/v1/services/fxtrade-streaming-api
-
-http://api-status.oanda.com/v1/service-lists
-
-Icons from Syncfusion MetroStudio
