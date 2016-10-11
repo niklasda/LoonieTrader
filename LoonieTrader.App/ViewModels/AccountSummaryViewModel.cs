@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 
 namespace LoonieTrader.App.ViewModels
 {
-    [DisplayName("Account Information")]
+    [DisplayName(@"Account Information")]
     public class AccountSummaryViewModel
     {
         [DisplayName("Net Asset Value (NAV)")]
