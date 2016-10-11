@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -141,7 +142,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                     its.Insert(0,new InstrumentTypeViewModel()
                     {
-                        Type = Names.Favourites,
+                        Type = AppProperties.FavouritesFolderName,
                         Instruments=new List<InstrumentViewModel>{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
                     });
 
@@ -336,7 +337,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 Console.WriteLine(SelectedInstrument);
 
-                var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == Names.Favourites);
+                var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == AppProperties.FavouritesFolderName);
                 if (it != null)
                 {
                     bool exists = it.Instruments.Any(x => x.Name == SelectedInstrument.Name);
@@ -382,31 +383,33 @@ namespace LoonieTrader.App.ViewModels.Windows
             switch (location)
             {
                 case GotoLocations.LocalAppData:
-                    SafeStart("%localappdata%\\LoonieTrader");
+//                    SafeStartPath(@"%localappdata%\LoonieTrader");
+                    var folder = Path.Combine(Environment.ExpandEnvironmentVariables("%localappdata%"), AppProperties.ApplicationName);
+                    SafeStartPath(folder);
                     break;
                 case GotoLocations.Oanda:
-                    SafeStart("http://www.oanda.com");
+                    SafeStartUri("http://www.oanda.com");
                     break;
                 case GotoLocations.OandaApi:
-                    SafeStart("http://developer.oanda.com/rest-live-v20/introduction/");
+                    SafeStartUri("http://developer.oanda.com/rest-live-v20/introduction/");
                     break;
                 case GotoLocations.OandaDevForum:
-                    SafeStart("https://fxtrade.oanda.com/community/forex-forum/93/");
+                    SafeStartUri("https://fxtrade.oanda.com/community/forex-forum/93/");
                     break;
                 case GotoLocations.MarketPulse:
-                    SafeStart("http://www.marketpulse.com/");
+                    SafeStartUri("http://www.marketpulse.com/");
                     break;
                 case GotoLocations.MarketPulseCalendar:
-                    SafeStart("http://www.marketpulse.com/economic-events/");
+                    SafeStartUri("http://www.marketpulse.com/economic-events/");
                     break;
                 case GotoLocations.OandaNews:
-                    SafeStart("https://www.oanda.com/forex-trading/analysis/");
+                    SafeStartUri("https://www.oanda.com/forex-trading/analysis/");
                     break;
                 case GotoLocations.GoogleFinance:
-                    SafeStart("https://www.google.com/finance?q=eurusd");
+                    SafeStartUri("https://www.google.com/finance?q=eurusd");
                     break;
                 case GotoLocations.YahooFinance:
-                    SafeStart("http://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X");
+                    SafeStartUri("http://finance.yahoo.com/quote/EURUSD=X?p=EURUSD=X");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(location), location, null);
@@ -414,12 +417,24 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        private void SafeStart(string url)
+        private void SafeStartUri(string url)
         {
             try
             {
                 Uri uri = new Uri(url);
                 Process.Start(uri.ToString());
+            }
+            catch
+            {
+                // todo log
+            }
+        }
+
+        private void SafeStartPath(string path)
+        {
+            try
+            {
+                Process.Start("explorer.exe", path);
             }
             catch
             {
@@ -743,6 +758,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand OpenInstrumentInNewChartContextCommand { get; private set; }
 
         public ICommand OpenInstrumentInTradeContextCommand { get; private set; }
+
+        public string WindowTitle { get; } = AppProperties.ApplicationName;
 
         private void SelectedInstrumentChanged(object o)
         {
