@@ -12,7 +12,7 @@ namespace LoonieTrader.App.ViewModels.Converters
         {
             IList<InstrumentViewModel> items = new List<InstrumentViewModel>();
 
-            var persons = values[0] as InstrumentViewModel[] ?? new InstrumentViewModel[0];
+            var persons = values[0] as IList<InstrumentViewModel> ?? new List<InstrumentViewModel>();
 
             foreach (var p in persons)
             {

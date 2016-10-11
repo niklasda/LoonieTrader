@@ -136,15 +136,16 @@ namespace LoonieTrader.App.ViewModels.Windows
                                 new InstrumentTypeViewModel
                                 {
                                     Type = x.Key,
-                                    Instruments = x.OrderBy(o => o.DisplayName).ToArray()
+                                    Instruments = x.OrderBy(o => o.DisplayName).ToList()
                                 }).ToList();
 
                     its.Insert(0,new InstrumentTypeViewModel()
                     {
-                        Type="Favourites",
-                        Instruments=new InstrumentViewModel[]{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
+                        Type = Names.Favourites,
+                        Instruments=new List<InstrumentViewModel>{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
                     });
-                    _allInstrumentTypes = its;
+
+                    _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>( its);
 
                     _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
                     _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
@@ -173,7 +174,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             Formatter = value => new DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("s");
 
-            ReloadChart(new InstrumentViewModel() {DisplayName = "EURUSD"});
+            ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"});
 
         }
 
@@ -206,7 +207,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly ITransactionsRequester _transactionsRequester;
 
         private AccountSummaryViewModel _accountSummary;
-        private IList<InstrumentTypeViewModel> _allInstrumentTypes;
+        private ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
         //private IList<InstrumentViewModel> _allInstruments;
         private IList<PositionViewModel> _positionList;
         private IList<OrderViewModel> _orderList;
@@ -260,7 +261,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         //     get { return _allInstruments; }
         // }
 
-        public IList<InstrumentTypeViewModel> AllInstrumentTypes
+        public ObservableCollection<InstrumentTypeViewModel> AllInstrumentTypes
         {
             get { return _allInstrumentTypes; }
         }
@@ -334,7 +335,18 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
-                //AllInstrumentTypes[0].Instruments.a
+
+                var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == Names.Favourites);
+                if (it != null)
+                {
+                    bool exists = it.Instruments.Any(x => x.Name == SelectedInstrument.Name);
+                    if (!exists)
+                    {
+                        it.Instruments.Add(SelectedInstrument);
+
+                        it.RaisePropertyChanged(()=>it.Instruments);
+                    }
+                }
             }
         }
 
@@ -408,7 +420,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 Uri uri = new Uri(url);
                 Process.Start(uri.ToString());
-
             }
             catch
             {

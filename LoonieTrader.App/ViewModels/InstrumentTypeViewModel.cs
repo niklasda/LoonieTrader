@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using GalaSoft.MvvmLight;
 
@@ -26,6 +27,6 @@ namespace LoonieTrader.App.ViewModels
             }
         }
 
-        public InstrumentViewModel[] Instruments { get; set; }
+        public IList<InstrumentViewModel> Instruments { get; set; }
     }
 }
