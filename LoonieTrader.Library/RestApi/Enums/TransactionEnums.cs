@@ -124,7 +124,7 @@ namespace LoonieTrader.Library.RestApi.Enums
         INSUFFICIENT_MARGIN,                                        // Filling the Order wasn’t possible because the Account had insufficient margin.
         FIFO_VIOLATION,                                             // Filling the Order would have resulted in a a FIFO violation.
         BOUNDS_VIOLATION,                                           // Filling the Order would have violated the Order’s price bound.
-        REPLACED,                                                   // The Order was cancelled for replacement.
+        CLIENT_REQUEST_REPLACED,                                    // The Order was cancelled for replacement at the request of the client.
         INSUFFICIENT_LIQUIDITY,                                     // Filling the Order wasn’t possible because enough liquidity available.
         TAKE_PROFIT_ON_FILL_GTD_TIMESTAMP_IN_PAST,                  // Filling the Order would have resulted in the creation of a Take Profit Order with a GTD time in the past.
         TAKE_PROFIT_ON_FILL_LOSS,                                   // Filling the Order would result in the creation of a Take Profit Order that would have been filled immediately, closing the new Trade at a loss.
