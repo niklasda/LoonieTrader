@@ -1,7 +1,9 @@
 ﻿using System.Text;
+using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses
 {
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature, ImplicitUseTargetFlags.WithMembers)]
     public class AccountsResponse
     {
         public Account[] accounts { get; set; }

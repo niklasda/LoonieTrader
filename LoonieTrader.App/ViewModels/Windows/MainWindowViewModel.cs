@@ -10,6 +10,7 @@ using System.Windows.Media;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using JetBrains.Annotations;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Defaults;
@@ -419,7 +420,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        private void SafeStartUri(string url)
+        private void SafeStartUri([PathReference] string url)
         {
             try
             {
@@ -432,7 +433,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private void SafeStartPath(string path)
+        private void SafeStartPath([PathReference] string path)
         {
             try
             {
@@ -683,7 +684,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void ModifyOrder()
         {
-            Console.WriteLine("Modify: " + SelectedOrder.Instrument);
+            Console.WriteLine(@"Modify: " + SelectedOrder.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
@@ -824,6 +825,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             login.ShowDialog();
         }
 
+        [ContractAnnotation("=> halt")]
         private void ExitApplication()
         {
             Application.Current.Shutdown();

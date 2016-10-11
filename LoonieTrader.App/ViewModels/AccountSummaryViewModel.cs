@@ -6,7 +6,7 @@ namespace LoonieTrader.App.ViewModels
     [DisplayName(@"Account Information")]
     public class AccountSummaryViewModel
     {
-        [DisplayName("Net Asset Value (NAV)")]
+        [DisplayName(@"Net Asset Value (NAV)")]
         public string NAV { get; set; }
 
         public string Alias { get; set; }
@@ -51,7 +51,7 @@ namespace LoonieTrader.App.ViewModels
 
         public int PendingOrderCount { get; set; }
 
-        [DisplayName("Profit/Loss")]
+        [DisplayName(@"Profit/Loss")]
         public string PL { get; set; }
 
         public string PositionValue { get; set; }

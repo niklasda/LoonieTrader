@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses
 {
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature, ImplicitUseTargetFlags.WithMembers)]
     public class PricesResponse
     {
         public Price[] prices { get; set; }
