@@ -27,12 +27,13 @@ namespace LoonieTrader.App.ViewModels.Windows
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(ISettings settings, IMapper mapper, IHistoricalDataLoader dataLoader, IDialogService dialogService,
+        public MainWindowViewModel(ISettings settings, IMapper mapper, IExtendedLogger logger, IHistoricalDataLoader dataLoader, IDialogService dialogService,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
             ITransactionsRequester transactionsRequester)
         {
             _settings = settings;
             _mapper = mapper;
+            _logger = logger;
             _dataLoader = dataLoader;
             _dialogService = dialogService;
 
@@ -198,6 +199,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private readonly ISettings _settings;
         private readonly IMapper _mapper;
+        private readonly IExtendedLogger _logger;
         private IHistoricalDataLoader _dataLoader;
         private readonly IDialogService _dialogService;
 
@@ -436,8 +438,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 Process.Start("explorer.exe", path);
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.Warning(ex,"Failed to start: {0}", path);
             }
         }
 
