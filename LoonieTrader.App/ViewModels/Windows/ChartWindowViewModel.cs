@@ -46,7 +46,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             var ls = new LineSeries(Mappers.Xy<OhlcPoint>().Y(v => v.Open))
             {
-                Values = new ChartValues<OhlcPoint> {},
+                Values = new ChartValues<OhlcPoint>(),
                 Fill = Brushes.Transparent
             };
 
@@ -85,7 +85,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void AddPoint(PricesResponse.Price price)
         {
-            _uiContext.Post(new SendOrPostCallback(new Action<object>(o =>
+            _uiContext.Post(o =>
             {
                 if (price.asks?.Length>0)
                 {
@@ -95,11 +95,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                     SeriesCollection[1].Values.Add(p);
                     Labels.Add(DateTime.Now.AddDays(Labels.Count).ToString("dd MMM"));
                 }
-            })), null);
+            }, null);
 
             //System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke((Action)(() =>
             //{
-            //    //your code here... 
+            //    //your code here...
             //double ask = double.Parse(price.asks[0].price, CultureInfo.CurrentUICulture);
             //    var p = new OhlcPoint(ask, ask+2, ask-1, ask+1);
             //SeriesCollection[0].Values.Add(p);

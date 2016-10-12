@@ -14,7 +14,7 @@ namespace LoonieTrader.App.Views
             if (vm != null)
             {
                 // Needed to close the window from the ViewModel
-                vm.CloseAction = this.Close;
+                vm.CloseAction = base.Close;
             }
         }
     }

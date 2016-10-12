@@ -1,4 +1,4 @@
-﻿
+﻿// ReSharper disable InconsistentNaming
 using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses

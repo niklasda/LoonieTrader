@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Globalization;
 using AutoMapper;
 using LiveCharts.Defaults;

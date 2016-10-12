@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿// ReSharper disable InconsistentNaming
+using System.Text;
 using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses
@@ -32,7 +33,7 @@ namespace LoonieTrader.Library.RestApi.Responses
             {
                 var resp = new StringBuilder();
 
-                resp.AppendFormat("id: {0}, name: {1}, description: {2}, url: {3}", this.sid, this.message, this.timestamp, this.url);
+                resp.AppendFormat("id: {0}, name: {1}, description: {2}, url: {3}", sid, message, timestamp, url);
 
                 if (status != null)
                 {

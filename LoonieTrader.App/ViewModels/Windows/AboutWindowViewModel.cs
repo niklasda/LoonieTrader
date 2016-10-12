@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using GalaSoft.MvvmLight;
 using LoonieTrader.Library.Constants;

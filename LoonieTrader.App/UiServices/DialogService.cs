@@ -14,7 +14,7 @@ namespace LoonieTrader.App.UiServices
 
         public void WarnOk(string message)
         {
-            var res = MessageBox.Show(message, AppProperties.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(message, AppProperties.ApplicationName, MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -13,11 +13,6 @@ namespace LoonieTrader.App.Views.Controls
     {
         private bool _ignoreTextChanged;
         private string _currentText;
-
-        public event Func<object, string, bool> FilterItem;
-        public event Action<string> FilterList;
-
-        #region IsCaseSensitive Dependency Property
 
         /// <summary>
         /// The <see cref="DependencyProperty"/> object of the <see cref="IsCaseSensitive" /> dependency property.
@@ -34,13 +29,9 @@ namespace LoonieTrader.App.Views.Controls
         [DefaultValue(true)]
         public bool IsCaseSensitive
         {
-            [DebuggerStepThrough] get { return (bool) this.GetValue(IsCaseSensitiveProperty); }
-            [DebuggerStepThrough] set { this.SetValue(IsCaseSensitiveProperty, value); }
+            [DebuggerStepThrough] get { return (bool)base.GetValue(IsCaseSensitiveProperty); }
+            [DebuggerStepThrough] set { base.SetValue(IsCaseSensitiveProperty, value); }
         }
-
-        #endregion
-
-        #region DropDownOnFocus Dependency Property
 
         /// <summary>
         /// The <see cref="DependencyProperty"/> object of the <see cref="DropDownOnFocus" /> dependency property.
@@ -57,13 +48,9 @@ namespace LoonieTrader.App.Views.Controls
         [DefaultValue(false)]
         public bool DropDownOnFocus
         {
-            [DebuggerStepThrough] get { return (bool) this.GetValue(DropDownOnFocusProperty); }
-            [DebuggerStepThrough] set { this.SetValue(DropDownOnFocusProperty, value); }
+            [DebuggerStepThrough] get { return (bool)base.GetValue(DropDownOnFocusProperty); }
+            [DebuggerStepThrough] set { base.SetValue(DropDownOnFocusProperty, value); }
         }
-
-        #endregion
-
-        #region | Handle focus |
 
         /// <summary>
         /// Invoked whenever an unhandled <see cref="UIElement.GotFocus" /> event
@@ -74,40 +61,40 @@ namespace LoonieTrader.App.Views.Controls
         {
             base.OnGotFocus(e);
 
-            if (this.ItemsSource != null && this.DropDownOnFocus)
+            if (base.ItemsSource != null && DropDownOnFocus)
             {
-                this.IsDropDownOpen = true;
+                base.IsDropDownOpen = true;
             }
         }
 
-        #endregion
 
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            AddHandler(TextBox.TextChangedEvent, new TextChangedEventHandler(OnTextChanged));
+            AddHandler(TextBoxBase.TextChangedEvent, new TextChangedEventHandler(OnTextChanged));
             KeyUp += AutoFilteredComboBox_KeyUp;
-            this.IsTextSearchEnabled = false;
+            base.IsTextSearchEnabled = false;
         }
 
         void AutoFilteredComboBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Down)
             {
-                if (this.IsDropDownOpen)
+                if (base.IsDropDownOpen)
                 {
                     // Ensure that focus is given to the dropdown list
                     if (Keyboard.FocusedElement is TextBox)
                     {
                         Keyboard.Focus(this);
-                        if (this.Items.Count > 0)
+                        if (base.Items.Count > 0)
                         {
-                            if (this.SelectedIndex == -1 || this.SelectedIndex == 0)
-                                this.SelectedIndex = 0;
+                            if (base.SelectedIndex == -1 || base.SelectedIndex == 0)
+                                base.SelectedIndex = 0;
                         }
                     }
                 }
             }
+
             if (Keyboard.FocusedElement is TextBox)
             {
                 if (e.OriginalSource is TextBox)
@@ -123,24 +110,22 @@ namespace LoonieTrader.App.Views.Controls
             }
         }
 
-        #region | Handle filtering |
-
         private void RefreshFilter()
         {
-            if (this.ItemsSource != null)
+            if (base.ItemsSource != null)
             {
-                Action<string> filterList = FilterList;
-                if (filterList != null)
-                {
-                    filterList(_currentText);
-                }
-                else
-                {
-                    ICollectionView view = CollectionViewSource.GetDefaultView(this.ItemsSource);
+                //Action<string> filterList = FilterList;
+                //if (filterList != null)
+                //{
+                //    filterList(_currentText);
+                //}
+                //else
+                //{
+                    ICollectionView view = CollectionViewSource.GetDefaultView(base.ItemsSource);
                     view.Refresh();
-                }
-                this.SelectedIndex = -1; // Prepare so arrow down selects first
-                this.IsDropDownOpen = true;
+                //}
+                base.SelectedIndex = -1; // Prepare so arrow down selects first
+                base.IsDropDownOpen = true;
             }
         }
 
@@ -154,17 +139,15 @@ namespace LoonieTrader.App.Views.Controls
             if (string.IsNullOrEmpty(_currentText))
                 return true;
 
-            Func<object, string, bool> filterItem = FilterItem;
-            if (filterItem != null)
-                return filterItem(value, _currentText);
+           // Func<object, string, bool> filterItem = FilterItem;
+           // if (filterItem != null)
+           //     return filterItem(value, _currentText);
 
             if (IsCaseSensitive)
                 return value.ToString().Contains(_currentText);
             else
                 return value.ToString().ToUpper().Contains(_currentText.ToUpper());
         }
-
-        #endregion
 
         protected override void OnSelectionChanged(SelectionChangedEventArgs e)
         {
@@ -189,14 +172,14 @@ namespace LoonieTrader.App.Views.Controls
             if (newValue != null)
             {
                 ICollectionView view = CollectionViewSource.GetDefaultView(newValue);
-                if (FilterList == null)
-                    view.Filter += this.FilterPredicate;
+               // if (FilterList == null)
+                    view.Filter += FilterPredicate;
             }
 
             if (oldValue != null)
             {
                 ICollectionView view = CollectionViewSource.GetDefaultView(oldValue);
-                view.Filter -= this.FilterPredicate;
+                view.Filter -= FilterPredicate;
             }
             base.OnItemsSourceChanged(oldValue, newValue);
         }
@@ -208,9 +191,9 @@ namespace LoonieTrader.App.Views.Controls
 
             _currentText = Text;
 
-            if (!this.IsTextSearchEnabled)
+            if (!base.IsTextSearchEnabled)
             {
-                this.RefreshFilter();
+                RefreshFilter();
             }
         }
     }

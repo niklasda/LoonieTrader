@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using GalaSoft.MvvmLight;
-
+﻿
 namespace LoonieTrader.App.ViewModels
 {
     public class TransactionViewModel

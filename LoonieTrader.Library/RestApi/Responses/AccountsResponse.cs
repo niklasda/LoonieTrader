@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿// ReSharper disable InconsistentNaming
+using System.Text;
 using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses

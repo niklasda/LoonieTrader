@@ -75,7 +75,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                this._allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x=>x.Type).ThenBy(y=>y.DisplayName).ToList();
+                _allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x=>x.Type).ThenBy(y=>y.DisplayName).ToList();
             }
         }
 

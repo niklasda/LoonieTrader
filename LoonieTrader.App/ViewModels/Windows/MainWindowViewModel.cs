@@ -574,7 +574,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             set
             {
                 _selectedIndicator = value;
-                ApplyIndicator(_selectedIndicator,0);
+                ApplyIndicator(_selectedIndicator);
             }
         }
 
@@ -697,9 +697,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                         }*/
 
-            IList<CandleDataRecord> candleRecords = _dataLoader.LoadDataFile201603();
+            //IList<CandleDataRecord> candleRecords = _dataLoader.LoadDataFile201603();
 
-            var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
+            //var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
             //var candleList2 = _mapper.Map<List<OhlcPoint>>(candleRecords);
             /*foreach (var candleDataViewModel in candleList)
             {
@@ -831,7 +831,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             Application.Current.Shutdown();
         }
 
-        private void ApplyIndicator(string value, int rowIndex)
+        private void ApplyIndicator(string value)
         {
             switch (value)
             {
@@ -857,8 +857,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 case "Stochastic":
                     break;
                 case "Triangular Average":
-                    break;
-                default:
                     break;
             }
 

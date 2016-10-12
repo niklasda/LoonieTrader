@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using GalaSoft.MvvmLight;
 using LoonieTrader.Library.RestApi.Caches;
 
 namespace LoonieTrader.App.ViewModels
