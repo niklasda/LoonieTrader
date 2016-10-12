@@ -32,7 +32,7 @@ namespace LoonieTrader.Library.RestApi.Responses
 
             public override string ToString()
             {
-                return string.Format("id: {0}, name: {1}, description: {2}, level: {3}, url: {4}",  this.id , this.name , this.description , this.level , this.url);
+                return string.Format("id: {0}, name: {1}, description: {2}, level: {3}, url: {4}",  id , name , description , level , url);
             }
         }
     }

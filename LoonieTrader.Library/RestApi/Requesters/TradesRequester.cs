@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-using System.Text;
 using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;

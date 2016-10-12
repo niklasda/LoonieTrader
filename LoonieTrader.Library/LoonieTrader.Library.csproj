@@ -119,6 +119,7 @@
     <Compile Include="Logging\ExtendedLogger.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
     <Compile Include="RestApi\Interfaces\IHealthRequester.cs" />
+    <Compile Include="RestApi\Interfaces\IHeartbeatStreamable.cs" />
     <Compile Include="RestApi\Interfaces\IPricingHistoryRequester.cs" />
     <Compile Include="RestApi\Interfaces\ITransactionsStreamingRequester.cs" />
     <Compile Include="RestApi\Interfaces\IPricingStreamingRequester.cs" />

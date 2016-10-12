@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
+using JetBrains.Annotations;
+using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
-//using Syncfusion.Calculate;
-//using Syncfusion.Windows.Calculate;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
+    [UsedImplicitly]
     public class WorkbenchWindowViewModel : ViewModelBase
     {
-        public WorkbenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester)
+        public WorkbenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, ChartPartViewModel chartPart)
         {
-            
+            ChartPart = chartPart;
+
             //if (IsInDesignMode)
             // {
             SampleData = new List<CandleDataViewModel>()
@@ -31,6 +33,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return _sampleData; }
             set { _sampleData = value; }
         }
+
+        public ChartPartViewModel ChartPart { get; private set; }
 
     }
 }

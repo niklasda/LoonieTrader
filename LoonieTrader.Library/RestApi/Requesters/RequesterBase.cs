@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using JetBrains.Annotations;
 using JsonPrettyPrinterPlus;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -76,6 +77,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             _logger.Debug(json.PrettyPrintJson());
         }
 
+        [StringFormatMethod("urlFormat")]
         protected string GetData(WebClient wc, string urlFormat, params object[] args)
         {
             try
@@ -92,6 +94,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
+        [StringFormatMethod("urlFormat")]
         protected string PostData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
@@ -109,6 +112,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
+        [StringFormatMethod("urlFormat")]
         protected string PutData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
@@ -126,6 +130,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
+        [StringFormatMethod("urlFormat")]
         protected string PatchData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
@@ -137,7 +142,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to PUT data");
+                _logger.Error(ex, "Failed to PATCH data");
                 throw;
             }
         }

@@ -14,8 +14,11 @@ namespace LoonieTrader.App.Views
         public void ShowInstrument(InstrumentViewModel instrument)
         {
             var vm = DataContext as ChartWindowViewModel;
-            vm.Instrument = instrument;
-            
+            if (vm != null)
+            {
+                vm.Instrument = instrument;
+            }
+
             Show();
         }
     }

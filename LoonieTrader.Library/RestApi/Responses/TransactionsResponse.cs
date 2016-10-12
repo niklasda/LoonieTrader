@@ -1,6 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
 using System.Text;
 using JetBrains.Annotations;
+using LoonieTrader.Library.RestApi.Interfaces;
 
 namespace LoonieTrader.Library.RestApi.Responses
 {
@@ -24,7 +25,7 @@ namespace LoonieTrader.Library.RestApi.Responses
             return resp.ToString();
         }
 
-        public class Transaction
+        public class Transaction : IHeartbeatStreamable
         {
             public string accountID { get; set; }
             public int accountNumber { get; set; }

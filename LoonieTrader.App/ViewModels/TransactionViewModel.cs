@@ -1,5 +1,4 @@
-﻿
-namespace LoonieTrader.App.ViewModels
+﻿namespace LoonieTrader.App.ViewModels
 {
     public class TransactionViewModel
     {

@@ -1,16 +1,14 @@
 ﻿using System.Reflection;
 using System.Text;
 using GalaSoft.MvvmLight;
+using JetBrains.Annotations;
 using LoonieTrader.Library.Constants;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
+    [UsedImplicitly]
     public class AboutWindowViewModel : ViewModelBase
     {
-        public AboutWindowViewModel()
-        {
-        }
-
         public string AboutText
         {
             get

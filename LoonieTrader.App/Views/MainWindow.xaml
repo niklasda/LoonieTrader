@@ -7,6 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="{Binding WindowTitle}"
         ResizeMode="CanResizeWithGrip"
@@ -221,11 +222,8 @@
                         <Button Content="Reload..." Margin="30,0,0,0" Command="{Binding ReloadChartCommand}"  FontSize="14" Padding="10"/>
 
                     </StackPanel>
-                    <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" LegendLocation="Top" Margin="0,4">
-                        <wpf:CartesianChart.AxisX>
-                            <wpf:Axis LabelFormatter="{Binding Formatter}"/>
-                        </wpf:CartesianChart.AxisX>
-                    </wpf:CartesianChart>
+                    <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
+                    </parts:ChartPartView>
 
                 </Grid>
             </Grid>

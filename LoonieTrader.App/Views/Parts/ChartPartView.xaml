@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:LoonieTrader.App.Views.Parts"
              xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
+             xmlns:parts="clr-namespace:LoonieTrader.App.ViewModels.Parts"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance d:Type=windows:ChartWindowViewModel}"
+             d:DataContext="{d:DesignInstance d:Type=parts:ChartPartViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>

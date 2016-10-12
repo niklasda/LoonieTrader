@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using JetBrains.Annotations;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -12,6 +13,7 @@ using LoonieTrader.Library.RestApi.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
+    [UsedImplicitly]
     public class LoginWindowViewModel : ViewModelBase
     {
         public LoginWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, IDialogService dialogService)

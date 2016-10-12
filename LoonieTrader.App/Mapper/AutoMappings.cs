@@ -28,10 +28,8 @@ namespace LoonieTrader.App.Mapper
 
                 CreateMap<ComplexOrderWindowViewModel, OrderCreateResponse.OrderDefinition.Order>()
                     .ForMember(i => i.instrument, m => m.MapFrom(r => r.SelectedInstrument.Name))
-                    //.ForMember(i => i.type, m => m.MapFrom(r => r.SelectedInstrument.Name))
                     .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice))
                     .ForMember(i => i.units, m => m.MapFrom(r => r.Amount));
-                //.ForMember(i => i.positionFill, m => m.MapFrom(r => r.SelectedInstrument.Name));
 
                 CreateMap<PricesResponse.Bid, PriceDepthViewModel>()
                     .ForMember(i => i.Bid, m => m.MapFrom(r => r.liquidity))

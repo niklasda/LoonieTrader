@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using LoonieTrader.Library.RestApi.Responses;
+﻿using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Interfaces
 {

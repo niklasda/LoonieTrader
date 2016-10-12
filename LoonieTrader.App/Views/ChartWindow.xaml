@@ -9,10 +9,10 @@
         Width="473" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <parts:ChartPartView Grid.Row="1" DataContext="{Binding }">
+        <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
 
         </parts:ChartPartView>
 

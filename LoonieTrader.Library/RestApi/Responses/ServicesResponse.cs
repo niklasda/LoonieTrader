@@ -33,7 +33,7 @@ namespace LoonieTrader.Library.RestApi.Responses
             {
                 var resp = new StringBuilder();
 
-                resp.AppendFormat("id: {0}, name: {1}, description: {2}, url: {3}", this.id, this.name, this.description, this.url);
+                resp.AppendFormat("id: {0}, name: {1}, description: {2}, url: {3}", id, name, description, url);
 
                 if (list != null)
                 {

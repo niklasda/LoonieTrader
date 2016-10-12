@@ -166,6 +166,8 @@
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
+    <Compile Include="ViewModels\Parts\ChartPartViewModel.cs" />
+    <Compile Include="ViewModels\Parts\ChartPartViewModel2.cs" />
     <Compile Include="ViewModels\ServiceEventViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />

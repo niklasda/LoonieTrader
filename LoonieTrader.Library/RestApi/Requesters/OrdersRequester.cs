@@ -1,7 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Net;
-using System.Text;
 using Jil;
 using JsonPrettyPrinterPlus;
 using LoonieTrader.Library.Interfaces;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
 using LoonieTrader.Library.Interfaces;
@@ -15,32 +16,21 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
+        private ConcurrentDictionary<string, string> _subscriptions = new ConcurrentDictionary<string, string>();
+
         public IObservable<TransactionsResponse.Transaction> GetTransactionStream(string accountId)
         {
             string urlTransactionStream = base.GetStreamingRestUrl("accounts/{0}/transactions/stream");
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                Stream responseStream = wc.OpenRead(string.Format(urlTransactionStream, accountId));
-                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
+                string url = string.Format(urlTransactionStream, accountId);
+                var uri = new Uri(url);
+                Stream responseStream = wc.OpenRead(uri);
+                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream, Logger);
                 return obsStream.GetObservable();
             }
         }
 
-        //private IObservable<string> ObserveLines(Stream inputStream)
-        //{
-        //    return ReadLines(inputStream).ToObservable(Scheduler.Default);
-        //}
-
-        //private IEnumerable<string> ReadLines(Stream stream)
-        //{
-        //    using (StreamReader reader = new StreamReader(stream))
-        //    {
-        //        while (!reader.EndOfStream)
-        //        {
-        //            yield return reader.ReadLine();
-        //        }
-        //    }
-        //}
     }
 }

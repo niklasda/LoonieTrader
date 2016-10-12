@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight;
+using JetBrains.Annotations;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
+    [UsedImplicitly]
     public class ServiceStatusPracticeWindowViewModel : ViewModelBase
     {
         public ServiceStatusPracticeWindowViewModel(IMapper mapper, HealthRequester healthRequester)

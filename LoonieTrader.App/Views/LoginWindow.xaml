@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Content ="_Server Status" Grid.Column="0" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding ServerStatusCommand}" />
-            <Button Content ="_Use" Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding LoginCommand}" />
+            <Button Content ="_Use" Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right"  Command="{Binding LoginCommand}" IsDefault="True" />
         </Grid>
     </Grid>
 </Window>
