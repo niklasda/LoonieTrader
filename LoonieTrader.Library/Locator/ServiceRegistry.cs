@@ -30,8 +30,8 @@ namespace LoonieTrader.Library.Locator
             For<IPricingRequester>().Use<PricingRequester>();
             For<ITradesRequester>().Use<TradesRequester>();
             For<ITransactionsRequester>().Use<TransactionsRequester>();
-            For<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
-            For<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
+            ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
+            ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
             For<IPricingHistoryRequester>().Use<PricingHistoryRequester>();
             For<IHealthRequester>().Use<HealthRequester>();
         }

@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.Tests.Locator;
 
 
@@ -25,17 +27,25 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         [Test]
         public void TestPricingStream()
         {
-            var pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
+            ObservableStream<PricesResponse.Price> pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
 
-            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
+            pss.NewPrice += Pss_NewPrice;
+
+//            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
 
             Task.Delay(10000).Wait();
             Console.WriteLine("Done 10s");
 
-            l1.Dispose();
+            pss.NewPrice -= Pss_NewPrice;
+  //          l1.Dispose();
 
             // var price = JSON.Deserialize<PricesResponse.Price>(l1);
             // Assert.NotNull(price);
+        }
+
+        private void Pss_NewPrice(object sender, EventArgs e)
+        {
+            Console.WriteLine("Price1: ");
         }
 
         /*

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using JetBrains.Annotations;
 using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -7,6 +8,7 @@ using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Requesters
 {
+    [UsedImplicitly]
     public class TransactionsRequester : RequesterBase, ITransactionsRequester
     {
         public TransactionsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)

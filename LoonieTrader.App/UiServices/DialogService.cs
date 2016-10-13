@@ -1,9 +1,11 @@
 ﻿using System.Windows;
+using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Constants;
 
 namespace LoonieTrader.App.UiServices
 {
+    [UsedImplicitly]
     public class DialogService : IDialogService
     {
         public bool AskYesNo(string message)

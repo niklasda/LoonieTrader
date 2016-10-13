@@ -1,10 +1,11 @@
 ﻿using System;
+using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Interfaces
 {
     public interface ITransactionsStreamingRequester
     {
-        IObservable<TransactionsResponse.Transaction> GetTransactionStream(string accountId);
+        ObservableStream<TransactionsResponse.Transaction> GetTransactionStream(string accountId);
     }
 }

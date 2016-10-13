@@ -8,16 +8,19 @@ using System.Windows.Media;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using JetBrains.Annotations;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.App.ViewModels.Parts
 {
+    [UsedImplicitly]
     public class ChartPartViewModel : ViewModelBase
     {
         public ChartPartViewModel(IMapper mapper, ISettings settings, IPricingStreamingRequester priceStreamer)
@@ -27,8 +30,8 @@ namespace LoonieTrader.App.ViewModels.Parts
             }
             else
             {
-                IObservable<PricesResponse.Price> strm = priceStreamer.GetPriceStream(settings.DefaultAccountId, "EUR_USD");
-                var sub = strm.Subscribe(x => AddPoint(x));
+                var strm = priceStreamer.GetPriceStream(settings.DefaultAccountId, "EUR_USD");
+                strm.NewPrice += Strm_NewPrice;
             }
 
             var dayConfig = Mappers.Financial<CandleDataViewModel>()
@@ -47,7 +50,6 @@ namespace LoonieTrader.App.ViewModels.Parts
                 }
             };
 
-            
             var ls = new LineSeries(Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open))
             {
                 Values = new ChartValues<CandleDataViewModel>(),
@@ -75,14 +77,19 @@ namespace LoonieTrader.App.ViewModels.Parts
             UpdateCommand = new RelayCommand(UpdateAllOnClick);
         }
 
-        //public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
+        private void Strm_NewPrice(object sender, StreamEventArgs<PricesResponse.Price> e)
+        {
+            Console.WriteLine(@"addPoint: {0}", e.Obj);
+            AddPoint(e.Obj);
+        }
+
         public InstrumentViewModel Instrument { get; set; }
 
         public ICommand UpdateCommand { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
         private List<string> _labels;
 
-        private SynchronizationContext _uiContext = SynchronizationContext.Current;
+        private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
 
         private void AddPoint(PricesResponse.Price price)
         {
@@ -99,15 +106,6 @@ namespace LoonieTrader.App.ViewModels.Parts
                 }
             }, null);
 
-            //System.Windows.Threading.Dispatcher.CurrentDispatcher.Invoke((Action)(() =>
-            //{
-            //    //your code here...
-            //double ask = double.Parse(price.asks[0].price, CultureInfo.CurrentUICulture);
-            //    var p = new OhlcPoint(ask, ask+2, ask-1, ask+1);
-            //SeriesCollection[0].Values.Add(p);
-            //SeriesCollection[1].Values.Add(p);
-            //Labels.Add(DateTime.Now.AddDays(Labels.Count).ToString("dd MMM"));
-            //}));
         }
 
         private void UpdateAllOnClick()
@@ -133,7 +131,6 @@ namespace LoonieTrader.App.ViewModels.Parts
             {
                 _labels = value;
                 RaisePropertyChanged();
-                //       OnPropertyChanged("Labels");
             }
         }
     }

@@ -8,7 +8,6 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class LogWindowViewModel : ViewModelBase
     {
-
         public ObservableCollection<LogEntry> LogEntries
         {
             get { return LogCache.LogEntries; }

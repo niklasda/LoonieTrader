@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using JetBrains.Annotations;
 using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -9,6 +10,7 @@ using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Requesters
 {
+    [UsedImplicitly]
     public class AccountsRequester : RequesterBase, IAccountsRequester
     {
         public AccountsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 

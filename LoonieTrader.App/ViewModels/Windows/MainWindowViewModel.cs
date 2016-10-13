@@ -49,7 +49,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
-            ReloadChartCommand = new RelayCommand(() => ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"}));
             ExitApplicationCommand = new RelayCommand(ExitApplication);
             OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
             OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
@@ -74,7 +73,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
-            //AddToFavouritesCommand = new RelayCommand(AddInstrumentToFavourites);
             SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
 
             AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
@@ -82,48 +80,22 @@ namespace LoonieTrader.App.ViewModels.Windows
             OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
             OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
 
-            //  ChartTypeCommand = new DelegateCommand<object>(ChartTypeChanged);
-            //  IndicatorsChangedCommand = new DelegateCommand<object>(IndicatorsChanged);
-            // TimeframesChangedCommand = new DelegateCommand<object>(ChartTypeChanged);
-            // TradeTicketCommand = new DelegateCommand<object>(ChartTypeChanged);
-
             if (IsInDesignMode)
             {
-                //_allInstruments = new List<InstrumentViewModel>() { new InstrumentViewModel() { DisplayName = "EUR/USD" }, new InstrumentViewModel() { DisplayName = "USD/CAD" } };
                 _accountSummary = new AccountSummaryViewModel() {Id = "101"};
                 _positionList = new List<PositionViewModel>() {new PositionViewModel() {Instrument = "EUR/USD"}};
                 _orderList = new List<OrderViewModel>() {new OrderViewModel() {Instrument = "EUR/USD"}};
                 _tradeList = new List<TradeViewModel>() {new TradeViewModel() {Instrument = "EUR/USD"}};
                 _transactionList = new List<TransactionViewModel>() {new TransactionViewModel() {Instrument = "EUR/USD"}};
 
-                // var candleRecords = dataLoader.LoadDataFile201603();
-                // var candleList = mapper.Map<List<CandleDataViewModel>>(candleRecords);
-                // GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
-
-                //ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>()
-                //{
-                //    new CandleDataViewModel() {Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
-                //    new CandleDataViewModel() {Date = "20160809", Time = "162100", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
-                //    new CandleDataViewModel() {Date = "20160810", Time = "162200", High = 2m, Low = 1m, Open = 1m, Close = 2m},
-                //    new CandleDataViewModel() {Date = "20160811", Time = "162300", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
-                //};
             }
             else
             {
-                //  var candleRecords = _dataLoader.LoadDataFile201603();
-                //  var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
-                // GraphData = new ConcurrentBag<CandleDataViewModel>();
-                //ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>();
-
-                // Task.Run(()=> PlayTheData(candleList));
                 try
                 {
                     AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(settings.DefaultAccountId);
                     AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
-                    // OrdersResponse ordersResponse = _ordersRequester.GetOrders(settings.DefaultAccountId);
                     PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
-                    // TradesResponse tradesResponse = _tradesRequester.GetTrades(settings.DefaultAccountId);
-                    // TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(settings.DefaultAccountId);
 
                     InstrumentCache.Instruments = instrumentsResponse.instruments;
 
@@ -143,7 +115,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                     its.Insert(0,new InstrumentTypeViewModel()
                     {
                         Type = AppProperties.FavouritesFolderName,
-                        Instruments=new List<InstrumentViewModel>{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
+                        Instruments = new List<InstrumentViewModel>{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
                     });
 
                     _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>( its);
@@ -161,21 +133,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                     MessageBox.Show("Failed to start application", AppProperties.ApplicationName);
                 }
-                // SetChartType("OHLC");
-
             }
-
-            //var dayConfig = Mappers.Financial<CandleDataViewModel>()
-            //    .X(dayModel => (double) dayModel.DatePlusTime.Ticks / TimeSpan.FromHours(1).Ticks)
-            //    .Open(dayModel => (double) dayModel.Open)
-            //    .High(dayModel => (double) dayModel.High)
-            //    .Low(dayModel => (double) dayModel.Low)
-            //    .Close(dayModel => (double) dayModel.Close);
-            //SeriesCollection = new SeriesCollection(dayConfig);
-
-            //Formatter = value => new DateTime((long)(value * TimeSpan.FromHours(1).Ticks)).ToString("s");
-
-            ReloadChart(new InstrumentViewModel() {DisplayName = "EUR/USD"});
 
         }
 
@@ -210,15 +168,11 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private AccountSummaryViewModel _accountSummary;
         private readonly ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
-        //private IList<InstrumentViewModel> _allInstruments;
         private IList<PositionViewModel> _positionList;
         private IList<OrderViewModel> _orderList;
         private IList<TradeViewModel> _tradeList;
         private IList<TransactionViewModel> _transactionList;
 
-        //public SfChart MainChart { get; set; }
-
-        //        public ObservableCollection<CandleDataViewModel> GraphData { get; set; }
 
         public ICommand LogCommand { get; set; }
         public ICommand AboutCommand { get; set; }
@@ -226,7 +180,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand LogOutCommand { get; set; }
         public ICommand ExitApplicationCommand { get; set; }
         public ICommand ComplexOrderCommand { get; set; }
-        public ICommand ReloadChartCommand { get; set; }
         public ICommand WorkbenchCommand { get; set; }
         public ICommand NewChartCommand { get; set; }
         public ICommand OpenPositionsCommand { get; set; }
@@ -240,7 +193,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand CancelOrderContextCommand { get; set; }
         public ICommand ModifyOrderContextCommand { get; set; }
 
-       // public ICommand AddToFavouritesCommand { get; set; }
 
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
@@ -268,7 +220,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return _allInstrumentTypes; }
         }
 
-        public ChartPartViewModel ChartPart { get; private set; } 
+        public ChartPartViewModel ChartPart { get; private set; }
 
         public IList<PositionViewModel> AllPositions
         {
@@ -294,7 +246,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
 
                 return _orderList;
-
             }
         }
 
@@ -318,21 +269,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 return _tradeList;
             }
         }
-
-        //private List<string> _labels;
-
-
-        //public SeriesCollection SeriesCollection { get; set; }
-
-        //public List<string> Labels
-        //{
-        //    get { return _labels; }
-        //    set
-        //    {
-        //        _labels = value;
-        //        RaisePropertyChanged();
-        //    }
-        //}
 
         private void AddInstrumentToFavourites()
         {
@@ -359,7 +295,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
-                ReloadChart(SelectedInstrument);
             }
         }
 
@@ -417,7 +352,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 default:
                     throw new ArgumentOutOfRangeException(nameof(location), location, null);
             }
-
         }
 
         private void SafeStartUri([PathReference] string url)
@@ -445,92 +379,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-
         public void ChangeChartInstrument(InstrumentViewModel instrument)
         {
-            ReloadChart(instrument);
         }
-
-        //private void ChartTypeChanged(object checkedChartTypeItems)
-        //{
-        //    var checkedChartTypes = checkedChartTypeItems as ObservableCollection<object>;
-        //    if (checkedChartTypes != null)
-        //    {
-
-        //        //                foreach (string chartTypeName in checkedChartTypes)
-        //        //              {
-        //        string chartTypeName = checkedChartTypes.Cast<string>().FirstOrDefault();
-        //        SetChartType(chartTypeName, "asd"); // todo fix
-        //        // todo also move to chart view model
-
-        //        //            }
-        //    }
-        //}
-
-        //private string _chartType = "Candles";
-
-        //private void SetChartType(string chartTypeName, string currencyCode)
-        //{
-
-        //    FinancialSeriesBase series = null;
-        //    if (chartTypeName == "Candles")
-        //    {
-        //        _chartType = "Candles";
-
-        //        series = new CandleSeries();
-        //        series.Label = currencyCode;
-        //    }
-        //    else if (chartTypeName == "OHLC")
-        //    {
-        //        _chartType = "OHLC";
-
-        //        series = new HiLoOpenCloseSeries();
-        //        series.Label = currencyCode;
-        //    }
-
-        //    if (series != null && this.MainChart != null)
-        //    {
-        //        series.ItemsSource = ChartModel.GraphData;
-        //        series.Open = "Open";
-        //        series.High = "High";
-        //        series.Low = "Low";
-        //        series.Close = "Close";
-        //        series.XBindingPath = "Date";
-        //        series.ListenPropertyChange = true;
-
-        //        this.MainChart.Series.Clear();
-        //        this.MainChart.Series.Add(series);
-        //    }
-        //}
-
-        //private void IndicatorsChanged(object checkedIndicatorItems)
-        //{
-        //    var checkedIndicators = checkedIndicatorItems as ObservableCollection<object>;
-
-        //    if (checkedIndicators != null)
-        //    {
-        //        this.MainChart.TechnicalIndicators.Clear();
-
-        //        // FinancialTechnicalIndicator indicator = new AccumulationDistributionIndicator();
-        //        // this.MainChart.TechnicalIndicators.Add(indicator);
-
-        //        foreach (string indicatorName in checkedIndicators)
-        //        {
-        //            var indicator = ApplyIndicator(indicatorName, 1);
-
-        //            // ISupportAxes2D indicatorAxis = indicator as ISupportAxes2D;
-        //            if (indicator != null)
-        //            {
-        //                this.MainChart.TechnicalIndicators.Add(indicator);
-        //                //   NumericalAxis axis = new NumericalAxis();
-        //                //   axis.OpposedPosition = true;
-        //                //   axis.ShowGridLines = false;
-        //                //   axis.Visibility = Visibility.Collapsed;
-        //                //   indicatorAxis.YAxis = axis;
-        //            }
-        //        }
-        //    }
-        //}
 
         private InstrumentViewModel _selectedInstrument;
 
@@ -640,9 +491,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-       // public ChartViewModel ChartModel { get; } = new ChartViewModel();
-
-
         private void OpenAboutWindow()
         {
             AboutWindow aw = new AboutWindow();
@@ -677,7 +525,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void CancelOrder()
         {
-            Console.WriteLine("Cancel: " + SelectedOrder.Instrument);
+            Console.WriteLine(@"Cancel: " + SelectedOrder.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
@@ -688,70 +536,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
-
-        private void ReloadChart(InstrumentViewModel instrument)
-        {
-            /*            while (GraphData.Count>0)
-                        {
-                            GraphData.RemoveAt(0);
-
-                        }*/
-
-            //IList<CandleDataRecord> candleRecords = _dataLoader.LoadDataFile201603();
-
-            //var candleList = _mapper.Map<List<CandleDataViewModel>>(candleRecords);
-            //var candleList2 = _mapper.Map<List<OhlcPoint>>(candleRecords);
-            /*foreach (var candleDataViewModel in candleList)
-            {
-                GraphData.Add(candleDataViewModel);
-            }
-            */
-            //ChartModel.CurrencyCode = instrument.DisplayName;
-            //ChartModel.GraphData = new ObservableCollection<CandleDataViewModel>(candleList);
-
-//            if (SeriesCollection.Count < 1)
-  //          {
-                //SeriesCollection.Add(
-                //    new OhlcSeries()
-                //    {
-                //        Title = string.Format("Reloaded {0}", instrument.DisplayName),
-                //        IncreaseBrush = Brushes.Green,
-                //        DecreaseBrush = Brushes.Red,
-                //        Values = new ChartValues<CandleDataViewModel>
-                //        {
-                //            new CandleDataViewModel() {Open=1.1m, High= 1.3m, Low=1.0m, Close=1.2m,Date = DateTime.Now.ToString("yyyyMMdd"), Time=DateTime.Now.ToString("HHmmss"), Ticker = instrument.DisplayName},
-                //        }
-                //    });
-
-                //SeriesCollection.Add(
-                //    new LineSeries
-                //    {
-                //        Title = "Line",
-                //        Values = new ChartValues<double> {1.0, 1.0, 1.0, 1.0},
-                //        Fill = Brushes.Transparent
-                //    }
-          //      );
-
-                //Labels = new List<string>()
-                //{
-                //    DateTime.Now.ToString("dd MMM"),
-                //    DateTime.Now.AddDays(1).ToString("dd MMM"),
-                //    DateTime.Now.AddDays(2).ToString("dd MMM"),
-                //    DateTime.Now.AddDays(3).ToString("dd MMM"),
-                //    DateTime.Now.AddDays(4).ToString("dd MMM"),
-                //};
-    //        }
-      //      else
-        //    {
-               // SeriesCollection[0].Values.Add(new CandleDataViewModel() { Open = 1.1m, High = 1.3m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss"), Ticker = instrument.DisplayName });
-            //    Labels.Add("New");
-          //  }
-
-            // SetChartType(_chartType, instrument.DisplayName);
-            // PlayTheData(candleList);
-        }
-
-       // public Func<double, string> Formatter { get; set; }
 
         public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
 
@@ -781,7 +565,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 Console.WriteLine(instrumentType.Type);
             }
         }
-       // public InstrumentViewModel SelectedCluster { get; private set; }
 
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
@@ -789,7 +572,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             ComplexOrderWindow cow = new ComplexOrderWindow();
             cow.Owner = Application.Current.MainWindow;
             cow.ShowInstrument(instrument);
-            //cow.Show();
         }
 
         private void OpenWorkbenchWindow()
@@ -805,10 +587,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             tw.Owner = Application.Current.MainWindow;
             tw.ShowInstrument(instrument);
             //tw.Show();
-
-            //LiveChartWindow tdw = new LiveChartWindow();
-            //tdw.Owner = Application.Current.MainWindow;
-            //tdw.Show();
         }
 
         private void OpenSettingsWindow()
@@ -859,162 +637,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 case "Triangular Average":
                     break;
             }
-
-            //SeriesCollection.Add(new CandleSeries()
-            //{
-            //    Title = value,
-            //    IncreaseBrush = Brushes.GreenYellow,
-            //    DecreaseBrush = Brushes.OrangeRed,
-            //    Values = new ChartValues<OhlcPoint>
-            //        {
-            //            new OhlcPoint(30, 5, 30, 32),
-            //            new OhlcPoint(30, 8, 31, 37),
-            //            new OhlcPoint(30, 2, 30, 40),
-            //            new OhlcPoint(30, 0, 35, 38)
-            //            }});
-
-            //var index = rowIndex == 0 ? 1 : 0;
-            //ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
-            //indicator.XBindingPath = "Date";
-            //indicator.High = "High";
-            //indicator.Low = "Low";
-            //indicator.Open = "Open";
-            //indicator.Close = "Close";
-            //indicator.Volume = "Volume";
-
-            //Binding binding = new Binding();
-            //binding.Path = new PropertyPath("ItemsSource");
-            //binding.Source = series;
-            //binding.Mode = BindingMode.TwoWay;
-            //indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
-
-
         }
-
-        //private FinancialTechnicalIndicator ApplyIndicator(string value, int rowIndex)
-        //{
-        //    FinancialTechnicalIndicator indicator;
-        //    switch (value)
-        //    {
-        //        case "Accumulation Distribution":
-        //            indicator = new AccumulationDistributionIndicator
-        //            {
-        //                Label = "Accumulation",
-        //                SignalLineColor = Brushes.Black
-        //            };
-        //            break;
-
-        //        case "Average True Range":
-        //            indicator = new AverageTrueRangeIndicator
-        //            {
-        //                Label = "Average",
-        //                Period = 3,
-        //                SignalLineColor = Brushes.Black,
-        //            };
-        //            break;
-
-        //        case "Bollinger Band":
-        //            indicator = new BollingerBandIndicator
-        //            {
-        //                Label = "Bollinger",
-        //                Period = 3,
-        //                UpperLineColor = Brushes.Blue,
-        //                LowerLineColor = Brushes.Red,
-        //                SignalLineColor = Brushes.Black,
-        //            };
-        //            break;
-        //        case "Exponential Average":
-        //            indicator = new ExponentialAverageIndicator
-        //            {
-        //                Label = "Exponential",
-        //                Period = 3,
-        //                SignalLineColor = Brushes.Black
-        //            };
-        //            break;
-
-        //        case "MACD": // Moving Average Convergence/Divergence
-        //            indicator = new MACDTechnicalIndicator
-        //            {
-        //                Label = "MACD",
-        //                Period = 2,
-        //                Type = MACDType.Line,
-        //                ShortPeriod = 3,
-        //                LongPeriod = 6,
-        //                SignalLineColor = Brushes.Black,
-        //                ConvergenceLineColor = Brushes.Green,
-        //                DivergenceLineColor = Brushes.Blue,
-        //            };
-        //            break;
-        //        case "Momentum":
-        //            indicator = new MomentumTechnicalIndicator
-        //            {
-        //                Label = "Momentum",
-        //                Period = 4,
-        //                CenterLineColor = Brushes.Blue,
-        //                MomentumLineColor = Brushes.Black
-
-        //            };
-        //            break;
-        //        case "RSI": // Relative Strength Index
-        //            indicator = new RSITechnicalIndicator
-        //            {
-        //                Label = "RSI",
-        //                Period = 4,
-        //                SignalLineColor = Brushes.Black,
-        //                UpperLineColor = Brushes.Blue,
-        //                LowerLineColor = Brushes.Red,
-        //            };
-        //            break;
-        //        case "Simple Average":
-        //            indicator = new SimpleAverageIndicator
-        //            {
-        //                Label = "Simple",
-        //                Period = 3
-        //            };
-        //            break;
-        //        case "Stochastic":
-        //            indicator = new StochasticTechnicalIndicator
-        //            {
-        //                Label = "Stochastic",
-        //                Period = 4,
-        //                KPeriod = 8,
-        //                DPeriod = 5,
-        //                UpperLineColor = Brushes.Blue,
-        //                LowerLineColor = Brushes.Red,
-        //                SignalLineColor = Brushes.Black,
-        //                PeriodLineColor = Brushes.Green
-        //            };
-        //            break;
-        //        case "Triangular Average":
-        //            indicator = new TriangularAverageIndicator
-        //            {
-        //                Label = "Triangular",
-        //                Period = 4,
-        //                SignalLineColor = Brushes.Black
-        //            };
-        //            break;
-        //        default:
-        //            return null;
-        //    }
-
-        //    var index = rowIndex == 0 ? 1 : 0;
-        //    ChartSeries series = this.MainChart.VisibleSeries[index] as ChartSeries;
-        //    indicator.XBindingPath = "Date";
-        //    indicator.High = "High";
-        //    indicator.Low = "Low";
-        //    indicator.Open = "Open";
-        //    indicator.Close = "Close";
-        //    indicator.Volume = "Volume";
-
-        //    Binding binding = new Binding();
-        //    binding.Path = new PropertyPath("ItemsSource");
-        //    binding.Source = series;
-        //    binding.Mode = BindingMode.TwoWay;
-        //    indicator.SetBinding(ChartSeriesBase.ItemsSourceProperty, binding);
-
-
-        //    return indicator;
-        //}
     }
-
 }

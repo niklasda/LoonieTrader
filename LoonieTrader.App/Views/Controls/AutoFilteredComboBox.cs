@@ -67,7 +67,6 @@ namespace LoonieTrader.App.Views.Controls
             }
         }
 
-
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();

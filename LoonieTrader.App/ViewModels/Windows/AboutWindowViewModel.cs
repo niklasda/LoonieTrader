@@ -35,8 +35,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 resp.AppendLine("Plus Visual Studio with ReSharper");
 
                 return resp.ToString();
-
-                //return "About it, and credits to used software,  and credits to used software, " +Environment.NewLine+" and credits to used software,  and credits to used software,  and credits to used software, ";
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Net;
 using System.Text;
+using JetBrains.Annotations;
 using Jil;
 using JsonPrettyPrinterPlus;
 using LoonieTrader.Library.Interfaces;
@@ -9,6 +10,7 @@ using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Requesters
 {
+    [UsedImplicitly]
     public class PositionsRequester : RequesterBase, IPositionsRequester
     {
         public PositionsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 

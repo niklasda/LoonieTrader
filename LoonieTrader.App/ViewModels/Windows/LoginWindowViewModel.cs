@@ -18,8 +18,6 @@ namespace LoonieTrader.App.ViewModels.Windows
     {
         public LoginWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, IDialogService dialogService)
         {
-            _accountsRequester = accountsRequester;
-            _dialogService = dialogService;
             LoginCommand = new RelayCommand(Login, () => CanClose);
             ServerStatusCommand = new RelayCommand(OpenServerStatus);
 
@@ -30,12 +28,12 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             try
             {
-                var ar = _accountsRequester.GetAccountSummaries();
+                var ar = accountsRequester.GetAccountSummaries();
                 _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
             }
             catch (Exception ex)
             {
-                _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
+                dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
                 RaisePropertyChanged(() => AvailableAccounts);
             }
 
@@ -49,12 +47,10 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private readonly IAccountsRequester _accountsRequester;
-        private readonly IDialogService _dialogService;
         private readonly KeyValuePair<string, string>[] _availableEnvironments;
         private readonly KeyValuePair<string, string>[] _availableAccounts;
 
-        public bool CanClose
+        private bool CanClose
         {
             get
             {
@@ -110,10 +106,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 var ssw = new ServiceStatusLiveWindow();
                 ssw.Show();
             }
-
-            // Application.Current.MainWindow = mw;
-
-            // CloseAction();
         }
     }
 }
