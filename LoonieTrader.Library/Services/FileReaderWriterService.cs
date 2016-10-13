@@ -15,8 +15,10 @@ namespace LoonieTrader.Library.Services
             _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
             string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
+
             Directory.CreateDirectory(dataPath);
             Directory.CreateDirectory(historicalDataPath);
+            //File.Create(GetConfigFilePath());
         }
 
         private const string FileName = "Config.yaml";
@@ -56,15 +58,20 @@ namespace LoonieTrader.Library.Services
 
         public ISettings LoadConfiguration()
         {
-            var fileContent = File.ReadAllText(GetConfigFilePath());
-            var input = new StringReader(fileContent);
+            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
+            {
+                using (StreamReader txt = new StreamReader(fileStream))
+                {
+                    string fileContent = txt.ReadToEnd();
+                    var input = new StringReader(fileContent);
 
-            //var deserializer = new Deserializer(namingConvention: new PascalCaseNamingConvention());
-            var desBuilder = new DeserializerBuilder();
-            var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
+                    var desBuilder = new DeserializerBuilder();
+                    var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
 
-            var config = deserializer.Deserialize<Settings>(input);
-            return config;
+                    var config = deserializer.Deserialize<Settings>(input);
+                    return config ?? new Settings();
+                }
+            }
         }
 
         public void SaveConfiguration(ISettings settings)

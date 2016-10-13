@@ -214,7 +214,7 @@
 
                         <ComboBox ItemsSource="{Binding AvailableTimeframes}" VerticalContentAlignment="Center" Width="160"  SelectedIndex="0"   />
 
-                        <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center"  SelectedItem="{Binding SelectedIndicator}"  Width="150"  />
+                        <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center"  SelectedItem="{Binding SelectedIndicator}"  Width="170"  />
 
                         <Button Content="Complex _Order..." Command="{Binding ComplexOrderCommand}" FontSize="14"  Padding="10" Margin="30,0,0,0" />
                         <Button Content="New C_hart Window..." Command="{Binding NewChartCommand}"  FontSize="14" Padding="10" />
