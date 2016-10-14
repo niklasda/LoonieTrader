@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using LoonieTrader.Library.Configuration;
 using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.Models;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -60,9 +60,9 @@ namespace LoonieTrader.Library.Services
         {
             using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
             {
-                using (StreamReader txt = new StreamReader(fileStream))
+                using (StreamReader txtRd = new StreamReader(fileStream))
                 {
-                    string fileContent = txt.ReadToEnd();
+                    string fileContent = txtRd.ReadToEnd();
                     var input = new StringReader(fileContent);
 
                     var desBuilder = new DeserializerBuilder();
@@ -76,6 +76,16 @@ namespace LoonieTrader.Library.Services
 
         public void SaveConfiguration(ISettings settings)
         {
+            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
+            {
+                using (StreamWriter txtWr = new StreamWriter(fileStream))
+                {
+                    var serBuilder = new SerializerBuilder();
+                    var serializer = serBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
+
+                    serializer.Serialize(txtWr, settings);
+                }
+            }
         }
 
         public string LoadLocalJson(string fileNamePart1, string fileNamePart2)

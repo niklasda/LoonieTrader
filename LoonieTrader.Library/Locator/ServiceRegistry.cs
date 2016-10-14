@@ -19,6 +19,7 @@ namespace LoonieTrader.Library.Locator
             IExtendedLogger exLogger = CreateExLogger(cr);
 
             ForSingletonOf<ISettings>().Use(settings);
+            For<ISettingsService>().Use<SettingserService>();
             ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
             For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();

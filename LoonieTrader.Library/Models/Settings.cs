@@ -1,6 +1,6 @@
 ﻿using LoonieTrader.Library.Interfaces;
 
-namespace LoonieTrader.Library.Configuration
+namespace LoonieTrader.Library.Models
 {
     public class Settings : ISettings
     {

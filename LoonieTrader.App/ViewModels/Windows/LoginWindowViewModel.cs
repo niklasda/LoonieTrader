@@ -16,47 +16,68 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class LoginWindowViewModel : ViewModelBase
     {
-        public LoginWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, IDialogService dialogService)
+        public LoginWindowViewModel(ISettingsService settingsService, IAccountsRequester accountsRequester, IDialogService dialogService)
         {
-            LoginCommand = new RelayCommand(Login, () => CanClose);
+            _settingsService = settingsService;
+            _accountsRequester = accountsRequester;
+            _dialogService = dialogService;
+
+            LoginCommand = new RelayCommand(Login, () => IsInfoCompletedForLogin);
             ServerStatusCommand = new RelayCommand(OpenServerStatus);
+            ReloadAccountsCommand = new RelayCommand(ReloadAccounts, () => IsInfoCompletedForAccountLoad);
+
+            ISettings settings = _settingsService.CachedSettings;
+
+            //settings.Environment = "asd";
+            //settings.ApiKey = "123123-123123";
+            //settings.DefaultAccountId = "Prima";
+            //settings.FavouriteInstruments = new string[] {"SDF_SDF", "SDF_DFG"};
+            //settings.UserId = "456456";
+
+            //_settingsService.SaveSettings(settings);
 
             ApiKey = settings.ApiKey;
             SelectedEnvironmentKey = settings.Environment;
 
-            _availableEnvironments = new[] {Environments.Practice, Environments.Live};
+            AvailableEnvironments = new[] {Environments.Practice, Environments.Live};
 
-            try
+            if (IsInDesignMode)
             {
-                var ar = accountsRequester.GetAccountSummaries();
-                _availableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
+                
             }
-            catch (Exception ex)
-            {
-                dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
-                RaisePropertyChanged(() => AvailableAccounts);
-            }
+            else
+            { 
+                ReloadAccounts();
 
-            if (_availableAccounts != null)
-            {
-                var prim = _availableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
-                if (prim.Key != null)
+                if (AvailableAccounts != null)
                 {
-                    SelectedAccountKey = prim.Key;
+                    var prim = AvailableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
+                    if (prim.Key != null)
+                    {
+                        SelectedAccountKey = prim.Key;
+                    }
                 }
             }
         }
 
-        private readonly KeyValuePair<string, string>[] _availableEnvironments;
-        private readonly KeyValuePair<string, string>[] _availableAccounts;
+        private readonly ISettingsService _settingsService;
+        private readonly IAccountsRequester _accountsRequester;
+        private readonly IDialogService _dialogService;
 
-        private bool CanClose
+        private bool IsInfoCompletedForLogin
+        {
+            get
+            {
+                return IsInfoCompletedForAccountLoad
+                    && !string.IsNullOrWhiteSpace(SelectedAccountKey);
+            }
+        }
+        private bool IsInfoCompletedForAccountLoad
         {
             get
             {
                 return !string.IsNullOrWhiteSpace(SelectedEnvironmentKey)
                     && !string.IsNullOrWhiteSpace(ApiKey)
-                    && !string.IsNullOrWhiteSpace(SelectedAccountKey)
                     && ApiKey.Length == 65
                     && ApiKey.Split('-').Length == 2;
             }
@@ -68,10 +89,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string SelectedAccountKey { get; set; }
 
-        public IList<KeyValuePair<string, string>> AvailableEnvironemnts
-        {
-            get { return _availableEnvironments; }
-        }
+        public IList<KeyValuePair<string, string>> AvailableEnvironments { get; private set; }
 
         public ICommand LoginCommand { get; set; }
 
@@ -79,10 +97,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public Action CloseAction { get; set; }
 
-        public IList<KeyValuePair<string, string>> AvailableAccounts
-        {
-            get { return _availableAccounts; }
-        }
+        public IList<KeyValuePair<string, string>> AvailableAccounts { get; set; }
+
+        public ICommand ReloadAccountsCommand { get ; set; }
 
         private void Login()
         {
@@ -92,6 +109,27 @@ namespace LoonieTrader.App.ViewModels.Windows
             Application.Current.MainWindow = mw;
 
             CloseAction();
+        }
+
+        private void ReloadAccounts()
+        {
+            try
+            {
+                if(IsInfoCompletedForAccountLoad)
+                { 
+                    var ar = _accountsRequester.GetAccountSummaries();
+                    AvailableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
+                }
+                else
+                {
+                    _dialogService.WarnOk(string.Format("Please enter key and select environment"));
+                }
+            }
+            catch (Exception ex)
+            {
+                _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
+                RaisePropertyChanged(() => AvailableAccounts);
+            }
         }
 
         private void OpenServerStatus()

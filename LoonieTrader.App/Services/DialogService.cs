@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Constants;
 
-namespace LoonieTrader.App.UiServices
+namespace LoonieTrader.App.Services
 {
     [UsedImplicitly]
     public class DialogService : IDialogService

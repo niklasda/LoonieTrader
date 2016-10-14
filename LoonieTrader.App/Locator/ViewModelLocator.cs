@@ -1,6 +1,6 @@
 using AutoMapper;
 using LoonieTrader.App.Mapper;
-using LoonieTrader.App.UiServices;
+using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;

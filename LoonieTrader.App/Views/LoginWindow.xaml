@@ -25,18 +25,25 @@
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
             <TextBlock  Text="API Key (Sign up to Oanda, and generate it yourself)" Margin="3,0,0,0"  FontSize="12" />
-            <TextBox   Margin="0,0,0,0"  TextWrapping="Wrap" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  />
+            <TextBox   Margin="0,0,0,0"  MaxLength="65" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  />
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Environment (For which the API key is valid)" Margin="3,0,0,0" FontSize="12" />
-            <ComboBox ItemsSource="{Binding AvailableEnvironemnts}" SelectedValue="{Binding SelectedEnvironmentKey}" DisplayMemberPath="Key" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
+            <ComboBox ItemsSource="{Binding AvailableEnvironments}" SelectedValue="{Binding SelectedEnvironmentKey}" DisplayMemberPath="Key" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Default Account" Margin="3,0,0,0" FontSize="12" />
-            <ComboBox ItemsSource="{Binding AvailableAccounts}" SelectedValue="{Binding SelectedAccountKey}" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" ItemsSource="{Binding AvailableAccounts}" SelectedValue="{Binding SelectedAccountKey}" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
+                <Button Grid.Column="1" Command="{Binding ReloadAccountsCommand}" Margin="10,0,0,0" FontSize="16">Reload</Button>
+            </Grid>
         </StackPanel>
 
-        <Grid Grid.Row="4" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" Margin="67,0,0.2,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
