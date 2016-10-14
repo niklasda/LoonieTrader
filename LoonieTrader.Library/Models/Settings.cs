@@ -10,8 +10,6 @@ namespace LoonieTrader.Library.Models
 
         public string DefaultAccountId { get; set; }
 
-        public string UserId { get; set; }
-
         public string[] FavouriteInstruments { get; set; }
     }
 }
