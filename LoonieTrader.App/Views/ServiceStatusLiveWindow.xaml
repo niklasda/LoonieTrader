@@ -11,6 +11,14 @@
         Height="400" Width="500"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
-        <parts:ServiceStatusPartView DataContext="{Binding }" ></parts:ServiceStatusPartView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Select Environment-Service: " VerticalAlignment="Center" Margin="10,0"></TextBlock>
+            <ComboBox ItemsSource="{Binding AvailableEnvironments}" IsEditable="False" SelectedItem="{Binding SelectedEnvironment}" Margin="0,5" VerticalContentAlignment="Center" Width="180" DisplayMemberPath="Name"></ComboBox>
+        </StackPanel>
+        <parts:ServiceStatusPartView Grid.Row="1" DataContext="{Binding }" ></parts:ServiceStatusPartView>
     </Grid>
 </Window>

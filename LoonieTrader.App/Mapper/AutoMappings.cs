@@ -44,6 +44,7 @@ namespace LoonieTrader.App.Mapper
 
                 CreateMap<OrdersResponse.Order, OrderViewModel>();
                 CreateMap<ServiceEventsResponse.Event, ServiceEventViewModel>();
+                CreateMap<ServicesResponse.Service, ServiceViewModel>();
 
                 CreateMap<TradesResponse.Trade, TradeViewModel>();
 
