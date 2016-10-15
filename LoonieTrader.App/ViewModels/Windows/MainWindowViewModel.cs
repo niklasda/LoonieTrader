@@ -63,6 +63,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             ServiceStatusCommand = new RelayCommand(OpenServiceStatus);
 
             GotoLocalSettingsFolderCommand = new RelayCommand(() => GotoLocation(GotoLocations.LocalAppData));
+            GotoProjectPageCommand = new RelayCommand(() => GotoLocation(GotoLocations.ProjectPage));
             GotoOandaCommand = new RelayCommand(() => GotoLocation(GotoLocations.Oanda));
             GotoOandaApiCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaApi));
             GotoOandaDevCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaDevForum));
@@ -191,6 +192,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand ServiceStatusCommand { get; set; }
 
         public ICommand GotoLocalSettingsFolderCommand { get; set; }
+        public ICommand GotoProjectPageCommand { get; set; }
         public ICommand GotoOandaCommand { get; set; }
         public ICommand GotoOandaApiCommand { get; set; }
         public ICommand GotoOandaDevCommand { get; set; }
@@ -311,9 +313,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             switch (location)
             {
                 case GotoLocations.LocalAppData:
-//                    SafeStartPath(@"%localappdata%\LoonieTrader");
                     var folder = Path.Combine(Environment.ExpandEnvironmentVariables("%localappdata%"), AppProperties.ApplicationName);
                     SafeStartPath(folder);
+                    break;
+                case GotoLocations.ProjectPage:
+                    SafeStartUri("http://niklasda.github.io");
                     break;
                 case GotoLocations.Oanda:
                     SafeStartUri("http://www.oanda.com");

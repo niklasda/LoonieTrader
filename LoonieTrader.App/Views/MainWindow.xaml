@@ -27,7 +27,7 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top" Padding="3">
             <MenuItem Header="_File" >
-                <MenuItem Header="_Settings" Command="{Binding SettingsCommand}" ></MenuItem>
+                <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" ></MenuItem>
                 <Separator />
                 <MenuItem Header="_Log Out" Command="{Binding LogOutCommand}"></MenuItem>
                 <Separator />
@@ -41,17 +41,18 @@
                 <MenuItem Header="Open Positions" Command="{Binding OpenPositionsCommand}" InputGestureText="Ctrl+5" />
             </MenuItem>
             <MenuItem Header="_Windows" >
-                <MenuItem Header="Complex _Order" Command="{Binding ComplexOrderCommand}" InputGestureText="Ctrl+O" />
-                <MenuItem Header="C_hart" Command="{Binding NewChartCommand}" InputGestureText="Ctrl+H" />
-                <MenuItem Header="_Indicator Workbench" Command="{Binding WorkbenchCommand}" InputGestureText="Ctrl+I" />
+                <MenuItem Header="Complex _Order..." Command="{Binding ComplexOrderCommand}" InputGestureText="Ctrl+O" />
+                <MenuItem Header="C_hart..." Command="{Binding NewChartCommand}" InputGestureText="Ctrl+H" />
+                <MenuItem Header="_Indicator Workbench..." Command="{Binding WorkbenchCommand}" InputGestureText="Ctrl+I" />
             </MenuItem>
             <MenuItem Header="_Help" >
-                <MenuItem Header="_Log" Command="{Binding LogCommand}" />
+                <MenuItem Header="_Log..." Command="{Binding LogCommand}" />
                 <Separator />
-                <MenuItem Header="_Service Status"  Command="{Binding ServiceStatusCommand}" />
+                <MenuItem Header="_Service Status..."  Command="{Binding ServiceStatusCommand}" />
                 <Separator />
                 <MenuItem Header="L_inks">
                     <MenuItem Header="Local Settings Folder" Command="{Binding GotoLocalSettingsFolderCommand}" />
+                    <MenuItem Header="Project Page" Command="{Binding GotoProjectPageCommand}" />
                     <Separator />
                     <MenuItem Header="Oanda" Command="{Binding GotoOandaCommand}" />
                     <MenuItem Header="Oanda API" Command="{Binding GotoOandaApiCommand}" />
