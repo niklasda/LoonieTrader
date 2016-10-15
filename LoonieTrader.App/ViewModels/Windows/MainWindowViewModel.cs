@@ -60,8 +60,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             CancelOrderContextCommand = new RelayCommand(CancelOrder);
             ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
 
-            ServiceStatusPracticeCommand = new RelayCommand(() => OpenServiceStatus(Environments.Practice));
-            ServiceStatusLiveCommand = new RelayCommand(() => OpenServiceStatus(Environments.Live));
+            ServiceStatusCommand = new RelayCommand(OpenServiceStatus);
 
             GotoLocalSettingsFolderCommand = new RelayCommand(() => GotoLocation(GotoLocations.LocalAppData));
             GotoOandaCommand = new RelayCommand(() => GotoLocation(GotoLocations.Oanda));
@@ -137,17 +136,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        private void OpenServiceStatus(KeyValuePair<string, string> env)
+        private void OpenServiceStatus()
         {
-            Window window;
-            if (env.Key == Environments.Live.Key)
-            {
-                window = new ServiceStatusLiveWindow();
-            }
-            else
-            {
-                window = new ServiceStatusPracticeWindow();
-            }
+            Window window = new ServiceStatusWindow();
 
             window.Owner = Application.Current.MainWindow;
             window.Show();
@@ -197,8 +188,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
         public ICommand TimeframesChangedCommand { get; set; }
-        public ICommand ServiceStatusPracticeCommand { get; set; }
-        public ICommand ServiceStatusLiveCommand { get; set; }
+        public ICommand ServiceStatusCommand { get; set; }
 
         public ICommand GotoLocalSettingsFolderCommand { get; set; }
         public ICommand GotoOandaCommand { get; set; }

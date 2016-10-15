@@ -48,10 +48,7 @@
             <MenuItem Header="_Help" >
                 <MenuItem Header="_Log" Command="{Binding LogCommand}" />
                 <Separator />
-                <MenuItem Header="_Service Status"  >
-                    <MenuItem Header="Practice Environment" Command="{Binding ServiceStatusPracticeCommand}" />
-                    <MenuItem Header="Live Environment" Command="{Binding ServiceStatusLiveCommand}" />
-                </MenuItem>
+                <MenuItem Header="_Service Status"  Command="{Binding ServiceStatusCommand}" />
                 <Separator />
                 <MenuItem Header="L_inks">
                     <MenuItem Header="Local Settings Folder" Command="{Binding GotoLocalSettingsFolderCommand}" />

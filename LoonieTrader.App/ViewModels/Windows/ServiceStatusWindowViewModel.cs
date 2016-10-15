@@ -8,22 +8,27 @@ using LoonieTrader.Library.RestApi.Responses;
 namespace LoonieTrader.App.ViewModels.Windows
 {
     [UsedImplicitly]
-    public class ServiceStatusLiveWindowViewModel : ViewModelBase
+    public class ServiceStatusWindowViewModel : ViewModelBase
     {
-        public ServiceStatusLiveWindowViewModel(IMapper mapper, HealthRequester healthRequester)
+        public ServiceStatusWindowViewModel(IMapper mapper, HealthRequester healthRequester)
         {
             _mapper = mapper;
             _healthRequester = healthRequester;
 
-            ServicesResponse servicesResponse = _healthRequester.GetServices();
-            var svcvms = _mapper.Map<ServicesResponse.Service[], ServiceViewModel[]>(servicesResponse.services);
-            AvailableEnvironments = svcvms;
+            if (IsInDesignMode)
+            {
+            }
+            else
+            {
+                ServicesResponse servicesResponse = _healthRequester.GetServices();
+                var svcvms = _mapper.Map<ServicesResponse.Service[], ServiceViewModel[]>(servicesResponse.services);
+                AvailableEnvironments = svcvms;
+            }
         }
 
         private readonly IMapper _mapper;
         private readonly HealthRequester _healthRequester;
-        public ObservableCollection<ServiceEventViewModel> RestEvents { get; set; }
-        public ObservableCollection<ServiceEventViewModel> StreamEvents { get; set; }
+        public ObservableCollection<ServiceEventViewModel> ServiceEvents { get; set; } = new ObservableCollection<ServiceEventViewModel>();
 
         public ServiceViewModel[] AvailableEnvironments { get; set; }
 
@@ -38,20 +43,21 @@ namespace LoonieTrader.App.ViewModels.Windows
                     _selectedEnvironment = value;
                     RaisePropertyChanged();
 
-                    LoadEnvironenment(_selectedEnvironment.Name);
+                    LoadEnvironenment(_selectedEnvironment.Id);
                 }
             }
         }
 
         private void LoadEnvironenment(string environmentName)
         {
-            ServiceEventsResponse restEvents = _healthRequester.GetServiceEvents("fxtrade-rest-api");
+            ServiceEventsResponse restEvents = _healthRequester.GetServiceEvents(environmentName);
             ServiceEventViewModel[] restVms = _mapper.Map<ServiceEventsResponse.Event[], ServiceEventViewModel[]>(restEvents.events);
-            RestEvents = new ObservableCollection<ServiceEventViewModel>(restVms);
 
-            ServiceEventsResponse streamEvents = _healthRequester.GetServiceEvents("fxtrade-streaming-api");
-            ServiceEventViewModel[] streamVms = _mapper.Map<ServiceEventsResponse.Event[], ServiceEventViewModel[]>(streamEvents.events);
-            StreamEvents = new ObservableCollection<ServiceEventViewModel>(streamVms); 
+            ServiceEvents.Clear();
+            foreach (var vm in restVms)
+            {
+                ServiceEvents.Add(vm);
+            }
         }
     }
 }

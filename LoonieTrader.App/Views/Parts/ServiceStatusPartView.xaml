@@ -11,9 +11,9 @@
     <UserControl.Resources>
     </UserControl.Resources>
     <Grid>
-            <TabControl  d:DataContext="{d:DesignInstance Type=windows:ServiceStatusLiveWindowViewModel}">
-            <TabItem  Header="  API  ">
-                <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding RestEvents,Mode=OneWay}" ReadOnly="True" SelectionMode="Single"  >
+            <TabControl  d:DataContext="{d:DesignInstance Type=windows:ServiceStatusWindowViewModel}">
+            <TabItem  Header="  Events  ">
+                <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding ServiceEvents,Mode=OneWay}" ReadOnly="True" SelectionMode="Single"  >
                     <xcdg:DataGridControl.View>
                         <xcdg:TableView ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                             <xcdg:TableView.FixedHeaders>
@@ -29,23 +29,7 @@
                     </xcdg:DataGridControl.Columns>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem  Header ="  Streaming  ">
-                <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding StreamEvents,Mode=OneWay}" ReadOnly="True" SelectionMode="Single" >
-                    <xcdg:DataGridControl.View>
-                        <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                            <xcdg:TableView.FixedHeaders>
-                                <DataTemplate>
-                                    <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                </DataTemplate>
-                            </xcdg:TableView.FixedHeaders>
-                        </xcdg:TableView>
-                    </xcdg:DataGridControl.View>
-                    <xcdg:DataGridControl.Columns>
-                        <xcdg:Column FieldName="Timestamp" AllowGroup="False"  Title="Timestamp"  Width="240"/>
-                        <xcdg:Column FieldName="Message" AllowGroup="False"  Title="Message"/>
-                    </xcdg:DataGridControl.Columns>
-                </xcdg:DataGridControl>
-            </TabItem>
+            
         </TabControl>
     </Grid>
 </UserControl>

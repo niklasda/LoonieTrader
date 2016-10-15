@@ -2,9 +2,9 @@
 
 namespace LoonieTrader.App.Views
 {
-    public partial class ServiceStatusPracticeWindow : Window
+    public partial class ServiceStatusWindow : Window
     {
-        public ServiceStatusPracticeWindow()
+        public ServiceStatusWindow()
         {
             InitializeComponent();
         }

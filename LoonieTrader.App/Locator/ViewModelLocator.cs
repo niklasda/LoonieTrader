@@ -43,8 +43,7 @@ namespace LoonieTrader.App.Locator
 
         public LogWindowViewModel Log => _container.GetInstance<LogWindowViewModel>();
 
-        public ServiceStatusLiveWindowViewModel ServiceStatusLive => _container.GetInstance<ServiceStatusLiveWindowViewModel>();
+        public ServiceStatusWindowViewModel ServiceStatus => _container.GetInstance<ServiceStatusWindowViewModel>();
 
-        public ServiceStatusPracticeWindowViewModel ServiceStatusPractice => _container.GetInstance<ServiceStatusPracticeWindowViewModel>();
     }
 }

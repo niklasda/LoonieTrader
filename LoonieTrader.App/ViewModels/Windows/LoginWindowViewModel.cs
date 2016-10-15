@@ -39,14 +39,14 @@ namespace LoonieTrader.App.ViewModels.Windows
             ApiKey = settings.ApiKey;
             SelectedEnvironmentKey = settings.Environment;
 
-            AvailableEnvironments = new[] {Environments.Practice, Environments.Live};
+            AvailableEnvironments = new[] { Environments.Practice, Environments.Live };
 
             if (IsInDesignMode)
             {
-                
+
             }
             else
-            { 
+            {
                 ReloadAccounts();
 
                 if (AvailableAccounts != null)
@@ -99,7 +99,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public IList<KeyValuePair<string, string>> AvailableAccounts { get; set; }
 
-        public ICommand ReloadAccountsCommand { get ; set; }
+        public ICommand ReloadAccountsCommand { get; set; }
 
         private void Login()
         {
@@ -115,14 +115,14 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             try
             {
-                if(IsInfoCompletedForAccountLoad)
-                { 
+                if (IsInfoCompletedForAccountLoad)
+                {
                     var ar = _accountsRequester.GetAccountSummaries();
                     AvailableAccounts = ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray();
                 }
                 else
                 {
-                    _dialogService.WarnOk(string.Format("Please enter key and select environment"));
+                    _dialogService.WarnOk("Please enter key and select environment");
                 }
             }
             catch (Exception ex)
@@ -134,16 +134,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void OpenServerStatus()
         {
-            if (SelectedEnvironmentKey == Environments.Practice.Key)
-            {
-                var ssw = new ServiceStatusPracticeWindow();
-                ssw.Show();
-            }
-            else if (SelectedEnvironmentKey == Environments.Live.Key)
-            {
-                var ssw = new ServiceStatusLiveWindow();
-                ssw.Show();
-            }
+            var ssw = new ServiceStatusWindow();
+            ssw.Show();
         }
     }
 }

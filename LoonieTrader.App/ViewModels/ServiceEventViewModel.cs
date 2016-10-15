@@ -7,6 +7,5 @@ namespace LoonieTrader.App.ViewModels
         public string Message { get; set; }
 
         public string Timestamp { get; set; }
-
     }
 }
