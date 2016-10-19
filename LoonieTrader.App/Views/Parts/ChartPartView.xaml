@@ -14,7 +14,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
-        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top">
+        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" Zoom="Y" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top" ScrollMode="X">
             <wpf:CartesianChart.AxisX>
                 <wpf:Axis Labels="{Binding Labels}"/>
             </wpf:CartesianChart.AxisX>
