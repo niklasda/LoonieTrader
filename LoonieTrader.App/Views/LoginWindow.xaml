@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
-        Title="Login" 
-        Height="400" 
+        Title="Login"
+        Height="400"
         Width="720"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
@@ -24,12 +24,12 @@
         <TextBlock Text="LoonieTrader" Grid.Column="1" Margin="0,10,0,0" Grid.Row="0" FontSize="20" HorizontalAlignment="Center"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
-            <TextBlock  Text="API Key (Sign up to Oanda, and generate it yourself)" Margin="3,0,0,0"  FontSize="12" />
-            <TextBox   Margin="0,0,0,0"  MaxLength="65" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  />
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Environment (For which the API key is valid)" Margin="3,0,0,0" FontSize="12" />
             <ComboBox ItemsSource="{Binding AvailableEnvironments}" SelectedValue="{Binding SelectedEnvironmentKey}" DisplayMemberPath="Key" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <TextBlock  Text="API Key (Sign up to Oanda, and generate it yourself)" Margin="3,0,0,0"  FontSize="12" />
+            <TextBox   Margin="0,0,0,0"  MaxLength="65" Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}" FontSize="16"  />
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Vertical">
             <TextBlock Text="Default Account" Margin="3,0,0,0" FontSize="12" />
