@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -34,8 +33,14 @@ namespace LoonieTrader.App.ViewModels.Parts
                 strm.NewPrice += Strm_NewPrice;
             }
 
+            _dateOffset = DateTime.Now;
+
+            XFormatter = XAxisLabelFormatter;
+            YFormatter = val => YAxisLabelFormatter(val);
+
             var dayConfig = Mappers.Financial<CandleDataViewModel>()
-              // .X(dayModel => (double)dayModel.DatePlusTime.Ticks / TimeSpan.FromHours(1).Ticks)
+                .X(dayModel => (double)dayModel.DatePlusTime.Subtract(_dateOffset).Seconds)
+               // .Y(dayModel => (double)dayModel.Open)
                .Open(dayModel => (double)dayModel.Open)
                .High(dayModel => (double)dayModel.High)
                .Low(dayModel => (double)dayModel.Low)
@@ -45,12 +50,13 @@ namespace LoonieTrader.App.ViewModels.Parts
             {
                 Values = new ChartValues<CandleDataViewModel>
                 {
-                    new CandleDataViewModel {Open= 1.11m,High= 1.13m, Low=1.10m,Close= 1.12m,Date = DateTime.Now.ToString("yyyyMMdd"),Time = DateTime.Now.ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m,Close= 1.12m,Date = DateTime.Now.ToString("yyyyMMdd"),Time = DateTime.Now.ToString("HHmmss")}
+                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss")}
                 }
             };
 
-            var ls = new LineSeries(Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open))
+            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).Seconds);
+            var ls = new LineSeries(lsMapper)
             {
                 Values = new ChartValues<CandleDataViewModel>(),
                 Fill = Brushes.Transparent
@@ -68,13 +74,24 @@ namespace LoonieTrader.App.ViewModels.Parts
                 ls
             };
 
-            Labels = new List<string>()
-            {
-                DateTime.Now.ToString("dd MMM"),
-                DateTime.Now.AddDays(1).ToString("dd MMM"),
-            };
-
             UpdateCommand = new RelayCommand(UpdateAllOnClick);
+        }
+
+        private readonly DateTime _dateOffset;
+        private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
+
+        private string YAxisLabelFormatter(double val)
+        {
+            var valLbl = val.ToString("F5");
+            Console.WriteLine($@"Y: {val} - {valLbl}");
+            return valLbl;
+        }
+
+        private string XAxisLabelFormatter(double val)
+        {
+            var valLbl = DateTime.Now.AddSeconds(val).ToString("yyyy-MM-dd HH:mm:ss ");
+            Console.WriteLine($@"X: {val} -> {valLbl}");
+            return valLbl;
         }
 
         private void Strm_NewPrice(object sender, StreamEventArgs<PricesResponse.Price> e)
@@ -87,9 +104,10 @@ namespace LoonieTrader.App.ViewModels.Parts
 
         public ICommand UpdateCommand { get; set; }
         public SeriesCollection SeriesCollection { get; set; }
-        private List<string> _labels;
 
-        private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
+        public Func<double, string> XFormatter { get; private set; }
+        public Func<double, string> XFormatterUnder { get; private set; }
+        public Func<double, string> YFormatter { get; private set; }
 
         private void AddPoint(PricesResponse.Price price)
         {
@@ -98,11 +116,19 @@ namespace LoonieTrader.App.ViewModels.Parts
                 if (price.asks?.Length > 0)
                 {
                     double ask = double.Parse(price.asks[0].price, CultureInfo.CurrentUICulture);
-                    var p = new CandleDataViewModel { Open=(decimal) ask, High=(decimal) (ask + 0.02), Low=(decimal) (ask - 0.01),Close= (decimal) (ask + 0.01),
-                        Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
+                    var p = new CandleDataViewModel
+                    {
+                        Open = (decimal)ask,
+                        High = (decimal)(ask + 0.02),
+                        Low = (decimal)(ask - 0.01),
+                        Close = (decimal)(ask + 0.01),
+                        Date = DateTime.Now.ToString("yyyyMMdd"),
+                        Time = DateTime.Now.ToString("HHmmss")
+                    };
+
                     SeriesCollection[0].Values.Add(p);
                     SeriesCollection[1].Values.Add(p);
-                    Labels.Add(DateTime.Now.AddDays(Labels.Count).ToString("dd MMM"));
+                  //  Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
                 }
             }, null);
 
@@ -118,20 +144,11 @@ namespace LoonieTrader.App.ViewModels.Parts
                 point.Close = r.Next((int)point.Low, (int)point.High);
             }
 
-            var p = new CandleDataViewModel { Open=1.2m, High=1.5m, Low=1.0m, Close=1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
+            var p = new CandleDataViewModel { Open = 1.2m, High = 1.5m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
             SeriesCollection[0].Values.Add(p);
             SeriesCollection[1].Values.Add(p);
-            Labels.Add(DateTime.Now.AddDays(Labels.Count).ToString("dd MMM"));
+         //   Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
         }
 
-        public List<string> Labels
-        {
-            get { return _labels; }
-            set
-            {
-                _labels = value;
-                RaisePropertyChanged();
-            }
-        }
     }
 }

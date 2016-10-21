@@ -10,7 +10,17 @@ namespace LoonieTrader.Library.HistoricalData
 
         public string Time { get; set; }
 
-        public DateTime DatePlusTime { get { return DateTime.ParseExact(string.Format("{0} {1}", Date, Time), "yyyyMMdd HHmmss", null); } }
+        public DateTime DatePlusTime
+        {
+            get
+            {
+                
+                var dt = DateTime.ParseExact(string.Format("{0} {1}", Date, Time), "yyyyMMdd HHmmss", null);
+                Console.WriteLine("{0} - {1} - {2} - {3}", dt.ToString("G"), dt.Ticks, TimeSpan.FromHours(1).Ticks, dt.Ticks/TimeSpan.FromHours(1).Ticks);
+                
+                return dt;
+            }
+        }
 
         public decimal Open { get; set; }
 
