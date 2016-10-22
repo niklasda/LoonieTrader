@@ -14,13 +14,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
-        
+
         <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" Zoom="X" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top" ScrollMode="X" IsManipulationEnabled="True" ContentStringFormat="C:{0}">
             <wpf:CartesianChart.AxisX>
-                <wpf:Axis LabelFormatter="{Binding XFormatter}" IsMerged="True" Separator="{x:Static wpf:DefaultAxes.CleanSeparator}"/>
+                <wpf:Axis LabelFormatter="{Binding XFormatter}" IsMerged="True" MinValue="-60" MaxValue="100" />
             </wpf:CartesianChart.AxisX>
             <wpf:CartesianChart.AxisY >
-                <wpf:Axis LabelFormatter="{Binding YFormatter}" IsMerged="False"/>
+                <wpf:Axis LabelFormatter="{Binding YFormatter}" IsMerged="False" />
             </wpf:CartesianChart.AxisY>
         </wpf:CartesianChart>
 

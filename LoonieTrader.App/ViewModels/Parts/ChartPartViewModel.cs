@@ -36,10 +36,10 @@ namespace LoonieTrader.App.ViewModels.Parts
             _dateOffset = DateTime.Now;
 
             XFormatter = XAxisLabelFormatter;
-            YFormatter = val => YAxisLabelFormatter(val);
+            YFormatter = YAxisLabelFormatter;
 
             var dayConfig = Mappers.Financial<CandleDataViewModel>()
-                .X(dayModel => (double)dayModel.DatePlusTime.Subtract(_dateOffset).Seconds)
+                .X(dayModel => (double)dayModel.DatePlusTime.Subtract(_dateOffset).TotalSeconds)
                // .Y(dayModel => (double)dayModel.Open)
                .Open(dayModel => (double)dayModel.Open)
                .High(dayModel => (double)dayModel.High)
@@ -50,12 +50,15 @@ namespace LoonieTrader.App.ViewModels.Parts
             {
                 Values = new ChartValues<CandleDataViewModel>
                 {
-                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss")}
+                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-50).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.12m, High=1.14m, Low=1.11m, Close= 1.13m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-40).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.13m, High=1.15m, Low=1.12m, Close= 1.14m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-30).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.14m, High=1.16m, Low=1.13m, Close= 1.15m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-20).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.15m, High=1.17m, Low=1.14m, Close= 1.16m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-10).ToString("HHmmss")}
                 }
             };
 
-            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).Seconds);
+            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
             var ls = new LineSeries(lsMapper)
             {
                 Values = new ChartValues<CandleDataViewModel>(),
@@ -89,7 +92,7 @@ namespace LoonieTrader.App.ViewModels.Parts
 
         private string XAxisLabelFormatter(double val)
         {
-            var valLbl = DateTime.Now.AddSeconds(val).ToString("yyyy-MM-dd HH:mm:ss ");
+            var valLbl = _dateOffset.AddSeconds(val).ToString("yyyy-MM-dd HH:mm:ss ");
             Console.WriteLine($@"X: {val} -> {valLbl}");
             return valLbl;
         }
