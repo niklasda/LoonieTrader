@@ -5,8 +5,12 @@ namespace LoonieTrader.Shared.Interfaces
 {
     public interface ILaggingIndicator
     {
-        ISettings GetSettings();
+        string Name { get; }
+        string Version { get; }
+        string Description { get; }
 
+        IRequirements GetRequirements();
+        ISpecification SetSpecification();
         IList<PricePoint> CalculatePoints(IList<OhlcPoint> pricePoints, Depth depth = null);
     }
 }

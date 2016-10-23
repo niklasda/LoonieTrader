@@ -9,5 +9,7 @@
         void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json);
         string GetLocalFolderPath();
         string GetLogFilePattern();
+        string GetIndicatorFolderPath();
+        string GetHistoricalDataFolderPath();
     }
 }

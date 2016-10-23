@@ -1,9 +1,12 @@
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using AutoMapper;
 using LoonieTrader.App.Mapper;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
+using LoonieTrader.Shared.Interfaces;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator
@@ -23,6 +26,25 @@ namespace LoonieTrader.App.Locator
 
                 c.AddRegistry<ServiceRegistry>();
             });
+
+          //  LoadAll();
+        }
+
+        private void LoadAll()
+        {
+            var frw = _container.GetInstance<IFileReaderWriterService>();
+            var appSettingsFolder = frw.GetIndicatorFolderPath();
+
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new DirectoryCatalog(appSettingsFolder));
+            var container = new CompositionContainer(catalog);
+            container.ComposeParts(this);
+
+           // var a = container.GetExports<IAlgorithmicTrader>();
+
+            var laggers = container.GetExportedValues<ILaggingIndicator>();
+            var leaders = container.GetExportedValues<ILeadingIndicator>();
+            var algos = container.GetExportedValues<IAlgorithmicTrader>();
         }
 
         private readonly IContainer _container;

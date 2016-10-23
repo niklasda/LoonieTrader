@@ -195,7 +195,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <parts:ChartPartView DataContext="{Binding ChartPart}">
+                        <parts:ChartPartView DataContext="{Binding ChartPart}" MinHeight="100">
                     </parts:ChartPartView>
                         </Grid>
                 </Expander>

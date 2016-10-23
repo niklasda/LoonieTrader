@@ -36,5 +36,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public ChartPartViewModel ChartPart { get; private set; }
 
+        public string[] FoundIndicators
+        {
+            get { return new string[] {"1", "2"}; }
+        }
     }
 }

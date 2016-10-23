@@ -1,6 +1,6 @@
 ﻿namespace LoonieTrader.Shared.Models
 {
-    public class Settings : ISettings
+    public interface ISpecification
     {
         
     }

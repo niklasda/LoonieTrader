@@ -45,11 +45,13 @@
     <Compile Include="Models\IDepth.cs" />
     <Compile Include="Models\Depth.cs" />
     <Compile Include="Models\IOhlcPoint.cs" />
+    <Compile Include="Models\IRequirements.cs" />
     <Compile Include="Models\OhlcPoint.cs" />
     <Compile Include="Models\IPricePoint.cs" />
     <Compile Include="Models\PricePoint.cs" />
-    <Compile Include="Models\ISettings.cs" />
-    <Compile Include="Models\Settings.cs" />
+    <Compile Include="Models\ISpecification.cs" />
+    <Compile Include="Models\Requirements.cs" />
+    <Compile Include="Models\Specification.cs" />
     <Compile Include="Models\TradeAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

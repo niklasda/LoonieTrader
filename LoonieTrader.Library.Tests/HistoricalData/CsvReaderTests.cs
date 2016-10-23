@@ -3,6 +3,7 @@ using System.IO;
 using AutoMapper;
 using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Services;
 using LoonieTrader.Library.Tests.Locator;
 using NUnit.Framework;
@@ -19,8 +20,8 @@ namespace LoonieTrader.Library.Tests.HistoricalData
             IMapper mapper = ams.CreateMapper();
 
             var engine = new FileHelperEngine<CandleDataRecord>();
-            var frw = new FileReaderWriterService();
-            var hdPath = frw.GetHistoricalDataFolderPath();
+            IFileReaderWriterService frw = new FileReaderWriterService();
+            string hdPath = frw.GetHistoricalDataFolderPath();
             var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2016.txt")); // todo hardcoded
 
             Assert.AreEqual(212445, records.Length);

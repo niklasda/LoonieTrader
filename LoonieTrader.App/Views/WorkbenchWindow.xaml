@@ -30,7 +30,7 @@
                         <RowDefinition Height="60"></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Information about price, time, depth, periods (time frames) and stuff" TextWrapping="Wrap"></TextBlock>
-                    <TextBlock Grid.Row="1" Text="Select instrument to show" TextWrapping="Wrap"></TextBlock>
+                    <ComboBox Grid.Row="1" ItemsSource="{Binding FoundIndicators}"></ComboBox>
                     <TextBlock Grid.Row="2" Text="Optionally require specific time frame" TextWrapping="Wrap"></TextBlock>
 
                 </Grid>

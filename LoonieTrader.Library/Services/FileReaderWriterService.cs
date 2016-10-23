@@ -15,9 +15,11 @@ namespace LoonieTrader.Library.Services
             _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
             string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
+            string indicatorPath = Path.Combine(_appDataFolderPath, FolderName,IndicatorsFolderName);
 
             Directory.CreateDirectory(dataPath);
             Directory.CreateDirectory(historicalDataPath);
+            Directory.CreateDirectory(indicatorPath);
             //File.Create(GetConfigFilePath());
         }
 
@@ -25,6 +27,7 @@ namespace LoonieTrader.Library.Services
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
         private const string HistoricalDataFolderName = "HistoricalData";
+        private const string IndicatorsFolderName = "Indicators";
         private const string LogsFolderName = "Logs";
         private const string Extension = "json";
         private const string Separator = "#";
@@ -35,6 +38,12 @@ namespace LoonieTrader.Library.Services
         {
             var ltp = Path.Combine(_appDataFolderPath, FolderName);
             return ltp;
+        }
+
+        public string GetIndicatorFolderPath()
+        {
+            var ip = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
+            return ip;
         }
 
         public string GetHistoricalDataFolderPath()
