@@ -10,9 +10,9 @@ namespace DemoAlgo
     {
         public string Version { get { return "0.9"; } }
 
-        public string Name { get { return "Lagging Demo"; } }
+        public string Name { get { return "Algo Demo"; } }
 
-        public string Description { get { return "Description of lagging demo"; } }
+        public string Description { get { return "Description of algo demo"; } }
 
         public IRequirements GetRequirements()
         {

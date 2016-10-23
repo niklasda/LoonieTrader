@@ -27,7 +27,7 @@ namespace LoonieTrader.App.Locator
                 c.AddRegistry<ServiceRegistry>();
             });
 
-          //  LoadAll();
+            LoadAll();
         }
 
         private void LoadAll()
@@ -35,12 +35,10 @@ namespace LoonieTrader.App.Locator
             var frw = _container.GetInstance<IFileReaderWriterService>();
             var appSettingsFolder = frw.GetIndicatorFolderPath();
 
-            var catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new DirectoryCatalog(appSettingsFolder));
+            var catalog = new DirectoryCatalog(appSettingsFolder);
             var container = new CompositionContainer(catalog);
-            container.ComposeParts(this);
 
-           // var a = container.GetExports<IAlgorithmicTrader>();
+            catalog.Refresh();
 
             var laggers = container.GetExportedValues<ILaggingIndicator>();
             var leaders = container.GetExportedValues<ILeadingIndicator>();
