@@ -109,6 +109,7 @@
   <ItemGroup>
     <None Include="HistoricalData\Samples\dkc.csv" />
     <Compile Include="Constants\AppProperties.cs" />
+    <Compile Include="Extensions\DateTimeEx.cs" />
     <Compile Include="Extensions\MathEx.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Models\ObservableStream.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\ExtendedLogger.cs" />
     <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="RestApi\Enums\CandleEnums.cs" />
     <Compile Include="RestApi\Interfaces\IHealthRequester.cs" />
     <Compile Include="RestApi\Interfaces\IHeartbeatStreamable.cs" />
     <Compile Include="RestApi\Interfaces\IInstrumentRequester.cs" />
@@ -153,7 +155,7 @@
     <Compile Include="Interfaces\ISettings.cs" />
     <Compile Include="Models\InstrumentType.cs" />
     <Compile Include="RestApi\Enums\TransactionEnums.cs" />
-    <Compile Include="RestApi\Enums\InstrumentEnum.cs" />
+    <Compile Include="RestApi\Enums\InstrumentEnums.cs" />
     <Compile Include="RestApi\Enums\TradeEnums.cs" />
     <Compile Include="RestApi\Enums\AccountEnums.cs" />
     <Compile Include="RestApi\Enums\OrderEnums.cs" />

@@ -24,8 +24,6 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTrades, accountId);
-                //var responseBytes = wc.GetData(string.Format(urlTrades, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("trades", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -42,8 +40,6 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOpenTrades, accountId);
-                //var responseBytes = wc.GetData(string.Format(urlOpenTrades, accountId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("tradesOpen", accountId, responseString);
 
                 using (var input = new StringReader(responseString))
@@ -61,8 +57,6 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (WebClient wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTradeDetails, accountId, tradeId);
-                //var responseBytes = wc.GetData(string.Format(urlTradeDetails, accountId, tradeId));
-                //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
 
                 using (var input = new StringReader(responseString))
