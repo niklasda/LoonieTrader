@@ -18,15 +18,15 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
-        // todo the stram does not support concurrent reads
-        private readonly ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>> _subscriptions = new ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>>();
+        // todo the stream does not support concurrent reads
+        private readonly ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>> _priceSubscriptions = new ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>>();
 
         public ObservableStream<PricesResponse.Price> GetPriceStream(string accountId, string instrument)
         {
-            if (_subscriptions.ContainsKey(instrument))
+            if (_priceSubscriptions.ContainsKey(instrument))
             {
                 ObservableStream<PricesResponse.Price> obs;
-                if (_subscriptions.TryGetValue(instrument, out obs))
+                if (_priceSubscriptions.TryGetValue(instrument, out obs))
                 {
                     return obs;
                 }
@@ -39,10 +39,9 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 Stream responseStream = wc.OpenRead(uri);
                 var obsStream = new ObservableStream<PricesResponse.Price>(responseStream, Logger);
-                _subscriptions.TryAdd(instrument, obsStream);
+                _priceSubscriptions.TryAdd(instrument, obsStream);
                 return obsStream;
             }
-
         }
     }
 }

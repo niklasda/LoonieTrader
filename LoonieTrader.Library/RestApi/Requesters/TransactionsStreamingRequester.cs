@@ -18,21 +18,30 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
-        private ConcurrentDictionary<string, string> _subscriptions = new ConcurrentDictionary<string, string>();
+        //private ConcurrentDictionary<string, string> _transactionSubscriptions = new ConcurrentDictionary<string, string>();
+        private readonly ConcurrentDictionary<string, ObservableStream<TransactionsResponse.Transaction>> _transactionSubscriptions = new ConcurrentDictionary<string, ObservableStream<TransactionsResponse.Transaction>>();
 
         public ObservableStream<TransactionsResponse.Transaction> GetTransactionStream(string accountId)
         {
+            if (_transactionSubscriptions.ContainsKey(accountId))
+            {
+                ObservableStream<TransactionsResponse.Transaction> obs;
+                if (_transactionSubscriptions.TryGetValue(accountId, out obs))
+                {
+                    return obs;
+                }
+            }
+
             string urlTransactionStream = base.GetStreamingRestUrl("accounts/{0}/transactions/stream");
+            var uri = new Uri(string.Format(urlTransactionStream, accountId));
 
             using (WebClient wc = GetAuthenticatedWebClient())
             {
-                string url = string.Format(urlTransactionStream, accountId);
-                var uri = new Uri(url);
                 Stream responseStream = wc.OpenRead(uri);
                 var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream, Logger);
+                _transactionSubscriptions.TryAdd(accountId, obsStream);
                 return obsStream;
             }
         }
-
     }
 }

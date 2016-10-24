@@ -7,7 +7,6 @@ using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.Tests.Locator;
 
-
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
     [TestFixture, Category("Integration")]
@@ -28,10 +27,8 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         public void TestPricingStream()
         {
             ObservableStream<PricesResponse.Price> pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
-
             pss.NewPrice += Pss_NewPrice;
-
-//            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
+            //            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
 
             Task.Delay(10000).Wait();
             Console.WriteLine("Done 10s");

@@ -38,7 +38,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
 
             //            var price = JSON.Deserialize<TransactionsResponse.Transaction>(l1);
             //          Assert.NotNull(price);
-                }
+        }
 
         private void Tss_NewPrice(object sender, EventArgs e)
         {
