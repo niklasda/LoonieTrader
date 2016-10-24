@@ -54,8 +54,15 @@ namespace LoonieTrader.Library.Logging
 
         private void AddToLogCache(LogEntry l)
         {
-         _uiContext.Post(o=> LogCache.LogEntries.Insert(0, l), null);
-
+            if (_uiContext != null)
+            {
+                _uiContext.Post(o => LogCache.LogEntries.Insert(0, l), null);
+            }
+            else
+            {
+                // if there is no context then there is no UI the the cache is not needed
+                // LogCache.LogEntries.Insert(0, l);
+            }
+        }
     }
-}
 }

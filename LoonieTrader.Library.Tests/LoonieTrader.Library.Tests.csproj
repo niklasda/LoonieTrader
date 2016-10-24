@@ -93,7 +93,7 @@
     <Compile Include="Locator\TestServiceLocator.cs" />
     <Compile Include="RestApi\Requesters\HealthRequesterTests.cs" />
     <Compile Include="RestApi\Requesters\PricingRequesterTests.cs" />
-    <Compile Include="RestApi\Requesters\PricingHistoryRequesterTests.cs" />
+    <Compile Include="RestApi\Requesters\InstrumentRequesterTests.cs" />
     <Compile Include="RestApi\Requesters\TransactionsStreamingRequesterTests.cs" />
     <Compile Include="RestApi\Requesters\TradesRequesterTests.cs" />
     <Compile Include="RestApi\Requesters\PricingStreamingRequesterTests.cs" />
