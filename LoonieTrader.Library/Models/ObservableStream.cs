@@ -19,7 +19,7 @@ namespace LoonieTrader.Library.Models
         public TP Obj { get; private set; }
     }
 
-    public delegate void NewPriceEventHandler<TS>(object sender, StreamEventArgs<TS> e) where TS : IHeartbeatStreamable;
+    public delegate void NewValueEventHandler<TS>(object sender, StreamEventArgs<TS> e) where TS : IHeartbeatStreamable;
 
     public class ObservableStream<T> where T : IHeartbeatStreamable
     {
@@ -36,11 +36,11 @@ namespace LoonieTrader.Library.Models
         private readonly Stream _stream;
         private readonly IExtendedLogger _logger;
 
-        public event NewPriceEventHandler<T> NewPrice;
+        public event NewValueEventHandler<T> NewValue;
 
         private void OnChanged(StreamEventArgs<T> e)
         {
-            NewPrice?.Invoke(this, e);
+            NewValue?.Invoke(this, e);
         }
 
         private IObservable<T> GetObservable()

@@ -27,13 +27,13 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         public void TestPricingStream()
         {
             ObservableStream<PricesResponse.Price> pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
-            pss.NewPrice += Pss_NewPrice;
+            pss.NewValue += Pss_NewPrice;
             //            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
 
             Task.Delay(10000).Wait();
             Console.WriteLine("Done 10s");
 
-            pss.NewPrice -= Pss_NewPrice;
+            pss.NewValue -= Pss_NewPrice;
   //          l1.Dispose();
 
             // var price = JSON.Deserialize<PricesResponse.Price>(l1);

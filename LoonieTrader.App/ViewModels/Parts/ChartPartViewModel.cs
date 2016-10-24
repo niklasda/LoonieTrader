@@ -30,7 +30,7 @@ namespace LoonieTrader.App.ViewModels.Parts
             else
             {
                 var strm = priceStreamer.GetPriceStream(settings.DefaultAccountId, "EUR_USD");
-                strm.NewPrice += Strm_NewPrice;
+                strm.NewValue += Strm_NewPrice;
             }
 
             _dateOffset = DateTime.Now;
@@ -109,7 +109,7 @@ namespace LoonieTrader.App.ViewModels.Parts
         public SeriesCollection SeriesCollection { get; set; }
 
         public Func<double, string> XFormatter { get; private set; }
-        public Func<double, string> XFormatterUnder { get; private set; }
+        //public Func<double, string> XFormatterUnder { get; private set; }
         public Func<double, string> YFormatter { get; private set; }
 
         private void AddPoint(PricesResponse.Price price)
