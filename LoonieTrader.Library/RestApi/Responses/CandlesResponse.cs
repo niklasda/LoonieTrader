@@ -20,18 +20,26 @@ namespace LoonieTrader.Library.RestApi.Responses
 
             foreach (var candle in candles)
             {
+                if (candle.mid != null)
+                    resp.Append("MID ");
+                if (candle.ask != null)
+                    resp.Append("ASK ");
+                if (candle.bid != null)
+                    resp.Append("BID ");
+
+                var cd = candle.mid ?? candle.ask ?? candle.bid;
                 resp.Append("complete: ");
                 resp.Append(candle.complete);
                 resp.Append(", time: ");
                 resp.Append(candle.time);
                 resp.Append(", open: ");
-                resp.Append(candle.mid.o);
+                resp.Append(cd.o);
                 resp.Append(", high: ");
-                resp.Append(candle.mid.h);
+                resp.Append(cd.h);
                 resp.Append(", low: ");
-                resp.Append(candle.mid.l);
+                resp.Append(cd.l);
                 resp.Append(", close: ");
-                resp.Append(candle.mid.c);
+                resp.Append(cd.c);
                 resp.Append(", volume: ");
                 resp.AppendLine(candle.volume.ToString());
             }
@@ -42,12 +50,14 @@ namespace LoonieTrader.Library.RestApi.Responses
         public class Candle
         {
             public bool complete { get; set; }
-            public Mid mid { get; set; }
+            public CandleData mid { get; set; }
+            public CandleData ask { get; set; }
+            public CandleData bid { get; set; }
             public string time { get; set; }
             public int volume { get; set; }
         }
 
-        public class Mid
+        public class CandleData
         {
             public string c { get; set; }
             public string h { get; set; }
