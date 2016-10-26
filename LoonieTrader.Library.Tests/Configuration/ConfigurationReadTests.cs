@@ -4,13 +4,13 @@ using LoonieTrader.Library.Services;
 namespace LoonieTrader.Library.Tests.Configuration
 {
     [TestFixture, Category("Integration")]
-    public class ConfigurationReaderTests
+    public class ConfigurationReadTests
     {
         [Test]
-        public void YamlDotNetTest()
+        public void YamlDotNetReadTest()
         {
-            var cr = new FileReaderWriterService();
-            var s = cr.LoadConfiguration();
+            var frw = new FileReaderWriterService();
+            var s = frw.LoadConfiguration();
             Assert.NotNull(s);
         }
     }

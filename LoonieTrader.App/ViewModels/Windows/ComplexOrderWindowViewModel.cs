@@ -21,10 +21,10 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class ComplexOrderWindowViewModel : ViewModelBase
     {
-        public ComplexOrderWindowViewModel(IMapper mapper, ISettings settings, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, ChartPartViewModel chartPart)
+        public ComplexOrderWindowViewModel(IMapper mapper, ISettingsService settings, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, ChartPartViewModel chartPart)
         {
             _mapper = mapper;
-            _settings = settings;
+            _settings = settings.CachedSettings.SelectedEnvironment;
             _pricingRequester = pricingRequester;
             _orderRequester = orderRequester;
             _logger = logger;
@@ -62,7 +62,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand SellCommand { get; set; }
 
         private readonly IMapper _mapper;
-        private readonly ISettings _settings;
+        private readonly IEnvironmentSettings2 _settings;
         private readonly IPricingRequester _pricingRequester;
         private readonly IOrdersRequester _orderRequester;
         private readonly IExtendedLogger _logger;

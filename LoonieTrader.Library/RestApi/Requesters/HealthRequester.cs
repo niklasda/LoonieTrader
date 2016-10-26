@@ -11,7 +11,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
     [UsedImplicitly]
     public class HealthRequester : RequesterBase, IHealthRequester
     {
-        public HealthRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        public HealthRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
             : base(settings, fileReaderWriter, logger)
         {
         }

@@ -65,7 +65,7 @@ namespace LoonieTrader.Library.Services
             return ltp;
         }
 
-        public ISettings LoadConfiguration()
+        public ISettings2 LoadConfiguration()
         {
             using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
             {
@@ -75,7 +75,7 @@ namespace LoonieTrader.Library.Services
                     var input = new StringReader(fileContent);
 
                     var desBuilder = new DeserializerBuilder();
-                    var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
+                    var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).IgnoreUnmatchedProperties().Build();
 
                     var config = deserializer.Deserialize<Settings>(input);
                     return config ?? new Settings();
@@ -83,7 +83,7 @@ namespace LoonieTrader.Library.Services
             }
         }
 
-        public void SaveConfiguration(ISettings settings)
+        public void SaveConfiguration(ISettings2 settings)
         {
             using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
             {

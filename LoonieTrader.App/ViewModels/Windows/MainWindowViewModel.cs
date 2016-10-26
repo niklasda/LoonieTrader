@@ -24,11 +24,11 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(ISettings settings, IMapper mapper, IExtendedLogger logger, IHistoricalDataLoader dataLoader, IDialogService dialogService, ChartPartViewModel chartPart,
+        public MainWindowViewModel(ISettingsService settingsService, IMapper mapper, IExtendedLogger logger, IHistoricalDataLoader dataLoader, IDialogService dialogService, ChartPartViewModel chartPart,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
             ITransactionsRequester transactionsRequester)
         {
-            _settings = settings;
+            _settings = settingsService.CachedSettings.SelectedEnvironment;
             _mapper = mapper;
             _logger = logger;
             _dataLoader = dataLoader;
@@ -93,9 +93,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 try
                 {
-                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(settings.DefaultAccountId);
-                    AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(settings.DefaultAccountId);
-                    PositionsResponse positionsResponse = _positionsRequester.GetPositions(settings.DefaultAccountId);
+                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(_settings.DefaultAccountId);
+                    AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
+                    PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
 
                     InstrumentCache.Instruments = instrumentsResponse.instruments;
 
@@ -146,7 +146,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
 
-        private readonly ISettings _settings;
+        private readonly IEnvironmentSettings2 _settings;
         private readonly IMapper _mapper;
         private readonly IExtendedLogger _logger;
         private IHistoricalDataLoader _dataLoader;

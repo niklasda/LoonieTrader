@@ -22,7 +22,9 @@ namespace LoonieTrader.TestApp
                 var tr = container.GetInstance<TradesRequester>();
                 var txr = container.GetInstance<ITransactionsRequester>();
 
-                var cfg = container.GetInstance<ISettings>();
+                var cfgs = container.GetInstance<ISettingsService>();
+                var cfg = cfgs.CachedSettings.SelectedEnvironment;
+
                 IExtendedLogger logger = container.GetInstance<IExtendedLogger>();
 
                 ResizeWindow();

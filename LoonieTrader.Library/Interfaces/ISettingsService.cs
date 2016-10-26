@@ -2,8 +2,8 @@
 {
     public interface ISettingsService
     {
-        ISettings CachedSettings { get; }
-        ISettings LoadSettings();
-        void SaveSettings(ISettings settings);
+        ISettings2 CachedSettings { get; }
+        ISettings2 LoadSettings();
+        void SaveSettings(ISettings2 settings);
     }
 }

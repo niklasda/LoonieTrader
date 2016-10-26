@@ -10,7 +10,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class ChartWindowViewModel : ViewModelBase
     {
-        public ChartWindowViewModel(IMapper mapper, ISettings settings, IPricingStreamingRequester priceStreamer, ChartPartViewModel chartPart)
+        public ChartWindowViewModel(IMapper mapper, ISettingsService settings, IPricingStreamingRequester priceStreamer, ChartPartViewModel chartPart)
         {
             if (IsInDesignMode)
             {

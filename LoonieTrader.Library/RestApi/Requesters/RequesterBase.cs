@@ -11,20 +11,22 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public abstract class RequesterBase
     {
-        protected RequesterBase(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        protected RequesterBase(ISettingsService settingService, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
         {
-            _apiKey = settings.ApiKey;
+//            _apiKey = settingService.CachedSettings.SelectedEnvironment?.ApiKey;
+            _settingsService = settingService;
             _fileReaderWriter = fileReaderWriter;
             _logger = logger;
         }
 
-        private readonly string _apiKey;
+//        private readonly string _apiKey;
+        private readonly ISettingsService _settingsService;
         private readonly IFileReaderWriterService _fileReaderWriter;
         private readonly IExtendedLogger _logger;
 
         private string BearerApiKey
         {
-            get { return string.Format("Bearer {0}", _apiKey); }
+            get { return string.Format("Bearer {0}", _settingsService.CachedSettings.SelectedEnvironment.ApiKey); }
         }
 
         protected string GetRestUrl(string path)

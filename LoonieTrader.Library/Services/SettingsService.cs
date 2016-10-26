@@ -4,15 +4,15 @@ namespace LoonieTrader.Library.Services
 {
     public class SettingserService : ISettingsService
     {
-        public SettingserService( IFileReaderWriterService fileReaderWriter)
+        public SettingserService(IFileReaderWriterService fileReaderWriter)
         {
             _fileReaderWriter = fileReaderWriter;
         }
 
         private readonly IFileReaderWriterService _fileReaderWriter;
-        private ISettings _lastSettings;
+        private ISettings2 _lastSettings;
 
-        public ISettings CachedSettings
+        public ISettings2 CachedSettings
         {
             get
             {
@@ -25,12 +25,12 @@ namespace LoonieTrader.Library.Services
             }
         }
 
-        public ISettings LoadSettings()
+        public ISettings2 LoadSettings()
         {
             return _fileReaderWriter.LoadConfiguration();
         }
 
-        public void SaveSettings(ISettings settings)
+        public void SaveSettings(ISettings2 settings)
         {
             _fileReaderWriter.SaveConfiguration(settings);
         }

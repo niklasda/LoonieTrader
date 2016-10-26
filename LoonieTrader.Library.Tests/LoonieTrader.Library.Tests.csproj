@@ -86,7 +86,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigurationReaderTests.cs" />
+    <Compile Include="Configuration\ConfigurationReadTests.cs" />
+    <Compile Include="Configuration\ConfigurationWriteTests.cs" />
     <Compile Include="Extensions\MathExTests.cs" />
     <Compile Include="HistoricalData\CsvReaderTests.cs" />
     <Compile Include="Locator\TestAutoMappings.cs" />

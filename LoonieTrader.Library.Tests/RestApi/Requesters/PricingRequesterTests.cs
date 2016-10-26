@@ -17,11 +17,11 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         {
             var container = TestServiceLocator.Initialize();
             _pr = container.GetInstance<IPricingRequester>();
-            _s = container.GetInstance<ISettings>();
+            _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
         }
 
         private IPricingRequester _pr;
-        private ISettings _s;
+        private IEnvironmentSettings2 _s;
 
         [Test]
         public void TestGetPrices()

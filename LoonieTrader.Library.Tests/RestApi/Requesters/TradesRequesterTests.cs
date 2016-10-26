@@ -14,11 +14,11 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         {
             var container = TestServiceLocator.Initialize();
             _tr = container.GetInstance<ITradesRequester>();
-            _s = container.GetInstance<ISettings>();
+            _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
         }
 
         private ITradesRequester _tr;
-        private ISettings _s;
+        private IEnvironmentSettings2 _s;
 
         [Test]
         public void TestGetAccountTrades()

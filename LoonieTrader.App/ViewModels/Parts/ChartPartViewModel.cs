@@ -22,14 +22,15 @@ namespace LoonieTrader.App.ViewModels.Parts
     [UsedImplicitly]
     public class ChartPartViewModel : ViewModelBase
     {
-        public ChartPartViewModel(IMapper mapper, ISettings settings, IPricingStreamingRequester priceStreamer)
+        public ChartPartViewModel(IMapper mapper, ISettingsService settings, IPricingStreamingRequester priceStreamer)
         {
             if (IsInDesignMode)
             {
             }
             else
             {
-                var strm = priceStreamer.GetPriceStream(settings.DefaultAccountId, "EUR_USD");
+                var cfg = settings.CachedSettings.SelectedEnvironment;
+                var strm = priceStreamer.GetPriceStream(cfg.DefaultAccountId, "EUR_USD");
                 strm.NewValue += Strm_NewPrice;
             }
 
@@ -114,11 +115,13 @@ namespace LoonieTrader.App.ViewModels.Parts
 
         private void AddPoint(PricesResponse.Price price)
         {
+            var c = CultureInfo.GetCultureInfo("en-US");
+
             _uiContext.Post(o =>
             {
                 if (price.asks?.Length > 0)
                 {
-                    double ask = double.Parse(price.asks[0].price, CultureInfo.CurrentUICulture);
+                    double ask = double.Parse(price.asks[0].price, c);
                     var p = new CandleDataViewModel
                     {
                         Open = (decimal)ask,

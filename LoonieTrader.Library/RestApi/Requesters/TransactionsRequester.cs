@@ -11,7 +11,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
     [UsedImplicitly]
     public class TransactionsRequester : RequesterBase, ITransactionsRequester
     {
-        public TransactionsRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        public TransactionsRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
             : base(settings, fileReaderWriter, logger)
         {
         }

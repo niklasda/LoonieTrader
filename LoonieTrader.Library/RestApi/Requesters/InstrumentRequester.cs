@@ -14,7 +14,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
     [UsedImplicitly]
     public class InstrumentRequester : RequesterBase, IInstrumentRequester
     {
-        public InstrumentRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        public InstrumentRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
             : base(settings, fileReaderWriter, logger)
         {
         }

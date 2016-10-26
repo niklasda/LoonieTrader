@@ -13,7 +13,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
     [UsedImplicitly] // Registered as singleton in StructureMap
     public class PricingStreamingRequester : RequesterBase, IPricingStreamingRequester
     {
-        public PricingStreamingRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        public PricingStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
             : base(settings, fileReaderWriter, logger)
         {
         }

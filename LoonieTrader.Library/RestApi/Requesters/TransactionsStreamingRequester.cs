@@ -13,7 +13,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
     [UsedImplicitly]
     public class TransactionsStreamingRequester : RequesterBase, ITransactionsStreamingRequester
     {
-        public TransactionsStreamingRequester(ISettings settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        public TransactionsStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
             : base(settings, fileReaderWriter, logger)
         {
         }

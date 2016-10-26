@@ -11,7 +11,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class WorkbenchWindowViewModel : ViewModelBase
     {
-        public WorkbenchWindowViewModel(ISettings settings, IAccountsRequester accountsRequester, ChartPartViewModel chartPart)
+        public WorkbenchWindowViewModel(ISettingsService settings, IAccountsRequester accountsRequester, ChartPartViewModel chartPart)
         {
             ChartPart = chartPart;
 

@@ -14,12 +14,14 @@ namespace LoonieTrader.Library.Locator
         public ServiceRegistry()
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
-            ISettings settings = cr.LoadConfiguration();
+//            ISettings settings = cr.LoadConfiguration();
 
             IExtendedLogger exLogger = CreateExLogger(cr);
 
-            ForSingletonOf<ISettings>().Use(settings);
-            For<ISettingsService>().Use<SettingserService>();
+  //          ForSingletonOf<ISettings>().Use(settings);
+           // ForSingletonOf<IEnvironmentSettings>().Use(settings.SelectedEnvironment);
+
+            ForSingletonOf<ISettingsService>().Use<SettingserService>();
             ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
             For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();

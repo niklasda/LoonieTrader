@@ -16,11 +16,11 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         {
             var container = TestServiceLocator.Initialize();
             _or = container.GetInstance<IOrdersRequester>();
-            _s = container.GetInstance<ISettings>();
+            _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
         }
 
         private IOrdersRequester _or;
-        private ISettings _s;
+        private IEnvironmentSettings2 _s;
 
         [Test]
         public void TestGetAccountOrders()
