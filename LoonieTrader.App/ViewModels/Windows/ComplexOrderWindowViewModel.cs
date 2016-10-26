@@ -62,12 +62,12 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand SellCommand { get; set; }
 
         private readonly IMapper _mapper;
-        private readonly IEnvironmentSettings2 _settings;
+        private readonly IEnvironmentSettings _settings;
         private readonly IPricingRequester _pricingRequester;
         private readonly IOrdersRequester _orderRequester;
         private readonly IExtendedLogger _logger;
 
-        private IList<InstrumentViewModel> _allInstruments;
+        private readonly IList<InstrumentViewModel> _allInstruments;
 
         public ChartPartViewModel ChartPart { get; private set; }
 

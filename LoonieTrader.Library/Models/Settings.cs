@@ -4,26 +4,30 @@ using LoonieTrader.Library.Interfaces;
 
 namespace LoonieTrader.Library.Models
 {
-    public class Settings : ISettings2
+    public class Settings : ISettings
     {
         public string SelectedEnvironmentKey { get; set; }
 
         public EnvironmentSettings[] EnvironmentSettings { get; set; }
 
-        public IEnvironmentSettings2 SelectedEnvironment
+        public IEnvironmentSettings SelectedEnvironment
         {
-            get { return EnvironmentSettings.SingleOrDefault(x => x.EnvironmentKey == SelectedEnvironmentKey); }
+            get
+            {
+                var selectedEnv = EnvironmentSettings?.SingleOrDefault(x => x.EnvironmentKey == SelectedEnvironmentKey);
+                return selectedEnv ?? EnvironmentSettings?.SingleOrDefault(x => x.EnvironmentKey == Environments.Practice.Key);
+            }
         }
     }
 
-    public class EnvironmentSettings : IEnvironmentSettings2
+    public class EnvironmentSettings : IEnvironmentSettings
     {
         public string EnvironmentKey { get; set; }
 
         public string ApiKey { get; set; }
 
         public string DefaultAccountId { get; set; }
-        
+
         public string[] FavouriteInstruments { get; set; }
     }
 }

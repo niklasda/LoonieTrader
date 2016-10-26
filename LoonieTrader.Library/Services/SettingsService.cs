@@ -10,9 +10,9 @@ namespace LoonieTrader.Library.Services
         }
 
         private readonly IFileReaderWriterService _fileReaderWriter;
-        private ISettings2 _lastSettings;
+        private ISettings _lastSettings;
 
-        public ISettings2 CachedSettings
+        public ISettings CachedSettings
         {
             get
             {
@@ -25,12 +25,12 @@ namespace LoonieTrader.Library.Services
             }
         }
 
-        public ISettings2 LoadSettings()
+        public ISettings LoadSettings()
         {
             return _fileReaderWriter.LoadConfiguration();
         }
 
-        public void SaveSettings(ISettings2 settings)
+        public void SaveSettings(ISettings settings)
         {
             _fileReaderWriter.SaveConfiguration(settings);
         }

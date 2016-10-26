@@ -1,4 +1,3 @@
-using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using AutoMapper;
 using LoonieTrader.App.Mapper;

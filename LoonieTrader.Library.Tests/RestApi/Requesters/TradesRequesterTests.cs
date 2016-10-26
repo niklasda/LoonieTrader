@@ -18,7 +18,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private ITradesRequester _tr;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetAccountTrades()

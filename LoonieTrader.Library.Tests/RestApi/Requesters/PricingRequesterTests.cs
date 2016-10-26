@@ -21,7 +21,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private IPricingRequester _pr;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetPrices()

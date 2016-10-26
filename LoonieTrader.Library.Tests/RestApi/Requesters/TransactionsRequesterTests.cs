@@ -18,7 +18,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private ITransactionsRequester _txr;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetAccountTransactionPages()

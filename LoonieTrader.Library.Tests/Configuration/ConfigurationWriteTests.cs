@@ -12,22 +12,22 @@ namespace LoonieTrader.Library.Tests.Configuration
         [Test]
         public void YamlDotNetWriteReadTest()
         {
-            ISettings2 settings = new Settings();
-            settings.SelectedEnvironmentKey = "Practice";
+            ISettings settings = new Settings();
+            settings.SelectedEnvironmentKey = Environments.Practice.Key;
             settings.EnvironmentSettings = new EnvironmentSettings[]
             {
                 new EnvironmentSettings()
                 {
                     ApiKey = "APIKEY-1",
                     DefaultAccountId = "Account-1",
-                    EnvironmentKey = "Practice",
+                    EnvironmentKey = Environments.Practice.Key,
                     FavouriteInstruments = new []{"INST1-1","INST1-2" }
                 },
                 new EnvironmentSettings()
                 {
                     ApiKey = "APIKEY-2",
                     DefaultAccountId = "Account-2",
-                    EnvironmentKey = "Live",
+                    EnvironmentKey = Environments.Live.Key,
                     FavouriteInstruments = new []{"INST2-1","INST2-2" }
                 }
             };

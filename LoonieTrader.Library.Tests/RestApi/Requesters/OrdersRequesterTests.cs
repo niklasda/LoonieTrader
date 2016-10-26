@@ -20,7 +20,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private IOrdersRequester _or;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetAccountOrders()

@@ -65,7 +65,7 @@ namespace LoonieTrader.Library.Services
             return ltp;
         }
 
-        public ISettings2 LoadConfiguration()
+        public ISettings LoadConfiguration()
         {
             using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
             {
@@ -83,7 +83,7 @@ namespace LoonieTrader.Library.Services
             }
         }
 
-        public void SaveConfiguration(ISettings2 settings)
+        public void SaveConfiguration(ISettings settings)
         {
             using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
             {

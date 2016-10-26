@@ -22,7 +22,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private IAccountsRequester _ar;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetAccounts()

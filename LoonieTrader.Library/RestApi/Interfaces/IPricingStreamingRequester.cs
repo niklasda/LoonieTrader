@@ -1,5 +1,4 @@
-﻿using System;
-using LoonieTrader.Library.Models;
+﻿using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Interfaces

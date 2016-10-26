@@ -1,18 +1,17 @@
-﻿using LoonieTrader.Library.Constants;
-using LoonieTrader.Library.Models;
+﻿using LoonieTrader.Library.Models;
 
 namespace LoonieTrader.Library.Interfaces
 {
-    public interface ISettings2
+    public interface ISettings
     {
         string SelectedEnvironmentKey { get; set; }
 
         EnvironmentSettings[] EnvironmentSettings { get; set; }
 
-        IEnvironmentSettings2 SelectedEnvironment { get; }
+        IEnvironmentSettings SelectedEnvironment { get; }
     }
 
-    public interface IEnvironmentSettings2
+    public interface IEnvironmentSettings
     {
         string EnvironmentKey { get; set; }
 

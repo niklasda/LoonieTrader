@@ -2,8 +2,8 @@
 {
     public interface IFileReaderWriterService
     {
-        ISettings2 LoadConfiguration();
-        void SaveConfiguration(ISettings2 settings);
+        ISettings LoadConfiguration();
+        void SaveConfiguration(ISettings settings);
         string LoadLocalJson(string fileNamePart1, string fileNamePart2);
         void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json);
         void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json);

@@ -28,7 +28,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             ServerStatusCommand = new RelayCommand(OpenServerStatus);
             ReloadAccountsCommand = new RelayCommand(ReloadAccounts, () => IsInfoCompletedForAccountLoad);
 
-            IEnvironmentSettings2 settings = _settingsService.CachedSettings.SelectedEnvironment;
+            AvailableEnvironments = new[] { Environments.Practice, Environments.Live };
+
+            IEnvironmentSettings settings = _settingsService.CachedSettings?.SelectedEnvironment;
 
             //settings.Environment = "asd";
             //settings.ApiKey = "123123-123123";
@@ -38,10 +40,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             //_settingsService.SaveSettings(settings);
 
-            SelectedEnvironmentKey = settings?.EnvironmentKey.ToString();
+            SelectedEnvironmentKey = settings?.EnvironmentKey;
             ApiKey = settings?.ApiKey;
 
-            AvailableEnvironments = new[] {Environments.Practice, Environments.Live};
 
             if (IsInDesignMode)
             {

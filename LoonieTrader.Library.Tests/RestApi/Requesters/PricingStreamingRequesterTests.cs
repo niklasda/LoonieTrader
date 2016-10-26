@@ -21,7 +21,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         private IPricingStreamingRequester _txr;
-        private IEnvironmentSettings2 _s;
+        private IEnvironmentSettings _s;
 
         [Test]
         public void TestPricingStream()

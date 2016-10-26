@@ -146,7 +146,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
 
-        private readonly IEnvironmentSettings2 _settings;
+        private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
         private readonly IExtendedLogger _logger;
         private IHistoricalDataLoader _dataLoader;
