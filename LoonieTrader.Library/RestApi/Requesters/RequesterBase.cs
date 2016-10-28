@@ -11,32 +11,36 @@ namespace LoonieTrader.Library.RestApi.Requesters
 {
     public abstract class RequesterBase
     {
-        protected RequesterBase(ISettingsService settingService, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+        protected RequesterBase(ISettingsService settingsService, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
         {
-//            _apiKey = settingService.CachedSettings.SelectedEnvironment?.ApiKey;
-            _settingsService = settingService;
+            _settingsService = settingsService;
             _fileReaderWriter = fileReaderWriter;
             _logger = logger;
         }
 
-//        private readonly string _apiKey;
         private readonly ISettingsService _settingsService;
         private readonly IFileReaderWriterService _fileReaderWriter;
         private readonly IExtendedLogger _logger;
 
         private string BearerApiKey
         {
-            get { return string.Format("Bearer {0}", _settingsService.CachedSettings.SelectedEnvironment.ApiKey); }
+            get
+            {
+                var settings = _settingsService.CachedSettings.SelectedEnvironment;
+                return string.Format("Bearer {0}", settings.ApiKey);
+            }
         }
 
         protected string GetRestUrl(string path)
         {
-            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.Practice.Value, path);
+            var settings = _settingsService.CachedSettings.SelectedEnvironment;
+            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.GetHostValueFor(settings.EnvironmentKey), path);
         }
 
         protected string GetStreamingRestUrl(string path)
         {
-            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.PracticeStreaming.Value, path);
+            var settings = _settingsService.CachedSettings.SelectedEnvironment;
+            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.GetStreamingHostValueFor(settings.EnvironmentKey), path);
         }
 
         protected string GetHttpRestUrl(string env)
@@ -60,7 +64,6 @@ namespace LoonieTrader.Library.RestApi.Requesters
         protected WebClient GetAnonymousWebClient()
         {
             var wc = new WebClient();
-            //wc.Headers.Add("Authorization", BearerApiKey);
             wc.Headers.Add("Content-Type", "application/json");
             return wc;
         }

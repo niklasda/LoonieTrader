@@ -111,6 +111,7 @@
     <Compile Include="Constants\AppProperties.cs" />
     <Compile Include="Extensions\DateTimeEx.cs" />
     <Compile Include="Extensions\MathEx.cs" />
+    <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Models\ObservableStream.cs" />
     <Compile Include="RestApi\Caches\AccountCache.cs" />

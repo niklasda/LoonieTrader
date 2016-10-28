@@ -16,8 +16,11 @@ namespace LoonieTrader.Library.HistoricalData
             {
                 
                 var dt = DateTime.ParseExact(string.Format("{0} {1}", Date, Time), "yyyyMMdd HHmmss", null);
-                Console.WriteLine("{0} - {1} - {2} - {3}", dt.ToString("G"), dt.Ticks, TimeSpan.FromHours(1).Ticks, dt.Ticks/TimeSpan.FromHours(1).Ticks);
-                
+                //Console.WriteLine("{0} - {1} - {2} - {3}", dt.ToString("G"), dt.Ticks, TimeSpan.FromHours(1).Ticks, dt.Ticks/TimeSpan.FromHours(1).Ticks);
+
+                // 2016-10-27 11:50:41 - 636131658410000000 - 36000000000 - 17670323
+                // 636131658410000000 / 36000000000 = 17670323,844722222222222222222222
+                // 636131658420000000 / 36000000000 = 17670323,845
                 return dt;
             }
         }

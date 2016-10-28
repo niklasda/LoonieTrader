@@ -30,7 +30,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             AvailableEnvironments = new[] { Environments.Practice, Environments.Live };
 
-            IEnvironmentSettings settings = _settingsService.CachedSettings?.SelectedEnvironment;
+            IEnvironmentSettings settings = _settingsService.CachedSettings.SelectedEnvironment;
 
             //settings.Environment = "asd";
             //settings.ApiKey = "123123-123123";
@@ -40,7 +40,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
             //_settingsService.SaveSettings(settings);
 
-            SelectedEnvironmentKey = settings?.EnvironmentKey;
+            SelectedEnvironmentKey = settings.EnvironmentKey;
             ApiKey = settings?.ApiKey;
 
 
@@ -53,9 +53,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 if (AvailableAccounts != null)
                 {
-                    var prim =
-                        AvailableAccounts.FirstOrDefault(
-                            x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
+                    var prim = AvailableAccounts.FirstOrDefault(x => x.Value.StartsWith("Primary ", StringComparison.CurrentCultureIgnoreCase));
                     if (prim.Key != null)
                     {
                         SelectedAccountKey = prim.Key;
@@ -72,8 +70,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                return IsInfoCompletedForAccountLoad
-                       && !string.IsNullOrWhiteSpace(SelectedAccountKey);
+                return IsInfoCompletedForAccountLoad && !string.IsNullOrWhiteSpace(SelectedAccountKey);
             }
         }
 
@@ -102,8 +99,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public Action CloseAction { get; set; }
 
-        public ObservableCollection<KeyValuePair<string, string>> AvailableAccounts { get; set; } =
-            new ObservableCollection<KeyValuePair<string, string>>();
+        public ObservableCollection<KeyValuePair<string, string>> AvailableAccounts { get; set; } = new ObservableCollection<KeyValuePair<string, string>>();
 
         public ICommand ReloadAccountsCommand { get; set; }
 
@@ -118,6 +114,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             Application.Current.MainWindow = mw;
 
             CloseAction();
+        }
+
+        private void LoadAccounts()
+        {
+            
         }
 
         private void ReloadAccounts()
@@ -141,8 +142,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                     foreach (var asr in ar)
                     {
-                        AvailableAccounts.Add(new KeyValuePair<string, string>(asr.account.id,
-                            string.Format("{0} ({1})", asr.account.alias, asr.account.id)));
+                        AvailableAccounts.Add(new KeyValuePair<string, string>(asr.account.id, string.Format("{0} ({1})", asr.account.alias, asr.account.id)));
                     }
 //                    AvailableAccounts = new ObservableCollection<KeyValuePair<string, string>>(ar.Select(x => new KeyValuePair<string, string>(x.account.id, string.Format("{0} ({1})", x.account.alias, x.account.id))).ToArray()); 
                 }

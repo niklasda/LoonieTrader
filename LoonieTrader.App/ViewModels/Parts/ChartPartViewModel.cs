@@ -11,6 +11,7 @@ using JetBrains.Annotations;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
+using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
@@ -59,7 +60,7 @@ namespace LoonieTrader.App.ViewModels.Parts
                 }
             };
 
-            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double) v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
+            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double)v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
             var ls = new LineSeries(lsMapper)
             {
                 Values = new ChartValues<CandleDataViewModel>(),
@@ -134,7 +135,7 @@ namespace LoonieTrader.App.ViewModels.Parts
 
                     SeriesCollection[0].Values.Add(p);
                     SeriesCollection[1].Values.Add(p);
-                  //  Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
+                    //  Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
                 }
             }, null);
 
@@ -144,16 +145,22 @@ namespace LoonieTrader.App.ViewModels.Parts
         {
             var r = new Random();
 
+            decimal seriesLow = 1000;
+            decimal seriesHigh = -1;
+
             foreach (var point in SeriesCollection[0].Values.Cast<CandleDataViewModel>())
             {
-                point.Open = r.Next((int)point.Low, (int)point.High);
-                point.Close = r.Next((int)point.Low, (int)point.High);
+                seriesLow = Math.Min(seriesLow, point.Low);
+                seriesHigh = Math.Max(seriesHigh, point.High);
+
+                point.Open = r.NextDecimal(point.Low, point.High);
+                point.Close = r.NextDecimal(point.Low, point.High);
             }
 
-            var p = new CandleDataViewModel { Open = 1.2m, High = 1.5m, Low = 1.0m, Close = 1.2m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
+            var p = new CandleDataViewModel { Open = r.NextDecimal(seriesLow, seriesHigh), High = seriesHigh, Low = seriesLow, Close = r.NextDecimal(seriesLow, seriesHigh), Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
             SeriesCollection[0].Values.Add(p);
             SeriesCollection[1].Values.Add(p);
-         //   Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
+            //   Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);
         }
 
     }

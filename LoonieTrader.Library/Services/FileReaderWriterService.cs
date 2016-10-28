@@ -78,7 +78,7 @@ namespace LoonieTrader.Library.Services
                     var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).IgnoreUnmatchedProperties().Build();
 
                     var config = deserializer.Deserialize<Settings>(input);
-                    return config ?? new Settings();
+                    return config ?? Settings.Empty;
                 }
             }
         }
