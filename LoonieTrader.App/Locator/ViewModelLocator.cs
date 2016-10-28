@@ -26,10 +26,11 @@ namespace LoonieTrader.App.Locator
                 c.AddRegistry<ServiceRegistry>();
             });
 
-            LoadAll();
+            var exporter = LoadAll();
+            _container.Configure(c=>c.For<CompositionContainer>().Use(exporter));
         }
 
-        private void LoadAll()
+        private CompositionContainer LoadAll()
         {
             var frw = _container.GetInstance<IFileReaderWriterService>();
             var appSettingsFolder = frw.GetIndicatorFolderPath();
@@ -37,14 +38,15 @@ namespace LoonieTrader.App.Locator
             var catalog = new DirectoryCatalog(appSettingsFolder);
             var container = new CompositionContainer(catalog);
 
-            catalog.Refresh();
+          //  catalog.Refresh();
 
-            var laggers = container.GetExportedValues<ILaggingIndicator>();
-            var leaders = container.GetExportedValues<ILeadingIndicator>();
-            var algos = container.GetExportedValues<IAlgorithmicTrader>();
+            return container;
+//            var laggers = container.GetExportedValues<ILaggingIndicator>();
+  //          var leaders = container.GetExportedValues<ILeadingIndicator>();
+    //        var algos = container.GetExportedValues<IAlgorithmicTrader>();
         }
 
-        private readonly IContainer _container;
+        private readonly Container _container;
 
         public MainWindowViewModel Main => _container.GetInstance<MainWindowViewModel>();
 
