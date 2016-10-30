@@ -54,6 +54,7 @@ namespace LoonieTrader.App.Mapper
 
                 CreateMap<CandleDataRecord, CandleDataViewModel>();
                 CreateMap<CandleDataRecord, OhlcPoint>();
+                CreateMap<CandleDataViewModel, OhlcPoint>();
             }
         }
     }

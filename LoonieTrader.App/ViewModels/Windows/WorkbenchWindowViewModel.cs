@@ -47,7 +47,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             set { _sampleData = value; }
         }
 
-        public ChartPartViewModel ChartPart { get; private set; }
+        public ChartPartViewModel ChartPart { get; }
 
         private string _loadableInfo;
         public string LoadableInfo {
@@ -81,8 +81,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             LoadableInfo = loadable.Title;
 
             ChartPart.Instrument = new InstrumentViewModel() {DisplayName = "EUR_USD"};
+            ChartPart.AddIndicator(v => (double)v.Open);
         }
 
-        public List<ILoadable> FoundIndicators { get; private set; } = new List<ILoadable>();
+        public List<ILoadable> FoundIndicators { get; } = new List<ILoadable>();
     }
 }

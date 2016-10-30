@@ -17,6 +17,7 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Shared.Models;
 
 namespace LoonieTrader.App.ViewModels.Parts
 {
@@ -25,6 +26,7 @@ namespace LoonieTrader.App.ViewModels.Parts
     {
         public ChartPartViewModel(IMapper mapper, ISettingsService settings, IPricingStreamingRequester priceStreamer)
         {
+            _mapper = mapper;
             if (IsInDesignMode)
             {
             }
@@ -82,6 +84,7 @@ namespace LoonieTrader.App.ViewModels.Parts
             UpdateCommand = new RelayCommand(UpdateAllOnClick);
         }
 
+        private readonly IMapper _mapper;
         private readonly DateTime _dateOffset;
         private readonly SynchronizationContext _uiContext = SynchronizationContext.Current;
 
@@ -122,11 +125,26 @@ namespace LoonieTrader.App.ViewModels.Parts
         public SeriesCollection SeriesCollection { get; set; }
 
         public Func<double, string> XFormatter { get; private set; }
-        //public Func<double, string> XFormatterUnder { get; private set; }
         public Func<double, string> YFormatter { get; private set; }
+
+        public void AddIndicator(Func<OhlcPoint, double> ohlcMapper)
+        {
+            Func<CandleDataViewModel, double> candleMapper = v => ohlcMapper(_mapper.Map<OhlcPoint>(v));
+
+            var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(candleMapper).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
+
+            var ls = new LineSeries(lsMapper)
+            {
+                Values = new ChartValues<CandleDataViewModel>(),
+                Fill = Brushes.Transparent
+            };
+
+            SeriesCollection.Add(ls);
+        }
 
         private void AddPoint(PricesResponse.Price price)
         {
+            // needed to parse price string since they use us separators
             var c = CultureInfo.GetCultureInfo("en-US");
 
             _uiContext.Post(o =>
