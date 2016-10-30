@@ -15,7 +15,6 @@ namespace LoonieTrader.App.ViewModels.Windows
     {
         public WorkbenchWindowViewModel(ISettingsService settings, IAccountsRequester accountsRequester, ChartPartViewModel chartPart, CompositionContainer exporter)
         {
-          //  _container = container;
             ChartPart = chartPart;
 
             //if (IsInDesignMode)
@@ -34,10 +33,13 @@ namespace LoonieTrader.App.ViewModels.Windows
             var laggers = exporter.GetExportedValues<ILaggingIndicator>();
             var leaders = exporter.GetExportedValues<ILeadingIndicator>();
             var algos = exporter.GetExportedValues<IAlgorithmicTrader>();
+
+            FoundIndicators.AddRange(laggers);
+            FoundIndicators.AddRange(leaders);
+            FoundIndicators.AddRange(algos);
             // }
         }
 
-       // private readonly IContainer _container;
         private IList<CandleDataViewModel> _sampleData;
         public IList<CandleDataViewModel> SampleData
         {
@@ -47,11 +49,40 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public ChartPartViewModel ChartPart { get; private set; }
 
-        public string SelectedIndicator { get; set; }
-
-        public string[] FoundIndicators
-        {
-            get { return new string[] {"1", "2"}; }
+        private string _loadableInfo;
+        public string LoadableInfo {
+            get { return _loadableInfo;}
+            set
+            {
+                if (_loadableInfo != value)
+                {
+                    _loadableInfo = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
+
+        private ILoadable _selectedIndicator;
+        public ILoadable SelectedIndicator
+        {
+            get { return _selectedIndicator; }
+            set
+            {
+                if (_selectedIndicator != value)
+                {
+                    _selectedIndicator = value;
+                    DisplayInfo(_selectedIndicator);
+                }
+            }
+        }
+
+        private void DisplayInfo(ILoadable loadable)
+        {
+            LoadableInfo = loadable.Title;
+
+            ChartPart.Instrument = new InstrumentViewModel() {DisplayName = "EUR_USD"};
+        }
+
+        public List<ILoadable> FoundIndicators { get; private set; } = new List<ILoadable>();
     }
 }

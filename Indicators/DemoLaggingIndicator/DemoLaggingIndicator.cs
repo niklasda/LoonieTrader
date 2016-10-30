@@ -14,6 +14,8 @@ namespace DemoLaggingIndicator
 
         public string Description { get { return "Description of lagging demo"; } }
 
+        public string Title { get { return string.Format("{0} v{1}", Name, Version); } }
+
         public IRequirements GetRequirements()
         {
             return new Requirements() { MinPoints = 1, MaxPoints = 1 };

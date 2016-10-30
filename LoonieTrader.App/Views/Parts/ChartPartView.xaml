@@ -13,9 +13,12 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
+       <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Instrument.DisplayName}"/>
+           <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
+        </StackPanel>
 
-        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}" Zoom="X" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top" ScrollMode="X" IsManipulationEnabled="True" ContentStringFormat="C:{0}">
+        <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}"  Zoom="X" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top" ScrollMode="X" IsManipulationEnabled="True" ContentStringFormat="C:{0}">
             <wpf:CartesianChart.AxisX>
                 <wpf:Axis LabelFormatter="{Binding XFormatter}" IsMerged="True" MinValue="-60" MaxValue="100" />
             </wpf:CartesianChart.AxisX>

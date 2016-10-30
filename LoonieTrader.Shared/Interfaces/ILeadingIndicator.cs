@@ -3,7 +3,7 @@ using LoonieTrader.Shared.Models;
 
 namespace LoonieTrader.Shared.Interfaces
 {
-    public interface ILeadingIndicator
+    public interface ILeadingIndicator : ILoadable
     {
         string Name { get; }
         string Version { get; }

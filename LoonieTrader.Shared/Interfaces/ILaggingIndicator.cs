@@ -3,7 +3,7 @@ using LoonieTrader.Shared.Models;
 
 namespace LoonieTrader.Shared.Interfaces
 {
-    public interface ILaggingIndicator
+    public interface ILaggingIndicator : ILoadable
     {
         string Name { get; }
         string Version { get; }

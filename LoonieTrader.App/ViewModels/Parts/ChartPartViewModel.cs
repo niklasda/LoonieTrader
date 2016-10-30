@@ -105,7 +105,18 @@ namespace LoonieTrader.App.ViewModels.Parts
             AddPoint(e.Obj);
         }
 
-        public InstrumentViewModel Instrument { get; set; }
+        private InstrumentViewModel _instrument;
+        public InstrumentViewModel Instrument {
+            get { return _instrument;}
+            set
+            {
+                if (_instrument != value)
+                {
+                    _instrument = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public ICommand UpdateCommand { get; set; }
         public SeriesCollection SeriesCollection { get; set; }

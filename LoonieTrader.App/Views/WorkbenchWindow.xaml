@@ -28,10 +28,12 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="60"></RowDefinition>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Information about price, time, depth, periods (time frames) and stuff" TextWrapping="Wrap"></TextBlock>
-                    <ComboBox Grid.Row="1" ItemsSource="{Binding FoundIndicators}" SelectedItem="{Binding SelectedIndicator}"></ComboBox>
-                    <TextBlock Grid.Row="2" Text="Optionally require specific time frame" TextWrapping="Wrap"></TextBlock>
+                    <ComboBox Grid.Row="1" ItemsSource="{Binding FoundIndicators}" SelectedItem="{Binding SelectedIndicator}" DisplayMemberPath="Title"></ComboBox>
+                    <TextBlock Grid.Row="2" Text="{Binding LoadableInfo}" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Row="3" Text="Optionally require specific time frame" TextWrapping="Wrap"></TextBlock>
 
                 </Grid>
                 <GridSplitter Grid.Column="1"  Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
@@ -54,7 +56,7 @@
             </Grid>
 
             <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
-            <parts:ChartPartView Grid.Row="2" DataContext="{Binding ChartPart}">
+            <parts:ChartPartView Grid.Row="2" DataContext="{Binding ChartPart}" >
 
             </parts:ChartPartView>
 
