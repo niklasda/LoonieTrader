@@ -26,12 +26,12 @@ namespace DemoLaggingIndicator
             return new Specification();
         }
 
-        public IList<PricePoint> CalculatePoints(IList<OhlcPoint> pricePoints, Depth depth = null)
+        public IList<PricePoint> CalculatePoints(IList<OhlciPoint> pricePoints, Depth depth = null)
         {
             return new List<PricePoint>(new[] { PricePoint.Empty });
         }
 
-        private PricePoint CalculatePoint(IList<OhlcPoint> pricePoints, Depth depth = null)
+        private PricePoint CalculatePoint(IList<OhlciPoint> pricePoints, Depth depth = null)
         {
             return PricePoint.Empty;
         }

@@ -45,9 +45,9 @@
     <Compile Include="Interfaces\ILaggingIndicator.cs" />
     <Compile Include="Models\IDepth.cs" />
     <Compile Include="Models\Depth.cs" />
-    <Compile Include="Models\IOhlcPoint.cs" />
+    <Compile Include="Models\IOhlciPoint.cs" />
     <Compile Include="Models\IRequirements.cs" />
-    <Compile Include="Models\OhlcPoint.cs" />
+    <Compile Include="Models\OhlciPoint.cs" />
     <Compile Include="Models\IPricePoint.cs" />
     <Compile Include="Models\PricePoint.cs" />
     <Compile Include="Models\ISpecification.cs" />

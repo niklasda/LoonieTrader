@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.Shared.Models
 {
-    public class OhlcPoint : IOhlcPoint
+    public class OhlciPoint : IOhlciPoint
     {
         public decimal Open { get; set; }
         public decimal High { get; set; }
@@ -11,7 +11,7 @@ namespace LoonieTrader.Shared.Models
         public DateTime Timestamp { get; set; }
         public long XIndex { get; set; }
 
-        public static OhlcPoint Empty { get { return new OhlcPoint(); } }
+        public static OhlciPoint Empty { get { return new OhlciPoint(); } }
     }
 
 }

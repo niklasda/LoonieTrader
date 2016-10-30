@@ -2,7 +2,7 @@
 
 namespace LoonieTrader.Shared.Models
 {
-    public interface IOhlcPoint
+    public interface IOhlciPoint
     {
         decimal Open { get; set; }
         decimal High { get; set; }

@@ -26,7 +26,7 @@ namespace DemoAlgo
             return new Specification();
         }
 
-        public TradeAction Decide(IList<OhlcPoint> pricePoints, Depth depth = null)
+        public TradeAction Decide(IList<OhlciPoint> pricePoints, Depth depth = null)
         {
             return TradeAction.None;
         }

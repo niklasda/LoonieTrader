@@ -43,7 +43,7 @@ namespace LoonieTrader.App.ViewModels.Parts
             YFormatter = YAxisLabelFormatter;
 
             var dayConfig = Mappers.Financial<CandleDataViewModel>()
-                .X(dayModel => (double)dayModel.DatePlusTime.Subtract(_dateOffset).TotalSeconds)
+                .X(dayModel => dayModel.DatePlusTime.Subtract(_dateOffset).TotalSeconds)
                // .Y(dayModel => (double)dayModel.Open)
                .Open(dayModel => (double)dayModel.Open)
                .High(dayModel => (double)dayModel.High)
@@ -52,6 +52,7 @@ namespace LoonieTrader.App.ViewModels.Parts
 
             var ohlc = new OhlcSeries()
             {
+                Title = "Instrument #0",
                 Values = new ChartValues<CandleDataViewModel>
                 {
                     new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-50).ToString("HHmmss")},
@@ -65,6 +66,7 @@ namespace LoonieTrader.App.ViewModels.Parts
             var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(v => (double)v.Open).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
             var ls = new LineSeries(lsMapper)
             {
+                Title = "Line #1",
                 Values = new ChartValues<CandleDataViewModel>(),
                 Fill = Brushes.Transparent
             };
@@ -127,17 +129,26 @@ namespace LoonieTrader.App.ViewModels.Parts
         public Func<double, string> XFormatter { get; private set; }
         public Func<double, string> YFormatter { get; private set; }
 
-        public void AddIndicator(Func<OhlcPoint, double> ohlcMapper)
+        public void AddIndicator(Func<OhlciPoint, double> ohlcMapper)
         {
-            Func<CandleDataViewModel, double> candleMapper = v => ohlcMapper(_mapper.Map<OhlcPoint>(v));
+            Func<CandleDataViewModel, double> candleMapper = v => ohlcMapper(_mapper.Map<OhlciPoint>(v));
 
             var lsMapper = Mappers.Xy<CandleDataViewModel>().Y(candleMapper).X(v => v.DatePlusTime.Subtract(_dateOffset).TotalSeconds);
 
+            int c = SeriesCollection.Count;
+
             var ls = new LineSeries(lsMapper)
             {
+                Title = $"Indi #{c}",
                 Values = new ChartValues<CandleDataViewModel>(),
                 Fill = Brushes.Transparent
             };
+
+
+            foreach(var v in SeriesCollection[0].Values)
+            {
+                ls.Values.Add(v);
+            }
 
             SeriesCollection.Add(ls);
         }

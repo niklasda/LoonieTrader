@@ -5,6 +5,7 @@ using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Shared.Models;
 
 namespace LoonieTrader.App.Mapper
 {
@@ -54,7 +55,7 @@ namespace LoonieTrader.App.Mapper
 
                 CreateMap<CandleDataRecord, CandleDataViewModel>();
                 CreateMap<CandleDataRecord, OhlcPoint>();
-                CreateMap<CandleDataViewModel, OhlcPoint>();
+                CreateMap<CandleDataViewModel, OhlciPoint>();
             }
         }
     }
