@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
@@ -17,6 +18,12 @@ namespace LoonieTrader.App.ViewModels.Windows
                 resp.Append(AppProperties.ApplicationName);
                 resp.Append(" v");
                 resp.AppendLine(Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                resp.Append("CLR: ");
+                resp.AppendLine(Environment.Version.ToString());
+                resp.AppendLine();
+                resp.Append(Environment.UserName);
+                resp.Append("@");
+                resp.AppendLine(Environment.UserDomainName);
                 resp.AppendLine();
 
                 resp.AppendLine("The following frameworks has been used:");
@@ -27,7 +34,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 resp.AppendLine("SeriLog");
                 resp.AppendLine("Jil");
                 resp.AppendLine("FileHelper");
-                resp.AppendLine("MVVM Light");
+                resp.AppendLine("MVVMLight");
                 resp.AppendLine("StructureMap");
                 resp.AppendLine("JsonPrettyPrinter");
                 resp.AppendLine("Microsoft Frameworks");

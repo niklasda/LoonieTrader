@@ -42,8 +42,8 @@
                                  Command="{Binding SellCommand}" Margin="10" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                            <GradientStop Color="#FFECECEC" Offset="0.469"/>
-                            <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
+                            <GradientStop Color="#FFECECEC" Offset="0.470"/>
+                            <GradientStop Color="#FFDBDBDB" Offset="0.530"/>
                             <GradientStop Color="Red" Offset="1"/>
                         </LinearGradientBrush>
                     </Button.Background>
@@ -60,8 +60,8 @@
                                    Command="{Binding BuyCommand}" Margin="10" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFECECEC" Offset="0.469"/>
-                            <GradientStop Color="#FFDBDBDB" Offset="0.531"/>
+                            <GradientStop Color="#FFECECEC" Offset="0.470"/>
+                            <GradientStop Color="#FFDBDBDB" Offset="0.530"/>
                             <GradientStop Color="Green" Offset="0.954"/>
                         </LinearGradientBrush>
                     </Button.Background>

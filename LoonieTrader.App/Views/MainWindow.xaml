@@ -179,14 +179,14 @@
                     <TabItem Header="Transaction History" FlowDirection="LeftToRight">
                         <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" ReadOnly="True">
                             <xcdg:DataGridControl.View>
-                            <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                                <xcdg:TableView.FixedHeaders>
-                                    <DataTemplate>
-                                        <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                    </DataTemplate>
-                                </xcdg:TableView.FixedHeaders>
+                                <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
+                                    <xcdg:TableView.FixedHeaders>
+                                        <DataTemplate>
+                                            <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
+                                        </DataTemplate>
+                                    </xcdg:TableView.FixedHeaders>
 
-                            </xcdg:TableView>
+                                </xcdg:TableView>
                             </xcdg:DataGridControl.View>
                         </xcdg:DataGridControl>
                     </TabItem>
@@ -209,13 +209,13 @@
 
                         <ComboBox ItemsSource="{Binding AvailableChartTypes}"  VerticalContentAlignment="Center" Width="120" SelectedIndex="0" />
 
-                        <ComboBox ItemsSource="{Binding AvailableTimeframes}" VerticalContentAlignment="Center" Width="160"  SelectedIndex="0"   />
+                        <ComboBox ItemsSource="{Binding AvailableTimeframes}" VerticalContentAlignment="Center" Width="160" SelectedIndex="0"   />
 
-                        <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center"  SelectedItem="{Binding SelectedIndicator}"  Width="170"  />
+                        <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center" SelectedItem="{Binding SelectedIndicator}"  Width="170"  />
 
                         <Button Content="Complex _Order..." Command="{Binding ComplexOrderCommand}" FontSize="14" Padding="10" Margin="30,0,0,0" />
                         <Button Content="New C_hart Window..." Command="{Binding NewChartCommand}" FontSize="14" Padding="10" />
-                        <Button Content="Wb..." Command="{Binding WorkbenchCommand}" FontSize="14" Padding="10" />
+                        <Button Content="_Bench..." Command="{Binding WorkbenchCommand}" FontSize="14" Padding="10" />
 
                     </StackPanel>
                     <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
@@ -224,11 +224,5 @@
                 </Grid>
             </Grid>
         </Grid>
-
-
-
     </DockPanel>
 </Window>
-
-
-
