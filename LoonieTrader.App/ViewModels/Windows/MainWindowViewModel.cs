@@ -287,6 +287,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
+                ChangeChartInstrument(SelectedInstrument);
             }
         }
 
@@ -375,6 +376,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public void ChangeChartInstrument(InstrumentViewModel instrument)
         {
+            ChartPart.Instrument = instrument;
         }
 
         private InstrumentViewModel _selectedInstrument;

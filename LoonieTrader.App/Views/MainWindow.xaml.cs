@@ -17,10 +17,7 @@ namespace LoonieTrader.App.Views
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var mvm = base.DataContext as MainWindowViewModel;
-            if (mvm != null)
-            {
-                mvm.ExitApplicationCommand.Execute(e);
-            }
+            mvm?.ExitApplicationCommand.Execute(e);
         }
 
         private void InstrumentTree_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -30,10 +27,7 @@ namespace LoonieTrader.App.Views
             if (instrument != null)
             {
                 var mvm = base.DataContext as MainWindowViewModel;
-                if (mvm != null)
-                {
-                    mvm.ChangeChartInstrument(instrument);
-                }
+                mvm?.ChangeChartInstrument(instrument);
             }
         }
 

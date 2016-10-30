@@ -25,7 +25,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        public InstrumentViewModel Instrument { get; set; }
+        public InstrumentViewModel Instrument {
+            get { return ChartPart.Instrument; }
+            set { ChartPart.Instrument = value; }
+        }
         public ChartPartViewModel ChartPart { get; private set; }
 
     }
