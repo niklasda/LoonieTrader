@@ -285,6 +285,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             if (InstrumentExists(instrument))
             {
+                ChartPart.Instrument = instrument;
+
                 BuyButtonEnabled = false;
                 BuyButtonLabel = string.Format("Loading {0}", instrument.DisplayName);
 
@@ -637,8 +639,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         public InstrumentViewModel Instrument {
-            get { return ChartPart.Instrument; }
-            set { ChartPart.Instrument = value; }
+            get { return SelectedInstrument; }
+            set
+            {
+                SelectedInstrument = value;
+            }
         }
     }
 }
