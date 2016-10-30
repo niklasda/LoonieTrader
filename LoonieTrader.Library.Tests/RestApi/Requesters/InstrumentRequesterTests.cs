@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
@@ -15,11 +14,9 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         {
             var container = TestServiceLocator.Initialize();
             _ir = container.GetInstance<IInstrumentRequester>();
-            _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
         }
 
         private IInstrumentRequester _ir;
-        private IEnvironmentSettings _s;
 
         [Test]
         public void TestGetCandlesDefaults()

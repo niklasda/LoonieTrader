@@ -148,7 +148,9 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void ReloadAccounts()
         {
-            try
+            throw new Exception("asd");
+
+          /*  try
             {
                 AvailableAccounts.Clear();
 
@@ -172,7 +174,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 AvailableAccounts.Clear();
                 _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
-            }
+            }*/
         }
 
         private void SelectPrimaryAccount()

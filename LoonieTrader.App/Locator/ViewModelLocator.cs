@@ -5,7 +5,7 @@ using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
-using LoonieTrader.Shared.Interfaces;
+using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator
@@ -28,6 +28,8 @@ namespace LoonieTrader.App.Locator
 
             var exporter = LoadAll();
             _container.Configure(c=>c.For<CompositionContainer>().Use(exporter));
+
+            ServiceLocator.SetLocatorProvider(() => new StructureLocator(_container));
         }
 
         private CompositionContainer LoadAll()

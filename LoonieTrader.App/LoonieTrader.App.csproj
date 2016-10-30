@@ -160,6 +160,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\Enums.cs" />
+    <Compile Include="Locator\StructureLocator.cs" />
     <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />

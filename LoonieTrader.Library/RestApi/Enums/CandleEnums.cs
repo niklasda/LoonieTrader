@@ -1,5 +1,4 @@
-﻿// ReSharper disable InconsistentNaming
-namespace LoonieTrader.Library.RestApi.Enums
+﻿namespace LoonieTrader.Library.RestApi.Enums
 {
     public enum CandlestickGranularity
     {

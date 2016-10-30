@@ -14,7 +14,7 @@ namespace LoonieTrader.Library.Tests.Configuration
         {
             ISettings settings = new Settings();
             settings.SelectedEnvironmentKey = Environments.Practice.Key;
-            settings.EnvironmentSettings = new EnvironmentSettings[]
+            settings.EnvironmentSettings = new []
             {
                 new EnvironmentSettings()
                 {
