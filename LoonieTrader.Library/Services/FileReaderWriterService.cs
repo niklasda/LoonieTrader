@@ -91,7 +91,7 @@ namespace LoonieTrader.Library.Services
 
         public void SaveConfiguration(ISettings settings)
         {
-            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
+            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.Create))
             {
                 using (StreamWriter txtWr = new StreamWriter(fileStream))
                 {

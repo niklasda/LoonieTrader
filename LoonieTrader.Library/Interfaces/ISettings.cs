@@ -1,4 +1,5 @@
-﻿using LoonieTrader.Library.Models;
+﻿using System.Collections.Specialized;
+using LoonieTrader.Library.Models;
 
 namespace LoonieTrader.Library.Interfaces
 {
@@ -19,6 +20,6 @@ namespace LoonieTrader.Library.Interfaces
 
         string DefaultAccountId { get; set; }
 
-        string[] FavouriteInstruments { get; set; }
+        StringCollection FavouriteInstruments { get; set; }
     }
 }

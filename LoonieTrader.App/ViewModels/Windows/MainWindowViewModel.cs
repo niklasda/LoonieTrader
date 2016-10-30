@@ -28,7 +28,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
             ITransactionsRequester transactionsRequester)
         {
-            _settings = settingsService.CachedSettings.SelectedEnvironment;
+            _settingsService = settingsService;
+            _settings = _settingsService.CachedSettings.SelectedEnvironment;
             _mapper = mapper;
             _logger = logger;
             _dataLoader = dataLoader;
@@ -146,6 +147,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
 
+        private readonly ISettingsService _settingsService;
         private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
         private readonly IExtendedLogger _logger;
@@ -276,7 +278,10 @@ namespace LoonieTrader.App.ViewModels.Windows
                     {
                         it.Instruments.Add(SelectedInstrument);
 
-                        it.RaisePropertyChanged(()=>it.Instruments);
+                        it.RaisePropertyChanged(() => it.Instruments);
+
+                        _settingsService.CachedSettings.SelectedEnvironment.FavouriteInstruments.Add(SelectedInstrument.Name);
+                        _settingsService.SaveSettings(_settingsService.CachedSettings);
                     }
                 }
             }

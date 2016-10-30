@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Specialized;
+using System.Linq;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using YamlDotNet.Serialization;
@@ -30,8 +31,8 @@ namespace LoonieTrader.Library.Models
                 {
                     EnvironmentSettings = new[]
                     {
-                        new EnvironmentSettings() {EnvironmentKey = Environments.Practice.Key},
-                        new EnvironmentSettings() {EnvironmentKey = Environments.Live.Key}
+                        new EnvironmentSettings {EnvironmentKey = Environments.Practice.Key, FavouriteInstruments = new StringCollection()},
+                        new EnvironmentSettings {EnvironmentKey = Environments.Live.Key, FavouriteInstruments = new StringCollection()}
                     }
                 };
             }
@@ -46,6 +47,6 @@ namespace LoonieTrader.Library.Models
 
         public string DefaultAccountId { get; set; }
 
-        public string[] FavouriteInstruments { get; set; }
+        public StringCollection FavouriteInstruments { get; set; } = new StringCollection();
     }
 }

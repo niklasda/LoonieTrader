@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="90"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Column="0" ItemsSource="{Binding AvailableAccounts}" SelectedValue="{Binding SelectedAccountKey}" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="0,0,0,0" FontSize="16"/>
-                <Button Grid.Column="1" Command="{Binding ReloadAccountsCommand}" Margin="10,0,0,0" FontSize="16">_Reload</Button>
+                <Button Grid.Column="1" Command="{Binding ReloadAccountsCommand}" Margin="10,0,0,0">_Reload</Button>
             </Grid>
         </StackPanel>
 
