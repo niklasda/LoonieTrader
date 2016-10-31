@@ -1,4 +1,5 @@
-﻿using LoonieTrader.Library.Constants;
+﻿using System.Collections.Specialized;
+using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using NUnit.Framework;
@@ -21,14 +22,14 @@ namespace LoonieTrader.Library.Tests.Configuration
                     ApiKey = "APIKEY-1",
                     DefaultAccountId = "Account-1",
                     EnvironmentKey = Environments.Practice.Key,
-                    FavouriteInstruments = new []{"INST1-1","INST1-2" }
+                    FavouriteInstruments = new StringCollection {"INST1-1","INST1-2" }
                 },
                 new EnvironmentSettings()
                 {
                     ApiKey = "APIKEY-2",
                     DefaultAccountId = "Account-2",
                     EnvironmentKey = Environments.Live.Key,
-                    FavouriteInstruments = new []{"INST2-1","INST2-2" }
+                    FavouriteInstruments = new StringCollection {"INST2-1","INST2-2" }
                 }
             };
 

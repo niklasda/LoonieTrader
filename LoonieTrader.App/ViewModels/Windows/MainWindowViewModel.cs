@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -105,19 +106,28 @@ namespace LoonieTrader.App.ViewModels.Windows
                     // todo automapper
                     var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
                     List<InstrumentTypeViewModel> its =
-                        groups.Select(
-                            x =>
-                                new InstrumentTypeViewModel
-                                {
-                                    Type = x.Key,
-                                    Instruments = x.OrderBy(o => o.DisplayName).ToList()
-                                }).ToList();
+                        groups.Select(x => new InstrumentTypeViewModel
+                                            {
+                                                Type = x.Key,
+                                                Instruments = x.OrderBy(o => o.DisplayName).ToList()
+                                            }).ToList();
 
-                    its.Insert(0,new InstrumentTypeViewModel()
+                    var favourites = new InstrumentTypeViewModel()
                     {
                         Type = AppProperties.FavouritesFolderName,
-                        Instruments = new List<InstrumentViewModel>{ new InstrumentViewModel() { DisplayName="EUR/USD", Name="EUR_USD"}}
-                    });
+                        Instruments = new List<InstrumentViewModel>()
+                    };
+
+                    its.Insert(0, favourites);
+
+                    foreach (var fi in _settings.FavouriteInstruments)
+                    {
+                        var ivm = mapper.Map<InstrumentViewModel>(InstrumentCache.Lookup(fi));
+                        if (ivm != null)
+                        {
+                            favourites.Instruments.Add(ivm);
+                        }
+                    }
 
                     _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>( its);
 
