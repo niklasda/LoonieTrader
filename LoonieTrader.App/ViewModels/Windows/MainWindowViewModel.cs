@@ -78,6 +78,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
 
             AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
+            RemoveInstrumentToFavouritesContextCommand = new RelayCommand(RemoveInstrumentToFavourites);
             OpenInstrumentInMainContextCommand = new RelayCommand(OpenInstrumentInMain);
             OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
             OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
@@ -278,7 +279,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             if (SelectedInstrument != null)
             {
-                Console.WriteLine(SelectedInstrument);
+                Console.WriteLine(@"Add: {0}", SelectedInstrument);
 
                 var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == AppProperties.FavouritesFolderName);
                 if (it != null)
@@ -294,6 +295,14 @@ namespace LoonieTrader.App.ViewModels.Windows
                         _settingsService.SaveSettings(_settingsService.CachedSettings);
                     }
                 }
+            }
+        }
+
+        private void RemoveInstrumentToFavourites()
+        {
+            if (SelectedInstrument != null)
+            {
+                Console.WriteLine(@"Remove: {0}", SelectedInstrument);
             }
         }
 
@@ -551,6 +560,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
 
         public ICommand AddInstrumentToFavouritesContextCommand { get; private set; }
+
+        public ICommand RemoveInstrumentToFavouritesContextCommand { get; private set; }
 
         public ICommand OpenInstrumentInMainContextCommand { get; private set; }
 

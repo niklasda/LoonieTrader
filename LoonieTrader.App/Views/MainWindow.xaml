@@ -104,7 +104,7 @@
                                 <MenuItem Header="Trade Instrument..." Command="{Binding OpenInstrumentInTradeContextCommand}"/>
                             </ContextMenu>
                             <ContextMenu  x:Key="MenuWithRemove">
-                                <MenuItem Header="Remove from Favourites" Command="{Binding AddInstrumentToFavouritesContextCommand}"/>
+                                <MenuItem Header="Remove from Favourites" Command="{Binding RemoveInstrumentToFavouritesContextCommand}"/>
                                 <Separator/>
                                 <MenuItem Header="Open in Main window" Command="{Binding OpenInstrumentInMainContextCommand}"/>
                                 <MenuItem Header="Open Chart..." Command="{Binding OpenInstrumentInNewChartContextCommand}"/>
