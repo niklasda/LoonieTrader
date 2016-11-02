@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -39,6 +41,29 @@ namespace LoonieTrader.App.Views
             {
                 treeViewItem.Focus();
                 treeViewItem.IsSelected = true;
+                var dci = treeViewItem.DataContext as InstrumentViewModel;
+
+                var tree = e.Source as TreeView;
+
+                if (dci != null && tree != null)
+                {
+                    var itypes = tree.ItemsSource as Collection<InstrumentTypeViewModel>;
+
+                    // todo need bettwe source of favourites
+                    if (itypes[0].Instruments.Any(x => x.Name == dci.Name))
+                    {
+                        tree.ContextMenu = tree.Resources["MenuWithRemove"] as ContextMenu;
+                    }
+                    else
+                    {
+                        tree.ContextMenu = tree.Resources["MenuWithAdd"] as ContextMenu;
+                    }
+                }
+                else if (tree != null)
+                {
+                    tree.ContextMenu = null;
+                }
+
                 e.Handled = true;
             }
         }

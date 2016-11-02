@@ -560,6 +560,11 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         public string WindowTitle { get; } = AppProperties.ApplicationName;
 
+        //public string AddOrRemoveText
+        //{
+        //    get { return SelectedInstrument!=null? "Add to Favourites": "Remove from Favourites"; }
+        //}
+
         private void SelectedInstrumentChanged(object o)
         {
             InstrumentViewModel instrument = o as InstrumentViewModel;
