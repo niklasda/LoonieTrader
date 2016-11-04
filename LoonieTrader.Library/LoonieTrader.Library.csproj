@@ -141,7 +141,6 @@
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\FileReaderWriterService.cs" />
     <Compile Include="Constants\Environments.cs" />
-    <Compile Include="HistoricalData\CandleDataViewModel.cs" />
     <Compile Include="HistoricalData\CandleDataRecord.cs" />
     <Compile Include="HistoricalData\HistoricalDataLoader.cs" />
     <Compile Include="Interfaces\IExtendedLogger.cs" />

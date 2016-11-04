@@ -164,6 +164,8 @@
     <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
+    <Compile Include="ViewModels\CandleTimeViewModel.cs" />
+    <Compile Include="ViewModels\CandleDataViewModel.cs" />
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />

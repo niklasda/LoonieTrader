@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using AutoMapper;
 using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
@@ -16,8 +17,8 @@ namespace LoonieTrader.Library.Tests.HistoricalData
         [Test]
         public void TestEurUsdTxt()
         {
-            TestAutoMappings ams = new TestAutoMappings();
-            IMapper mapper = ams.CreateMapper();
+            //TestAutoMappings ams = new TestAutoMappings();
+            //IMapper mapper = ams.CreateMapper();
 
             var engine = new FileHelperEngine<CandleDataRecord>();
             IFileReaderWriterService frw = new FileReaderWriterService();
@@ -26,13 +27,16 @@ namespace LoonieTrader.Library.Tests.HistoricalData
 
             Assert.AreEqual(212445, records.Length);
 
-            var candleViewModels = mapper.Map<List<CandleDataViewModel>>(records);
-            Assert.AreEqual(212445, candleViewModels.Count);
-            Assert.IsTrue(candleViewModels.TrueForAll(x => x.Open > 1));
-            Assert.IsTrue(candleViewModels.TrueForAll(x => x.High > 1));
-            Assert.IsTrue(candleViewModels.TrueForAll(x => x.Low > 1));
-            Assert.IsTrue(candleViewModels.TrueForAll(x => x.Close > 1));
-            Assert.IsTrue(candleViewModels.TrueForAll(x => x.DatePlusTime.Year > 2001));
+          //  var candleViewModels = mapper.Map<List<CandleDataViewModel>>(records);
+
+            var recordList = records.ToList();
+
+            Assert.AreEqual(212445, recordList.Count);
+            Assert.IsTrue(recordList.TrueForAll(x => x.Open > 1));
+            Assert.IsTrue(recordList.TrueForAll(x => x.High > 1));
+            Assert.IsTrue(recordList.TrueForAll(x => x.Low > 1));
+            Assert.IsTrue(recordList.TrueForAll(x => x.Close > 1));
+            Assert.IsTrue(recordList.TrueForAll(x => x.Date.Length > 6));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LoonieTrader.Library.HistoricalData
+namespace LoonieTrader.App.ViewModels
 {
     public class CandleDataViewModel
     {
