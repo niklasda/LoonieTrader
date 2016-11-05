@@ -185,12 +185,30 @@
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
+    <Compile Include="Views\BlotterWindow.xaml.cs">
+      <DependentUpon>BlotterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\AutoFilteredComboBox.cs" />
+    <Compile Include="Views\InstrumentsWindow.xaml.cs">
+      <DependentUpon>InstrumentsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewsWindow.xaml.cs">
+      <DependentUpon>NewsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\BlotterPartView.xaml.cs">
+      <DependentUpon>BlotterPartView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Parts\ChartPartView.xaml.cs">
       <DependentUpon>ChartPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\InstrumentsPartView.xaml.cs">
+      <DependentUpon>InstrumentsPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\NewsPartView.xaml.cs">
+      <DependentUpon>NewsPartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\ServiceStatusPartView.xaml.cs">
       <DependentUpon>ServiceStatusPartView.xaml</DependentUpon>
@@ -218,11 +236,35 @@
     <Compile Include="Views\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\BlotterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InstrumentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\NewsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\BlotterPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Parts\ChartPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\InstrumentsPartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\NewsPartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

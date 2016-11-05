@@ -48,6 +48,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             AboutCommand = new RelayCommand(OpenAboutWindow);
             ComplexOrderCommand = new RelayCommand(()=>OpenComplexOrderWindow(null));
             WorkbenchCommand = new RelayCommand(OpenWorkbenchWindow);
+            BlotterCommand = new RelayCommand(OpenBlotterWindow);
+            NewsCommand = new RelayCommand(OpenNewsWindow);
+            InstrumentsCommand = new RelayCommand(OpenInstrumentsWindow);
             NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
@@ -186,6 +189,9 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand ExitApplicationCommand { get; set; }
         public ICommand ComplexOrderCommand { get; set; }
         public ICommand WorkbenchCommand { get; set; }
+        public ICommand InstrumentsCommand { get; set; }
+        public ICommand BlotterCommand { get; set; }
+        public ICommand NewsCommand { get; set; }
         public ICommand NewChartCommand { get; set; }
         public ICommand OpenPositionsCommand { get; set; }
         public ICommand OpenOrdersCommand { get; set; }
@@ -599,6 +605,26 @@ namespace LoonieTrader.App.ViewModels.Windows
             ComplexOrderWindow cow = new ComplexOrderWindow();
             cow.Owner = Application.Current.MainWindow;
             cow.ShowInstrument(instrument);
+        }
+
+        private void OpenBlotterWindow()
+        {
+            BlotterWindow ww = new BlotterWindow();
+            ww.Owner = Application.Current.MainWindow;
+            ww.Show();
+        }
+        private void OpenNewsWindow()
+        {
+            NewsWindow ww = new NewsWindow();
+            ww.Owner = Application.Current.MainWindow;
+            ww.Show();
+        }
+
+        private void OpenInstrumentsWindow()
+        {
+            InstrumentsWindow ww = new InstrumentsWindow();
+            ww.Owner = Application.Current.MainWindow;
+            ww.Show();
         }
 
         private void OpenWorkbenchWindow()

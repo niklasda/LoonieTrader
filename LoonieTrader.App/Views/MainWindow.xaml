@@ -221,6 +221,9 @@
                         <Button Content="Complex _Order..." Command="{Binding ComplexOrderCommand}" FontSize="14" Padding="10" Margin="30,0,0,0" />
                         <Button Content="New C_hart Window..." Command="{Binding NewChartCommand}" FontSize="14" Padding="10" />
                         <Button Content="_Bench..." Command="{Binding WorkbenchCommand}" FontSize="14" Padding="10" />
+                        <Button Content="_Instrs..." Command="{Binding InstrumentsCommand}" FontSize="14" Padding="10" />
+                        <Button Content="_Blotter..." Command="{Binding BlotterCommand}" FontSize="14" Padding="10" />
+                        <Button Content="_News..." Command="{Binding NewsCommand}" FontSize="14" Padding="10" />
 
                     </StackPanel>
                     <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
