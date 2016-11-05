@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoonieTrader.App.Views"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Blotter}"
         ResizeMode="CanResizeWithGrip"
         mc:Ignorable="d"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"

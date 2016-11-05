@@ -162,6 +162,7 @@
     <Compile Include="Constants\Enums.cs" />
     <Compile Include="Locator\StructureLocator.cs" />
     <Compile Include="Mapper\AutoMappings.cs" />
+    <Compile Include="MessageTypes\ChangeInstrumentMessage.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
     <Compile Include="ViewModels\CandleTimeViewModel.cs" />
@@ -175,9 +176,11 @@
     <Compile Include="ViewModels\TradeViewModel .cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\Windows\InstrumentsWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ServiceStatusWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\LogWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ComplexOrderWindowViewModel.cs" />
+    <Compile Include="ViewModels\Windows\BlotterWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\WorkbenchWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ChartWindowViewModel.cs" />

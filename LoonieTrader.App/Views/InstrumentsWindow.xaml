@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoonieTrader.App.Views"
         ResizeMode="CanResizeWithGrip"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Instruments}"
         mc:Ignorable="d"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"
-        Title="Instruments" Height="300" Width="300">
+        Title="Instruments" Height="480" Width="250">
     <Grid>
         <Parts:InstrumentPartView />
     </Grid>

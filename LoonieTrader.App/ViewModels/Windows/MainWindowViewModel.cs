@@ -10,8 +10,10 @@ using System.Windows.Input;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using LoonieTrader.App.Constants;
+using LoonieTrader.App.MessageTypes;
 using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
@@ -84,6 +86,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             OpenInstrumentInMainContextCommand = new RelayCommand(OpenInstrumentInMain);
             OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
             OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
+
+            Messenger.Default.Register<ChangeInstrumentMessage>(this, ChangeChartInstrument);
 
             if (IsInDesignMode)
             {
@@ -190,7 +194,6 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand WorkbenchCommand { get; set; }
         public ICommand InstrumentsCommand { get; set; }
         public ICommand BlotterCommand { get; set; }
-        public ICommand NewsCommand { get; set; }
         public ICommand NewChartCommand { get; set; }
         public ICommand OpenPositionsCommand { get; set; }
         public ICommand OpenOrdersCommand { get; set; }
@@ -403,6 +406,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private void ChangeChartInstrument(ChangeInstrumentMessage instrument)
+        {
+            ChartPart.Instrument = instrument.Instrument;
+        }
+
         public void ChangeChartInstrument(InstrumentViewModel instrument)
         {
             ChartPart.Instrument = instrument;
@@ -598,7 +606,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {
             ComplexOrderWindow cow = new ComplexOrderWindow();
@@ -652,6 +659,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         [ContractAnnotation("=> halt")]
         private void ExitApplication()
         {
+            Messenger.Default.Unregister<ChangeInstrumentMessage>(this, ChangeChartInstrument);
+
             Application.Current.Shutdown();
         }
 

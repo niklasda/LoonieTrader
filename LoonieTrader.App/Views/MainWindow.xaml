@@ -223,7 +223,6 @@
                         <Button Content="_Bench..." Command="{Binding WorkbenchCommand}" FontSize="14" Padding="10" />
                         <Button Content="_Instrs..." Command="{Binding InstrumentsCommand}" FontSize="14" Padding="10" />
                         <Button Content="_Blotter..." Command="{Binding BlotterCommand}" FontSize="14" Padding="10" />
-                        <Button Content="_News..." Command="{Binding NewsCommand}" FontSize="14" Padding="10" />
 
                     </StackPanel>
                     <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">

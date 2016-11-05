@@ -64,6 +64,10 @@ namespace LoonieTrader.App.Locator
 
         public AboutWindowViewModel About => _container.GetInstance<AboutWindowViewModel>();
 
+        public BlotterWindowViewModel Blotter => _container.GetInstance<BlotterWindowViewModel>();
+
+        public InstrumentsWindowViewModel Instruments => _container.GetInstance<InstrumentsWindowViewModel>();
+
         public LogWindowViewModel Log => _container.GetInstance<LogWindowViewModel>();
 
         public ServiceStatusWindowViewModel ServiceStatus => _container.GetInstance<ServiceStatusWindowViewModel>();

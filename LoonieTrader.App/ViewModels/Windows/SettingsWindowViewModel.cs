@@ -8,7 +8,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class SettingsWindowViewModel : ViewModelBase
     {
-        public SettingsWindowViewModel(ISettingsService settings, IAccountsRequester accountsRequester)
+        public SettingsWindowViewModel(ISettingsService settingsService, IAccountsRequester accountsRequester)
         {
         }
 

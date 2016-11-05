@@ -8,11 +8,14 @@
              xmlns:converters="clr-namespace:LoonieTrader.App.ViewModels.Converters"
              xmlns:viewModels="clr-namespace:LoonieTrader.App.ViewModels"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
              mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance d:Type=windows:InstrumentsWindowViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown">
@@ -55,10 +58,8 @@
             </TreeView.Resources>
         </TreeView>
 
-        <Expander  Grid.Row="1" Header="Chart" Margin="2" >
-
-            <xctk:PropertyGrid SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
-                                           ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
-        </Expander>
+        <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <xctk:PropertyGrid  Grid.Row="2" SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
+                         ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
     </Grid>
 </UserControl>
