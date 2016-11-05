@@ -49,7 +49,6 @@ namespace LoonieTrader.App.ViewModels.Windows
             ComplexOrderCommand = new RelayCommand(()=>OpenComplexOrderWindow(null));
             WorkbenchCommand = new RelayCommand(OpenWorkbenchWindow);
             BlotterCommand = new RelayCommand(OpenBlotterWindow);
-            NewsCommand = new RelayCommand(OpenNewsWindow);
             InstrumentsCommand = new RelayCommand(OpenInstrumentsWindow);
             NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
@@ -613,13 +612,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
-        private void OpenNewsWindow()
-        {
-            NewsWindow ww = new NewsWindow();
-            ww.Owner = Application.Current.MainWindow;
-            ww.Show();
-        }
-
+      
         private void OpenInstrumentsWindow()
         {
             InstrumentsWindow ww = new InstrumentsWindow();

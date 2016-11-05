@@ -195,9 +195,6 @@
     <Compile Include="Views\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewsWindow.xaml.cs">
-      <DependentUpon>NewsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Parts\BlotterPartView.xaml.cs">
       <DependentUpon>BlotterPartView.xaml</DependentUpon>
     </Compile>
@@ -206,9 +203,6 @@
     </Compile>
     <Compile Include="Views\Parts\InstrumentsPartView.xaml.cs">
       <DependentUpon>InstrumentsPartView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Parts\NewsPartView.xaml.cs">
-      <DependentUpon>NewsPartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\ServiceStatusPartView.xaml.cs">
       <DependentUpon>ServiceStatusPartView.xaml</DependentUpon>
@@ -248,10 +242,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NewsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Parts\BlotterPartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,10 +251,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Parts\InstrumentsPartView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Parts\NewsPartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
