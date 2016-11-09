@@ -11,14 +11,14 @@
              xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance d:Type=windows:InstrumentsWindowViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="680" d:DesignWidth="280">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*" MinHeight="26"></RowDefinition>
         </Grid.RowDefinitions>
-        <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown">
+        <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown" Margin="0,10,0,220" Grid.RowSpan="3">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
@@ -58,8 +58,8 @@
             </TreeView.Resources>
         </TreeView>
 
-        <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <xctk:PropertyGrid  Grid.Row="2" SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
+        <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <xctk:PropertyGrid  Grid.Row="2" SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
                          ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
     </Grid>
 </UserControl>

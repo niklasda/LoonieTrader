@@ -9,7 +9,7 @@
              xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance d:Type=windows:BlotterWindowViewModel}"
-             d:DesignHeight="300" d:DesignWidth="500">
+             d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
         <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
             <TabItem Header="Open Positions" FlowDirection="LeftToRight">

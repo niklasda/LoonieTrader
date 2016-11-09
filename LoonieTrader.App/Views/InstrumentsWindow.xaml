@@ -8,7 +8,7 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Instruments}"
         mc:Ignorable="d"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"
-        Title="Instruments" Height="480" Width="250">
+        Title="Instruments" Height="680" Width="280">
     <Grid>
         <Parts:InstrumentPartView />
     </Grid>

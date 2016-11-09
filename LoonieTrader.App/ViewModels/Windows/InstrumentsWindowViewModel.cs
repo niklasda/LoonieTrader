@@ -159,7 +159,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (SelectedInstrument != null)
             {
                 Console.WriteLine(SelectedInstrument);
-                ChangeChartInstrument(SelectedInstrument);
+                //ChangeChartInstrument(SelectedInstrument);
+                Messenger.Default.Send(new ChangeInstrumentMessage(SelectedInstrument));
             }
         }
 
@@ -196,10 +197,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             //tw.Show();
         }
 
-        public void ChangeChartInstrument(InstrumentViewModel instrument)
-        {
-            Messenger.Default.Send(new ChangeInstrumentMessage(instrument));
-            //ChartPart.Instrument = instrument;
-        }
+        //public void ChangeChartInstrument(InstrumentViewModel instrument)
+        //{
+        //    //ChartPart.Instrument = instrument;
+        //}
     }
 }

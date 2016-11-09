@@ -8,7 +8,7 @@
         ResizeMode="CanResizeWithGrip"
         mc:Ignorable="d"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"
-        Title="Blotter" Height="300" Width="600">
+        Title="Blotter" Height="300" Width="800">
     <Grid>
         <Parts:BlotterPartView />
     </Grid>

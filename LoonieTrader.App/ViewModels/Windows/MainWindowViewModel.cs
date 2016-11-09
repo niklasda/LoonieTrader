@@ -21,13 +21,15 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
     [UsedImplicitly]
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(ISettingsService settingsService, IMapper mapper, IExtendedLogger logger, IHistoricalDataLoader dataLoader, IDialogService dialogService, ChartPartViewModel chartPart,
+        public MainWindowViewModel(ISettingsService settingsService, IMapper mapper, IExtendedLogger logger, IHistoricalDataLoader dataLoader, IDialogService dialogService,
+            //ChartPartViewModel chartPart, InstrumentsWindowViewModel instrumentsPart,
             IAccountsRequester accountsRequester, IOrdersRequester ordersRequester, IPositionsRequester positionsRequester, ITradesRequester tradesRequester,
             ITransactionsRequester transactionsRequester)
         {
@@ -44,7 +46,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             _tradesRequester = tradesRequester;
             _transactionsRequester = transactionsRequester;
 
-            ChartPart = chartPart;
+            //ChartPart = chartPart;
+            //InstrumentsPart = instrumentsPart;
 
             LogCommand = new RelayCommand(OpenLogWindow);
             AboutCommand = new RelayCommand(OpenAboutWindow);
@@ -61,10 +64,10 @@ namespace LoonieTrader.App.ViewModels.Windows
             TransactionHistoryCommand = new RelayCommand(() => SelectedTabIndex = 2);
             AccountInformationCommand = new RelayCommand(() => SelectedTabIndex = 3);
             InstrumentInformationCommand = new RelayCommand(() => SelectedTabIndex = 4);
-            ClosePositionContextCommand = new RelayCommand(ClosePosition);
-            ModifyPositionContextCommand = new RelayCommand(ModifyPosition);
-            CancelOrderContextCommand = new RelayCommand(CancelOrder);
-            ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
+            //ClosePositionContextCommand = new RelayCommand(ClosePosition);
+            //ModifyPositionContextCommand = new RelayCommand(ModifyPosition);
+            //CancelOrderContextCommand = new RelayCommand(CancelOrder);
+            //ModifyOrderContextCommand = new RelayCommand(ModifyOrder);
 
             ServiceStatusCommand = new RelayCommand(OpenServiceStatus);
 
@@ -79,23 +82,23 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
-            SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
+         //   SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
 
-            AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
-            RemoveInstrumentToFavouritesContextCommand = new RelayCommand(RemoveInstrumentToFavourites);
-            OpenInstrumentInMainContextCommand = new RelayCommand(OpenInstrumentInMain);
-            OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
-            OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
+            //AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
+            //RemoveInstrumentToFavouritesContextCommand = new RelayCommand(RemoveInstrumentToFavourites);
+            //OpenInstrumentInMainContextCommand = new RelayCommand(OpenInstrumentInMain);
+            //OpenInstrumentInNewChartContextCommand = new RelayCommand(OpenInstrumentInNewChart);
+            //OpenInstrumentInTradeContextCommand = new RelayCommand(OpenInstrumentInTrade);
 
             Messenger.Default.Register<ChangeInstrumentMessage>(this, ChangeChartInstrument);
 
             if (IsInDesignMode)
             {
                 _accountSummary = new AccountSummaryViewModel() {Id = "101"};
-                _positionList = new List<PositionViewModel>() {new PositionViewModel() {Instrument = "EUR/USD"}};
-                _orderList = new List<OrderViewModel>() {new OrderViewModel() {Instrument = "EUR/USD"}};
-                _tradeList = new List<TradeViewModel>() {new TradeViewModel() {Instrument = "EUR/USD"}};
-                _transactionList = new List<TransactionViewModel>() {new TransactionViewModel() {Instrument = "EUR/USD"}};
+                //_positionList = new List<PositionViewModel>() {new PositionViewModel() {Instrument = "EUR/USD"}};
+                //_orderList = new List<OrderViewModel>() {new OrderViewModel() {Instrument = "EUR/USD"}};
+                //_tradeList = new List<TradeViewModel>() {new TradeViewModel() {Instrument = "EUR/USD"}};
+                //_transactionList = new List<TransactionViewModel>() {new TransactionViewModel() {Instrument = "EUR/USD"}};
 
             }
             else
@@ -139,7 +142,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                     _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>( its);
 
                     _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
-                    _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
+                    //_positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
                     //_orderList = mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
                     //_tradeList = mapper.Map<IList<TradeModel>>(tradesResponse.trades);
                     //_transactionList = mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
@@ -179,10 +182,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private AccountSummaryViewModel _accountSummary;
         private readonly ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
-        private IList<PositionViewModel> _positionList;
-        private IList<OrderViewModel> _orderList;
-        private IList<TradeViewModel> _tradeList;
-        private IList<TransactionViewModel> _transactionList;
+        //private IList<PositionViewModel> _positionList;
+        //private IList<OrderViewModel> _orderList;
+        //private IList<TradeViewModel> _tradeList;
+        //private IList<TransactionViewModel> _transactionList;
 
 
         public ICommand LogCommand { get; set; }
@@ -201,10 +204,10 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand AccountInformationCommand { get; set; }
         public ICommand InstrumentInformationCommand { get; set; }
 
-        public ICommand ClosePositionContextCommand { get; set; }
-        public ICommand ModifyPositionContextCommand { get; set; }
-        public ICommand CancelOrderContextCommand { get; set; }
-        public ICommand ModifyOrderContextCommand { get; set; }
+        //public ICommand ClosePositionContextCommand { get; set; }
+        //public ICommand ModifyPositionContextCommand { get; set; }
+        //public ICommand CancelOrderContextCommand { get; set; }
+        //public ICommand ModifyOrderContextCommand { get; set; }
 
 
         public ICommand ChartTypeCommand { get; set; }
@@ -228,118 +231,147 @@ namespace LoonieTrader.App.ViewModels.Windows
         //     get { return _allInstruments; }
         // }
 
-        public ObservableCollection<InstrumentTypeViewModel> AllInstrumentTypes
-        {
-            get { return _allInstrumentTypes; }
-        }
+        //public ObservableCollection<InstrumentTypeViewModel> AllInstrumentTypes
+        //{
+        //    get { return _allInstrumentTypes; }
+        //}
 
-        public ChartPartViewModel ChartPart { get; private set; }
-
-        public IList<PositionViewModel> AllPositions
-        {
-            /*
-             * *  AutoMapper
-             * */
-            get
-            {
-                // Positions + OpenPositions
-                return _positionList;
-            }
-        }
-
-        public IList<OrderViewModel> AllOrders
+        public ChartPartViewModel ChartPart
         {
             get
             {
-                // return new[] // Orders + Pending Orders
-
-                // todo, maybe not reload everytime
-
-                var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
-                _orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
-
-                return _orderList;
+                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<ChartPartViewModel>();
+                return _chartPart;
             }
         }
 
-        public IList<TransactionViewModel> AllTransactions
+        public InstrumentsWindowViewModel InstrumentsPart
         {
             get
             {
-                // todo, maybe not reload everytime
-                TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(_settings.DefaultAccountId);
-                _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
-
-                return _transactionList;
+                _instrumentsPart = _instrumentsPart ?? ServiceLocator.Current.GetInstance<InstrumentsWindowViewModel>();
+                return _instrumentsPart;
             }
         }
 
-        public IList<TradeViewModel> AllTrades
+        public BlotterWindowViewModel BlotterPart
         {
             get
             {
-                // todo not used
-                return _tradeList;
+                _blotterPart = _blotterPart ?? ServiceLocator.Current.GetInstance<BlotterWindowViewModel>();
+                return _blotterPart;
             }
         }
 
-        private void AddInstrumentToFavourites()
-        {
-            if (SelectedInstrument != null)
-            {
-                Console.WriteLine(@"Add: {0}", SelectedInstrument);
+        private ChartPartViewModel _chartPart;
+        private InstrumentsWindowViewModel _instrumentsPart;
+        private BlotterWindowViewModel _blotterPart;
 
-                var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == AppProperties.FavouritesFolderName);
-                if (it != null)
-                {
-                    bool exists = it.Instruments.Any(x => x.Name == SelectedInstrument.Name);
-                    if (!exists)
-                    {
-                        it.Instruments.Add(SelectedInstrument);
+        //public IList<PositionViewModel> AllPositions
+        //{
+        //    /*
+        //     * *  AutoMapper
+        //     * */
+        //    get
+        //    {
+        //        // Positions + OpenPositions
+        //        return _positionList;
+        //    }
+        //}
 
-                        it.RaisePropertyChanged(() => it.Instruments);
+        //public IList<OrderViewModel> AllOrders
+        //{
+        //    get
+        //    {
+        //        // return new[] // Orders + Pending Orders
 
-                        _settingsService.CachedSettings.SelectedEnvironment.FavouriteInstruments.Add(SelectedInstrument.Name);
-                        _settingsService.SaveSettings(_settingsService.CachedSettings);
-                    }
-                }
-            }
-        }
+        //        // todo, maybe not reload everytime
 
-        private void RemoveInstrumentToFavourites()
-        {
-            if (SelectedInstrument != null)
-            {
-                Console.WriteLine(@"Remove: {0}", SelectedInstrument);
-            }
-        }
+        //        var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
+        //        _orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
 
-        private void OpenInstrumentInMain()
-        {
-            if (SelectedInstrument != null)
-            {
-                Console.WriteLine(SelectedInstrument);
-                ChangeChartInstrument(SelectedInstrument);
-            }
-        }
+        //        return _orderList;
+        //    }
+        //}
 
-        private void OpenInstrumentInNewChart()
-        {
-            if (SelectedInstrument != null)
-            {
-                Console.WriteLine(SelectedInstrument);
-                OpenNewChartWindow(SelectedInstrument);
-            }
-        }
+        //public IList<TransactionViewModel> AllTransactions
+        //{
+        //    get
+        //    {
+        //        // todo, maybe not reload everytime
+        //        TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(_settings.DefaultAccountId);
+        //        _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
 
-        private void OpenInstrumentInTrade()
-        {
-            if (SelectedInstrument != null)
-            {
-                Console.WriteLine(SelectedInstrument);
-                OpenComplexOrderWindow(SelectedInstrument);
-            }
-        }
+        //        return _transactionList;
+        //    }
+        //}
+
+        //public IList<TradeViewModel> AllTrades
+        //{
+        //    get
+        //    {
+        //        // todo not used
+        //        return _tradeList;
+        //    }
+        //}
+
+        //private void AddInstrumentToFavourites()
+        //{
+        //    if (SelectedInstrument != null)
+        //    {
+        //        Console.WriteLine(@"Add: {0}", SelectedInstrument);
+
+        //        var it = AllInstrumentTypes.FirstOrDefault(x => x.Type == AppProperties.FavouritesFolderName);
+        //        if (it != null)
+        //        {
+        //            bool exists = it.Instruments.Any(x => x.Name == SelectedInstrument.Name);
+        //            if (!exists)
+        //            {
+        //                it.Instruments.Add(SelectedInstrument);
+
+        //                it.RaisePropertyChanged(() => it.Instruments);
+
+        //                _settingsService.CachedSettings.SelectedEnvironment.FavouriteInstruments.Add(SelectedInstrument.Name);
+        //                _settingsService.SaveSettings(_settingsService.CachedSettings);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void RemoveInstrumentToFavourites()
+        //{
+        //    if (SelectedInstrument != null)
+        //    {
+        //        Console.WriteLine(@"Remove: {0}", SelectedInstrument);
+        //    }
+        //}
+
+        //private void OpenInstrumentInMain()
+        //{
+        //    if (SelectedInstrument != null)
+        //    {
+        //        Console.WriteLine(SelectedInstrument);
+        //        ChangeChartInstrument(SelectedInstrument);
+        //    }
+        //}
+
+        //private void OpenInstrumentInNewChart()
+        //{
+        //    if (SelectedInstrument != null)
+        //    {
+        //        Console.WriteLine(SelectedInstrument);
+        //        OpenNewChartWindow(SelectedInstrument);
+        //    }
+        //}
+
+        //private void OpenInstrumentInTrade()
+        //{
+        //    if (SelectedInstrument != null)
+        //    {
+        //        Console.WriteLine(SelectedInstrument);
+        //        OpenComplexOrderWindow(SelectedInstrument);
+        //    }
+        //}
 
         private void GotoLocation(GotoLocations location)
         {
@@ -538,51 +570,51 @@ namespace LoonieTrader.App.ViewModels.Windows
             aw.Show();
         }
 
-        private void ClosePosition()
-        {
-            Console.WriteLine(SelectedPosition.Instrument);
+        //private void ClosePosition()
+        //{
+        //    Console.WriteLine(SelectedPosition.Instrument);
 
-            var message = string.Format("Close entire position in {0}", SelectedPosition.Instrument);
+        //    var message = string.Format("Close entire position in {0}", SelectedPosition.Instrument);
 
-            if (_dialogService.AskYesNo(message))
-            {
-                _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
-            }
-        }
-        private void ModifyPosition()
-        {
-            Console.WriteLine(SelectedPosition.Instrument);
+        //    if (_dialogService.AskYesNo(message))
+        //    {
+        //        _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
+        //    }
+        //}
+        //private void ModifyPosition()
+        //{
+        //    Console.WriteLine(SelectedPosition.Instrument);
 
-            OpenComplexOrderWindow(null);
-        }
+        //    OpenComplexOrderWindow(null);
+        //}
 
-        private void CancelOrder()
-        {
-            Console.WriteLine(@"Cancel: " + SelectedOrder.Instrument);
+        //private void CancelOrder()
+        //{
+        //    Console.WriteLine(@"Cancel: " + SelectedOrder.Instrument);
 
-            //MessageBox.Show(SelectedOrder.Instrument);
-        }
+        //    //MessageBox.Show(SelectedOrder.Instrument);
+        //}
 
-        private void ModifyOrder()
-        {
-            Console.WriteLine(@"Modify: " + SelectedOrder.Instrument);
+        //private void ModifyOrder()
+        //{
+        //    Console.WriteLine(@"Modify: " + SelectedOrder.Instrument);
 
-            //MessageBox.Show(SelectedOrder.Instrument);
-        }
+        //    //MessageBox.Show(SelectedOrder.Instrument);
+        //}
 
-        public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
+      //  public RelayCommand<object> SelectedInstrumentChangedCommand { get; private set; }
 
-        public ICommand AddInstrumentToFavouritesContextCommand { get; private set; }
+        //public ICommand AddInstrumentToFavouritesContextCommand { get; private set; }
 
-        public ICommand RemoveInstrumentToFavouritesContextCommand { get; private set; }
+        //public ICommand RemoveInstrumentToFavouritesContextCommand { get; private set; }
 
-        public ICommand OpenInstrumentInMainContextCommand { get; private set; }
+        //public ICommand OpenInstrumentInMainContextCommand { get; private set; }
 
-        public ICommand OpenInstrumentInNewChartContextCommand { get; private set; }
+        //public ICommand OpenInstrumentInNewChartContextCommand { get; private set; }
 
-        public ICommand OpenInstrumentInTradeContextCommand { get; private set; }
+        //public ICommand OpenInstrumentInTradeContextCommand { get; private set; }
 
-        public string WindowTitle { get; } = AppProperties.ApplicationName;
+        //public string WindowTitle { get; } = AppProperties.ApplicationName;
 
         //public string AddOrRemoveText
         //{
@@ -619,7 +651,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
-      
+
         private void OpenInstrumentsWindow()
         {
             InstrumentsWindow ww = new InstrumentsWindow();

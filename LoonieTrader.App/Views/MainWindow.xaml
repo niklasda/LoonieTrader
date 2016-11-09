@@ -11,7 +11,7 @@
         Title="{Binding WindowTitle}"
         ResizeMode="CanResizeWithGrip"
         Height="700" MinHeight="600"
-        Width="1080" MinWidth="960"
+        Width="1180" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
@@ -84,53 +84,9 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectedItemChanged">
-                                <i:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
-                                   CommandParameter="{Binding ElementName=InstrumentTree,Path=SelectedItem}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <TreeView.Resources>
-                            <ContextMenu  x:Key="MenuWithAdd">
-                                <MenuItem Header="Add to Favourites" Command="{Binding AddInstrumentToFavouritesContextCommand}"/>
-                                <Separator/>
-                                <MenuItem Header="Open in Main window" Command="{Binding OpenInstrumentInMainContextCommand}"/>
-                                <MenuItem Header="Open Chart..." Command="{Binding OpenInstrumentInNewChartContextCommand}"/>
-                                <MenuItem Header="Trade Instrument..." Command="{Binding OpenInstrumentInTradeContextCommand}"/>
-                            </ContextMenu>
-                            <ContextMenu  x:Key="MenuWithRemove">
-                                <MenuItem Header="Remove from Favourites" Command="{Binding RemoveInstrumentToFavouritesContextCommand}"/>
-                                <Separator/>
-                                <MenuItem Header="Open in Main window" Command="{Binding OpenInstrumentInMainContextCommand}"/>
-                                <MenuItem Header="Open Chart..." Command="{Binding OpenInstrumentInNewChartContextCommand}"/>
-                                <MenuItem Header="Trade Instrument..." Command="{Binding OpenInstrumentInTradeContextCommand}"/>
-                            </ContextMenu>
-                            <converters:InstrumentTypeConverter x:Key="HierarchicalConverter" />
-
-                            <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentTypeViewModel}">
-                                <HierarchicalDataTemplate.ItemsSource>
-                                    <MultiBinding Converter="{StaticResource HierarchicalConverter}">
-                                        <Binding Path="Instruments" />
-                                    </MultiBinding>
-                                </HierarchicalDataTemplate.ItemsSource>
-
-                                <TextBlock Text="{Binding Path=Type,Mode=OneWay}"  Margin="2" FontWeight="Bold"/>
-                            </HierarchicalDataTemplate>
-
-                            <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentViewModel}" >
-                                <TextBlock Text="{Binding Path=DisplayName}" Margin="2" />
-                            </HierarchicalDataTemplate>
-                        </TreeView.Resources>
-                    </TreeView>
-                </Grid>
+                <parts:InstrumentPartView DataContext="{Binding InstrumentsPart}" />
             </Grid>
             <GridSplitter Grid.Column="1" Width="7" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>
-
 
             <Grid  Grid.Column="2">
                 <Grid.RowDefinitions>
@@ -138,73 +94,8 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
-                    <TabItem Header="Open Positions" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
-                            <xcdg:DataGridControl.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Close Position..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ClosePositionContextCommand}" />
-                                    <MenuItem Header="Trade Instrument..."  Command="{Binding ModifyPositionContextCommand}" />
-
-                                </ContextMenu>
-                            </xcdg:DataGridControl.ContextMenu>
-                            <xcdg:DataGridControl.View>
-                                <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                                    <xcdg:TableView.FixedHeaders>
-                                        <DataTemplate>
-                                            <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                        </DataTemplate>
-                                    </xcdg:TableView.FixedHeaders>
-
-                                </xcdg:TableView>
-                            </xcdg:DataGridControl.View>
-                        </xcdg:DataGridControl>
-                    </TabItem>
-                    <TabItem Header="Open Orders" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" SelectedItem="{Binding SelectedOrder}">
-                            <xcdg:DataGridControl.ContextMenu>
-                                <ContextMenu >
-                                    <MenuItem Header="Cancel Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
-                                    <MenuItem Header="Modify Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ModifyOrderContextCommand}" />
-
-                                </ContextMenu>
-                            </xcdg:DataGridControl.ContextMenu>
-                            <xcdg:DataGridControl.View>
-                                <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                                    <xcdg:TableView.FixedHeaders>
-                                        <DataTemplate>
-                                            <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                        </DataTemplate>
-                                    </xcdg:TableView.FixedHeaders>
-
-                                </xcdg:TableView>
-                            </xcdg:DataGridControl.View>
-                        </xcdg:DataGridControl>
-                    </TabItem>
-                    <TabItem Header="Transaction History" FlowDirection="LeftToRight">
-                        <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" ReadOnly="True">
-                            <xcdg:DataGridControl.View>
-                                <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
-                                    <xcdg:TableView.FixedHeaders>
-                                        <DataTemplate>
-                                            <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
-                                        </DataTemplate>
-                                    </xcdg:TableView.FixedHeaders>
-
-                                </xcdg:TableView>
-                            </xcdg:DataGridControl.View>
-                        </xcdg:DataGridControl>
-                    </TabItem>
-                    <TabItem Header="Account Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
-                                           ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
-                    </TabItem>
-                    <TabItem Header="Instrument Information" FlowDirection="LeftToRight">
-                        <xctk:PropertyGrid SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
-                                           ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
-                    </TabItem>
-                </TabControl>
-                <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
+                <parts:BlotterPartView Grid.Row="0" DataContext="{Binding BlotterPart}" />
+                <GridSplitter  Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
                 <Grid Grid.Row="2" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="46"></RowDefinition>
