@@ -14,9 +14,14 @@
         <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
             <TabItem Header="Open Positions" FlowDirection="LeftToRight">
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
+                    <xcdg:DataGridControl.Resources>
+                        <Style TargetType="{x:Type xcdg:DataCell}">
+                            <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
+                        </Style>
+                    </xcdg:DataGridControl.Resources>
                     <xcdg:DataGridControl.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Close Position..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ClosePositionContextCommand}" />
+                            <MenuItem Header="Close Position..." Command="{Binding ClosePositionContextCommand}" />
                             <MenuItem Header="Trade Instrument..."  Command="{Binding ModifyPositionContextCommand}" />
 
                         </ContextMenu>
@@ -34,11 +39,16 @@
                 </xcdg:DataGridControl>
             </TabItem>
             <TabItem Header="Open Orders" FlowDirection="LeftToRight">
-                <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" SelectedItem="{Binding SelectedOrder}">
+                <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" SelectedItem="{Binding SelectedOrder}"  >
+                    <xcdg:DataGridControl.Resources>
+                        <Style TargetType="{x:Type xcdg:DataCell}">
+                            <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
+                        </Style>
+                    </xcdg:DataGridControl.Resources>
                     <xcdg:DataGridControl.ContextMenu>
                         <ContextMenu >
-                            <MenuItem Header="Cancel Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding CancelOrderContextCommand}" />
-                            <MenuItem Header="Modify Order..." DataContext="{Binding Source={StaticResource Locator}, Path=Main }" Command="{Binding ModifyOrderContextCommand}" />
+                            <MenuItem Header="Cancel Order..." Command="{Binding CancelOrderContextCommand}" />
+                            <MenuItem Header="Modify Order..." Command="{Binding ModifyOrderContextCommand}" />
 
                         </ContextMenu>
                     </xcdg:DataGridControl.ContextMenu>
@@ -56,6 +66,11 @@
             </TabItem>
             <TabItem Header="Transaction History" FlowDirection="LeftToRight">
                 <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" ReadOnly="True">
+                    <xcdg:DataGridControl.Resources>
+                        <Style TargetType="{x:Type xcdg:DataCell}">
+                            <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
+                        </Style>
+                    </xcdg:DataGridControl.Resources>
                     <xcdg:DataGridControl.View>
                         <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                             <xcdg:TableView.FixedHeaders>

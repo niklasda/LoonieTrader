@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
+using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.Views.Parts
 {
@@ -25,7 +26,9 @@ namespace LoonieTrader.App.Views.Parts
             InstrumentViewModel instrument = tree?.SelectedItem as InstrumentViewModel;
             if (instrument != null)
             {
-                var mvm = base.DataContext as MainWindowViewModel;
+                var mvm = ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+
+//                var mvm = base.DataContext as MainWindowViewModel;
                 mvm?.ChangeChartInstrument(instrument);
             }
         }
@@ -46,7 +49,7 @@ namespace LoonieTrader.App.Views.Parts
                 {
                     var itypes = tree.ItemsSource as Collection<InstrumentTypeViewModel>;
 
-                    // todo need bettwe source of favourites
+                    // todo need better source of favourites
                     if (itypes[0].Instruments.Any(x => x.Name == dci.Name))
                     {
                         tree.ContextMenu = tree.Resources["MenuWithRemove"] as ContextMenu;

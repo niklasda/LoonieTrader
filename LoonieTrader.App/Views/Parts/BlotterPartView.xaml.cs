@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.DataGrid;
+using Xceed.Wpf.DataGrid.Views;
 
 namespace LoonieTrader.App.Views.Parts
 {
@@ -24,5 +26,25 @@ namespace LoonieTrader.App.Views.Parts
         {
             InitializeComponent();
         }
+
+        private void previewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var dataCell = sender as DataCell;
+            if (dataCell == null)
+                return;
+
+            var parentRow = dataCell.ParentRow;
+
+            var dataGridHost = VisualTreeHelper.GetParent(parentRow) as TableViewItemsHost;
+            var dataGrid = dataGridHost?.TemplatedParent as DataGridControl;
+            if (dataGrid != null)
+            {
+                var dataItem = dataGrid.GetItemFromContainer(parentRow);
+                dataGrid.SelectedItem = dataItem;
+            }
+
+            e.Handled = true;
+        }
+
     }
 }

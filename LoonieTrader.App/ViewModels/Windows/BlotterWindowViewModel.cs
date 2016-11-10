@@ -129,6 +129,20 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private int _selectedTabIndex;
+        public int SelectedTabIndex
+        {
+            get { return _selectedTabIndex; }
+            set
+            {
+                if (_selectedTabIndex != value)
+                {
+                    _selectedTabIndex = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
         private void ClosePosition()
         {
             Console.WriteLine(SelectedPosition.Instrument);
@@ -149,14 +163,14 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void CancelOrder()
         {
-            Console.WriteLine(@"Cancel: " + SelectedOrder.Instrument);
+            Console.WriteLine(@"Cancel: " + SelectedOrder?.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }
 
         private void ModifyOrder()
         {
-            Console.WriteLine(@"Modify: " + SelectedOrder.Instrument);
+            Console.WriteLine(@"Modify: " + SelectedOrder?.Instrument);
 
             //MessageBox.Show(SelectedOrder.Instrument);
         }

@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*" MinHeight="26"></RowDefinition>
         </Grid.RowDefinitions>
-        <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown" Margin="0,10,0,220" Grid.RowSpan="3">
+        <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectedItemChanged">
                     <i:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
@@ -60,6 +60,6 @@
 
         <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         <xctk:PropertyGrid  Grid.Row="2" SelectedObject="{Binding SelectedInstrument,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
-                         ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"  />
+                         ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False" NameColumnWidth="100" />
     </Grid>
 </UserControl>

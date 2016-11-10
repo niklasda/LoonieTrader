@@ -59,11 +59,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
-            OpenPositionsCommand = new RelayCommand(() => SelectedTabIndex = 0);
-            OpenOrdersCommand = new RelayCommand(() => SelectedTabIndex = 1);
-            TransactionHistoryCommand = new RelayCommand(() => SelectedTabIndex = 2);
-            AccountInformationCommand = new RelayCommand(() => SelectedTabIndex = 3);
-            InstrumentInformationCommand = new RelayCommand(() => SelectedTabIndex = 4);
+            OpenPositionsCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 0);
+            OpenOrdersCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 1);
+            TransactionHistoryCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 2);
+            AccountInformationCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 3);
+            InstrumentInformationCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 4);
             //ClosePositionContextCommand = new RelayCommand(ClosePosition);
             //ModifyPositionContextCommand = new RelayCommand(ModifyPosition);
             //CancelOrderContextCommand = new RelayCommand(CancelOrder);
@@ -514,47 +514,35 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private int _selectedTabIndex;
-        public int SelectedTabIndex
-        {
-            get { return _selectedTabIndex; }
-            set
-            {
-                if (_selectedTabIndex != value)
-                {
-                    _selectedTabIndex = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+       
 
-        private PositionViewModel _selectedPosition;
-        public PositionViewModel SelectedPosition
-        {
-            get { return _selectedPosition; }
-            set
-            {
-                if (_selectedPosition != value)
-                {
-                    _selectedPosition = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        //private PositionViewModel _selectedPosition;
+        //public PositionViewModel SelectedPosition
+        //{
+        //    get { return _selectedPosition; }
+        //    set
+        //    {
+        //        if (_selectedPosition != value)
+        //        {
+        //            _selectedPosition = value;
+        //            RaisePropertyChanged();
+        //        }
+        //    }
+        //}
 
-        private OrderViewModel _selectedOrder;
-        public OrderViewModel SelectedOrder
-        {
-            get { return _selectedOrder; }
-            set
-            {
-                if (_selectedOrder != value)
-                {
-                    _selectedOrder = value;
-                    RaisePropertyChanged();
-                }
-            }
-        }
+        //private OrderViewModel _selectedOrder;
+        //public OrderViewModel SelectedOrder
+        //{
+        //    get { return _selectedOrder; }
+        //    set
+        //    {
+        //        if (_selectedOrder != value)
+        //        {
+        //            _selectedOrder = value;
+        //            RaisePropertyChanged();
+        //        }
+        //    }
+        //}
 
         private void OpenAboutWindow()
         {
@@ -621,22 +609,22 @@ namespace LoonieTrader.App.ViewModels.Windows
         //    get { return SelectedInstrument!=null? "Add to Favourites": "Remove from Favourites"; }
         //}
 
-        private void SelectedInstrumentChanged(object o)
-        {
-            InstrumentViewModel instrument = o as InstrumentViewModel;
-            InstrumentTypeViewModel instrumentType = o as InstrumentTypeViewModel;
+        //private void SelectedInstrumentChanged(object o)
+        //{
+        //    InstrumentViewModel instrument = o as InstrumentViewModel;
+        //    InstrumentTypeViewModel instrumentType = o as InstrumentTypeViewModel;
 
-            if (instrument != null)
-            {
-                SelectedInstrument = instrument;
-                Console.WriteLine(instrument.DisplayName);
-            }
-            if (instrumentType != null)
-            {
-                SelectedInstrument = null;
-                Console.WriteLine(instrumentType.Type);
-            }
-        }
+        //    if (instrument != null)
+        //    {
+        //        SelectedInstrument = instrument;
+        //        Console.WriteLine(instrument.DisplayName);
+        //    }
+        //    if (instrumentType != null)
+        //    {
+        //        SelectedInstrument = null;
+        //        Console.WriteLine(instrumentType.Type);
+        //    }
+        //}
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {
