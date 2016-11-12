@@ -11,5 +11,6 @@
         string GetLogFilePattern();
         string GetIndicatorFolderPath();
         string GetHistoricalDataFolderPath();
+        string GetLayoutFolderPath();
     }
 }

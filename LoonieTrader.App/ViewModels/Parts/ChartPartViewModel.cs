@@ -12,7 +12,6 @@ using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using LoonieTrader.Library.Extensions;
-using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;

@@ -148,13 +148,20 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void ReloadAccounts()
         {
-            try
-            {
+           // try
+           // {
                 AvailableAccounts.Clear();
 
                 if (IsInfoCompletedForAccountLoad)
                 {
                     var ar = _accountsRequester.GetAccountSummaries();
+                    if (!ar.Any())
+                    {
+                        AvailableAccounts.Clear();
+                        SelectedAccountKey = null;
+                        _dialogService.WarnOk("Failure to load accounts!");
+                        return;
+                    }
 
                     foreach (var asr in ar)
                     {
@@ -167,12 +174,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                 {
                     _dialogService.WarnOk("Please enter key and select environment");
                 }
-            }
-            catch (Exception ex)
-            {
-                AvailableAccounts.Clear();
-                _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
-            }
+            //}
+            //catch (Exception ex)
+           // {
+           //     _dialogService.WarnOk(string.Format("Failure to load accounts:{0}{1}", Environment.NewLine, ex.Message));
+           // }
         }
 
         private void SelectPrimaryAccount()
@@ -190,6 +196,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private void OpenServerStatus()
         {
             var ssw = new ServiceStatusWindow();
+            ssw.Owner = Application.Current.MainWindow;
             ssw.Show();
         }
     }

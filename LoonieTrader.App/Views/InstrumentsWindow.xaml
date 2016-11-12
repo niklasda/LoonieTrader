@@ -1,15 +1,14 @@
-﻿<Window xmlns:Parts="clr-namespace:LoonieTrader.App.Views.Parts"  x:Class="LoonieTrader.App.Views.InstrumentsWindow"
+﻿<Window xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"  x:Class="LoonieTrader.App.Views.InstrumentsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LoonieTrader.App.Views"
         ResizeMode="CanResizeWithGrip"
         DataContext="{Binding Source={StaticResource Locator}, Path=Instruments}"
         mc:Ignorable="d"
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"
         Title="Instruments" Height="680" Width="280">
     <Grid>
-        <Parts:InstrumentPartView />
+        <parts:InstrumentPartView />
     </Grid>
 </Window>

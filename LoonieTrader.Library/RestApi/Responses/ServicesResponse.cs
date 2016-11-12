@@ -39,8 +39,8 @@ namespace LoonieTrader.Library.RestApi.Responses
                 {
                     resp.AppendLine();
                     resp.AppendFormat("id: {0}, name: {1}, description: {2}, url: {3}", list.id, list.name, list.description, list.url);
-
                 }
+
                 if (currentevent != null)
                 {
                     resp.AppendLine();

@@ -12,10 +12,10 @@ namespace LoonieTrader.Library.Services
     {
         public FileReaderWriterService()
         {
-            _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
             string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
-            string indicatorPath = Path.Combine(_appDataFolderPath, FolderName,IndicatorsFolderName);
+            string indicatorPath = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
 
             Directory.CreateDirectory(dataPath);
             Directory.CreateDirectory(historicalDataPath);
@@ -23,7 +23,8 @@ namespace LoonieTrader.Library.Services
             //File.Create(GetConfigFilePath());
         }
 
-        private const string FileName = "Config.yaml";
+        private const string ConfigFileName = "Config.yaml";
+        private const string LayoutFolder = "Layout";
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
         private const string HistoricalDataFolderName = "HistoricalData";
@@ -61,8 +62,15 @@ namespace LoonieTrader.Library.Services
         private string GetConfigFilePath()
         {
             var up = GetLocalFolderPath();
-            var ltp = Path.Combine(up, FileName);
-            return ltp;
+            var cfp = Path.Combine(up, ConfigFileName);
+            return cfp;
+        }
+
+        public string GetLayoutFolderPath()
+        {
+            var up = GetLocalFolderPath();
+            var sfp = Path.Combine(up, LayoutFolder);
+            return sfp;
         }
 
         public ISettings LoadConfiguration()

@@ -22,6 +22,7 @@ namespace LoonieTrader.App.Locator
                 c.ForSingletonOf<IMapper>().Use(mapper);
                 c.For<IDialogService>().Use<DialogService>();
                 c.ForSingletonOf<MainWindowViewModel>().Use<MainWindowViewModel>();
+                c.ForSingletonOf<LayoutService>().Use<LayoutService>();
 
                 c.AddRegistry<ServiceRegistry>();
             });

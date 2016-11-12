@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Select Environment and Service: " VerticalAlignment="Center" Margin="10,0"></TextBlock>
-            <ComboBox ItemsSource="{Binding AvailableEnvironments}" IsEditable="False" SelectedItem="{Binding SelectedEnvironment}" Margin="0,5" VerticalContentAlignment="Center" Width="190" DisplayMemberPath="Name"></ComboBox>
+            <ComboBox ItemsSource="{Binding AvailableEnvironments}" IsEditable="False" SelectedItem="{Binding SelectedEnvironment}" Margin="0,10" VerticalContentAlignment="Center" Width="190" DisplayMemberPath="Name"></ComboBox>
         </StackPanel>
         <parts:ServiceStatusPartView Grid.Row="1" DataContext="{Binding }" ></parts:ServiceStatusPartView>
     </Grid>

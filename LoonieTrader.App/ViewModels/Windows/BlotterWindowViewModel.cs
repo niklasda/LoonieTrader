@@ -31,7 +31,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
             _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
 
-                    AccountSummaryResponse accountSummaryResponse = accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
+            AccountSummaryResponse accountSummaryResponse = accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
             _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
 
             ClosePositionContextCommand = new RelayCommand(ClosePosition);

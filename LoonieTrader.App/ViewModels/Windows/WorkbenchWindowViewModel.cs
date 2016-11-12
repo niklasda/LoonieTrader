@@ -3,7 +3,6 @@ using System.ComponentModel.Composition.Hosting;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
 using LoonieTrader.App.ViewModels.Parts;
-using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Shared.Interfaces;

@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using AutoMapper;
 using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Services;
-using LoonieTrader.Library.Tests.Locator;
 using NUnit.Framework;
 
 namespace LoonieTrader.Library.Tests.HistoricalData

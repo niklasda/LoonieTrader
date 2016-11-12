@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace LoonieTrader.App.ViewModels
 {
     public class CandleTimeViewModel

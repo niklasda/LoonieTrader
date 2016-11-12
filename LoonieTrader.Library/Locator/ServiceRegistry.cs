@@ -14,12 +14,7 @@ namespace LoonieTrader.Library.Locator
         public ServiceRegistry()
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
-//            ISettings settings = cr.LoadConfiguration();
-
             IExtendedLogger exLogger = CreateExLogger(cr);
-
-  //          ForSingletonOf<ISettings>().Use(settings);
-           // ForSingletonOf<IEnvironmentSettings>().Use(settings.SelectedEnvironment);
 
             ForSingletonOf<ISettingsService>().Use<SettingserService>();
             ForSingletonOf<IExtendedLogger>().Use(exLogger);
@@ -33,10 +28,11 @@ namespace LoonieTrader.Library.Locator
             For<IPricingRequester>().Use<PricingRequester>();
             For<ITradesRequester>().Use<TradesRequester>();
             For<ITransactionsRequester>().Use<TransactionsRequester>();
-            ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
-            ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
             For<IInstrumentRequester>().Use<InstrumentRequester>();
             For<IHealthRequester>().Use<HealthRequester>();
+
+            ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
+            ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
         }
 
         private IExtendedLogger CreateExLogger(IFileReaderWriterService cr)

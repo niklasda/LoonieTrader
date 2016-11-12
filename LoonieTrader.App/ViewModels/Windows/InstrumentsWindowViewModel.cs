@@ -15,6 +15,7 @@ using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -25,6 +26,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             _settingsService = settingsService;
             _settings = settingsService.CachedSettings.SelectedEnvironment;
+            _accountsRequester = accountsRequester;
 
             SelectedInstrumentChangedCommand = new RelayCommand<object>(SelectedInstrumentChanged);
             AddInstrumentToFavouritesContextCommand = new RelayCommand(AddInstrumentToFavourites);
@@ -38,40 +40,55 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                var allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
-                // todo automapper
-                var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
-                List<InstrumentTypeViewModel> its =
-                    groups.Select(x => new InstrumentTypeViewModel
-                    {
-                        Type = x.Key,
-                        Instruments = x.OrderBy(o => o.DisplayName).ToList()
-                    }).ToList();
 
-                var favourites = new InstrumentTypeViewModel()
+                try
                 {
-                    Type = AppProperties.FavouritesFolderName,
-                    Instruments = new List<InstrumentViewModel>()
-                };
+                    AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(_settings.DefaultAccountId);
+                    InstrumentCache.Instruments = instrumentsResponse.instruments;
 
-                its.Insert(0, favourites);
+                    var allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments);
+                    // todo automapper
+                    var groups = allInstruments.Select(x => x).GroupBy(x => x.Type).OrderBy(o => o.Key);
+                    List<InstrumentTypeViewModel> its =
+                        groups.Select(x => new InstrumentTypeViewModel
+                        {
+                            Type = x.Key,
+                            Instruments = x.OrderBy(o => o.DisplayName).ToList()
+                        }).ToList();
 
-                foreach (var fi in _settings.FavouriteInstruments)
-                {
-                    var ivm = mapper.Map<InstrumentViewModel>(InstrumentCache.Lookup(fi));
-                    if (ivm != null)
+                    var favourites = new InstrumentTypeViewModel()
                     {
-                        favourites.Instruments.Add(ivm);
+                        Type = AppProperties.FavouritesFolderName,
+                        Instruments = new List<InstrumentViewModel>()
+                    };
+
+                    its.Insert(0, favourites);
+
+                    foreach (var fi in _settings.FavouriteInstruments)
+                    {
+                        var ivm = mapper.Map<InstrumentViewModel>(InstrumentCache.Lookup(fi));
+                        if (ivm != null)
+                        {
+                            favourites.Instruments.Add(ivm);
+                        }
                     }
-                }
 
-                _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>(its);
+                    _allInstrumentTypes = new ObservableCollection<InstrumentTypeViewModel>(its);
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to start application", AppProperties.ApplicationName);
+
+//                    throw;
+                }
 
             }
         }
 
         private readonly IEnvironmentSettings _settings;
         private readonly ISettingsService _settingsService;
+        private readonly IAccountsRequester _accountsRequester;
 
         private readonly ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
 
