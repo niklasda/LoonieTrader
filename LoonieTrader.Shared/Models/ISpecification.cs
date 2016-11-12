@@ -2,6 +2,6 @@
 {
     public interface ISpecification
     {
-        
+        int NumberOfPoints { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using LoonieTrader.Shared.Interfaces;
 using LoonieTrader.Shared.Models;
 
@@ -16,19 +17,21 @@ namespace DemoLaggingIndicator
 
         public string Title { get { return string.Format("{0} v{1}", Name, Version); } }
 
+        private ISpecification _specification;
+
         public IRequirements GetRequirements()
         {
-            return new Requirements() { MinPoints = 1, MaxPoints = 1 };
+            return new Requirements { MinPoints = 1, MaxPoints = 10 };
         }
 
-        public ISpecification SetSpecification()
+        public void SetSpecification(ISpecification specification)
         {
-            return new Specification();
+            _specification = specification;
         }
 
         public IList<PricePoint> CalculatePoints(IList<OhlciPoint> pricePoints, Depth depth = null)
         {
-            return new List<PricePoint>(new[] { PricePoint.Empty });
+            return new List<PricePoint>(Enumerable.Repeat(PricePoint.Empty, _specification.NumberOfPoints));
         }
 
         private PricePoint CalculatePoint(IList<OhlciPoint> pricePoints, Depth depth = null)

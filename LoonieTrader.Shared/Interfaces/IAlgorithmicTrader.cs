@@ -10,7 +10,7 @@ namespace LoonieTrader.Shared.Interfaces
         string Description { get; }
 
         IRequirements GetRequirements();
-        ISpecification SetSpecification();
+        void SetSpecification(ISpecification specification);
         TradeAction Decide(IList<OhlciPoint> pricePoints, Depth depth = null);
     }
 }

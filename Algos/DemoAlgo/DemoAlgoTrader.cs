@@ -16,14 +16,16 @@ namespace DemoAlgo
 
         public string Title { get { return string.Format("{0} v{1}", Name, Version); } }
 
+        private ISpecification _specification;
+
         public IRequirements GetRequirements()
         {
-            return new Requirements() { MinPoints = 1, MaxPoints = 1 };
+            return new Requirements { MinPoints = 1, MaxPoints = 1 };
         }
 
-        public ISpecification SetSpecification()
+        public void SetSpecification(ISpecification specification)
         {
-            return new Specification();
+            _specification = specification;
         }
 
         public TradeAction Decide(IList<OhlciPoint> pricePoints, Depth depth = null)
