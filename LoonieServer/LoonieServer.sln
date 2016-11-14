@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".paket", ".paket", "{DDD3E0C4-C635-4A16-BA27-BDBE212DC384}"
+	ProjectSection(SolutionItems) = preProject
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".fake", ".fake", "{C666B840-693D-4CF4-B7EE-F7C91AA5551A}"
+	ProjectSection(SolutionItems) = preProject
+		build.cmd = build.cmd
+		build.fsx = build.fsx
+		build.sh = build.sh
+		buildmon.cmd = buildmon.cmd
+		buildmon.sh = buildmon.sh
+		buildwithmono.cmd = buildwithmono.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D5FC9416-468E-40AA-A292-5648FF74AB2E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docker", ".docker", "{87FE9832-4E11-4729-ABE6-F24628707BE5}"
+	ProjectSection(SolutionItems) = preProject
+		build-docker-image.cmd = build-docker-image.cmd
+		build-docker-image.sh = build-docker-image.sh
+		docker-compose.yaml = docker-compose.yaml
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitService.Tests", "test\RabbitService.Tests\RabbitService.Tests.csproj", "{391713A6-DCB7-4FFB-8620-3EB18010499E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitService", "app\RabbitService\RabbitService.csproj", "{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{391713A6-DCB7-4FFB-8620-3EB18010499E} = {D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}
+	EndGlobalSection
+EndGlobal

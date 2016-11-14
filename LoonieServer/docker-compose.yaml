@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+
+  cadvisor:
+    image: cadvisor
+    container_name: cadvisor
+    hostname: cadvisor
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - "/../:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+
+  rabbit:
+    image: rabbitmq:management
+    container_name: rabbit
+    hostname: rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    expose:
+      - "5672"
+
+  redis:
+    image: redis
+    container_name: redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"

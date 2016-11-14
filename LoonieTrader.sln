@@ -36,15 +36,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoLaggingIndicator", "Ind
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoLeadingIndicator", "Indicators\DemoLeadingIndicator\DemoLeadingIndicator.csproj", "{28FE10C7-FE7E-47A7-A37A-83E32E7881D6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{1F72E651-E8F8-4D32-ADFF-CEAE89B94D58}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoAlgo.Tests", "Algos\DemoAlgo.Tests\DemoAlgo.Tests.csproj", "{B9F6536B-C34C-4E5C-93C5-547AF882FF4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoLeadingIndicator.Tests", "Indicators\DemoLeadingIndicator.Tests\DemoLeadingIndicator.Tests.csproj", "{F2B8DC11-E5BF-486C-9966-3AE01DE3A777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoLaggingIndicator.Tests", "Indicators\DemoLaggingIndicator.Tests\DemoLaggingIndicator.Tests.csproj", "{E65B73C1-0733-4969-A2CC-266CF817529B}"
-EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodeLoggingService", "Servers\NodeLoggingService\NodeLoggingService.njsproj", "{C39A6A2A-5E75-4879-83E3-81520EFF8229}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,10 +92,6 @@ Global
 		{E65B73C1-0733-4969-A2CC-266CF817529B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65B73C1-0733-4969-A2CC-266CF817529B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65B73C1-0733-4969-A2CC-266CF817529B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C39A6A2A-5E75-4879-83E3-81520EFF8229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C39A6A2A-5E75-4879-83E3-81520EFF8229}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C39A6A2A-5E75-4879-83E3-81520EFF8229}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C39A6A2A-5E75-4879-83E3-81520EFF8229}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +107,5 @@ Global
 		{B9F6536B-C34C-4E5C-93C5-547AF882FF4B} = {C768E1C4-66B1-4133-9390-CEE94B475022}
 		{F2B8DC11-E5BF-486C-9966-3AE01DE3A777} = {0E63653C-33BD-4AE8-9C12-8E6B33CF184D}
 		{E65B73C1-0733-4969-A2CC-266CF817529B} = {0E63653C-33BD-4AE8-9C12-8E6B33CF184D}
-		{C39A6A2A-5E75-4879-83E3-81520EFF8229} = {1F72E651-E8F8-4D32-ADFF-CEAE89B94D58}
 	EndGlobalSection
 EndGlobal

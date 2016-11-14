@@ -1,9 +1,0 @@
-{
-  "name": "node-logging-service",
-  "version": "0.0.0",
-  "description": "NodeLoggingService",
-  "main": "server.js",
-  "author": {
-    "name": "Dahlman Labs"
-  }
-}

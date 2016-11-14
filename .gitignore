@@ -26,16 +26,6 @@ bld/
 .vs/
 
 
-*_i.c
-*_p.c
-*_i.h
-*.ilk
-*.meta
-*.obj
-*.pch
-*.pdb
-
-
 # ReSharper is a .NET coding add-in
 _ReSharper*/
 *.[Rr]e[Ss]harper
@@ -72,3 +62,5 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
+LoonieServer/.fake/
+LoonieServer/build/
