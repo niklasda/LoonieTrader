@@ -19,7 +19,8 @@ namespace LoonieTrader.Library.Models
         public TP Obj { get; private set; }
     }
 
-    public delegate void NewValueEventHandler<TS>(object sender, StreamEventArgs<TS> e) where TS : IHeartbeatStreamable;
+    public delegate void NewValueEventHandler<TS>(object sender, StreamEventArgs<TS> e)
+        where TS : IHeartbeatStreamable;
 
     public class ObservableStream<T> where T : IHeartbeatStreamable
     {
@@ -66,3 +67,30 @@ namespace LoonieTrader.Library.Models
         }
     }
 }
+/*
+private string _c2;
+
+public static readonly string C2PropertyName = "C2";
+partial void OnC2Changed();
+public System.String C2
+{
+  get { return _c2; }
+  set
+  {
+    if (_c2 == value)
+      return;
+
+    _c2 = value;
+
+    OnPropertyChanged();
+    OnC2Changed();
+    _c2Subject.OnNext(value);
+  }
+}
+
+private ISubject<System.String> _c2Subject = new Subject<System.String>();
+public System.IObservable<System.String> C2Observable
+{
+  get { return _c2Subject; }
+}
+*/

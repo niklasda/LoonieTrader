@@ -26,6 +26,7 @@ namespace LoonieTrader.Library.RestApi.Enums
         TRAILING_STOP_LOSS_ORDER_REJECT,        // Trailing Stop Loss Order Reject Transaction
         ORDER_FILL,                             // Order Fill Transaction
         ORDER_CANCEL,                           // Order Cancel Transaction
+        ORDER_CANCEL_REJECT,                    // Order Cancel Reject Transaction
         ORDER_CLIENT_EXTENSIONS_MODIFY,         // Order Client Extensions Modify Transaction
         ORDER_CLIENT_EXTENSIONS_MODIFY_REJECT,  // Order Client Extensions Modify Reject Transaction
         TRADE_CLIENT_EXTENSIONS_MODIFY,         // Trade Client Extensions Modify Transaction
@@ -33,6 +34,7 @@ namespace LoonieTrader.Library.RestApi.Enums
         MARGIN_CALL_ENTER,                      // Margin Call Enter Transaction
         MARGIN_CALL_EXTEND,                     // Margin Call Extend Transaction
         MARGIN_CALL_EXIT,                       // Margin Call Exit Transaction
+        DELAYED_TRADE_CLOSURE,                  // Delayed Trade Closure Transaction
         DAILY_FINANCING,                        // Daily Financing Transaction
         RESET_RESETTABLE_PL                     // Reset Resettable PL Transaction
     }
