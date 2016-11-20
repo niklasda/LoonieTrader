@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".fake", ".fake", "{C666B840
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D5FC9416-468E-40AA-A292-5648FF74AB2E}"
 	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -34,14 +35,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docker", ".docker", "{87FE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitService.Tests", "test\RabbitService.Tests\RabbitService.Tests.csproj", "{391713A6-DCB7-4FFB-8620-3EB18010499E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitService", "app\RabbitService\RabbitService.csproj", "{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ",other", ",other", "{1553EE5F-F114-4FA7-B02E-8110F738B784}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".other", ".other", "{1553EE5F-F114-4FA7-B02E-8110F738B784}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RabbitCoreServer", "app\RabbitCoreServer\RabbitCoreServer.xproj", "{D7232846-D31F-4B93-AF8E-D333A7A39FC1}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreServer.Tests", "test\CoreServer.Tests\CoreServer.Tests.xproj", "{C813A713-E329-402C-A25A-1C36708E3293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,19 +50,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{391713A6-DCB7-4FFB-8620-3EB18010499E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3FE5B84-514C-4086-BC7B-0B4D41CDB35C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C813A713-E329-402C-A25A-1C36708E3293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C813A713-E329-402C-A25A-1C36708E3293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C813A713-E329-402C-A25A-1C36708E3293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C813A713-E329-402C-A25A-1C36708E3293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{391713A6-DCB7-4FFB-8620-3EB18010499E} = {D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}
+		{C813A713-E329-402C-A25A-1C36708E3293} = {D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}
 	EndGlobalSection
 EndGlobal
