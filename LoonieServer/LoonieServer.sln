@@ -40,9 +40,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".other", ".other", "{1553EE
 		..\.gitignore = ..\.gitignore
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "RabbitCoreServer", "app\RabbitCoreServer\RabbitCoreServer.xproj", "{D7232846-D31F-4B93-AF8E-D333A7A39FC1}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LoonieTrader.Server.Tests", "test\LoonieTrader.Server.Tests\LoonieTrader.Server.Tests.xproj", "{5D2EE74C-05F5-4264-B294-B26C111FD6ED}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreServer.Tests", "test\CoreServer.Tests\CoreServer.Tests.xproj", "{C813A713-E329-402C-A25A-1C36708E3293}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "LoonieTrader.Server", "app\LoonieTrader.Server\LoonieTrader.Server.xproj", "{79630BBE-F49E-4404-ADBE-17B6CC6C3D33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,19 +50,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7232846-D31F-4B93-AF8E-D333A7A39FC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C813A713-E329-402C-A25A-1C36708E3293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C813A713-E329-402C-A25A-1C36708E3293}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C813A713-E329-402C-A25A-1C36708E3293}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C813A713-E329-402C-A25A-1C36708E3293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D2EE74C-05F5-4264-B294-B26C111FD6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2EE74C-05F5-4264-B294-B26C111FD6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2EE74C-05F5-4264-B294-B26C111FD6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2EE74C-05F5-4264-B294-B26C111FD6ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79630BBE-F49E-4404-ADBE-17B6CC6C3D33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79630BBE-F49E-4404-ADBE-17B6CC6C3D33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79630BBE-F49E-4404-ADBE-17B6CC6C3D33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79630BBE-F49E-4404-ADBE-17B6CC6C3D33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C813A713-E329-402C-A25A-1C36708E3293} = {D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}
+		{5D2EE74C-05F5-4264-B294-B26C111FD6ED} = {D7E93B5E-CFE0-4398-8077-DF4FDD79D64D}
 	EndGlobalSection
 EndGlobal

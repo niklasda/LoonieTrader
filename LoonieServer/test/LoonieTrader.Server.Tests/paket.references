@@ -1,0 +1,4 @@
+nuget FAKE
+
+nuget NUnit
+nuget NUnit.ConsoleRunner

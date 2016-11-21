@@ -5,12 +5,12 @@ open Fake
 open Fake.Testing
 
 // Directories
-let appDir = "build/app/"
-let testDir  = "build/test/"
+let appDir = "build/a/"
+let testDir  = "build/t/"
 let deployDir = "deploy/"
 
 // info
-let applicationName = "LoonieServer"
+let applicationName = "LoonieTrader.Server"
 let version = "0.1"  // or retrieve from CI server
 
 MSBuildDefaults <- {
@@ -24,24 +24,24 @@ Target "Clean" (fun f ->
 )
 
 Target "BuildApp" (fun f ->
-  !! "app/*/*.csproj"
+  !! "app/*/*.xproj"
     |> MSBuildRelease appDir "Build"
     |> ignore
 )
 
 Target "BuildTest" (fun f ->
-  !! "test/*/*.csproj"
+  !! "test/*/*.xproj"
     |> MSBuildDebug testDir "Build"
     |> ignore
 )
 
 Target "UnitTest" (fun f ->
- !! (testDir + "*.Tests.dll")
+ !! (testDir + "**/*.Tests.dll")
    |> NUnit3 (fun p -> {p with ErrorLevel = Error; ResultSpecs = [testDir + "UnitTestResults.xml"]; Where = "cat == Unit" })
 )
 
 Target "IntegrationTest" (fun f ->
- !! (testDir + "*.Tests.dll")
+ !! (testDir + "**/*.Tests.dll")
    |> NUnit3 (fun p -> {p with ErrorLevel = Error; ResultSpecs = [testDir + "IntegrationTestResults.xml"]; Where = "cat == Integration" })
 )
 

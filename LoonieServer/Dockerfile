@@ -1,7 +1,10 @@
-FROM mono
+FROM microsoft/dotnet:1.0.1-core
 MAINTAINER niklasda
-ADD . /src
-RUN cd /src && chmod +x ./build.sh && ./build.sh && mkdir /app
-RUN cp /src/build/app/* /app
+
+WORKDIR build/a/app/LoonieTrader.Server/bin/Release
+COPY . /app
+
 WORKDIR /app
-CMD [ "mono", "LoonieServer.exe" ]
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://*:8080
+ENTRYPOINT [ "dotnet", "LoonieTrader.Server.dll" ]
