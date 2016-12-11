@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
-using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
     [UsedImplicitly]
     public class ChartWindowViewModel : ViewModelBase
     {
-        public ChartWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingStreamingRequester priceStreamer, ChartPartViewModel chartPart)
+        public ChartWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingStreamingRequester priceStreamer, ChartBaseViewModel chartPart)
         {
             if (IsInDesignMode)
             {
@@ -29,7 +29,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return ChartPart.Instrument; }
             set { ChartPart.Instrument = value; }
         }
-        public ChartPartViewModel ChartPart { get; private set; }
+        public ChartBaseViewModel ChartPart { get; private set; }
 
     }
 }

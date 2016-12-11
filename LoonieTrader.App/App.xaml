@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LoonieTrader.App.Locator" />
+            <vm:LoonieServiceLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LoonieTrader.App.Locator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

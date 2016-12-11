@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
+using LoonieTrader.Library.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.Views.Parts

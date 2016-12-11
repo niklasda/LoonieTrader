@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
+        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
         DataContext="{Binding Source={StaticResource Locator}, Path=Workbench}"
         Title="Indicator Workbench"
         ResizeMode="CanResizeWithGrip"
@@ -56,9 +57,9 @@
             </Grid>
 
             <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
-            <parts:ChartPartView Grid.Row="2" DataContext="{Binding ChartPart}" >
+            <liveCharts:LiveChartsPartView Grid.Row="2" DataContext="{Binding ChartPart}" >
 
-            </parts:ChartPartView>
+            </liveCharts:LiveChartsPartView>
 
         </Grid>
     </Grid>

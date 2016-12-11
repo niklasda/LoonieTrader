@@ -5,14 +5,16 @@ using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
+using LoonieTrader.LiveCharts.Locator;
+using LoonieTrader.OxyPlot.Locator;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator
 {
-    public class ViewModelLocator
+    public class LoonieServiceLocator
     {
-        public ViewModelLocator()
+        public LoonieServiceLocator()
         {
             AutoMappings ams = new AutoMappings();
             IMapper mapper = ams.CreateMapper();
@@ -24,7 +26,10 @@ namespace LoonieTrader.App.Locator
                 c.ForSingletonOf<MainWindowViewModel>().Use<MainWindowViewModel>();
                 c.ForSingletonOf<LayoutService>().Use<LayoutService>();
 
-                c.AddRegistry<ServiceRegistry>();
+                c.AddRegistry<LibraryRegistry>();
+                //c.AddRegistry<LiveChartsRegistry>();
+                c.AddRegistry<OxyPlotRegistry>();
+                // c.AddRegistry<SciChartRegistry>();
             });
 
             var exporter = LoadAll();
@@ -41,12 +46,7 @@ namespace LoonieTrader.App.Locator
             var catalog = new DirectoryCatalog(appSettingsFolder);
             var container = new CompositionContainer(catalog);
 
-          //  catalog.Refresh();
-
             return container;
-//            var laggers = container.GetExportedValues<ILaggingIndicator>();
-  //          var leaders = container.GetExportedValues<ILeadingIndicator>();
-    //        var algos = container.GetExportedValues<IAlgorithmicTrader>();
         }
 
         private readonly Container _container;

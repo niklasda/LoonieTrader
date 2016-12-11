@@ -5,6 +5,7 @@
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:controls="clr-namespace:LoonieTrader.App.Views.Controls"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
+        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
         x:Class="LoonieTrader.App.Views.ComplexOrderWindow"
         DataContext="{Binding ComplexOrder, Source={StaticResource Locator}}"
         ResizeMode="CanResizeWithGrip"
@@ -196,8 +197,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <parts:ChartPartView DataContext="{Binding ChartPart}" MinHeight="200">
-                    </parts:ChartPartView>
+                        <parts:TheChartPartView DataContext="{Binding ChartPart}" MinHeight="200">
+                        </parts:TheChartPartView>
                         </Grid>
                 </Expander>
             </StackPanel>

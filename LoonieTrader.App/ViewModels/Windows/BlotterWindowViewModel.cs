@@ -10,6 +10,7 @@ using LoonieTrader.App.Views;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

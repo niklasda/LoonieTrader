@@ -2,9 +2,9 @@
 using System.ComponentModel.Composition.Hosting;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
-using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
+using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows
@@ -12,7 +12,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class WorkbenchWindowViewModel : ViewModelBase
     {
-        public WorkbenchWindowViewModel(ISettingsService settingsService, IAccountsRequester accountsRequester, ChartPartViewModel chartPart, CompositionContainer exporter)
+        public WorkbenchWindowViewModel(ISettingsService settingsService, IAccountsRequester accountsRequester, ChartBaseViewModel chartPart, CompositionContainer exporter)
         {
             ChartPart = chartPart;
 
@@ -46,7 +46,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             set { _sampleData = value; }
         }
 
-        public ChartPartViewModel ChartPart { get; }
+        public ChartBaseViewModel ChartPart { get; }
 
         private string _loadableInfo;
         public string LoadableInfo {

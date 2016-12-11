@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using AutoMapper;
@@ -13,13 +10,12 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using LoonieTrader.App.Constants;
 using LoonieTrader.App.MessageTypes;
-using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Library.ViewModels;
+using LoonieTrader.LiveCharts.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.ViewModels.Windows
@@ -39,11 +35,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             _dataLoader = dataLoader;
             _dialogService = dialogService;
 
-            _accountsRequester = accountsRequester;
-            _ordersRequester = ordersRequester;
-            _positionsRequester = positionsRequester;
-            _tradesRequester = tradesRequester;
-            _transactionsRequester = transactionsRequester;
+            //_accountsRequester = accountsRequester;
+            //_ordersRequester = ordersRequester;
+            //_positionsRequester = positionsRequester;
+            //_tradesRequester = tradesRequester;
+            //_transactionsRequester = transactionsRequester;
 
             //ChartPart = chartPart;
             //InstrumentsPart = instrumentsPart;
@@ -152,11 +148,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         private IHistoricalDataLoader _dataLoader;
         private readonly IDialogService _dialogService;
 
-        private readonly IAccountsRequester _accountsRequester;
-        private readonly IOrdersRequester _ordersRequester;
-        private readonly IPositionsRequester _positionsRequester;
-        private readonly ITradesRequester _tradesRequester;
-        private readonly ITransactionsRequester _transactionsRequester;
+        //private readonly IAccountsRequester _accountsRequester;
+        //private readonly IOrdersRequester _ordersRequester;
+        //private readonly IPositionsRequester _positionsRequester;
+        //private readonly ITradesRequester _tradesRequester;
+        //private readonly ITransactionsRequester _transactionsRequester;
 
         //private AccountSummaryViewModel _accountSummary;
         //private readonly ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
@@ -193,11 +189,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand GotoGoogleFinanceCommand { get; set; }
         public ICommand GotoYahooFinanceCommand { get; set; }
 
-        public ChartPartViewModel ChartPart
+        public ChartBaseViewModel ChartPart
         {
             get
             {
-                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<ChartPartViewModel>();
+                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<LiveChartsPartViewModel>();
                 return _chartPart;
             }
         }
@@ -220,7 +216,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private ChartPartViewModel _chartPart;
+        private ChartBaseViewModel _chartPart;
         private InstrumentsWindowViewModel _instrumentsPart;
         private BlotterWindowViewModel _blotterPart;
 

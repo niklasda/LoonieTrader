@@ -9,7 +9,7 @@ namespace LoonieTrader.TestApp.Locator
         {
             var container = new Container(c =>
             {
-                c.AddRegistry<ServiceRegistry>();
+                c.AddRegistry<LibraryRegistry>();
             });
 
             return container;

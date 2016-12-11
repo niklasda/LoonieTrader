@@ -8,6 +8,7 @@
              xmlns:viewModels="clr-namespace:LoonieTrader.App.ViewModels"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
+             xmlns:viewModels1="clr-namespace:LoonieTrader.Library.ViewModels;assembly=LoonieTrader.Library"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance d:Type=windows:InstrumentsWindowViewModel}"
              d:DesignHeight="680" d:DesignWidth="280">
@@ -51,7 +52,7 @@
                     <TextBlock Text="{Binding Path=Type,Mode=OneWay}"  Margin="2" FontWeight="Bold"/>
                 </HierarchicalDataTemplate>
 
-                <HierarchicalDataTemplate DataType="{x:Type viewModels:InstrumentViewModel}" >
+                <HierarchicalDataTemplate DataType="{x:Type viewModels1:InstrumentViewModel}" >
                     <TextBlock Text="{Binding Path=DisplayName}" Margin="2" />
                 </HierarchicalDataTemplate>
             </TreeView.Resources>

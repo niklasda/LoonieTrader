@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
+        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="{Binding WindowTitle}"
         ResizeMode="CanResizeWithGrip"
@@ -112,8 +113,8 @@
                         <Button Content="_Blotter..." Command="{Binding BlotterCommand}" FontSize="14" Padding="10" />
 
                     </StackPanel>
-                    <parts:ChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
-                    </parts:ChartPartView>
+                    <parts:TheChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
+                    </parts:TheChartPartView>
 
                 </Grid>
             </Grid>

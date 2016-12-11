@@ -9,19 +9,19 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
-using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
     [UsedImplicitly]
     public class ComplexOrderWindowViewModel : ViewModelBase
     {
-        public ComplexOrderWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, ChartPartViewModel chartPart)
+        public ComplexOrderWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, ChartBaseViewModel chartPart)
         {
             _mapper = mapper;
             _settings = settingsService.CachedSettings.SelectedEnvironment;
@@ -54,7 +54,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                _allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x=>x.Type).ThenBy(y=>y.DisplayName).ToList();
+                _allInstruments = _mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x => x.Type).ThenBy(y => y.DisplayName).ToList();
             }
         }
 
@@ -69,13 +69,13 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private readonly IList<InstrumentViewModel> _allInstruments;
 
-        public ChartPartViewModel ChartPart { get; private set; }
+        public ChartBaseViewModel ChartPart { get; private set; }
 
         public ObservableCollection<InstrumentViewModel> AllInstruments
         {
             get
             {
-                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.Where(x=>x.DisplayName.ToUpper().Contains((InstrumentText??"").ToUpper())|| x.Type.ToUpper().Contains((InstrumentText ?? "").ToUpper())).ToList();
+                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.Where(x => x.DisplayName.ToUpper().Contains((InstrumentText ?? "").ToUpper()) || x.Type.ToUpper().Contains((InstrumentText ?? "").ToUpper())).ToList();
                 filteredInstrumentList.AddRange(_allInstruments.Except(filteredInstrumentList));
                 return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
             }
