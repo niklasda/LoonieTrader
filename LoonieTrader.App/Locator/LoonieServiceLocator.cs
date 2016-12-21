@@ -27,8 +27,8 @@ namespace LoonieTrader.App.Locator
                 c.ForSingletonOf<LayoutService>().Use<LayoutService>();
 
                 c.AddRegistry<LibraryRegistry>();
-                //c.AddRegistry<LiveChartsRegistry>();
-                c.AddRegistry<OxyPlotRegistry>();
+                c.AddRegistry<LiveChartsRegistry>();
+                //c.AddRegistry<OxyPlotRegistry>();
                 // c.AddRegistry<SciChartRegistry>();
             });
 

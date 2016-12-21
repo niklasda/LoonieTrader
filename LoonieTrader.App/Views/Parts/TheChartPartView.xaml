@@ -10,11 +10,11 @@
              d:DataContext="{d:DesignInstance d:Type=viewModels:ChartBaseViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <!--<liveCharts:LiveChartsPartView DataContext="{Binding .}" MinHeight="200">
-        </liveCharts:LiveChartsPartView>-->
+        <liveCharts:LiveChartsPartView DataContext="{Binding .}" MinHeight="200">
+        </liveCharts:LiveChartsPartView>
 
-        <oxyPlot:OxyPlotPartView DataContext="{Binding .}" MinHeight="200">
-        </oxyPlot:OxyPlotPartView>
+        <!--<oxyPlot:OxyPlotPartView DataContext="{Binding .}" MinHeight="200">
+        </oxyPlot:OxyPlotPartView>-->
 
     </Grid>
 </UserControl>
