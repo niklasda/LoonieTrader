@@ -13,9 +13,7 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <parts:TheChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
-
-        </parts:TheChartPartView>
+        <parts:TheChartPartView Grid.Row="1" DataContext="{Binding ChartPart}" />
 
     </Grid>
 </Window>

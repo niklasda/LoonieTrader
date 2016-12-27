@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition.Hosting;
+using System.Linq;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Interfaces;
@@ -12,7 +16,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class WorkbenchWindowViewModel : ViewModelBase
     {
-        public WorkbenchWindowViewModel(ISettingsService settingsService, IAccountsRequester accountsRequester, ChartBaseViewModel chartPart, CompositionContainer exporter)
+        public WorkbenchWindowViewModel(IMapper mapper, ISettingsService settingsService, IAccountsRequester accountsRequester, ChartBaseViewModel chartPart, CompositionContainer exporter)
         {
             ChartPart = chartPart;
 
@@ -37,6 +41,14 @@ namespace LoonieTrader.App.ViewModels.Windows
             FoundIndicators.AddRange(leaders);
             FoundIndicators.AddRange(algos);
             // }
+
+            if (IsInDesignMode)
+            {
+            }
+            else
+            {
+                _allInstruments = mapper.Map<IList<InstrumentViewModel>>(InstrumentCache.Instruments).OrderBy(x => x.Type).ThenBy(y => y.DisplayName).ToList();
+            }
         }
 
         private IList<CandleDataViewModel> _sampleData;
@@ -84,5 +96,33 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         public List<ILoadable> FoundIndicators { get; } = new List<ILoadable>();
+
+        private readonly IList<InstrumentViewModel> _allInstruments;
+
+        public ObservableCollection<InstrumentViewModel> AllInstruments
+        {
+            get
+            {
+                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.ToList();
+                filteredInstrumentList.AddRange(_allInstruments.Except(filteredInstrumentList));
+                return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
+            }
+        }
+
+        //private string _instrumentTest;
+        //public string InstrumentText
+        //{
+        //    get { return _instrumentTest; }
+        //    set
+        //    {
+        //        if (_instrumentTest != value)
+        //        {
+        //            _instrumentTest = value;
+        //            RaisePropertyChanged();
+        //            RaisePropertyChanged(() => AllInstruments);
+
+        //        }
+        //    }
+        //}
     }
 }

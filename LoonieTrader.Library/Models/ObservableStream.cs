@@ -60,7 +60,6 @@ namespace LoonieTrader.Library.Models
 
                     _logger.Information("Stream observation: {0}", line);
 
-
                     yield return obj;
                 }
             }

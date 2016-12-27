@@ -4,11 +4,12 @@
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
         xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
+        xmlns:controls="clr-namespace:LoonieTrader.App.Views.Controls"
         DataContext="{Binding Source={StaticResource Locator}, Path=Workbench}"
         Title="Indicator Workbench"
         ResizeMode="CanResizeWithGrip"
         Height="500"
-        Width="600" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
+        Width="700" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -27,7 +28,7 @@
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="60"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="60"></RowDefinition>
                         <RowDefinition Height="60"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -39,20 +40,63 @@
                 </Grid>
                 <GridSplitter Grid.Column="1"  Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
 
+                <TabControl Grid.Column="2" >
+                    <TabItem Header="Load data from file">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Width="100">Load DataSet...</Button>
+                            </StackPanel>
+                            <xcdg:DataGridControl  Grid.Column="0" Grid.Row="1" ItemsSource="{Binding SampleData}" Margin="0" ReadOnly="True">
+                                <xcdg:DataGridControl.View>
+                                    <xcdg:TableView  ColumnStretchMode="All"  IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
+                                        <xcdg:TableView.FixedHeaders>
+                                            <DataTemplate>
+                                                <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
+                                            </DataTemplate>
+                                        </xcdg:TableView.FixedHeaders>
 
-                <Grid Grid.Column="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button>Load DataSet...</Button>
-                    <xcdg:DataGridControl  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding SampleData}" Margin="0" >
-                    </xcdg:DataGridControl>
-                </Grid>
+                                    </xcdg:TableView>
+                                </xcdg:DataGridControl.View>
+                            </xcdg:DataGridControl>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="or choose an intrument">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:AutoFilteredComboBox ItemsSource="{Binding AllInstruments}" FontSize="14" Padding="2,1" Margin="5" Width="150"
+                                    SelectedValue="{Binding SelectedInstrument, Mode=TwoWay}" IsCaseSensitive="False" DropDownOnFocus="True"
+                                    IsEditable="True" IsTextSearchEnabled="False" DisplayMemberPath="DisplayName"/>
+                            </StackPanel>
+                            <xcdg:DataGridControl  Grid.Column="0" Grid.Row="1" Margin="0"  ItemsSource="{Binding SampleData}" ReadOnly="True"  >
+                                <xcdg:DataGridControl.View  >
+                                    <xcdg:TableView   ColumnStretchMode="All" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False"  >
+                                        <xcdg:TableView.FixedHeaders>
+                                            <DataTemplate>
+                                                <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />
+                                            </DataTemplate>
+                                        </xcdg:TableView.FixedHeaders>
+
+                                    </xcdg:TableView>
+                                </xcdg:DataGridControl.View>
+                            </xcdg:DataGridControl>
+                        </Grid>
+                    </TabItem>
+
+                </TabControl>
 
             </Grid>
 

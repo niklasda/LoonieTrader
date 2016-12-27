@@ -75,7 +75,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.Where(x => x.DisplayName.ToUpper().Contains((InstrumentText ?? "").ToUpper()) || x.Type.ToUpper().Contains((InstrumentText ?? "").ToUpper())).ToList();
+                List<InstrumentViewModel> filteredInstrumentList = _allInstruments.ToList();
                 filteredInstrumentList.AddRange(_allInstruments.Except(filteredInstrumentList));
                 return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
             }
@@ -622,21 +622,21 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return string.Format("Complex Order: {0}", SelectedInstrument?.DisplayName); }
         }
 
-        private string _instrumentTest;
-        public string InstrumentText
-        {
-            get { return _instrumentTest; }
-            set
-            {
-                if (_instrumentTest != value)
-                {
-                    _instrumentTest = value;
-                    RaisePropertyChanged();
-                    RaisePropertyChanged(()=>AllInstruments);
+        //private string _instrumentTest;
+        //public string InstrumentText
+        //{
+        //    get { return _instrumentTest; }
+        //    set
+        //    {
+        //        if (_instrumentTest != value)
+        //        {
+        //            _instrumentTest = value;
+        //            RaisePropertyChanged();
+        //            RaisePropertyChanged(()=>AllInstruments);
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         public InstrumentViewModel Instrument {
             get { return SelectedInstrument; }
