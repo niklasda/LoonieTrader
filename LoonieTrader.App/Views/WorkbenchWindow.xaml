@@ -8,8 +8,8 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Workbench}"
         Title="Indicator Workbench"
         ResizeMode="CanResizeWithGrip"
-        Height="500"
-        Width="700" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
+        Height="600"
+        Width="800" Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -25,7 +25,9 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <TabControl  >
+                    <TabItem Header="Select indicator">
+                        <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
@@ -34,11 +36,17 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="Information about price, time, depth, periods (time frames) and stuff" TextWrapping="Wrap"></TextBlock>
                     <ComboBox Grid.Row="1" ItemsSource="{Binding FoundIndicators}" SelectedItem="{Binding SelectedIndicator}" DisplayMemberPath="Title"></ComboBox>
-                    <TextBlock Grid.Row="2" Text="{Binding LoadableInfo}" TextWrapping="Wrap"></TextBlock>
+                    <TextBlock Grid.Row="1" Text="{Binding LoadableInfo}" TextWrapping="Wrap" Margin="0,36,0,5" Grid.RowSpan="2"></TextBlock>
                     <TextBlock Grid.Row="3" Text="Optionally require specific time frame" TextWrapping="Wrap"></TextBlock>
 
                 </Grid>
-                <GridSplitter Grid.Column="1"  Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
+                    </TabItem>
+                    <TabItem Header="Test formula">
+                        
+                    </TabItem>
+
+                </TabControl>
+                    <GridSplitter Grid.Column="1"  Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
 
                 <TabControl Grid.Column="2" >
                     <TabItem Header="Load data from file">

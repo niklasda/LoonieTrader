@@ -49,6 +49,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             ComplexOrderCommand = new RelayCommand(()=>OpenComplexOrderWindow(null));
             WorkbenchCommand = new RelayCommand(OpenWorkbenchWindow);
             BlotterCommand = new RelayCommand(OpenBlotterWindow);
+            MachineLearningCommand = new RelayCommand(OpenMachineLearningWindow);
             InstrumentsCommand = new RelayCommand(OpenInstrumentsWindow);
             NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
@@ -166,6 +167,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand WorkbenchCommand { get; set; }
         public ICommand InstrumentsCommand { get; set; }
         public ICommand BlotterCommand { get; set; }
+        public ICommand MachineLearningCommand { get; set; }
         public ICommand NewChartCommand { get; set; }
         public ICommand OpenPositionsCommand { get; set; }
         public ICommand OpenOrdersCommand { get; set; }
@@ -389,6 +391,13 @@ namespace LoonieTrader.App.ViewModels.Windows
             BlotterWindow ww = new BlotterWindow();
             ww.Owner = Application.Current.MainWindow;
             ww.Show();
+        }
+
+        private void OpenMachineLearningWindow()
+        {
+            var mlw = new MachineLearningWindow();
+            mlw.Owner = Application.Current.MainWindow;
+            mlw.Show();
         }
 
         private void OpenInstrumentsWindow()
