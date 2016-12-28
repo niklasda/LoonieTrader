@@ -11,14 +11,14 @@
         Width="1280" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
     <Window.InputBindings>  
-        <!--<KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>-->
+        <!--<KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
         <KeyBinding Key="D2" Modifiers="Control" Command="{Binding AccountInformationCommand}"/>
         <KeyBinding Key="D3" Modifiers="Control" Command="{Binding TransactionHistoryCommand}"/>
         <KeyBinding Key="D4" Modifiers="Control" Command="{Binding OpenOrdersCommand}"/>
         <KeyBinding Key="D5" Modifiers="Control" Command="{Binding OpenPositionsCommand}"/>
-        <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>
+        <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>-->
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <fluent:Ribbon DockPanel.Dock="Top" >
@@ -28,11 +28,12 @@
             <fluent:Ribbon.QuickAccessItems>
                 <!--Use Content or Target Property to set QAT item-->
                 <fluent:QuickAccessMenuItem IsChecked="true">
-                    <fluent:Button Header="Pink" Icon="Images\Pink.png" />
+                    <fluent:Button x:Name="OpenOrderWindow" Header="Order" Icon="Images\Pink.png" Command="{Binding ComplexOrderCommand}" />
                 </fluent:QuickAccessMenuItem>
                 <!--You Can Just Bind with Any Control-->
-                <fluent:QuickAccessMenuItem Target="{Binding ElementName=buttonGreen}"/>
-            </fluent:Ribbon.QuickAccessItems>
+                <fluent:QuickAccessMenuItem Target="{Binding ElementName=OpenOrderWindow}"/>
+            </fluent:Ribbon.QuickAccessItems>
+
             <!--Tabs-->
             
             <fluent:RibbonTabItem Header="Trading">
@@ -43,7 +44,7 @@
                     <fluent:Button Header="Open Positions" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding OpenPositionsCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Window">
-                    <fluent:Button Header="Order" fluent:KeyTip.Keys="O"  Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png" Command="{Binding ComplexOrderCommand}" />
+                    <fluent:Button Header="Order" fluent:KeyTip.Keys="O"  Icon="Images\Green.png" LargeIcon="/Images\IFGreenLarge.png" Command="{Binding ComplexOrderCommand}" />
                     <fluent:Button Header="Chart" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding NewChartCommand}" />
                     <fluent:Button Header="Workbench" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding WorkbenchCommand}" />
                     <fluent:Button Header="Blotter" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding BlotterCommand}" />
@@ -58,8 +59,8 @@
                     <fluent:Button Header="Log Out" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding LogOutCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Help">
-                    <fluent:Button Header="Log" Icon="Images\Green.png" Size="Middle" LargeIcon="Images\GreenLarge.png" Command="{Binding LogCommand}" />
-                    <fluent:Button Header="Service Status" Size="Middle" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
+                    <fluent:Button Header="Log" Icon="Images\Green.png"  LargeIcon="Images\GreenLarge.png" Command="{Binding LogCommand}" />
+                    <fluent:Button Header="Service Status"  Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
 
                     <fluent:SplitButton Header="Web Links" fluent:KeyTip.Keys="R"  >
                         <fluent:MenuItem Header="Local Settings Folder"  />
@@ -73,14 +74,15 @@
                         <fluent:MenuItem Header="Financial News" Command="{Binding GotoNewsCommand}" />
                         <fluent:MenuItem Header="Google Finance" Command="{Binding GotoGoogleFinanceCommand}" />
                         <fluent:MenuItem Header="Yahoo Finance" Command="{Binding GotoYahooFinanceCommand}" />
-                    </fluent:SplitButton>
+                    </fluent:SplitButton>
+
 
                     <fluent:Button Header="About" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding AboutCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
         </fluent:Ribbon>
-        <Menu DockPanel.Dock="Top" Padding="3">
+       <!-- <Menu DockPanel.Dock="Top" Padding="3">
             <MenuItem Header="_File" >
                 <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" ></MenuItem>
                 <Separator />
@@ -121,7 +123,7 @@
                 <Separator />
                 <MenuItem Header="_About" Command="{Binding AboutCommand}"  InputGestureText="F1"/>
             </MenuItem>
-        </Menu>
+        </Menu> -->
         <StatusBar  DockPanel.Dock="Bottom">
             <StatusBarItem>
                 <TextBlock>Hello Statusbar</TextBlock>
