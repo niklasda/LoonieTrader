@@ -1,11 +1,12 @@
 ﻿using System.Windows;
+using Fluent;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.Views
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : RibbonWindow
     {
         public MainWindow()
         {

@@ -9,5 +9,21 @@
          Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp"
         Title="Machine Learning" Height="300" Width="800">
     <Grid>
+        <TabControl >
+            <TabItem Header="Predict crossings">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Predict">
+                <Grid />
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

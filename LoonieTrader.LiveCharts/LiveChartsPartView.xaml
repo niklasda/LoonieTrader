@@ -14,8 +14,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Instrument.DisplayName}"/>
-           <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
+            <TextBlock Text="{Binding Instrument.DisplayName}" VerticalAlignment="Center" Margin="5,0" />
+           <Button Content="Randomize" Margin="5,5" Padding="5,0"  Command="{Binding UpdateCommand}"/>
         </StackPanel>
 
         <wpf:CartesianChart Grid.Row="1" Series="{Binding SeriesCollection}"  Zoom="X" BorderThickness="1" BorderBrush="Gainsboro" LegendLocation="Top" ScrollMode="X" IsManipulationEnabled="True" ContentStringFormat="C:{0}">

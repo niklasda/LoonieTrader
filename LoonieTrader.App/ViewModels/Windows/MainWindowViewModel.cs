@@ -59,7 +59,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             OpenOrdersCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 1);
             TransactionHistoryCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 2);
             AccountInformationCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 3);
-            InstrumentInformationCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 4);
+            //InstrumentInformationCommand = new RelayCommand(() => BlotterPart.SelectedTabIndex = 4);
 
             ServiceStatusCommand = new RelayCommand(OpenServiceStatus);
 
@@ -133,15 +133,6 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         }
 
-        private void OpenServiceStatus()
-        {
-            Window window = new ServiceStatusWindow();
-
-            window.Owner = Application.Current.MainWindow;
-            window.Show();
-        }
-
-
         private readonly ISettingsService _settingsService;
         private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
@@ -173,7 +164,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand OpenOrdersCommand { get; set; }
         public ICommand TransactionHistoryCommand { get; set; }
         public ICommand AccountInformationCommand { get; set; }
-        public ICommand InstrumentInformationCommand { get; set; }
+        //public ICommand InstrumentInformationCommand { get; set; }
 
         public ICommand ChartTypeCommand { get; set; }
         public ICommand IndicatorsChangedCommand { get; set; }
@@ -366,14 +357,14 @@ namespace LoonieTrader.App.ViewModels.Windows
         private void OpenAboutWindow()
         {
             AboutWindow aw = new AboutWindow();
-            aw.Owner = Application.Current.MainWindow;
+            //aw.Owner = Application.Current.MainWindow;
             aw.ShowDialog();
         }
 
         private void OpenLogWindow()
         {
             LogWindow aw = new LogWindow();
-            aw.Owner = Application.Current.MainWindow;
+            //aw.Owner = Application.Current.MainWindow;
             aw.Show();
         }
 
@@ -382,35 +373,35 @@ namespace LoonieTrader.App.ViewModels.Windows
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {
             ComplexOrderWindow cow = new ComplexOrderWindow();
-            cow.Owner = Application.Current.MainWindow;
+            //cow.Owner = Application.Current.MainWindow;
             cow.ShowInstrument(instrument);
         }
 
         private void OpenBlotterWindow()
         {
             BlotterWindow ww = new BlotterWindow();
-            ww.Owner = Application.Current.MainWindow;
+            //ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
 
         private void OpenMachineLearningWindow()
         {
             var mlw = new MachineLearningWindow();
-            mlw.Owner = Application.Current.MainWindow;
+            //mlw.Owner = Application.Current.MainWindow;
             mlw.Show();
         }
 
         private void OpenInstrumentsWindow()
         {
             InstrumentsWindow ww = new InstrumentsWindow();
-            ww.Owner = Application.Current.MainWindow;
+            //ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
 
         private void OpenWorkbenchWindow()
         {
             WorkbenchWindow ww = new WorkbenchWindow();
-            ww.Owner = Application.Current.MainWindow;
+            //ww.Owner = Application.Current.MainWindow;
             ww.Show();
         }
 
@@ -420,6 +411,14 @@ namespace LoonieTrader.App.ViewModels.Windows
             tw.Owner = Application.Current.MainWindow;
             tw.ShowInstrument(instrument);
             //tw.Show();
+        }
+
+        private void OpenServiceStatus()
+        {
+            Window window = new ServiceStatusWindow();
+
+            window.Owner = Application.Current.MainWindow;
+            window.Show();
         }
 
         private void OpenSettingsWindow()

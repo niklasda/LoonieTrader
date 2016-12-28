@@ -1,20 +1,19 @@
-﻿<Window x:Class="LoonieTrader.App.Views.MainWindow"
+﻿<fluent:RibbonWindow x:Class="LoonieTrader.App.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
-        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
+        xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         Title="{Binding WindowTitle}"
         ResizeMode="CanResizeWithGrip"
         Height="700" MinHeight="600"
         Width="1280" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
-    <Window.InputBindings>
-        <KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
+    <Window.InputBindings>  
+        <!--<KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>-->
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
-        <KeyBinding Key="D1" Modifiers="Control" Command="{Binding InstrumentInformationCommand}"/>
         <KeyBinding Key="D2" Modifiers="Control" Command="{Binding AccountInformationCommand}"/>
         <KeyBinding Key="D3" Modifiers="Control" Command="{Binding TransactionHistoryCommand}"/>
         <KeyBinding Key="D4" Modifiers="Control" Command="{Binding OpenOrdersCommand}"/>
@@ -22,6 +21,65 @@
         <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
+        <fluent:Ribbon DockPanel.Dock="Top" >
+            <!--Backstage-->
+            
+            <!--Quick Access Toolbar Items-->
+            <fluent:Ribbon.QuickAccessItems>
+                <!--Use Content or Target Property to set QAT item-->
+                <fluent:QuickAccessMenuItem IsChecked="true">
+                    <fluent:Button Header="Pink" Icon="Images\Pink.png" />
+                </fluent:QuickAccessMenuItem>
+                <!--You Can Just Bind with Any Control-->
+                <fluent:QuickAccessMenuItem Target="{Binding ElementName=buttonGreen}"/>
+            </fluent:Ribbon.QuickAccessItems>
+            <!--Tabs-->
+            
+            <fluent:RibbonTabItem Header="Trading">
+                <fluent:RibbonGroupBox Header="Views">
+                    <fluent:Button Header="Account Information" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding AccountInformationCommand}" />
+                    <fluent:Button Header="Transaction History Information" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding TransactionHistoryCommand}" />
+                    <fluent:Button Header="Open Orders" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding OpenOrdersCommand}" />
+                    <fluent:Button Header="Open Positions" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding OpenPositionsCommand}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Window">
+                    <fluent:Button Header="Order" fluent:KeyTip.Keys="O"  Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png" Command="{Binding ComplexOrderCommand}" />
+                    <fluent:Button Header="Chart" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Workbench" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding WorkbenchCommand}" />
+                    <fluent:Button Header="Blotter" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding BlotterCommand}" />
+                    <fluent:Button Header="ML" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding MachineLearningCommand}" />
+                    <fluent:Button Header="Instrument Picker" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+            <fluent:RibbonTabItem Header="Other" >
+                <fluent:RibbonGroupBox Header="File">
+                    <fluent:Button Header="Settings" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png" Command="{Binding SettingsCommand}" />
+                    <fluent:Button Header="Log Out" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding LogOutCommand}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Help">
+                    <fluent:Button Header="Log" Icon="Images\Green.png" Size="Middle" LargeIcon="Images\GreenLarge.png" Command="{Binding LogCommand}" />
+                    <fluent:Button Header="Service Status" Size="Middle" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
+
+                    <fluent:SplitButton Header="Web Links" fluent:KeyTip.Keys="R"  >
+                        <fluent:MenuItem Header="Local Settings Folder"  />
+                        <fluent:MenuItem Header="GitHub Project Page"  />
+                        <fluent:GroupSeparatorMenuItem  />
+                        <fluent:MenuItem Header="Oanda" Command="{Binding GotoOandaCommand}" />
+                        <fluent:MenuItem Header="Oanda API" Command="{Binding GotoOandaApiCommand}" />
+                        <fluent:MenuItem Header="Oanda Dev Forum" Command="{Binding GotoOandaDevCommand}" />
+                        <fluent:MenuItem Header="Market Pulse" Command="{Binding GotoMarketPulseCommand}" />
+                        <fluent:MenuItem Header="Market Pulse Calendar" Command="{Binding GotoMarketPulseCalendarCommand}" />
+                        <fluent:MenuItem Header="Financial News" Command="{Binding GotoNewsCommand}" />
+                        <fluent:MenuItem Header="Google Finance" Command="{Binding GotoGoogleFinanceCommand}" />
+                        <fluent:MenuItem Header="Yahoo Finance" Command="{Binding GotoYahooFinanceCommand}" />
+                    </fluent:SplitButton>
+
+                    <fluent:Button Header="About" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding AboutCommand}" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+        </fluent:Ribbon>
         <Menu DockPanel.Dock="Top" Padding="3">
             <MenuItem Header="_File" >
                 <MenuItem Header="_Settings..." Command="{Binding SettingsCommand}" ></MenuItem>
@@ -31,7 +89,6 @@
                 <MenuItem Header="E_xit" InputGestureText="Alt+F4" Command="{Binding ExitApplicationCommand}" />
             </MenuItem>
             <MenuItem Header="_View" >
-                <MenuItem Header="Instrument Information" Command="{Binding InstrumentInformationCommand}" InputGestureText="Ctrl+1" />
                 <MenuItem Header="Account Information" Command="{Binding AccountInformationCommand}" InputGestureText="Ctrl+2" />
                 <MenuItem Header="Transaction History" Command="{Binding TransactionHistoryCommand}" InputGestureText="Ctrl+3" />
                 <MenuItem Header="Open Orders" Command="{Binding OpenOrdersCommand}" InputGestureText="Ctrl+4" />
@@ -121,4 +178,4 @@
             </Grid>
         </Grid>
     </DockPanel>
-</Window>
+</fluent:RibbonWindow>

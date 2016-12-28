@@ -6,7 +6,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:LoonieServiceLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LoonieTrader.App.Locator" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <vm:LoonieServiceLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LoonieTrader.App.Locator" />
+
+                </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/office2013/generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
