@@ -218,7 +218,9 @@ namespace LoonieTrader.App.ViewModels.Windows
             switch (location)
             {
                 case GotoLocations.LocalAppData:
-                    var folder = Path.Combine(Environment.ExpandEnvironmentVariables("%localappdata%"), AppProperties.ApplicationName);
+                    // todo: some duplicated code
+                    var appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                    var folder = Path.Combine(appDataFolderPath, AppProperties.ApplicationName);
                     SafeStartPath(folder);
                     break;
                 case GotoLocations.ProjectPage:

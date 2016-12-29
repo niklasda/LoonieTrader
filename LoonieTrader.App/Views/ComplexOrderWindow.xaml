@@ -54,7 +54,7 @@
                             <ColumnDefinition Width="50"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow BottomRight 01-WF.png" Height="30" IsEnabled="{Binding SellButtonEnabled}"></Image>
+                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/LineArrow_d_24x.png" Height="30" IsEnabled="{Binding SellButtonEnabled}"></Image>
                         <TextBlock  Grid.Column="1" Text="{Binding SellButtonLabel}"  IsEnabled="{Binding SellButtonEnabled}" Margin="20,10"></TextBlock>
                     </Grid>
                 </Button>
@@ -72,7 +72,11 @@
                             <ColumnDefinition Width="50"></ColumnDefinition>
                             <ColumnDefinition Width="100"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/Arrow TopRight 01-WF.png" Height="30" IsEnabled="{Binding BuyButtonEnabled}"></Image>
+                        <Image Grid.Column="0" Source="/LoonieTrader.App;component/Images/LineArrow_d_24x.png" Height="30" IsEnabled="{Binding BuyButtonEnabled}" RenderTransformOrigin="0.5,0.5">
+                            <Image.RenderTransform>
+                                <ScaleTransform ScaleY="-1"/>
+                            </Image.RenderTransform>
+                        </Image>
                         <TextBlock  Grid.Column="1" Text="{Binding BuyButtonLabel}"  IsEnabled="{Binding BuyButtonEnabled}" Margin="20,10"></TextBlock>
                     </Grid>
                 </Button>

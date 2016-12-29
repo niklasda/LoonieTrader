@@ -44,10 +44,10 @@
             <fluent:RibbonTabItem Header="Trading"  fluent:KeyTip.Keys="T">
 
                 <fluent:RibbonGroupBox Header="Window">
-                    <fluent:Button Header="Order" x:Name="OrderButton" fluent:KeyTip.Keys="R"   Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
+                    <fluent:Button Header="Order" x:Name="OrderButton" fluent:KeyTip.Keys="R" Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
                     <fluent:Button Header="Chart" x:Name="ChartButton" fluent:KeyTip.Keys="H" Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
                     <fluent:Button Header="Instrument Picker"          fluent:KeyTip.Keys="I" Icon="\Images\MoneyEditor_16x.png" LargeIcon="\Images\MoneyEditor_16x.png" Command="{Binding InstrumentsCommand}" />
-                    <fluent:Button Header="Blotter"                    fluent:KeyTip.Keys="B" Icon="\Images\Datalist_32x.png" LargeIcon="\Images\Datalist_32x.png" Command="{Binding BlotterCommand}" />
+                    <fluent:Button Header="Blotter"                    fluent:KeyTip.Keys="B" Icon="\Images\4Rows_16x.png" LargeIcon="\Images\4Rows_16x.png" Command="{Binding BlotterCommand}" />
                     <fluent:Button Header="Workbench"                  fluent:KeyTip.Keys="W" Icon="\Images\tools_40x.png" LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
                     <fluent:Button Header="ML"                         fluent:KeyTip.Keys="M" Icon="\Images\Learn.png" LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
                 </fluent:RibbonGroupBox>
