@@ -46,10 +46,10 @@
                 <fluent:RibbonGroupBox Header="Window">
                     <fluent:Button Header="Order" x:Name="OrderButton"  fluent:KeyTip.Keys="O"   Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
                     <fluent:Button Header="Chart" x:Name="ChartButton"  Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
-                    <fluent:Button Header="Instrument Picker"  LargeIcon="Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
+                    <fluent:Button Header="Instrument Picker"  LargeIcon="\Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
                     <fluent:Button Header="Blotter"  LargeIcon="\Images\Datalist_32x.png" Command="{Binding BlotterCommand}" />
-                    <fluent:Button Header="Workbench"  LargeIcon="Images\GrayLarge.png" Command="{Binding WorkbenchCommand}" />
-                    <fluent:Button Header="ML"  LargeIcon="\Images\GrayLarge.png" Command="{Binding MachineLearningCommand}" />
+                    <fluent:Button Header="Workbench"  LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
+                    <fluent:Button Header="ML"  LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Views">
                     <fluent:Button Header="Account Details"  LargeIcon="\Images\Account_32x.png" Command="{Binding AccountInformationCommand}" />
