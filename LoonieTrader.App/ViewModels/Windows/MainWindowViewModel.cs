@@ -315,6 +315,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                 string[] technicalIndicators = { "<No Indicator>", "Bollinger Band", "Accumulation Distribution", "Exponential Average",
                                              "MACD", "Average True Range", "Momentum", "RSI", "Simple Average", "Stochastic",
                                              "Triangular Average"};
+
+                SelectedIndicator = "<No Indicator>";
+
                 return technicalIndicators;
             }
         }
@@ -369,6 +372,16 @@ namespace LoonieTrader.App.ViewModels.Windows
         }
 
         public string WindowTitle { get; } = AppProperties.ApplicationName;
+
+        public string StatusBarLeft
+        {
+            get { return "Left part"; }
+        }
+
+        public string StatusBarRight
+        {
+            get { return "Right part conn info"; }
+        }
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
         {

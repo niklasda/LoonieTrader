@@ -10,7 +10,7 @@
         Height="700" MinHeight="600"
         Width="1280" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
-    <Window.InputBindings>  
+    <Window.InputBindings>
         <!--<KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
@@ -23,46 +23,54 @@
     <DockPanel LastChildFill="True">
         <fluent:Ribbon DockPanel.Dock="Top" >
             <!--Backstage-->
-            
+
+            <fluent:Ribbon.ToolBarItems>
+                <fluent:Button Size="Small" Icon="/Images/Help_32x.png" Command="{Binding AboutCommand}">
+
+                </fluent:Button>
+            </fluent:Ribbon.ToolBarItems>
+
             <!--Quick Access Toolbar Items-->
             <fluent:Ribbon.QuickAccessItems>
                 <!--Use Content or Target Property to set QAT item-->
-                <fluent:QuickAccessMenuItem IsChecked="true">
-                    <fluent:Button x:Name="OpenOrderWindow" Header="Order" Icon="Images\Pink.png" Command="{Binding ComplexOrderCommand}" />
-                </fluent:QuickAccessMenuItem>
-                <!--You Can Just Bind with Any Control-->
-                <fluent:QuickAccessMenuItem Target="{Binding ElementName=OpenOrderWindow}"/>
+                <fluent:QuickAccessMenuItem IsChecked="true" Target="{Binding Source={x:Reference OrderButton}}" />
+                <fluent:QuickAccessMenuItem IsChecked="true" Target="{Binding Source={x:Reference ChartButton}}" />
+                <!--You Can Just Bind with Any Control
+                <fluent:QuickAccessMenuItem Target="{Binding ElementName=OpenOrderWindow}"/>-->
             </fluent:Ribbon.QuickAccessItems>
 
             <!--Tabs-->
-            
+
             <fluent:RibbonTabItem Header="Trading">
-                <fluent:RibbonGroupBox Header="Views">
-                    <fluent:Button Header="Account Information" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding AccountInformationCommand}" />
-                    <fluent:Button Header="Transaction History Information" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding TransactionHistoryCommand}" />
-                    <fluent:Button Header="Open Orders" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding OpenOrdersCommand}" />
-                    <fluent:Button Header="Open Positions" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding OpenPositionsCommand}" />
-                </fluent:RibbonGroupBox>
+
                 <fluent:RibbonGroupBox Header="Window">
-                    <fluent:Button Header="Order" fluent:KeyTip.Keys="O"  Icon="Images\Green.png" LargeIcon="/Images\IFGreenLarge.png" Command="{Binding ComplexOrderCommand}" />
-                    <fluent:Button Header="Chart" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding NewChartCommand}" />
-                    <fluent:Button Header="Workbench" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding WorkbenchCommand}" />
-                    <fluent:Button Header="Blotter" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding BlotterCommand}" />
-                    <fluent:Button Header="ML" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding MachineLearningCommand}" />
-                    <fluent:Button Header="Instrument Picker" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
+                    <fluent:Button Header="Order" x:Name="OrderButton"  fluent:KeyTip.Keys="O"   Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
+                    <fluent:Button Header="Chart" x:Name="ChartButton"  Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Instrument Picker"  LargeIcon="Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
+                    <fluent:Button Header="Blotter"  LargeIcon="\Images\Datalist_32x.png" Command="{Binding BlotterCommand}" />
+                    <fluent:Button Header="Workbench"  LargeIcon="Images\GrayLarge.png" Command="{Binding WorkbenchCommand}" />
+                    <fluent:Button Header="ML"  LargeIcon="\Images\GrayLarge.png" Command="{Binding MachineLearningCommand}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Views">
+                    <fluent:Button Header="Account Details"  LargeIcon="\Images\Account_32x.png" Command="{Binding AccountInformationCommand}" />
+                    <fluent:Button Header="Transaction History"  LargeIcon="\Images\Datalist_32x.png" Command="{Binding TransactionHistoryCommand}" />
+                    <fluent:Button Header="Open Orders" LargeIcon="\Images\CheckboxList_16x.png" Command="{Binding OpenOrdersCommand}" />
+                    <fluent:Button Header="Open Positions" LargeIcon="\Images\Checklist_16x.png" Command="{Binding OpenPositionsCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
             <fluent:RibbonTabItem Header="Other" >
                 <fluent:RibbonGroupBox Header="File">
-                    <fluent:Button Header="Settings" Icon="Images\Green.png" LargeIcon="Images\GreenLarge.png" Command="{Binding SettingsCommand}" />
-                    <fluent:Button Header="Log Out" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding LogOutCommand}" />
+                    <fluent:Button Header="Settings"  LargeIcon="\Images\Settings_32x.png" Command="{Binding SettingsCommand}" />
+                    <fluent:Button Header="Log Out" LargeIcon="\Images\Exit_16x.png" Command="{Binding LogOutCommand}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Diagnostice">
+                    <fluent:Button Header="Logs"  LargeIcon="\Images\GreenLarge.png" Command="{Binding LogCommand}" />
+                    <fluent:Button Header="Service Status"  LargeIcon="\Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Help">
-                    <fluent:Button Header="Log" Icon="Images\Green.png"  LargeIcon="Images\GreenLarge.png" Command="{Binding LogCommand}" />
-                    <fluent:Button Header="Service Status"  Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
 
-                    <fluent:SplitButton Header="Web Links" fluent:KeyTip.Keys="R"  >
+                    <fluent:SplitButton Header="Web Links" fluent:KeyTip.Keys="R" LargeIcon="\Images\add_hyperlink_40x.png"  >
                         <fluent:MenuItem Header="Local Settings Folder"  />
                         <fluent:MenuItem Header="GitHub Project Page"  />
                         <fluent:GroupSeparatorMenuItem  />
@@ -77,7 +85,7 @@
                     </fluent:SplitButton>
 
 
-                    <fluent:Button Header="About" Icon="Images\Gray.png" LargeIcon="Images\GrayLarge.png" Command="{Binding AboutCommand}" />
+                    <fluent:Button Header="About"  LargeIcon="\Images\Help_32x.png" Command="{Binding AboutCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
@@ -124,14 +132,14 @@
                 <MenuItem Header="_About" Command="{Binding AboutCommand}"  InputGestureText="F1"/>
             </MenuItem>
         </Menu> -->
-        <StatusBar  DockPanel.Dock="Bottom">
-            <StatusBarItem>
-                <TextBlock>Hello Statusbar</TextBlock>
-            </StatusBarItem>
-            <StatusBarItem Margin="20,0">
-                <TextBlock>with connection info</TextBlock>
-            </StatusBarItem>
-        </StatusBar>
+        <fluent:StatusBar  DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <fluent:StatusBarItem Title="{Binding StatusBarLeft}" Value="150" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding StatusBarLeft}"></TextBlock>
+            </fluent:StatusBarItem>
+            <fluent:StatusBarItem Title="{Binding StatusBarRight}" Margin="20,0" Value="188" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding StatusBarRight}"></TextBlock>
+            </fluent:StatusBarItem>
+        </fluent:StatusBar>
 
         <Grid   >
             <Grid.ColumnDefinitions>
