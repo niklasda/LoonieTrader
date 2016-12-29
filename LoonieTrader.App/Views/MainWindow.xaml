@@ -21,7 +21,7 @@
         <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>-->
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
-        <fluent:Ribbon DockPanel.Dock="Top" >
+        <fluent:Ribbon DockPanel.Dock="Top" CanQuickAccessLocationChanging="False">
             <!--Backstage-->
 
             <fluent:Ribbon.ToolBarItems>
@@ -31,7 +31,7 @@
             </fluent:Ribbon.ToolBarItems>
 
             <!--Quick Access Toolbar Items-->
-            <fluent:Ribbon.QuickAccessItems>
+            <fluent:Ribbon.QuickAccessItems >
                 <!--Use Content or Target Property to set QAT item-->
                 <fluent:QuickAccessMenuItem IsChecked="true" Target="{Binding Source={x:Reference OrderButton}}" />
                 <fluent:QuickAccessMenuItem IsChecked="true" Target="{Binding Source={x:Reference ChartButton}}" />
