@@ -41,38 +41,38 @@
 
             <!--Tabs-->
 
-            <fluent:RibbonTabItem Header="Trading">
+            <fluent:RibbonTabItem Header="Trading"  fluent:KeyTip.Keys="T">
 
                 <fluent:RibbonGroupBox Header="Window">
-                    <fluent:Button Header="Order" x:Name="OrderButton"  fluent:KeyTip.Keys="O"   Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
-                    <fluent:Button Header="Chart" x:Name="ChartButton"  Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
-                    <fluent:Button Header="Instrument Picker"  LargeIcon="\Images\GrayLarge.png" Command="{Binding InstrumentsCommand}" />
-                    <fluent:Button Header="Blotter"  LargeIcon="\Images\Datalist_32x.png" Command="{Binding BlotterCommand}" />
-                    <fluent:Button Header="Workbench"  LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
-                    <fluent:Button Header="ML"  LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
+                    <fluent:Button Header="Order" x:Name="OrderButton" fluent:KeyTip.Keys="R"   Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
+                    <fluent:Button Header="Chart" x:Name="ChartButton" fluent:KeyTip.Keys="H" Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Instrument Picker"          fluent:KeyTip.Keys="I" Icon="\Images\MoneyEditor_16x.png" LargeIcon="\Images\MoneyEditor_16x.png" Command="{Binding InstrumentsCommand}" />
+                    <fluent:Button Header="Blotter"                    fluent:KeyTip.Keys="B" Icon="\Images\Datalist_32x.png" LargeIcon="\Images\Datalist_32x.png" Command="{Binding BlotterCommand}" />
+                    <fluent:Button Header="Workbench"                  fluent:KeyTip.Keys="W" Icon="\Images\tools_40x.png" LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
+                    <fluent:Button Header="ML"                         fluent:KeyTip.Keys="M" Icon="\Images\Learn.png" LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Views">
-                    <fluent:Button Header="Account Details"  LargeIcon="\Images\Account_32x.png" Command="{Binding AccountInformationCommand}" />
-                    <fluent:Button Header="Transaction History"  LargeIcon="\Images\Datalist_32x.png" Command="{Binding TransactionHistoryCommand}" />
-                    <fluent:Button Header="Open Orders" LargeIcon="\Images\CheckboxList_16x.png" Command="{Binding OpenOrdersCommand}" />
-                    <fluent:Button Header="Open Positions" LargeIcon="\Images\Checklist_16x.png" Command="{Binding OpenPositionsCommand}" />
+                    <fluent:Button Header="Account Details"      fluent:KeyTip.Keys="A" Icon="\Images\Account_32x.png" LargeIcon="\Images\Account_32x.png" Command="{Binding AccountInformationCommand}" />
+                    <fluent:Button Header="Transaction History"  fluent:KeyTip.Keys="H" Icon="\Images\Datalist_32x.png" LargeIcon="\Images\Datalist_32x.png" Command="{Binding TransactionHistoryCommand}" />
+                    <fluent:Button Header="Open Orders"          fluent:KeyTip.Keys="E" Icon="\Images\CheckboxList_16x.png" LargeIcon="\Images\CheckboxList_16x.png" Command="{Binding OpenOrdersCommand}" />
+                    <fluent:Button Header="Open Positions"       fluent:KeyTip.Keys="P" Icon="\Images\Checklist_16x.png" LargeIcon="\Images\Checklist_16x.png" Command="{Binding OpenPositionsCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
-            <fluent:RibbonTabItem Header="Other" >
+            <fluent:RibbonTabItem Header="Other"  fluent:KeyTip.Keys="O">
                 <fluent:RibbonGroupBox Header="File">
-                    <fluent:Button Header="Settings"  LargeIcon="\Images\Settings_32x.png" Command="{Binding SettingsCommand}" />
-                    <fluent:Button Header="Log Out" LargeIcon="\Images\Exit_16x.png" Command="{Binding LogOutCommand}" />
+                    <fluent:Button Header="Settings"      fluent:KeyTip.Keys="S" Icon="\Images\Settings_32x.png" LargeIcon="\Images\Settings_32x.png" Command="{Binding SettingsCommand}" />
+                    <fluent:Button Header="Log Out"       fluent:KeyTip.Keys="U" Icon="\Images\Exit_16x.png"  LargeIcon="\Images\Exit_16x.png" Command="{Binding LogOutCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Diagnostice">
-                    <fluent:Button Header="Logs"  LargeIcon="\Images\GreenLarge.png" Command="{Binding LogCommand}" />
-                    <fluent:Button Header="Service Status"  LargeIcon="\Images\GrayLarge.png" Command="{Binding ServiceStatusCommand}" />
+                    <fluent:Button Header="Logs"            fluent:KeyTip.Keys="L" Icon="\Images\dialog_32xLG.png" LargeIcon="\Images\dialog_32xLG.png" Command="{Binding LogCommand}" />
+                    <fluent:Button Header="Service Status"  fluent:KeyTip.Keys="V" Icon="\Images\StatusWarning_grey_32xLG.png" LargeIcon="\Images\StatusWarning_grey_32xLG.png" Command="{Binding ServiceStatusCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Help">
 
-                    <fluent:SplitButton Header="Web Links" fluent:KeyTip.Keys="R" LargeIcon="\Images\add_hyperlink_40x.png"  >
-                        <fluent:MenuItem Header="Local Settings Folder"  />
-                        <fluent:MenuItem Header="GitHub Project Page"  />
+                    <fluent:SplitButton Header="Web Links" LargeIcon="\Images\add_hyperlink_40x.png"  >
+                        <fluent:MenuItem Header="Local Settings Folder" Command="{Binding GotoLocalSettingsFolderCommand}" />
+                        <fluent:MenuItem Header="GitHub Project Page" Command="{Binding GotoProjectPageCommand}" />
                         <fluent:GroupSeparatorMenuItem  />
                         <fluent:MenuItem Header="Oanda" Command="{Binding GotoOandaCommand}" />
                         <fluent:MenuItem Header="Oanda API" Command="{Binding GotoOandaApiCommand}" />
@@ -85,7 +85,7 @@
                     </fluent:SplitButton>
 
 
-                    <fluent:Button Header="About"  LargeIcon="\Images\Help_32x.png" Command="{Binding AboutCommand}" />
+                    <fluent:Button Header="About" fluent:KeyTip.Keys="A" Icon="\Images\Help_32x.png" LargeIcon="\Images\Help_32x.png" Command="{Binding AboutCommand}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
