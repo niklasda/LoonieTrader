@@ -41,8 +41,8 @@
       <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ControlzEx, Version=2.0.1.61, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
-      <HintPath>..\packages\ControlzEx.2.0.1.61\lib\net45\ControlzEx.dll</HintPath>
+    <Reference Include="ControlzEx, Version=2.1.4.13, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fluent, Version=4.0.3.394, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
@@ -98,6 +98,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ReachFramework" />
+    <Reference Include="SciChart.Charting, Version=4.2.2.9381, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.4.2.2.9381\lib\net46\SciChart.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SciChart.Core, Version=4.2.2.9381, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.4.2.2.9381\lib\net46\SciChart.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SciChart.Data, Version=4.2.2.9381, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.4.2.2.9381\lib\net46\SciChart.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SciChart.Drawing, Version=4.2.2.9381, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.4.2.2.9381\lib\net46\SciChart.Drawing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
       <Private>True</Private>
@@ -135,7 +151,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\ControlzEx.2.0.1.61\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\ControlzEx.2.1.4.13\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -351,10 +367,6 @@
     <Resource Include="Images\AppBitmap.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Arrow BottomRight 01-WF.png" />
-    <Resource Include="Images\Arrow TopRight 01-WF.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LoonieTrader.Library\LoonieTrader.Library.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
       <Name>LoonieTrader.Library</Name>
@@ -366,6 +378,10 @@
     <ProjectReference Include="..\LoonieTrader.OxyPlot\LoonieTrader.OxyPlot.csproj">
       <Project>{03425278-9ce4-481f-b4f8-e042d99b884b}</Project>
       <Name>LoonieTrader.OxyPlot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoonieTrader.SciChart\LoonieTrader.SciChart.csproj">
+      <Project>{a36e7811-09d4-46b8-90b8-4ff37e794f01}</Project>
+      <Name>LoonieTrader.SciChart</Name>
     </ProjectReference>
     <ProjectReference Include="..\LoonieTrader.Shared\LoonieTrader.Shared.csproj">
       <Project>{f368eb3e-6bf2-46cf-bcae-cb365f4365d0}</Project>

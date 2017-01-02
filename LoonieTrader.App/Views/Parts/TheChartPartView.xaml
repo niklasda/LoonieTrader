@@ -6,16 +6,22 @@
              xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
              xmlns:viewModels="clr-namespace:LoonieTrader.Library.ViewModels;assembly=LoonieTrader.Library"
              xmlns:oxyPlot="clr-namespace:LoonieTrader.OxyPlot;assembly=LoonieTrader.OxyPlot"
+             xmlns:sciChart="clr-namespace:LoonieTrader.SciChart;assembly=LoonieTrader.SciChart"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance d:Type=viewModels:ChartBaseViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <liveCharts:LiveChartsPartView DataContext="{Binding .}" MinHeight="200">
-        </liveCharts:LiveChartsPartView>
+        <sciChart:SciChartPartView DataContext="{Binding .}" MinHeight="200">
+        </sciChart:SciChartPartView>
 
         <!--<oxyPlot:OxyPlotPartView DataContext="{Binding .}" MinHeight="200">
         </oxyPlot:OxyPlotPartView>-->
 
+        <!-- <liveCharts:LiveChartsPartView DataContext="{Binding .}" MinHeight="200">
+        </liveCharts:LiveChartsPartView>-->
+
     </Grid>
 </UserControl>
+
+
 

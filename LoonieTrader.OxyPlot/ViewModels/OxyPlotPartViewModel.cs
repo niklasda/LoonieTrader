@@ -70,10 +70,10 @@ namespace LoonieTrader.OxyPlot.ViewModels
                     double ask = double.Parse(price.asks[0].price, c);
                     var p = new CandleDataViewModel
                     {
-                        Open = (decimal)ask,
-                        High = (decimal)(ask + 0.02),
-                        Low = (decimal)(ask - 0.01),
-                        Close = (decimal)(ask + 0.01),
+                        Open = ask,
+                        High = (ask + 0.02),
+                        Low = (ask - 0.01),
+                        Close = (ask + 0.01),
                         Date = DateTime.Now.ToString("yyyyMMdd"),
                         Time = DateTime.Now.ToString("HHmmss")
                     };

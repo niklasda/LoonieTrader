@@ -11,25 +11,21 @@
         Width="1280" MinWidth="960"
         Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
     <Window.InputBindings>
-        <!--<KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>
         <KeyBinding Key="H" Modifiers="Control" Command="{Binding NewChartCommand}"/>
         <KeyBinding Key="D2" Modifiers="Control" Command="{Binding AccountInformationCommand}"/>
         <KeyBinding Key="D3" Modifiers="Control" Command="{Binding TransactionHistoryCommand}"/>
         <KeyBinding Key="D4" Modifiers="Control" Command="{Binding OpenOrdersCommand}"/>
         <KeyBinding Key="D5" Modifiers="Control" Command="{Binding OpenPositionsCommand}"/>
-        <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>-->
+        <KeyBinding Key="F1" Modifiers="Control" Command="{Binding AboutCommand}"/>
     </Window.InputBindings>
     <DockPanel LastChildFill="True">
         <fluent:Ribbon DockPanel.Dock="Top" CanQuickAccessLocationChanging="False">
             <!--Backstage-->
-
             <fluent:Ribbon.ToolBarItems>
-                <fluent:Button Size="Small" Icon="/Images/Help_32x.png" Command="{Binding AboutCommand}">
-
-                </fluent:Button>
+                <fluent:Button Size="Small" Icon="/Images/Help_32x.png" Command="{Binding AboutCommand}"/>
             </fluent:Ribbon.ToolBarItems>
-
             <!--Quick Access Toolbar Items-->
             <fluent:Ribbon.QuickAccessItems >
                 <!--Use Content or Target Property to set QAT item-->
@@ -40,9 +36,7 @@
             </fluent:Ribbon.QuickAccessItems>
 
             <!--Tabs-->
-
             <fluent:RibbonTabItem Header="Trading"  fluent:KeyTip.Keys="T">
-
                 <fluent:RibbonGroupBox Header="Window">
                     <fluent:Button Header="Order" x:Name="OrderButton" fluent:KeyTip.Keys="R" Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
                     <fluent:Button Header="Chart" x:Name="ChartButton" fluent:KeyTip.Keys="H" Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />

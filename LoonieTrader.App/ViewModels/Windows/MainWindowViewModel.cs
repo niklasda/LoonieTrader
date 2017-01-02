@@ -186,7 +186,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             get
             {
-                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<LiveChartsPartViewModel>();
+                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<ChartBaseViewModel>();
                 return _chartPart;
             }
         }

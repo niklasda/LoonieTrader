@@ -55,11 +55,11 @@ namespace LoonieTrader.LiveCharts.ViewModels
                 Title = "Instrument #0",
                 Values = new ChartValues<CandleDataViewModel>
                 {
-                    new CandleDataViewModel {Open= 1.11m, High=1.13m, Low=1.10m, Close= 1.12m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-50).ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.12m, High=1.14m, Low=1.11m, Close= 1.13m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-40).ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.13m, High=1.15m, Low=1.12m, Close= 1.14m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-30).ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.14m, High=1.16m, Low=1.13m, Close= 1.15m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-20).ToString("HHmmss")},
-                    new CandleDataViewModel {Open= 1.15m, High=1.17m, Low=1.14m, Close= 1.16m, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-10).ToString("HHmmss")}
+                    new CandleDataViewModel {Open= 1.11, High=1.13, Low=1.10, Close= 1.12, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-50).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.12, High=1.14, Low=1.11, Close= 1.13, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-40).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.13, High=1.15, Low=1.12, Close= 1.14, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-30).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.14, High=1.16, Low=1.13, Close= 1.15, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-20).ToString("HHmmss")},
+                    new CandleDataViewModel {Open= 1.15, High=1.17, Low=1.14, Close= 1.16, Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.AddSeconds(-10).ToString("HHmmss")}
                 }
             };
 
@@ -165,10 +165,10 @@ namespace LoonieTrader.LiveCharts.ViewModels
                     double ask = double.Parse(price.asks[0].price, c);
                     var p = new CandleDataViewModel
                     {
-                        Open = (decimal)ask,
-                        High = (decimal)(ask + 0.02),
-                        Low = (decimal)(ask - 0.01),
-                        Close = (decimal)(ask + 0.01),
+                        Open = ask,
+                        High = (ask + 0.02),
+                        Low = (ask - 0.01),
+                        Close = (ask + 0.01),
                         Date = DateTime.Now.ToString("yyyyMMdd"),
                         Time = DateTime.Now.ToString("HHmmss")
                     };
@@ -185,19 +185,19 @@ namespace LoonieTrader.LiveCharts.ViewModels
         {
             var r = new Random();
 
-            decimal seriesLow = 1000;
-            decimal seriesHigh = -1;
+            double seriesLow = 1000;
+            double seriesHigh = -1;
 
             foreach (var point in SeriesCollection[0].Values.Cast<CandleDataViewModel>())
             {
                 seriesLow = Math.Min(seriesLow, point.Low);
                 seriesHigh = Math.Max(seriesHigh, point.High);
 
-                point.Open = r.NextDecimal(point.Low, point.High);
-                point.Close = r.NextDecimal(point.Low, point.High);
+                point.Open = r.NextDouble(point.Low, point.High);
+                point.Close = r.NextDouble(point.Low, point.High);
             }
 
-            var p = new CandleDataViewModel { Open = r.NextDecimal(seriesLow, seriesHigh), High = seriesHigh, Low = seriesLow, Close = r.NextDecimal(seriesLow, seriesHigh), Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
+            var p = new CandleDataViewModel { Open = r.NextDouble(seriesLow, seriesHigh), High = seriesHigh, Low = seriesLow, Close = r.NextDouble(seriesLow, seriesHigh), Date = DateTime.Now.ToString("yyyyMMdd"), Time = DateTime.Now.ToString("HHmmss") };
             SeriesCollection[0].Values.Add(p);
             SeriesCollection[1].Values.Add(p);
             //   Labels.Add(DateTime.Now.AddDays(Labels.Count).Ticks);

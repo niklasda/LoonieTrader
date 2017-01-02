@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Indicators\MovingAverage.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
     <Compile Include="Interfaces\ILeadingIndicator.cs" />
     <Compile Include="Interfaces\IAlgorithmicTrader.cs" />

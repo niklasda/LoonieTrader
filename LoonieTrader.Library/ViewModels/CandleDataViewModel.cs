@@ -23,17 +23,23 @@ namespace LoonieTrader.Library.ViewModels
                 // 636131658420000000 / 36000000000 = 17670323,845
                 return dt;
             }
+            set
+            {
+                Date = value.ToString("yyyyMMdd");
+                Time = value.ToString("HHmmss");
+                
+            }
         }
 
-        public decimal Open { get; set; }
+        public double Open { get; set; }
 
-        public decimal High { get; set; }
+        public double High { get; set; }
 
-        public decimal Low { get; set; }
+        public double Low { get; set; }
 
-        public decimal Close { get; set; }
+        public double Close { get; set; }
 
-        public int Volume { get; set; }
+        public long Volume { get; set; }
     }
     //<TICKER>,<DTYYYYMMDD>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>
 }

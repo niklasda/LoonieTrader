@@ -24,10 +24,10 @@ namespace LoonieTrader.App.ViewModels.Windows
             // {
             SampleData = new List<CandleDataViewModel>()
                 {
-                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160808", Time = "162000", High = 2m, Low = 0.2m, Open = 0.6m, Close = 1.8m},
-                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160809", Time = "162000", High = 2m, Low = 0.3m, Open = 0.9m, Close = 1.7m},
-                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160810", Time = "162000", High = 2m, Low = 1m, Open = 1m, Close = 2m},
-                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160811", Time = "162000", High = 2.1m, Low = 1.1m, Open = 1.1m, Close = 2.1m}
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160808", Time = "162000", High = 2, Low = 0.2, Open = 0.6, Close = 1.8},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160809", Time = "162000", High = 2, Low = 0.3, Open = 0.9, Close = 1.7},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160810", Time = "162000", High = 2, Low = 1, Open = 1, Close = 2},
+                    new CandleDataViewModel() {Ticker = "EURUSD", Date = "20160811", Time = "162000", High = 2.1, Low = 1.1, Open = 1.1, Close = 2.1}
                 };
 
             var cat = exporter.Catalog as DirectoryCatalog;
