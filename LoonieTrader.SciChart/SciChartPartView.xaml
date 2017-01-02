@@ -4,14 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:LoonieTrader.SciChart.ViewModels"
-             xmlns:s="clr-namespace:SciChart.Charting;assembly=SciChart.Charting"
              xmlns:sci="clr-namespace:SciChart.Charting.Visuals;assembly=SciChart.Charting"
              xmlns:ax="clr-namespace:SciChart.Charting.Visuals.Axes;assembly=SciChart.Charting"
              xmlns:anot="clr-namespace:SciChart.Charting.Visuals.Annotations;assembly=SciChart.Charting"
-             xmlns:poi="clr-namespace:SciChart.Charting.Visuals.PointMarkers;assembly=SciChart.Charting"
              xmlns:rend="clr-namespace:SciChart.Charting.Visuals.RenderableSeries;assembly=SciChart.Charting"
              xmlns:mod="clr-namespace:SciChart.Charting.ChartModifiers;assembly=SciChart.Charting"
-             xmlns:markupExtensions="http://schemas.abtsoftware.co.uk/scichart"
 
              x:Class="LoonieTrader.SciChart.SciChartPartView"
              mc:Ignorable="d"
@@ -39,34 +36,30 @@
             </sci:SciChartSurface.Resources>
 
             <sci:SciChartSurface.RenderableSeries>
-                <!--  Series 0..3 are shown or hidden based on ChartType property in ViewModel bound to IsVisible on series  -->
-                <!--  Only one is shown at any one time and these series show the data for DataSet.Series[0]  -->
-                <rend:FastCandlestickRenderableSeries DataSeries="{Binding PriceData}"
-                                                       ResamplingMode="MinMax"
-                                                       >
-                </rend:FastCandlestickRenderableSeries>
-                
-                </sci:SciChartSurface.RenderableSeries>
+                <rend:FastCandlestickRenderableSeries DataSeries="{Binding PriceData}" ResamplingMode="MinMax"/>
+            </sci:SciChartSurface.RenderableSeries>
                 <!--  Create an X Axis  -->
             <sci:SciChartSurface.XAxis>
-                <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Always"  DrawMajorBands="True" DrawMajorGridLines="True" GrowBy="0,0.1"/>
+                <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once"  DrawMajorBands="True" DrawMajorGridLines="True" GrowBy="0,0.1"/>
             </sci:SciChartSurface.XAxis>
             <!--  Create a Y Axis  -->
             <sci:SciChartSurface.YAxis>
-                <ax:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Always" DrawMajorBands="True" DrawMajorGridLines="True" />
+                <ax:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Once" DrawMajorBands="True" DrawMajorGridLines="True" />
             </sci:SciChartSurface.YAxis>
             <!--  Specify interactivity modifiers  -->
             <sci:SciChartSurface.ChartModifier>
                 <mod:ModifierGroup>
                     <mod:RubberBandXyZoomModifier IsEnabled="True" />
-                    <mod:ZoomExtentsModifier IsEnabled="False" />
+                    <mod:ZoomExtentsModifier IsEnabled="True" />
                     <mod:ZoomPanModifier IsEnabled ="False"/>
-                    <mod:TooltipModifier IsEnabled="True"/>
+                    <mod:TooltipModifier IsEnabled="False" />
+                    <mod:RolloverModifier IsEnabled="True" DrawVerticalLine="True" ShowTooltipOn="Always" SourceMode="AllSeries" ShowAxisLabels="True" />
                 </mod:ModifierGroup>
             </sci:SciChartSurface.ChartModifier>
             <!-- Add annotations hints to the user -->
             <sci:SciChartSurface.Annotations>
                 <anot:TextAnnotation Text="Hello world!" X1="5.0" Y1="5.0"/>
+
             </sci:SciChartSurface.Annotations>
         </sci:SciChartSurface>
     </Grid>

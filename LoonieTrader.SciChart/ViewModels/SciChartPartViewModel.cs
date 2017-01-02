@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using AutoMapper;
+using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
@@ -36,7 +37,8 @@ namespace LoonieTrader.SciChart.ViewModels
             Instrument instrument = ViewModels.Instrument.EurUsd;
             TimeFrame timeFrame = TimeFrame.Daily;
 
-            PriceSeries priceData = DataManager.Instance.GetPriceData(instrument.Symbol, timeFrame);
+            var dm = new DataManager();
+            PriceSeries priceData = dm.GetPriceData(instrument.Symbol, timeFrame);
 
             this.PriceData = new OhlcDataSeries<DateTime, double>();
             PriceData.SeriesName = priceData.Symbol;
@@ -44,6 +46,7 @@ namespace LoonieTrader.SciChart.ViewModels
 
             PriceData.InvalidateParentSurface(RangeMode.ZoomToFit);
 
+            UpdateCommand = new RelayCommand(UpdateAllOnClick);
         }
 
         private readonly IMapper _mapper;
@@ -108,9 +111,9 @@ namespace LoonieTrader.SciChart.ViewModels
                     var p = new CandleDataViewModel
                     {
                         Open = ask,
-                        High = (ask + 0.02),
-                        Low = (ask - 0.01),
-                        Close = (ask + 0.01),
+                        High = ask + 0.02,
+                        Low = ask - 0.01,
+                        Close = ask + 0.01,
                         Date = DateTime.Now.ToString("yyyyMMdd"),
                         Time = DateTime.Now.ToString("HHmmss")
                     };
@@ -125,19 +128,23 @@ namespace LoonieTrader.SciChart.ViewModels
             }, null);
         }
 
+        private void UpdateAllOnClick()
+        {
+            AddPoint(new PricesResponse.Price() {asks = new[] {new PricesResponse.Ask() {price = "1.2"}}});
+        }
     }
 
     public class PriceSeries : List<CandleDataViewModel>
     {
         public string Symbol { get; set; }
 
-        public PriceSeries()
-        {
-        }
+        //public PriceSeries()
+        //{
+        //}
 
-        public PriceSeries(int capacity) : base(capacity)
-        {
-        }
+        //public PriceSeries(int capacity) : base(capacity)
+        //{
+        //}
 
         /// <summary>
         /// Extracts the DateTime column of the PriceSeries as an array
@@ -171,9 +178,9 @@ namespace LoonieTrader.SciChart.ViewModels
 
     }
 
-    public class TimeFrame 
+    public class TimeFrame
     {
-        private TimeFrame(string value, string displayname) //: base(value)
+        private TimeFrame(string value, string displayname)
         {
             Displayname = displayname;
             _value = value;
@@ -200,7 +207,7 @@ namespace LoonieTrader.SciChart.ViewModels
         public string Symbol { get { return _value; } }
         public int DecimalPlaces { get; private set; }
 
-        public Instrument(string value, string instrumentName, int decimalPlaces) //: base(value)
+        public Instrument(string value, string instrumentName, int decimalPlaces)
         {
             _value = value;
             InstrumentName = instrumentName;
@@ -222,12 +229,12 @@ namespace LoonieTrader.SciChart.ViewModels
 
     public class DataManager
     {
-        private static readonly DataManager _instance = new DataManager();
+        //private static readonly DataManager _instance = new DataManager();
 
-        public static DataManager Instance
-        {
-            get { return _instance; }
-        }
+        //public static DataManager Instance
+        //{
+        //    get { return _instance; }
+        //}
 
         public PriceSeries GetPriceData(string dataset, TimeFrame timeFrame)
         {

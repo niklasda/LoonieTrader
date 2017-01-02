@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows.Input;
 using AutoMapper;
+using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
@@ -40,6 +41,9 @@ namespace LoonieTrader.OxyPlot.ViewModels
                                 new DataPoint(40, 12),
                                 new DataPoint(50, 12)
                             };
+
+            UpdateCommand = new RelayCommand(UpdateAllOnClick);
+
         }
 
         private readonly IMapper _mapper;
@@ -84,6 +88,10 @@ namespace LoonieTrader.OxyPlot.ViewModels
                 }
             }, null);
 
+        }
+
+        private void UpdateAllOnClick()
+        {
         }
     }
 }
