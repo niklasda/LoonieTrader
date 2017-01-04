@@ -42,7 +42,9 @@ namespace LoonieTrader.App.Mapper
                     .ForMember(i => i.Price, m => m.MapFrom(r => r.price));
 
                 CreateMap<PositionsResponse.Position, PositionViewModel>()
-                    .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)));
+                    .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)))
+                    .ForMember(i => i.UnrealizedPL, m => m.MapFrom(r => decimal.Parse(r.unrealizedPL, sourceCulture)))
+                    .ForMember(i => i.ResettablePL, m => m.MapFrom(r => decimal.Parse(r.resettablePL, sourceCulture)));
 
                 CreateMap<OrdersResponse.Order, OrderViewModel>();
                 CreateMap<ServiceEventsResponse.Event, ServiceEventViewModel>();

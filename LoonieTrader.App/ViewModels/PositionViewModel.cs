@@ -13,9 +13,9 @@ namespace LoonieTrader.App.ViewModels
         public decimal ProfitLoss { get; set; }
 
         [DisplayName(@"Resettable P/L")]
-        public string ResettablePL { get; set; }
+        public decimal ResettablePL { get; set; }
 
         [DisplayName(@"Unrealized P/L")]
-        public string UnrealizedPL { get; set; }
+        public decimal UnrealizedPL { get; set; }
     }
 }

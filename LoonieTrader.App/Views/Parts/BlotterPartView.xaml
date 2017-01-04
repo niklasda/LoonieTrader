@@ -17,11 +17,15 @@
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
                     <xcdg:DataGridControl.Resources>
                         <converters:IsNegativeConverter x:Key="IsNegConv" />
+                        <converters:IsPositiveConverter x:Key="IsPosConv" />
                         <Style TargetType="{x:Type xcdg:DataCell}">
                             <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource IsNegConv}}" Value="True">
-                                    <Setter Property="Foreground" Value="Red" />
+                                    <Setter Property="Foreground" Value="DarkRed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource IsPosConv}}" Value="True">
+                                    <Setter Property="Foreground" Value="DarkGreen" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
