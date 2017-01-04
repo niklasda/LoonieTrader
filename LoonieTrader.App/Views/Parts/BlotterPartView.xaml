@@ -83,9 +83,9 @@
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem Header="Account Information" FlowDirection="LeftToRight">
+            <TabItem Header="Account Details" FlowDirection="LeftToRight">
                 <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
-                                           ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
+                                   NameColumnWidth="200" ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
             </TabItem>
         </TabControl>
 

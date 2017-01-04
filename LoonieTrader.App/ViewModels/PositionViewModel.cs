@@ -9,6 +9,7 @@ namespace LoonieTrader.App.ViewModels
 
         public string Instrument { get; set; }
 
+        [DisplayName(@"Profit/Loss (P/L)")]
         public decimal ProfitLoss { get; set; }
 
         [DisplayName(@"Resettable P/L")]

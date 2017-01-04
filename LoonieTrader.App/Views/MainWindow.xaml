@@ -37,13 +37,13 @@
 
             <!--Tabs-->
             <fluent:RibbonTabItem Header="Trading"  fluent:KeyTip.Keys="T">
-                <fluent:RibbonGroupBox Header="Window">
-                    <fluent:Button Header="Order" x:Name="OrderButton" fluent:KeyTip.Keys="R" Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
+                <fluent:RibbonGroupBox Header="Windows" Height="84">
+                    <fluent:Button Header="New Order" x:Name="OrderButton" fluent:KeyTip.Keys="R" Icon="\Images\IFrame_5767.png"  LargeIcon="\Images\IFrame_5767.png" Command="{Binding ComplexOrderCommand}" />
                     <fluent:Button Header="Chart" x:Name="ChartButton" fluent:KeyTip.Keys="H" Icon="\Images\StockChart_16x.png" LargeIcon="\Images\StockChart_16x.png" Command="{Binding NewChartCommand}" />
                     <fluent:Button Header="Instrument Picker"          fluent:KeyTip.Keys="I" Icon="\Images\MoneyEditor_16x.png" LargeIcon="\Images\MoneyEditor_16x.png" Command="{Binding InstrumentsCommand}" />
                     <fluent:Button Header="Blotter"                    fluent:KeyTip.Keys="B" Icon="\Images\4Rows_16x.png" LargeIcon="\Images\4Rows_16x.png" Command="{Binding BlotterCommand}" />
-                    <fluent:Button Header="Workbench"                  fluent:KeyTip.Keys="W" Icon="\Images\tools_40x.png" LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
-                    <fluent:Button Header="ML"                         fluent:KeyTip.Keys="M" Icon="\Images\Learn.png" LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
+                    <fluent:Button Header="Indicator Workbench"        fluent:KeyTip.Keys="W" Icon="\Images\tools_40x.png" LargeIcon="\Images\tools_40x.png" Command="{Binding WorkbenchCommand}" />
+                    <fluent:Button Header="Machine Learning"           fluent:KeyTip.Keys="M" Icon="\Images\Learn.png" LargeIcon="\Images\Learn.png" Command="{Binding MachineLearningCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Views">
                     <fluent:Button Header="Account Details"      fluent:KeyTip.Keys="A" Icon="\Images\Account_32x.png" LargeIcon="\Images\Account_32x.png" Command="{Binding AccountInformationCommand}" />
@@ -58,7 +58,7 @@
                     <fluent:Button Header="Settings"      fluent:KeyTip.Keys="S" Icon="\Images\Settings_32x.png" LargeIcon="\Images\Settings_32x.png" Command="{Binding SettingsCommand}" />
                     <fluent:Button Header="Log Out"       fluent:KeyTip.Keys="U" Icon="\Images\Exit_16x.png"  LargeIcon="\Images\Exit_16x.png" Command="{Binding LogOutCommand}" />
                 </fluent:RibbonGroupBox>
-                <fluent:RibbonGroupBox Header="Diagnostice">
+                <fluent:RibbonGroupBox Header="Diagnostics">
                     <fluent:Button Header="Logs"            fluent:KeyTip.Keys="L" Icon="\Images\dialog_32xLG.png" LargeIcon="\Images\dialog_32xLG.png" Command="{Binding LogCommand}" />
                     <fluent:Button Header="Service Status"  fluent:KeyTip.Keys="V" Icon="\Images\StatusWarning_grey_32xLG.png" LargeIcon="\Images\StatusWarning_grey_32xLG.png" Command="{Binding ServiceStatusCommand}" />
                 </fluent:RibbonGroupBox>
@@ -166,13 +166,6 @@
                         <ComboBox ItemsSource="{Binding AvailableTimeframes}" VerticalContentAlignment="Center" Width="160" SelectedIndex="0" Margin="2,0" />
 
                         <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center" SelectedItem="{Binding SelectedIndicator}"  Width="170" Margin="2,0"  />
-
-                        <Button Content="_Order..." Command="{Binding ComplexOrderCommand}" FontSize="14" Padding="10" Margin="30,0,0,0" />
-                        <Button Content="C_hart..." Command="{Binding NewChartCommand}" FontSize="14" Padding="10" Margin="2,0" />
-                        <Button Content="_Workbench..." Command="{Binding WorkbenchCommand}" FontSize="14" Padding="10" Margin="2,0" />
-                        <Button Content="_Instruments..." Command="{Binding InstrumentsCommand}" FontSize="14" Padding="10" Margin="2,0" />
-                        <Button Content="_Blotter..." Command="{Binding BlotterCommand}" FontSize="14" Padding="10" Margin="2,0" />
-                        <Button Content="_ML..." Command="{Binding MachineLearningCommand}" FontSize="14" Padding="10" Margin="2,0" />
 
                     </StackPanel>
                     <parts:TheChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
