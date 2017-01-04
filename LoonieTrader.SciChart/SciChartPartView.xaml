@@ -8,6 +8,7 @@
              xmlns:ax="clr-namespace:SciChart.Charting.Visuals.Axes;assembly=SciChart.Charting"
              xmlns:anot="clr-namespace:SciChart.Charting.Visuals.Annotations;assembly=SciChart.Charting"
              xmlns:rend="clr-namespace:SciChart.Charting.Visuals.RenderableSeries;assembly=SciChart.Charting"
+             xmlns:mup="clr-namespace:SciChart.Charting.Common.MarkupExtensions;assembly=SciChart.Charting"
              xmlns:mod="clr-namespace:SciChart.Charting.ChartModifiers;assembly=SciChart.Charting"
 
              x:Class="LoonieTrader.SciChart.SciChartPartView"
@@ -25,7 +26,7 @@
             <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
         </StackPanel>
 
-        <sci:SciChartSurface Grid.Row="1" >
+        <sci:SciChartSurface Grid.Row="1" RenderableSeries="{mup:SeriesBinding RenderableSeriesViewModels}">
 
             <sci:SciChartSurface.Resources>
                 <Style TargetType="rend:FastLineRenderableSeries">
@@ -35,9 +36,9 @@
                 </Style>
             </sci:SciChartSurface.Resources>
 
-            <sci:SciChartSurface.RenderableSeries>
+            <!--<sci:SciChartSurface.RenderableSeries>
                 <rend:FastCandlestickRenderableSeries DataSeries="{Binding PriceData}" ResamplingMode="MinMax"/>
-            </sci:SciChartSurface.RenderableSeries>
+            </sci:SciChartSurface.RenderableSeries>-->
                 <!--  Create an X Axis  -->
             <sci:SciChartSurface.XAxis>
                 <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once"  DrawMajorBands="True" DrawMajorGridLines="True" GrowBy="0,0.1"/>

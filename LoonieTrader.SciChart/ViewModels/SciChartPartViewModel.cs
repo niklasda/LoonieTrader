@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,8 @@ using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.ViewModels;
+using LoonieTrader.Shared.Indicators;
+using SciChart.Charting.Model.ChartSeries;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Data.Model;
 
@@ -44,7 +47,19 @@ namespace LoonieTrader.SciChart.ViewModels
             PriceData.SeriesName = priceData.Symbol;
             PriceData.Append(priceData.TimeData, priceData.OpenData, priceData.HighData, priceData.LowData, priceData.CloseData);
 
-            PriceData.InvalidateParentSurface(RangeMode.ZoomToFit);
+            //PriceData.InvalidateParentSurface(RangeMode.ZoomToFit);
+
+            MovingAverage _sma50 = new MovingAverage(3);
+            var ds1 = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA" };
+
+            ds1.Append(PriceData.XValues.Select(x => x), PriceData.CloseValues.Select(y => _sma50.Push(y).Current));
+
+
+            RenderableSeriesViewModels = new ObservableCollection<BaseRenderableSeriesViewModel>();
+
+          //  RenderableSeriesViewModels.Add( new OhlcRenderableSeriesViewModel() {DataSeries = PriceData });
+            RenderableSeriesViewModels.Add( new CandlestickRenderableSeriesViewModel() {DataSeries = PriceData });
+            RenderableSeriesViewModels.Add( new LineRenderableSeriesViewModel() { DataSeries = ds1 });
 
             UpdateCommand = new RelayCommand(UpdateAllOnClick);
         }
@@ -87,6 +102,18 @@ namespace LoonieTrader.SciChart.ViewModels
                     _xVisibleRange = value;
                     RaisePropertyChanged();
                 }
+            }
+        }
+
+        private ObservableCollection<BaseRenderableSeriesViewModel> _seriesViewModels;
+
+        public ObservableCollection<BaseRenderableSeriesViewModel> RenderableSeriesViewModels
+        {
+            get { return _seriesViewModels; }
+            set
+            {
+                _seriesViewModels = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -216,6 +243,7 @@ namespace LoonieTrader.SciChart.ViewModels
 
         public static readonly Instrument EurUsd = new Instrument("EURUSD", "FX Euro US Dollar", 4);
         public static readonly Instrument Indu = new Instrument("INDU", "Dow Jones Industrial Average", 0);
+
         public static readonly Instrument Spx500 = new Instrument("SPX500", "S&P500 Index", 0);
         public static readonly Instrument CrudeOil = new Instrument("CL", "Light Crude Oil", 0);
         public static readonly Instrument Test = new Instrument("TEST", "Test data only", 0);
