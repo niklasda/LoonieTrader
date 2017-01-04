@@ -7,6 +7,7 @@
              xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
+             xmlns:converters="clr-namespace:LoonieTrader.App.ViewModels.Converters"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance d:Type=windows:BlotterWindowViewModel}"
              d:DesignHeight="300" d:DesignWidth="800">
@@ -15,9 +16,16 @@
             <TabItem Header="Open Positions" FlowDirection="LeftToRight">
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
                     <xcdg:DataGridControl.Resources>
+                        <converters:IsNegativeConverter x:Key="IsNegConv" />
                         <Style TargetType="{x:Type xcdg:DataCell}">
                             <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Converter={StaticResource IsNegConv}}" Value="True">
+                                    <Setter Property="Foreground" Value="Red" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
+                        
                     </xcdg:DataGridControl.Resources>
                     <xcdg:DataGridControl.ContextMenu>
                         <ContextMenu>
