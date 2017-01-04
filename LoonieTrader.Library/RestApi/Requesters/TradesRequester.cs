@@ -21,7 +21,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             // OPEN The Trade is currently open, CLOSED The Trade has been fully closed, CLOSE_WHEN_TRADEABLE The Trade will be closed as soon as the trade’s instrument becomes tradeable
             string urlTrades = base.GetRestUrl("accounts/{0}/trades?state=CLOSED");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTrades, accountId);
                 base.SaveLocalJson("trades", accountId, responseString);
@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlOpenTrades = base.GetRestUrl("accounts/{0}/openTrades");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOpenTrades, accountId);
                 base.SaveLocalJson("tradesOpen", accountId, responseString);
@@ -54,7 +54,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlTradeDetails = base.GetRestUrl("accounts/{0}/trades/{1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTradeDetails, accountId, tradeId);
                 base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);

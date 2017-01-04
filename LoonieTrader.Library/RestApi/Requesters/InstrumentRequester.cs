@@ -52,7 +52,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         private CandlesResponse GetCandlesInternal(string url, string tag)
         {
-             using (WebClient wc = GetAuthenticatedWebClient())
+             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, url);
                 base.SaveLocalJson("candles", tag, responseString);

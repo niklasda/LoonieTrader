@@ -20,7 +20,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlServiceList = base.GetHttpRestUrl("service-lists");
 
-            using (WebClient wc = GetAnonymousWebClient())
+            using (var wc = GetAnonymousWebClient())
             {
                 var responseString = GetData(wc, urlServiceList);
                 base.SaveLocalJson("service-list", "all", responseString);
@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlServices = base.GetHttpRestUrl("services");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlServices);
                 base.SaveLocalJson("services", "all", responseString);
@@ -53,7 +53,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlService = base.GetHttpRestUrl("services/{0}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlService, serviceId);
                 base.SaveLocalJson("services", serviceId, responseString);
@@ -69,7 +69,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlStatuses = base.GetHttpRestUrl("statuses");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlStatuses);
                 base.SaveLocalJson("statuses", "all", responseString);
@@ -85,7 +85,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlStatus = base.GetHttpRestUrl("statuses/{0}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlStatus, statusId);
                 base.SaveLocalJson("statuses", statusId, responseString);
@@ -101,7 +101,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlService = base.GetHttpRestUrl("services/{0}/events");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlService, serviceId);
                 base.SaveLocalJson("serviceEvents", serviceId, responseString);
@@ -117,7 +117,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlService = base.GetHttpRestUrl("services/{0}/events/{1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlService, serviceId, eventId);
                 base.SaveLocalJson("serviceEvent", serviceId, eventId, responseString);

@@ -32,7 +32,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlPrices = base.GetRestUrl("accounts/{0}/pricing?instruments={1}&since={2}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId, instrument, "2016-08-05T04:00:00.000000Z"));
 

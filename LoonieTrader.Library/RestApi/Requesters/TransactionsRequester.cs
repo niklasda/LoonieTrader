@@ -20,7 +20,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionPages, accountId);
                 base.SaveLocalJson("transactionPages", accountId, responseString);
@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlTransactions = base.GetRestUrl("accounts/{0}/transactions/idrange?from=3200&to=3300");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactions, accountId);
                 base.SaveLocalJson("transactions", accountId, responseString);
@@ -54,7 +54,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlTransactionDetails = base.GetRestUrl("accounts/{0}/transactions/{1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionDetails, accountId, transactionId);
                 base.SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
@@ -72,7 +72,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             // todo might not be available yet
             string urlTransactionStream = base.GetRestUrl("accounts/{0}/transactions/steam/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionStream, accountId);
 

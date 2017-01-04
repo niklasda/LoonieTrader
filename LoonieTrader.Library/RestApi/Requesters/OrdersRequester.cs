@@ -21,7 +21,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlOrders = base.GetRestUrl("accounts/{0}/orders"); // ?instrument=EUR_USD   ?state=PENDING    ?ids=177
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOrders, accountId);
                 base.SaveLocalJson("orders", accountId, responseString);
@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlPendingOrders = base.GetRestUrl("accounts/{0}/pendingOrders/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlPendingOrders, accountId);
                 base.SaveLocalJson("ordersPending", accountId, responseString);
@@ -53,7 +53,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlOrderDetails = base.GetRestUrl("accounts/{0}/orders/{1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOrderDetails, accountId, orderId);
                 base.SaveLocalJson("orderDetails", accountId, orderId, responseString);
@@ -69,7 +69,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlCreateOrder = base.GetRestUrl("accounts/{0}/orders/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
                 base.Logger.Debug(orderJson.PrettyPrintJson());
@@ -89,7 +89,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public OrderCreateResponse PutCancelOrder(string accountId, string orderId)
         {
             string urlCancelOrder = base.GetRestUrl("accounts/{0}/orders/{1}/cancel");
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 //var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
                 //base.Logger.Debug(orderJson.PrettyPrintJson());

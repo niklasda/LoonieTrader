@@ -43,7 +43,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlAccounts = base.GetRestUrl("accounts");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccounts);
                 base.SaveLocalJson("accounts", "all", responseString);
@@ -60,7 +60,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlAccountDetails = base.GetRestUrl("accounts/{0}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccountDetails, accountId);
                 base.SaveLocalJson("accountDetails", accountId, responseString);
@@ -76,7 +76,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlAccountSummary = base.GetRestUrl("accounts/{0}/summary");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccountSummary, accountId);
                 base.SaveLocalJson("accountSummary", accountId, responseString);
@@ -92,7 +92,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlInstruments = base.GetRestUrl("accounts/{0}/instruments");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlInstruments, accountId);
                 base.SaveLocalJson("accountInstruments", accountId, responseString);
@@ -108,7 +108,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlChanges = base.GetRestUrl("accounts/{0}/changes?sinceTransactionID={1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlChanges, accountId, transactionId);
                 base.SaveLocalJson("accountChanges", accountId, responseString);
@@ -124,7 +124,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlInstruments = base.GetRestUrl("accounts/{0}/configuration");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = PatchData(wc, urlInstruments, accountId);
                 base.SaveLocalJson("accountPatch", accountId, responseString);

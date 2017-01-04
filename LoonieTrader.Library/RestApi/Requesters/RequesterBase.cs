@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Text;
 using JetBrains.Annotations;
 using JsonPrettyPrinterPlus;
@@ -53,19 +54,30 @@ namespace LoonieTrader.Library.RestApi.Requesters
             get { return _logger; }
         }
 
-        protected WebClient GetAuthenticatedWebClient()
+        private LoonieWebClient _authWc;
+        private LoonieWebClient _anonWc;
+
+        protected LoonieWebClient GetAuthenticatedWebClient()
         {
-            var wc = new WebClient();
-            wc.Headers.Add("Authorization", BearerApiKey);
-            wc.Headers.Add("Content-Type", "application/json");
-            return wc;
+            if (_authWc == null)
+            {
+                _authWc = new LoonieWebClient();
+                _authWc.Headers.Add("Authorization", BearerApiKey);
+                _authWc.Headers.Add("Content-Type", "application/json");
+            }
+
+            return _authWc;
         }
 
-        protected WebClient GetAnonymousWebClient()
+        protected LoonieWebClient GetAnonymousWebClient()
         {
-            var wc = new WebClient();
-            wc.Headers.Add("Content-Type", "application/json");
-            return wc;
+            if (_anonWc == null)
+            {
+                _anonWc = new LoonieWebClient();
+                _anonWc.Headers.Add("Content-Type", "application/json");
+            }
+
+            return _anonWc;
         }
 
         protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json)
@@ -83,7 +95,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string GetData(WebClient wc, string urlFormat, params object[] args)
+        protected string GetData(LoonieWebClient wc, string urlFormat, params object[] args)
         {
             try
             {
@@ -100,7 +112,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PostData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PostData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
             {
@@ -118,7 +130,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PutData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PutData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
             {
@@ -136,7 +148,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PatchData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PatchData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
         {
             try
             {

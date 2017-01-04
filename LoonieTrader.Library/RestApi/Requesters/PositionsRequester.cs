@@ -22,7 +22,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlPositions = base.GetRestUrl("accounts/{0}/positions/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlPositions, accountId);
                 //var responseBytes = wc.GetData(string.Format(urlPositions, accountId));
@@ -40,7 +40,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlOpenPositions = base.GetRestUrl("accounts/{0}/openPositions/");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOpenPositions, accountId);
                 base.SaveLocalJson("positionsOpen", accountId, responseString);
@@ -56,7 +56,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlInstrumentPositions = base.GetRestUrl("accounts/{0}/positions/{1}");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlInstrumentPositions, accountId, instrument);
                 base.SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
@@ -72,7 +72,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             string urlInstrumentClose = base.GetRestUrl("accounts/{0}/positions/{1}/close");
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var parameters = new PositionsCloseResponse.ClosePositionParameters()
                 {

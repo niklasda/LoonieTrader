@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.IO;
-using System.Net;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
@@ -35,7 +34,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             string urlPricesStream = base.GetStreamingRestUrl("accounts/{0}/pricing/stream?instruments={1}");
             var uri = new Uri(string.Format(urlPricesStream, accountId, instrument));
 
-            using (WebClient wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 Stream responseStream = wc.OpenRead(uri);
                 var obsStream = new ObservableStream<PricesResponse.Price>(responseStream, Logger);

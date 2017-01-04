@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RestApi\Requesters\LoonieWebClient.cs" />
     <Compile Include="ViewModels\CandleDataViewModel.cs" />
     <Compile Include="ViewModels\ChartBaseViewModel.cs" />
     <Compile Include="ViewModels\InstrumentViewModel.cs" />
