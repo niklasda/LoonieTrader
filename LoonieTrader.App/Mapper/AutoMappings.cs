@@ -3,7 +3,9 @@ using AutoMapper;
 using LiveCharts.Defaults;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
+using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Models;
@@ -22,7 +24,7 @@ namespace LoonieTrader.App.Mapper
         {
             public MappingProfile()
             {
-                var sourceCulture = new CultureInfo("en-US");
+                var serverCulture = AppProperties.ServerCulture;
 
                 CreateMap<AccountInstrumentsResponse.Instrument, InstrumentViewModel>();
 
@@ -30,8 +32,11 @@ namespace LoonieTrader.App.Mapper
 
                 CreateMap<ComplexOrderWindowViewModel, OrderCreateResponse.OrderDefinition.Order>()
                     .ForMember(i => i.instrument, m => m.MapFrom(r => r.SelectedInstrument.Name))
-                    .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice))
-                    .ForMember(i => i.units, m => m.MapFrom(r => r.Amount));
+                    .ForMember(i => i.price, m => m.MapFrom(r => r.MainPrice.ToString(serverCulture)))
+                    .ForMember(i => i.timeInForce, m => m.MapFrom(r => r.IsGtcExpiry ? TimeInForce.GTC.ToString() : TimeInForce.GTD.ToString()))
+                    .ForMember(i => i.type, m => m.MapFrom(r => r.IsMarketOrder ? OrderTypes.MARKET.ToString() : OrderTypes.LIMIT.ToString()))
+                    .ForMember(i => i.positionFill, m => m.MapFrom(r => OrderPositionFill.DEFAULT.ToString()))
+                    .ForMember(i => i.units, m => m.MapFrom(r => r.Amount.ToString(serverCulture)));
 
                 CreateMap<PricesResponse.Bid, PriceDepthViewModel>()
                     .ForMember(i => i.Bid, m => m.MapFrom(r => r.liquidity))
@@ -42,9 +47,9 @@ namespace LoonieTrader.App.Mapper
                     .ForMember(i => i.Price, m => m.MapFrom(r => r.price));
 
                 CreateMap<PositionsResponse.Position, PositionViewModel>()
-                    .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, sourceCulture)))
-                    .ForMember(i => i.UnrealizedPL, m => m.MapFrom(r => decimal.Parse(r.unrealizedPL, sourceCulture)))
-                    .ForMember(i => i.ResettablePL, m => m.MapFrom(r => decimal.Parse(r.resettablePL, sourceCulture)));
+                    .ForMember(i => i.ProfitLoss, m => m.MapFrom(r => decimal.Parse(r.pl, serverCulture)))
+                    .ForMember(i => i.UnrealizedPL, m => m.MapFrom(r => decimal.Parse(r.unrealizedPL, serverCulture)))
+                    .ForMember(i => i.ResettablePL, m => m.MapFrom(r => decimal.Parse(r.resettablePL, serverCulture)));
 
                 CreateMap<OrdersResponse.Order, OrderViewModel>();
                 CreateMap<ServiceEventsResponse.Event, ServiceEventViewModel>();
@@ -53,7 +58,8 @@ namespace LoonieTrader.App.Mapper
                 CreateMap<TradesResponse.Trade, TradeViewModel>();
 
                 CreateMap<TransactionsResponse.Transaction, TransactionViewModel>()
-                    .ForMember(i => i.AccountBalance, m => m.MapFrom(r => decimal.Parse(r.accountBalance ?? "0", sourceCulture)));
+                    .ForMember(i => i.AccountBalance, m => m.MapFrom(r => decimal.Parse(r.accountBalance ?? "0", serverCulture)))
+                    .ForMember(i => i.Id, m => m.MapFrom(r => int.Parse(r.id ?? "0", serverCulture)));
 
 
                 CreateMap<CandleDataRecord, CandleDataViewModel>();

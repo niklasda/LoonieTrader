@@ -8,7 +8,7 @@
         public string BatchID { get; set; }
         public int DivisionID { get; set; }
         public string HomeCurrency { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
         public int SiteID { get; set; }
         public string Time { get; set; }
         public string Type { get; set; }

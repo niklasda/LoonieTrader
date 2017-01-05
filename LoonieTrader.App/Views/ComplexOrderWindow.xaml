@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0"  IsEnabled="{Binding SellButtonEnabled}" FontSize="14"
+                <Button Grid.Column="0"  IsEnabled="{Binding SellButtonEnabled}" FontSize="14"  ToolTip="Sell"
                                  Command="{Binding SellCommand}" Margin="10" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -58,7 +58,7 @@
                         <TextBlock  Grid.Column="1" Text="{Binding SellButtonLabel}"  IsEnabled="{Binding SellButtonEnabled}" Margin="20,10"></TextBlock>
                     </Grid>
                 </Button>
-                <Button Grid.Column="1"  IsEnabled="{Binding BuyButtonEnabled}" FontSize="14"
+                <Button Grid.Column="1"  IsEnabled="{Binding BuyButtonEnabled}" FontSize="14" ToolTip="Buy"
                                    Command="{Binding BuyCommand}" Margin="10" >
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

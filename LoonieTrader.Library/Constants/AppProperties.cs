@@ -1,4 +1,7 @@
-﻿namespace LoonieTrader.Library.Constants
+﻿using System;
+using System.Globalization;
+
+namespace LoonieTrader.Library.Constants
 {
     public static class AppProperties
     {
@@ -9,5 +12,6 @@
 
         public static string FavouritesFolderName { get; set; } = "Favourites";
 
+        public static IFormatProvider ServerCulture { get; set; } = new CultureInfo("en-US");
     }
 }

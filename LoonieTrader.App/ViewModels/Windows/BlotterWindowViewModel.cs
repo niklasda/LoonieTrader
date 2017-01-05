@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using AutoMapper;
@@ -98,7 +99,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
                 _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
 
-                return _transactionList;
+                return _transactionList.OrderByDescending(t => t.Id).ToList();
             }
         }
 
@@ -155,6 +156,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
             }
         }
+
         private void ModifyPosition()
         {
             Console.WriteLine(SelectedPosition.Instrument);

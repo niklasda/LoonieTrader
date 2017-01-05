@@ -250,7 +250,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             try
             {
                 OrderCreateResponse ocr = _orderRequester.PostCreateOrder(_settings.DefaultAccountId, od);
-
+                MessageBox.Show(Application.Current.MainWindow, string.Format("Order Placed: {0}", ocr.lastTransactionID), "Order Placed");
             }
             catch (WebException wex)
             {

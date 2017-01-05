@@ -9,6 +9,7 @@ using System.Windows.Input;
 using AutoMapper;
 using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
+using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -126,7 +127,8 @@ namespace LoonieTrader.SciChart.ViewModels
         private void AddPoint(PricesResponse.Price price)
         {
             // needed to parse price string since they use us separators
-            var c = CultureInfo.GetCultureInfo("en-US");
+            // var c = CultureInfo.GetCultureInfo("en-US");
+            var serverCulture = AppProperties.ServerCulture;
 
             _uiContext.Post(o =>
             {
@@ -134,7 +136,7 @@ namespace LoonieTrader.SciChart.ViewModels
 
                 if (price.asks?.Length > 0)
                 {
-                    double ask = double.Parse(price.asks[0].price, c);
+                    double ask = double.Parse(price.asks[0].price, serverCulture);
                     var p = new CandleDataViewModel
                     {
                         Open = ask,
