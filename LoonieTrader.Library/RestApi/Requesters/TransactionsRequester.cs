@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using JetBrains.Annotations;
 using Jil;
@@ -50,6 +53,39 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
+        public TransactionsResponse GetAllTransactions(string accountId)
+        {
+            string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions/");
+
+            using (var wc = GetAuthenticatedWebClient())
+            {
+                var responsePagesString = GetData(wc, urlTransactionPages, accountId);
+                //base.SaveLocalJson("transactionPages", accountId, responseString);
+                TransactionsResponse responseAll = new TransactionsResponse();
+                List<TransactionsResponse.Transaction> transactions = new List<TransactionsResponse.Transaction>();
+
+                using (var inputPages = new StringReader(responsePagesString))
+                {
+                    var atpr = JSON.Deserialize<TransactionPagesResponse>(inputPages);
+                    foreach (var p in atpr.pages)
+                    {
+                        var responseString = GetData(wc, p, accountId);
+                        using (var input = new StringReader(responseString))
+                        {
+                            var atr = JSON.Deserialize<TransactionsResponse>(input);
+                            //Console.WriteLine(atr);
+
+                            transactions.AddRange(atr.transactions);
+                            responseAll.lastTransactionID = atr.lastTransactionID;
+                        }
+                    }
+                }
+
+                responseAll.transactions = transactions.ToArray();
+                return responseAll;
+            }
+        }
+
         public TransactionDetailsResponse GetTransactionDetails(string accountId, string transactionId)
         {
             string urlTransactionDetails = base.GetRestUrl("accounts/{0}/transactions/{1}");
@@ -67,24 +103,5 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
         }
 
-        public TransactionDetailsResponse GetTransactionStream(string accountId)
-        {
-            // todo might not be available yet
-            string urlTransactionStream = base.GetRestUrl("accounts/{0}/transactions/steam/");
-
-            using (var wc = GetAuthenticatedWebClient())
-            {
-                var responseString = GetData(wc, urlTransactionStream, accountId);
-
-                // todo what will be saved here?
-                base.SaveLocalJson("transactionStream", accountId, responseString);
-
-                using (var input = new StringReader(responseString))
-                {
-                    var atr = JSON.Deserialize<TransactionDetailsResponse>(input);
-                    return atr;
-                }
-            }
-        }
     }
 }

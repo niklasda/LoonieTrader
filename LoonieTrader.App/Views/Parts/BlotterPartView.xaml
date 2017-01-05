@@ -13,11 +13,13 @@
              d:DesignHeight="300" d:DesignWidth="800">
     <Grid>
         <TabControl Grid.Row="0" FlowDirection="RightToLeft" AllowDrop="False" SelectedIndex="{Binding SelectedTabIndex}" >
+            <TabControl.Resources>
+                <converters:IsNegativeConverter x:Key="IsNegConv" />
+                <converters:IsPositiveConverter x:Key="IsPosConv" />
+            </TabControl.Resources>
             <TabItem Header="Open Positions" FlowDirection="LeftToRight">
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
                     <xcdg:DataGridControl.Resources>
-                        <converters:IsNegativeConverter x:Key="IsNegConv" />
-                        <converters:IsPositiveConverter x:Key="IsPosConv" />
                         <Style TargetType="{x:Type xcdg:DataCell}">
                             <EventSetter Event="PreviewMouseRightButtonDown" Handler="previewMouseRightButtonDown " />
                             <Style.Triggers>
@@ -84,7 +86,7 @@
                         </Style>
                     </xcdg:DataGridControl.Resources>
                     <xcdg:DataGridControl.View>
-                        <xcdg:TableView  ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
+                        <xcdg:TableView  ColumnStretchMode="None" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >
                             <xcdg:TableView.FixedHeaders>
                                 <DataTemplate>
                                     <xcdg:ColumnManagerRow AllowSort="False" AllowColumnReorder="False" />

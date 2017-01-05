@@ -95,7 +95,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             get
             {
                 // todo, maybe not reload everytime
-                TransactionsResponse transactionsResponse = _transactionsRequester.GetTransactions(_settings.DefaultAccountId);
+                TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
                 _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
 
                 return _transactionList;

@@ -23,7 +23,9 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         [Test]
         public void TestGetAccountTransactionPages()
         {
-            Assert.NotNull(_txr.GetTransactionPages(_s.DefaultAccountId));
+            var resp = _txr.GetTransactionPages(_s.DefaultAccountId);
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
         }
 
         [Test]
@@ -35,13 +37,20 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         }
 
         [Test]
+        public void TestGetAllAccountTransactions()
+        {
+            var resp = _txr.GetAllTransactions(_s.DefaultAccountId);
+            Console.WriteLine(resp);
+            Assert.NotNull(resp);
+        }
+
+        [Test]
         public void TestGetAccountTransactionDetails()
         {
             var resp = _txr.GetTransactionDetails(_s.DefaultAccountId, "3337");
             Console.WriteLine(resp);
             Assert.NotNull(resp);
         }
-
 
     }
 }
