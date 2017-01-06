@@ -120,6 +120,10 @@ namespace LoonieTrader.SciChart.ViewModels
 
         private void Strm_NewPrice(object sender, StreamEventArgs<PricesResponse.Price> e)
         {
+            if (!e.Obj.type.Equals(AppProperties.HeartbeatName))
+            {
+            }
+
             Console.WriteLine(@"addPoint: {0}", e.Obj);
             AddPoint(e.Obj);
         }
