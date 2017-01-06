@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -27,14 +28,10 @@ namespace LoonieTrader.App.ViewModels.Windows
             _transactionsRequester = transactionsRequester;
             _positionsRequester = positionsRequester;
             _mapper = mapper;
+            _accountsRequester = accountsRequester;
             _dialogService = dialogService;
-
-
-            PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
-            _positionList = mapper.Map<IList<PositionViewModel>>(positionsResponse.positions);
-
-            AccountSummaryResponse accountSummaryResponse = accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
-            _accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
+            
+            ReloadLists();
 
             ClosePositionContextCommand = new RelayCommand(ClosePosition);
             ModifyPositionContextCommand = new RelayCommand(ModifyPosition);
@@ -47,19 +44,20 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly IOrdersRequester _ordersRequester;
         private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
+        private readonly IAccountsRequester _accountsRequester;
         private readonly IDialogService _dialogService;
 
-        private IList<PositionViewModel> _positionList;
-        private IList<OrderViewModel> _orderList;
+        private ObservableCollection<PositionViewModel> _positionList;
+        private ObservableCollection<OrderViewModel> _orderList;
        // private IList<TradeViewModel> _tradeList;
-        private IList<TransactionViewModel> _transactionList;
+        private ObservableCollection<TransactionViewModel> _transactionList;
         private AccountSummaryViewModel _accountSummary;
         public ICommand ClosePositionContextCommand { get; set; }
         public ICommand ModifyPositionContextCommand { get; set; }
         public ICommand CancelOrderContextCommand { get; set; }
         public ICommand ModifyOrderContextCommand { get; set; }
 
-        public IList<PositionViewModel> AllPositions
+        public ObservableCollection<PositionViewModel> AllPositions
         {
             /*
              * *  AutoMapper
@@ -71,7 +69,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        public IList<OrderViewModel> AllOrders
+        public ObservableCollection<OrderViewModel> AllOrders
         {
             get
             {
@@ -79,8 +77,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 // todo, maybe not reload everytime
 
-                var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
-                _orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
+                //var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
+                //_orderList = _mapper.Map<IList<OrderViewModel>>(ordersResponse.orders);
 
                 return _orderList;
             }
@@ -91,16 +89,36 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return _accountSummary; }
         }
 
-        public IList<TransactionViewModel> AllTransactions
+        public ObservableCollection<TransactionViewModel> AllTransactions
         {
             get
             {
                 // todo, maybe not reload everytime
-                TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
-                _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+               // TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
+               // _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
 
-                return _transactionList.OrderByDescending(t => t.Id).ToList();
+                return _transactionList;
             }
+        }
+
+        private void ReloadLists()
+        {
+            PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
+           // _positionList.Clear();
+            _positionList = new ObservableCollection<PositionViewModel>(_mapper.Map<IList<PositionViewModel>>(positionsResponse.positions));
+            RaisePropertyChanged(nameof(AllPositions));
+
+            AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
+            _accountSummary = _mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
+            RaisePropertyChanged(nameof(AccountSummary));
+
+            TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
+            _transactionList = new ObservableCollection<TransactionViewModel>(_mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions).OrderByDescending(t => t.Id).ToList());
+            RaisePropertyChanged(nameof(AllTransactions));
+
+            var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
+            _orderList = new ObservableCollection<OrderViewModel>(_mapper.Map<IList<OrderViewModel>>(ordersResponse.orders));
+            RaisePropertyChanged(nameof(AllOrders));
         }
 
         private PositionViewModel _selectedPosition;
@@ -147,35 +165,51 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void ClosePosition()
         {
-            Console.WriteLine(SelectedPosition.Instrument);
-
-            var message = string.Format("Close entire position in {0}", SelectedPosition.Instrument);
-
-            if (_dialogService.AskYesNo(message))
+            if (SelectedPosition != null)
             {
-                _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
+                Console.WriteLine(SelectedPosition.Instrument);
+
+                var message = string.Format("Close entire position in {0}", SelectedPosition.DisplayName);
+
+                if (_dialogService.AskYesNo(message))
+                {
+                    _positionsRequester.PutClosePosition(_settings.DefaultAccountId, SelectedPosition.Instrument);
+                    ReloadLists();
+                }
             }
         }
 
         private void ModifyPosition()
         {
-            Console.WriteLine(SelectedPosition.Instrument);
+            if (SelectedPosition != null)
+            {
+                Console.WriteLine(SelectedPosition.Instrument);
 
-            OpenComplexOrderWindow(null);
+                var instrumentViewModel = new InstrumentViewModel() {Name = SelectedPosition.Instrument, DisplayName = SelectedPosition.DisplayName};
+                OpenComplexOrderWindow(instrumentViewModel);
+                //ReloadLists();
+            }
         }
 
         private void CancelOrder()
         {
-            Console.WriteLine(@"Cancel: " + SelectedOrder?.Instrument);
-
-            //MessageBox.Show(SelectedOrder.Instrument);
+            if (SelectedOrder != null)
+            {
+                Console.WriteLine(@"Cancel: " + SelectedOrder?.Instrument);
+                _ordersRequester.PutCancelOrder(_settings.DefaultAccountId, SelectedOrder.Id);
+                //MessageBox.Show(SelectedOrder.Instrument);
+                ReloadLists();
+            }
         }
 
         private void ModifyOrder()
         {
-            Console.WriteLine(@"Modify: " + SelectedOrder?.Instrument);
-
-            //MessageBox.Show(SelectedOrder.Instrument);
+            if (SelectedOrder != null)
+            {
+                Console.WriteLine(@"Modify: " + SelectedOrder?.Instrument);
+                //ReloadLists();
+                //MessageBox.Show(SelectedOrder.Instrument);
+            }
         }
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)

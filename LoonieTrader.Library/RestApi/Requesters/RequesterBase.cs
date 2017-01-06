@@ -134,9 +134,20 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             try
             {
-                var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                var address = string.Format(urlFormat, args);
-                var responseBytes = wc.UploadData(address, HttpMethod.Put.Method, dataBytes);
+                byte[] responseBytes;
+                if (jsonData != null)
+                {
+                    var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                    var address = string.Format(urlFormat, args);
+                    responseBytes = wc.UploadData(address, HttpMethod.Put.Method, dataBytes);
+                }
+                else
+                {
+                    //var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                    var address = string.Format(urlFormat, args);
+                    responseBytes = wc.UploadData(address, HttpMethod.Put.Method, new byte[0]);
+                }
+
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 return responseString;
             }

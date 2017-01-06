@@ -27,9 +27,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0">
-                <controls:AutoFilteredComboBox ItemsSource="{Binding AllInstruments}" FontSize="14" Padding="2,1" Margin="5"
-                SelectedValue="{Binding SelectedInstrument, Mode=TwoWay}" IsCaseSensitive="False" DropDownOnFocus="True"
-                IsEditable="True" IsTextSearchEnabled="False" DisplayMemberPath="DisplayName"/>
+                <controls:AutoFilteredComboBox ItemsSource="{Binding AllInstruments}" FontSize="14" Padding="2,1" Margin="10,10,0,0"
+                    SelectedValue="{Binding SelectedInstrument, Mode=TwoWay}" IsCaseSensitive="False" DropDownOnFocus="True"
+                    IsEditable="True" IsTextSearchEnabled="False" DisplayMemberPath="DisplayName"/>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <TextBlock VerticalAlignment="Center" Margin="10,0" Text="{Binding SelectedInstrument.Name}"></TextBlock>
