@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -17,6 +19,7 @@ using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.ViewModels;
 using LoonieTrader.LiveCharts.ViewModels;
 using Microsoft.Practices.ServiceLocation;
+using Timer = System.Timers.Timer;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -73,6 +76,11 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoNewsCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaNews));
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
+
+            var dispatcherTimer = new DispatcherTimer(new TimeSpan(0, 0, 5), DispatcherPriority.Normal, dispatcherTimer_Tick, Dispatcher.CurrentDispatcher);
+            dispatcherTimer.Start();
+
+            dispatcherTimer_Tick(null, EventArgs.Empty);
 
             Messenger.Default.Register<ChangeInstrumentMessage>(this, ChangeChartInstrument);
 
@@ -380,9 +388,23 @@ namespace LoonieTrader.App.ViewModels.Windows
             get { return "Left part"; }
         }
 
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            StatusBarRight = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+        }
+
+        private string _rightStatusText;
         public string StatusBarRight
         {
-            get { return "Right part conn info"; }
+            get { return _rightStatusText; }
+            set
+            {
+                if (_rightStatusText != value)
+                {
+                    _rightStatusText = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
 
         private void OpenComplexOrderWindow(InstrumentViewModel instrument)
