@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using Fluent;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
@@ -12,14 +14,16 @@ namespace LoonieTrader.App.Views
         {
             InitializeComponent();
 
+            Closing += Window_Closing;
+
             var ls = ServiceLocator.Current.GetInstance<LayoutService>();
             base.SourceInitialized += (s, e) => ls.Tracker.Configure(this).Apply();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var mvm = base.DataContext as MainWindowViewModel;
-            mvm?.ExitApplicationCommand.Execute(e);
+            var vm = base.DataContext as MainWindowViewModel;
+            vm?.ExitApplicationCommand.Execute(e);
         }
     }
 }

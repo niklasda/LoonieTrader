@@ -9,7 +9,7 @@
         ResizeMode="CanResizeWithGrip"
         Height="700" MinHeight="600"
         Width="1280" MinWidth="960"
-        Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" Closing="Window_Closing">
+        Icon="/LoonieTrader.App;component/Images/AppBitmap.bmp" >
     <Window.InputBindings>
         <KeyBinding Key="O" Modifiers="Control" Command="{Binding ComplexOrderCommand}"/>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding WorkbenchCommand}"/>

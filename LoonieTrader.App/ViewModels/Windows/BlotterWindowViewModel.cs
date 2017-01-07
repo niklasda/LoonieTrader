@@ -29,13 +29,13 @@ namespace LoonieTrader.App.ViewModels.Windows
             _ordersRequester = ordersRequester;
             _transactionsRequester = transactionsRequester;
             _positionsRequester = positionsRequester;
-            _transactionsStreamingRequester = transactionsStreamingRequester;
+            //_transactionsStreamingRequester = transactionsStreamingRequester;
             _mapper = mapper;
             _accountsRequester = accountsRequester;
             _dialogService = dialogService;
 
-            ReloadSomeLists();
-            ObservableStream<TransactionsResponse.Transaction> ts = _transactionsStreamingRequester.GetTransactionStream(_settings.DefaultAccountId);
+            ReloadSomeLists(true);
+            ObservableStream<TransactionsResponse.Transaction> ts = transactionsStreamingRequester.GetTransactionStream(_settings.DefaultAccountId);
             ts.NewValue += Strm_NewTransaction;
 
             ClosePositionContextCommand = new RelayCommand(ClosePosition);
@@ -49,14 +49,24 @@ namespace LoonieTrader.App.ViewModels.Windows
             if (!e.Obj.type.Equals(AppProperties.HeartbeatName))
             {
                 ReloadSomeLists();
+
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    var txvm = _mapper.Map<TransactionViewModel>(e.Obj);
+                    AllTransactions.Insert(0, txvm);
+                }));
             }
 
             Console.WriteLine(@"newTx: {0}", e.Obj.id);
         }
 
+        private void Asdasd(object sender)
+        {
+        }
+
         private readonly ITransactionsRequester _transactionsRequester;
         private readonly IPositionsRequester _positionsRequester;
-        private readonly ITransactionsStreamingRequester _transactionsStreamingRequester;
+        //private readonly ITransactionsStreamingRequester _transactionsStreamingRequester;
         private readonly IOrdersRequester _ordersRequester;
         private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
@@ -83,6 +93,11 @@ namespace LoonieTrader.App.ViewModels.Windows
                 // Positions + OpenPositions
                 return _positionList;
             }
+            set
+            {
+                _positionList = value;
+                RaisePropertyChanged();
+            }
         }
 
         public ObservableCollection<OrderViewModel> AllOrders
@@ -98,11 +113,21 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                 return _orderList;
             }
+            set
+            {
+                _orderList = value;
+                RaisePropertyChanged();
+            }
         }
 
         public AccountSummaryViewModel AccountSummary
         {
             get { return _accountSummary; }
+            set
+            {
+                _accountSummary = value;
+                RaisePropertyChanged();
+            }
         }
 
         public ObservableCollection<TransactionViewModel> AllTransactions
@@ -110,32 +135,37 @@ namespace LoonieTrader.App.ViewModels.Windows
             get
             {
                 // todo, maybe not reload everytime
-               // TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
-               // _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
+                // TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
+                // _transactionList = _mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions);
 
                 return _transactionList;
+            }
+            set
+            {
+                _transactionList = value;
+                RaisePropertyChanged();
             }
         }
 
         private void ReloadSomeLists(bool loadTransactions = false)
         {
              AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
-            _accountSummary = _mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
-            RaisePropertyChanged(nameof(AccountSummary));
+            AccountSummary = _mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
+            //RaisePropertyChanged(nameof(AccountSummary));
 
             PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
-            _positionList = new ObservableCollection<PositionViewModel>(_mapper.Map<IList<PositionViewModel>>(positionsResponse.positions));
-            RaisePropertyChanged(nameof(AllPositions));
+            AllPositions = new ObservableCollection<PositionViewModel>(_mapper.Map<IList<PositionViewModel>>(positionsResponse.positions));
+           // RaisePropertyChanged(nameof(AllPositions));
 
             var ordersResponse = _ordersRequester.GetOrders(_settings.DefaultAccountId);
-            _orderList = new ObservableCollection<OrderViewModel>(_mapper.Map<IList<OrderViewModel>>(ordersResponse.orders));
-            RaisePropertyChanged(nameof(AllOrders));
+            AllOrders = new ObservableCollection<OrderViewModel>(_mapper.Map<IList<OrderViewModel>>(ordersResponse.orders));
+            //RaisePropertyChanged(nameof(AllOrders));
 
             if (loadTransactions)
             {
                 TransactionsResponse transactionsResponse = _transactionsRequester.GetAllTransactions(_settings.DefaultAccountId);
-                _transactionList = new ObservableCollection<TransactionViewModel>(_mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions).OrderByDescending(t => t.Id).ToList());
-                RaisePropertyChanged(nameof(AllTransactions));
+                AllTransactions = new ObservableCollection<TransactionViewModel>(_mapper.Map<IList<TransactionViewModel>>(transactionsResponse.transactions).OrderByDescending(t => t.Id).ToList());
+               // RaisePropertyChanged(nameof(AllTransactions));
             }
         }
 
