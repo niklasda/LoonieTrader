@@ -19,6 +19,22 @@ namespace LoonieTrader.App.Views.Parts
         public InstrumentPartView()
         {
             InitializeComponent();
+            InstrumentTree.Loaded += InstrumentPartView_Loaded;
+        }
+
+        private void InstrumentPartView_Loaded(object sender, RoutedEventArgs e)
+        {
+            TreeView tree = sender as TreeView;
+
+            object item = tree?.Items[0];
+            if (item != null)
+            {
+                TreeViewItem treeItem = tree.ItemContainerGenerator.ContainerFromItem(item) as TreeViewItem;
+                if (treeItem != null)
+                {
+                    treeItem.IsExpanded = true;
+                }
+            }
         }
 
         private void InstrumentTree_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
