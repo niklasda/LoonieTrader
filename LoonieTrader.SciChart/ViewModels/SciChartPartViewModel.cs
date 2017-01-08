@@ -50,10 +50,10 @@ namespace LoonieTrader.SciChart.ViewModels
 
             //PriceData.InvalidateParentSurface(RangeMode.ZoomToFit);
 
-            MovingAverage _sma50 = new MovingAverage(3);
+            MovingAverage sma50 = new MovingAverage(3);
             var ds1 = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA" };
 
-            ds1.Append(PriceData.XValues.Select(x => x), PriceData.CloseValues.Select(y => _sma50.Push(y).Current));
+            ds1.Append(PriceData.XValues.Select(x => x), PriceData.CloseValues.Select(y => sma50.Push(y).Current));
 
 
             RenderableSeriesViewModels = new ObservableCollection<BaseRenderableSeriesViewModel>();

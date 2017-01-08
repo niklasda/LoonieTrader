@@ -53,15 +53,15 @@ namespace LoonieTrader.App.ViewModels.Windows
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     var txvm = _mapper.Map<TransactionViewModel>(e.Obj);
-                    AllTransactions.Insert(0, txvm);
+
+                    if (!AllTransactions.Contains(txvm))
+                    {
+                        AllTransactions.Insert(0, txvm);
+                    }
                 }));
             }
 
             Console.WriteLine(@"newTx: {0}", e.Obj.id);
-        }
-
-        private void Asdasd(object sender)
-        {
         }
 
         private readonly ITransactionsRequester _transactionsRequester;

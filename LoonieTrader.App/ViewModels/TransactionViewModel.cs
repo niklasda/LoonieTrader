@@ -1,6 +1,8 @@
-﻿namespace LoonieTrader.App.ViewModels
+﻿using System;
+
+namespace LoonieTrader.App.ViewModels
 {
-    public class TransactionViewModel
+    public class TransactionViewModel : IComparable<TransactionViewModel>
     {
         public string AccountID { get; set; }
         public int AccountNumber { get; set; }
@@ -29,5 +31,10 @@
         //public Stoplossonfill stopLossOnFill { get; set; }
         //public Takeprofitonfill takeProfitOnFill { get; set; }
         public string TriggerCondition { get; set; }
+
+        public int CompareTo(TransactionViewModel other)
+        {
+            return this.Id.CompareTo(other.Id);
+        }
     }
 }
