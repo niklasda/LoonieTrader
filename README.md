@@ -2,6 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/8i5v9m09d94uh65y?svg=true)](https://ci.appveyor.com/project/niklasda/loonietrader)
 
+[![](https://codescene.io/projects/416/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/416/jobs/latest-successful/results)
 
 http://developer.oanda.com/rest-live-v20/development-guide/
 
