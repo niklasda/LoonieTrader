@@ -120,13 +120,13 @@ namespace LoonieTrader.Library.RestApi.Responses
 
         public class Ask
         {
-            public int liquidity { get; set; }
+            public decimal liquidity { get; set; }
             public string price { get; set; }
         }
 
         public class Bid
         {
-            public int liquidity { get; set; }
+            public decimal liquidity { get; set; }
             public string price { get; set; }
         }
     }
