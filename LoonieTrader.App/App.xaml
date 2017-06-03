@@ -11,7 +11,7 @@
                     <vm:LoonieServiceLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LoonieTrader.App.Locator" />
 
                 </ResourceDictionary>
-                <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/office2013/generic.xaml" />
+                <ResourceDictionary Source="/Fluent;Component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
