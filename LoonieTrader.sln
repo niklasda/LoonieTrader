@@ -1,16 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20923E81-0833-44C8-8EE5-E9297B9C0E7F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2946475-3209-4CDF-BEFB-66C6C1A0E1C0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{F2946475-3209-4CDF-BEFB-66C6C1A0E1C0}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		NuGet.Config = NuGet.Config
-		readme.md = readme.md
-		todo.md = todo.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.TestApp", "LoonieTrader.TestApp\LoonieTrader.TestApp.csproj", "{C9B926E0-7066-4CDF-8D03-1472D8CB4412}"
@@ -50,6 +48,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Parts", "Parts", "{AD98C07D-BF0D-4ED3-9715-715541FC20D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieTrader.OxyPlot", "LoonieTrader.OxyPlot\LoonieTrader.OxyPlot.csproj", "{03425278-9CE4-481F-B4F8-E042D99B884B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{40948BCA-A13A-4282-A301-4CBDE74DFB63}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+		todo.md = todo.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,3 +13,12 @@ https://github.com/accord-net/framework
 number of decimals in spread calc
 
 consider Interaction.Behaviors, attached properties DataType="{x:Type local:CompanyStructureItemViewModel}"
+
+See.
+https://github.com/ButchersBoy/MaterialDesignInXamlToolkit
+https://www.algoseek.com/futures/
+https://www.quantconnect.com/
+https://github.com/QuantConnect
+https://dragablz.net/
+https://www.reactiveui.net/
+https://github.com/AdaptiveConsulting/ReactiveTrader
