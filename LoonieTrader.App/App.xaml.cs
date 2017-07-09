@@ -14,6 +14,19 @@ namespace LoonieTrader.App
             AppDomain.CurrentDomain.UnhandledException += AppDomain_UnhandledException;
 
             Dispatcher.UnhandledException += Dispatcher_UnhandledException;
+
+            // Ensure SetLicenseKey is called once, before any SciChartSurface instance is created
+            // Check this code into your version-control and it will enable SciChart
+            // for end-users of your application who are not activated
+            SciChartSurface.SetRuntimeLicenseKey(@"<LicenseContract>
+                                                      <Customer>Dahlman Labs</Customer>
+                                                      <OrderId>ABT161230-2572-39102</OrderId>
+                                                      <LicenseCount>1</LicenseCount>
+                                                      <IsTrialLicense>false</IsTrialLicense>
+                                                      <SupportExpires>03/30/2017 00:00:00</SupportExpires>
+                                                      <ProductCode>SC-WPF-2D-PRO</ProductCode>
+                                                      <KeyCode>lwAAAAEAAAAYR1Yw6GLSAWwAQ3VzdG9tZXI9bmRAc3FsOHIubmV0O09yZGVySWQ9QUJUMTYxMjMwLTI1NzItMzkxMDI7U3Vic2NyaXB0aW9uVmFsaWRUbz0zMC1NYXItMjAxNztQcm9kdWN0Q29kZT1TQy1XUEYtMkQtUFJPIdWtP9lDzpIpQVJoDriFXIj7iwNoMOMZUzxoo2kVAGb0YyU033oPfBBryNJApcwJ</KeyCode>
+                                                    </LicenseContract>");
         }
 
         private void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
