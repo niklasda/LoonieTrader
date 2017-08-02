@@ -49,6 +49,7 @@ namespace LoonieTrader.Library.Locator
             var logger = new LoggerConfiguration()
                .WriteTo.LiterateConsole()
                .WriteTo.RollingFile(logFilePattern)
+               .MinimumLevel.Debug()
                .CreateLogger();
 
             IExtendedLogger exLogger = new ExtendedLogger(logger);

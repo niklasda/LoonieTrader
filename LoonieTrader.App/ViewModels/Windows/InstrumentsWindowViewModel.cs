@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using AutoMapper;
@@ -26,6 +27,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public InstrumentsWindowViewModel(ISettingsService settingsService, IMapper mapper, IExtendedLogger logger, IAccountsRequester accountsRequester)
         {
             _settingsService = settingsService;
+            _logger = logger;
             _settings = settingsService.CachedSettings.SelectedEnvironment;
             _accountsRequester = accountsRequester;
 
@@ -89,6 +91,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private readonly IEnvironmentSettings _settings;
         private readonly ISettingsService _settingsService;
+        private readonly IExtendedLogger _logger;
         private readonly IAccountsRequester _accountsRequester;
 
         private readonly ObservableCollection<InstrumentTypeViewModel> _allInstrumentTypes;
@@ -129,15 +132,17 @@ namespace LoonieTrader.App.ViewModels.Windows
             InstrumentViewModel instrument = o as InstrumentViewModel;
             InstrumentTypeViewModel instrumentType = o as InstrumentTypeViewModel;
 
+            _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {instrumentType?.Type} - {instrument?.DisplayName}");
+
             if (instrument != null)
             {
                 SelectedInstrument = instrument;
-                Console.WriteLine(instrument.DisplayName);
+ //               Console.WriteLine(instrument.DisplayName);
             }
             if (instrumentType != null)
             {
                 SelectedInstrument = null;
-                Console.WriteLine(instrumentType.Type);
+   //             Console.WriteLine(instrumentType.Type);
             }
         }
 

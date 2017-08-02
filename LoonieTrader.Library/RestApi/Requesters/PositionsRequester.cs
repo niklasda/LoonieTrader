@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using Jil;
@@ -70,6 +71,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public PositionsCloseResponse PutClosePosition(string accountId, string instrument)
         {
+            Logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {accountId} - {instrument}");
+
             string urlInstrumentClose = base.GetRestUrl("accounts/{0}/positions/{1}/close");
 
             using (var wc = GetAuthenticatedWebClient())

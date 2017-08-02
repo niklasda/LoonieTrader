@@ -15,6 +15,7 @@ using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.ViewModels;
+using System.Reflection;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {
@@ -31,6 +32,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             _positionsRequester = positionsRequester;
             //_transactionsStreamingRequester = transactionsStreamingRequester;
             _mapper = mapper;
+            _logger = logger;
             _accountsRequester = accountsRequester;
             _dialogService = dialogService;
 
@@ -61,7 +63,8 @@ namespace LoonieTrader.App.ViewModels.Windows
                 }));
             }
 
-            Console.WriteLine(@"newTx: {0}", e.Obj.id);
+            _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {e.Obj.type} - {e.Obj.id}");
+            //Console.WriteLine(@"newTx: {0}", e.Obj.id);
         }
 
         private readonly ITransactionsRequester _transactionsRequester;
@@ -70,6 +73,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         private readonly IOrdersRequester _ordersRequester;
         private readonly IEnvironmentSettings _settings;
         private readonly IMapper _mapper;
+        private readonly IExtendedLogger _logger;
         private readonly IAccountsRequester _accountsRequester;
         private readonly IDialogService _dialogService;
 
@@ -213,10 +217,10 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void ClosePosition()
         {
+            _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {SelectedPosition?.Instrument}");
+
             if (SelectedPosition != null)
             {
-                Console.WriteLine(SelectedPosition.Instrument);
-
                 var message = string.Format("Close entire position in {0}", SelectedPosition.DisplayName);
 
                 if (_dialogService.AskYesNo(message))
@@ -231,7 +235,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             if (SelectedPosition != null)
             {
-                Console.WriteLine(SelectedPosition.Instrument);
+                _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {SelectedPosition.Instrument}");
+              //  Console.WriteLine(SelectedPosition.Instrument);
 
                 var instrumentViewModel = new InstrumentViewModel() {Name = SelectedPosition.Instrument, DisplayName = SelectedPosition.DisplayName};
                 OpenComplexOrderWindow(instrumentViewModel);
@@ -243,7 +248,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             if (SelectedOrder != null)
             {
-                Console.WriteLine(@"Cancel: " + SelectedOrder?.Instrument);
+                _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {SelectedOrder.Instrument}");
+               // Console.WriteLine(@"Cancel: " + SelectedOrder?.Instrument);
                 _ordersRequester.PutCancelOrder(_settings.DefaultAccountId, SelectedOrder.Id);
                 //MessageBox.Show(SelectedOrder.Instrument);
              //   ReloadLists();
@@ -254,7 +260,8 @@ namespace LoonieTrader.App.ViewModels.Windows
         {
             if (SelectedOrder != null)
             {
-                Console.WriteLine(@"Modify: " + SelectedOrder?.Instrument);
+                _logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {SelectedOrder?.Instrument}");
+                //Console.WriteLine(@"Modify: " + SelectedOrder?.Instrument);
                 //ReloadLists();
                 //MessageBox.Show(SelectedOrder.Instrument);
             }

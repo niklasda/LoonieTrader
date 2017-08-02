@@ -31,13 +31,21 @@ namespace LoonieTrader.App
 
         private void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
+            string exMsg = String.Empty;
             if (ServiceLocator.IsLocationProviderSet)
             {
-                var elogger = ServiceLocator.Current.GetInstance<IExtendedLogger>();
-                elogger.Error(e.Exception, "Dispatcher_UnhandledException");
+                var logger = ServiceLocator.Current.GetInstance<IExtendedLogger>();
+                logger.Error(e.Exception, "Dispatcher_UnhandledException");
+                exMsg = e.Exception.Message;
+
+                if (e.Exception.InnerException != null)
+                {
+                    logger.Error(e.Exception.InnerException, "Dispatcher_UnhandledException - Inner");
+                    exMsg = $"{e.Exception.Message}{Environment.NewLine}{e.Exception.InnerException.Message}";
+                }
             }
 
-            MessageBox.Show("Unhandled Dispatcher Exception:" + Environment.NewLine + e.Exception.Message, "Dispatcher Error");
+            MessageBox.Show("Unhandled Dispatcher Exception:" + Environment.NewLine + exMsg, "Dispatcher Error");
             e.Handled = true;
         }
 
@@ -45,8 +53,14 @@ namespace LoonieTrader.App
         {
             if (ServiceLocator.IsLocationProviderSet)
             {
-                var elogger = ServiceLocator.Current.GetInstance<IExtendedLogger>();
-                elogger.Error(e.ExceptionObject as Exception,  "AppDomain_UnhandledException");
+                var logger = ServiceLocator.Current.GetInstance<IExtendedLogger>();
+                var ex = e.ExceptionObject as Exception;
+                logger.Error(ex,  "AppDomain_UnhandledException");
+
+                if (ex?.InnerException != null)
+                {
+                    logger.Error(ex.InnerException, "AppDomain_UnhandledException - Inner");
+                }
             }
 
             MessageBox.Show("Unhandled AppDomain Exception: " + Environment.NewLine + e.ExceptionObject, "AppDomain Error");
