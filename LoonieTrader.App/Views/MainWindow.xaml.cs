@@ -20,8 +20,8 @@ namespace LoonieTrader.App.Views
             var ls = ServiceLocator.Current.GetInstance<LayoutService>();
             base.SourceInitialized += (s, e) => ls.Tracker.Configure(this).Apply();
 
-         //   OrderButton.Icon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Flag, Brushes.Black);
-         //   OrderButton.LargeIcon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Flag, Brushes.Black);
+            OrderButton.Icon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Flag, Brushes.Black);
+            OrderButton.LargeIcon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Flag, Brushes.Black);
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
