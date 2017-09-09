@@ -1,0 +1,103 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:LoonieTrader.App.ViewModels.Parts"
+             xmlns:sci="clr-namespace:SciChart.Charting.Visuals;assembly=SciChart.Charting"
+             xmlns:ax="clr-namespace:SciChart.Charting.Visuals.Axes;assembly=SciChart.Charting"
+             xmlns:anot="clr-namespace:SciChart.Charting.Visuals.Annotations;assembly=SciChart.Charting"
+             xmlns:rend="clr-namespace:SciChart.Charting.Visuals.RenderableSeries;assembly=SciChart.Charting"
+             xmlns:mup="clr-namespace:SciChart.Charting.Common.MarkupExtensions;assembly=SciChart.Charting"
+             xmlns:mod="clr-namespace:SciChart.Charting.ChartModifiers;assembly=SciChart.Charting"
+
+             x:Class="LoonieTrader.App.Views.Parts.SciChartPartView"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance d:Type=viewModels:SciChartPartViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="ax:NumericAxis">
+            <Setter Property="MajorGridLineStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Opacity" Value="0.9"/>
+                        <Setter Property="Stroke" Value="Gray"/>
+                        <Setter Property="StrokeThickness" Value="0.5"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MinorGridLineStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Opacity" Value="0.9"/>
+                        <Setter Property="Stroke" Value="DarkGray"/>
+                        <Setter Property="StrokeThickness" Value="0.5"/>
+                        <Setter Property="StrokeDashArray" Value="10 5"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ax:CategoryDateTimeAxis">
+            <Setter Property="MajorGridLineStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Opacity" Value="0.9"/>
+                        <Setter Property="Stroke" Value="Gray"/>
+                        <Setter Property="StrokeThickness" Value="0.9"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="MinorGridLineStyle">
+                <Setter.Value>
+                    <Style TargetType="Line">
+                        <Setter Property="Opacity" Value="0.9"/>
+                        <Setter Property="Stroke" Value="DarkGray"/>
+                        <Setter Property="StrokeThickness" Value="0.9"/>
+                        <Setter Property="StrokeDashArray" Value="10 5"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Instrument.DisplayName}"/>
+            <Button Content="Randomize" Margin="30,5" Command="{Binding UpdateCommand}"/>
+        </StackPanel>
+
+        <sci:SciChartSurface Grid.Row="1" RenderableSeries="{mup:SeriesBinding RenderableSeriesViewModels}" Background="White" >
+
+            <!--  Create an X Axis  -->
+            <sci:SciChartSurface.XAxis>
+                <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once" DrawMajorGridLines="True" DrawMinorGridLines="True" AxisBandsFill="White" TickTextBrush="Black" GrowBy="0,0.1" />
+            </sci:SciChartSurface.XAxis>
+            <!--  Create a Y Axis  -->
+            <sci:SciChartSurface.YAxis>
+                <ax:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Once" DrawMajorGridLines="True" DrawMinorGridLines="True"  AxisBandsFill="White" TickTextBrush="Black" ></ax:NumericAxis>
+            </sci:SciChartSurface.YAxis>
+            <!--  Specify interactivity modifiers  -->
+            <sci:SciChartSurface.ChartModifier>
+                <mod:ModifierGroup>
+                    <mod:RubberBandXyZoomModifier IsEnabled="True" />
+                    <mod:ZoomExtentsModifier IsEnabled="True" />
+                    <mod:ZoomPanModifier IsEnabled ="False"/>
+                    <mod:TooltipModifier IsEnabled="False" />
+                    <mod:RolloverModifier IsEnabled="True" DrawVerticalLine="True" ShowTooltipOn="Always" SourceMode="AllSeries" ShowAxisLabels="True" />
+                    <mod:LegendModifier ShowLegend="True"/>
+                </mod:ModifierGroup>
+            </sci:SciChartSurface.ChartModifier>
+
+            <!-- Add annotations hints to the user -->
+            <sci:SciChartSurface.Annotations>
+                <anot:TextAnnotation Text="Hello world!" X1="5.0" Y1="5.0"/>
+
+            </sci:SciChartSurface.Annotations>
+        </sci:SciChartSurface>
+    </Grid>
+</UserControl>

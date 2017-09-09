@@ -4,16 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:LoonieTrader.Library.ViewModels;assembly=LoonieTrader.Library"
-             xmlns:sciChart="clr-namespace:LoonieTrader.SciChart;assembly=LoonieTrader.SciChart"
+             xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance d:Type=viewModels:ChartBaseViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <sciChart:SciChartPartView DataContext="{Binding .}" MinHeight="200">
-        </sciChart:SciChartPartView>
+        <parts:SciChartPartView DataContext="{Binding .}" MinHeight="200">
+        </parts:SciChartPartView>
 
     </Grid>
 </UserControl>
+
+
+
+
 
 
 

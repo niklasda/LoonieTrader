@@ -2,10 +2,11 @@ using System.ComponentModel.Composition.Hosting;
 using AutoMapper;
 using LoonieTrader.App.Mapper;
 using LoonieTrader.App.Services;
+using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
-using LoonieTrader.SciChart.Locator;
+using LoonieTrader.Library.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
@@ -24,9 +25,10 @@ namespace LoonieTrader.App.Locator
                 c.For<IDialogService>().Use<DialogService>();
                 c.ForSingletonOf<MainWindowViewModel>().Use<MainWindowViewModel>();
                 c.ForSingletonOf<LayoutService>().Use<LayoutService>();
+                c.For<ChartBaseViewModel>().Use<SciChartPartViewModel>();
 
                 c.AddRegistry<LibraryRegistry>();
-                c.AddRegistry<SciChartRegistry>();
+                //c.AddRegistry<SciChartRegistry>();
             });
 
             var exporter = LoadAll();

@@ -186,7 +186,7 @@
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
-    <Compile Include="ViewModels\Parts\ChartPartViewModel.cs" />
+    <Compile Include="ViewModels\Parts\SciChartPartViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
     <Compile Include="ViewModels\ServiceEventViewModel.cs" />
     <Compile Include="ViewModels\TradeViewModel .cs" />
@@ -223,6 +223,9 @@
     </Compile>
     <Compile Include="Views\Parts\InstrumentsPartView.xaml.cs">
       <DependentUpon>InstrumentsPartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\SciChartPartView.xaml.cs">
+      <DependentUpon>SciChartPartView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\ServiceStatusPartView.xaml.cs">
       <DependentUpon>ServiceStatusPartView.xaml</DependentUpon>
@@ -276,6 +279,10 @@
     <Page Include="Views\Parts\InstrumentsPartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\SciChartPartView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Parts\ServiceStatusPartView.xaml">
       <SubType>Designer</SubType>
@@ -361,10 +368,6 @@
     <ProjectReference Include="..\LoonieTrader.Library\LoonieTrader.Library.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
       <Name>LoonieTrader.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LoonieTrader.SciChart\LoonieTrader.SciChart.csproj">
-      <Project>{a36e7811-09d4-46b8-90b8-4ff37e794f01}</Project>
-      <Name>LoonieTrader.SciChart</Name>
     </ProjectReference>
     <ProjectReference Include="..\LoonieTrader.Shared\LoonieTrader.Shared.csproj">
       <Project>{f368eb3e-6bf2-46cf-bcae-cb365f4365d0}</Project>
