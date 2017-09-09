@@ -7,6 +7,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
+using LoonieTrader.App.Services;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -126,6 +127,8 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private void Login()
         {
+            UIServices.SetBusyState();  
+
             _settingsService.SaveSettings(_settings);
 
             MainWindow mw = new MainWindow();

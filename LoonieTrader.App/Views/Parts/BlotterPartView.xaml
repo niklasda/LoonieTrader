@@ -17,7 +17,13 @@
                 <converters:IsNegativeConverter x:Key="IsNegConv" />
                 <converters:IsPositiveConverter x:Key="IsPosConv" />
             </TabControl.Resources>
-            <TabItem Header="Open Positions" FlowDirection="LeftToRight">
+            <TabItem FlowDirection="LeftToRight" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="OpenPositionsTabIcon" Height="14" Width="14" />
+                        <TextBlock Text="Open Positions" Margin="3,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllPositions,Mode=OneWay}" SelectedItem="{Binding SelectedPosition}" >
                     <xcdg:DataGridControl.Resources>
                         <Style TargetType="{x:Type xcdg:DataCell}">
@@ -52,7 +58,13 @@
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem Header="Open Orders" FlowDirection="LeftToRight">
+            <TabItem FlowDirection="LeftToRight">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="OpenOrdersTabIcon" Height="14" Width="14" />
+                        <TextBlock Text="Open Orders" Margin="3,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
                 <xcdg:DataGridControl AutoCreateColumns="True" ReadOnly="True" ItemsSource="{Binding AllOrders,Mode=OneWay}" SelectedItem="{Binding SelectedOrder}"  >
                     <xcdg:DataGridControl.Resources>
                         <Style TargetType="{x:Type xcdg:DataCell}">
@@ -78,7 +90,13 @@
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem Header="Transaction History" FlowDirection="LeftToRight">
+            <TabItem FlowDirection="LeftToRight">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="TransactionHistoryTabIcon" Height="14" Width="14" />
+                        <TextBlock Text="Transaction History" Margin="3,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
                 <xcdg:DataGridControl AutoCreateColumns="True" ItemsSource="{Binding AllTransactions,Mode=OneWay}" ReadOnly="True">
                     <xcdg:DataGridControl.Resources>
                         <Style TargetType="{x:Type xcdg:DataCell}">
@@ -97,7 +115,13 @@
                     </xcdg:DataGridControl.View>
                 </xcdg:DataGridControl>
             </TabItem>
-            <TabItem Header="Account Details" FlowDirection="LeftToRight">
+            <TabItem FlowDirection="LeftToRight">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="AccountDetailTabIcon" Height="14" Width="14" />
+                        <TextBlock Text="Account Detail" Margin="3,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                </TabItem.Header>
                 <xctk:PropertyGrid SelectedObject="{Binding AccountSummary,Mode=OneWay}" ShowDescriptionByTooltip="False" ShowTitle="True" IsReadOnly="True"
                                    NameColumnWidth="200" ShowSearchBox="False" ShowAdvancedOptions="False" ShowPreview="False" ShowSortOptions="False" ShowSummary="False"/>
             </TabItem>

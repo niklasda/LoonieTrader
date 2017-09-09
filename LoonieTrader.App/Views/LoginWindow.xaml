@@ -50,7 +50,13 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Content="_Server Status" Grid.Column="0" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding ServerStatusCommand}" />
-            <Button Content="_Use" Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding LoginCommand}" IsDefault="True" />
+            <Button Grid.Column="2" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding LoginCommand}" IsDefault="True"  >
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="LoginUseButtonIcon" Width="16" Height="16"/>
+                    <AccessText Text="_Use" Margin="5,0,0,0" VerticalAlignment="Center"  />
+                  
+                </StackPanel>
+            </Button>
         </Grid>
     </Grid>
 </Window>

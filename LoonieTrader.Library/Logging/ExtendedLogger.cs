@@ -20,8 +20,7 @@ namespace LoonieTrader.Library.Logging
         {
             _logger.Debug(message, args);
 
-            var l = new LogEntry(DateTime.Now, LogEventLevel.Debug, null, args.Length >0 ? string.Format(message, args) : message);
-         //   LogCache.LogEntries.Insert(0, l);
+            var l = new LogEntry(DateTime.Now, LogEventLevel.Debug, null, args.Length > 0 ? string.Format(message, args) : message);
             AddToLogCache(l);
         }
 
@@ -30,16 +29,14 @@ namespace LoonieTrader.Library.Logging
             _logger.Information(message, args);
 
             var l = new LogEntry(DateTime.Now, LogEventLevel.Information, null, args.Length > 0 ? string.Format(message, args) : message);
-         //   LogCache.LogEntries.Insert(0, l);
             AddToLogCache(l);
         }
 
         public void Warning(Exception exception, string message, params object[] args)
         {
-            _logger.Warning(exception,  message, args);
+            _logger.Warning(exception, message, args);
 
             var l = new LogEntry(DateTime.Now, LogEventLevel.Warning, exception, args.Length > 0 ? string.Format(message, args) : message);
-        //    LogCache.LogEntries.Insert(0, l);
             AddToLogCache(l);
         }
 
@@ -48,7 +45,6 @@ namespace LoonieTrader.Library.Logging
             _logger.Error(exception, message, args);
 
             var l = new LogEntry(DateTime.Now, LogEventLevel.Error, exception, args.Length > 0 ? string.Format(message, args) : message);
-        //    LogCache.LogEntries.Insert(0, l);
             AddToLogCache(l);
         }
 
@@ -60,8 +56,8 @@ namespace LoonieTrader.Library.Logging
             }
             else
             {
-                // if there is no context then there is no UI the the cache is not needed
-                // LogCache.LogEntries.Insert(0, l);
+                // unclear why this happens, but _uiContext is mostly null
+                LogCache.LogEntries.Insert(0, l);
             }
         }
     }

@@ -184,12 +184,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Constants\Colors.cs" />
     <Compile Include="Constants\Enums.cs" />
     <Compile Include="Locator\StructureLocator.cs" />
     <Compile Include="Mapper\AutoMappings.cs" />
     <Compile Include="MessageTypes\ChangeInstrumentMessage.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\LayoutService.cs" />
+    <Compile Include="Services\UIServices.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
     <Compile Include="ViewModels\CandleTimeViewModel.cs" />
     <Compile Include="ViewModels\CandleDataViewModel.cs" />

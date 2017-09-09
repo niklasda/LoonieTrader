@@ -1,6 +1,8 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using FontAwesome.WPF;
+using LoonieTrader.App.Constants;
 using Xceed.Wpf.DataGrid;
 using Xceed.Wpf.DataGrid.Views;
 
@@ -14,6 +16,13 @@ namespace LoonieTrader.App.Views.Parts
         public BlotterPartView()
         {
             InitializeComponent();
+
+            var fore = ColorConfig.ForeGround;
+
+            OpenPositionsTabIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.AlignRight, fore);
+            OpenOrdersTabIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.AlignLeft, fore);
+            TransactionHistoryTabIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.List, fore);
+            AccountDetailTabIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.NewspaperOutline, fore);
         }
 
         private void previewMouseRightButtonDown(object sender, MouseButtonEventArgs e)

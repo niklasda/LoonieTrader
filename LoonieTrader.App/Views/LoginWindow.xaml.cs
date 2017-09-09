@@ -1,7 +1,10 @@
 ﻿using System.Windows;
+using System.Windows.Media;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using Microsoft.Practices.ServiceLocation;
+using FontAwesome.WPF;
+using LoonieTrader.App.Constants;
 
 namespace LoonieTrader.App.Views
 {
@@ -20,6 +23,11 @@ namespace LoonieTrader.App.Views
                 // Needed to close the window from the ViewModel
                 vm.CloseAction = base.Close;
             }
+
+            var fore = ColorConfig.ForeGround;
+
+            LoginUseButtonIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.Check, fore);
+
         }
     }
 }
