@@ -16,13 +16,6 @@ namespace LoonieTrader.Library.Locator
             IFileReaderWriterService cr = new FileReaderWriterService();
             IExtendedLogger exLogger = CreateExLogger(cr);
 
-            //Scan(_ =>
-           // {
-                // Declare which assemblies to scan
-            //    _.TheCallingAssembly();
-                //_.AssemblyContainingType<LiveChartsPartViewModel>();
-           // });
-
             ForSingletonOf<ISettingsService>().Use<SettingserService>();
             ForSingletonOf<IExtendedLogger>().Use(exLogger);
 

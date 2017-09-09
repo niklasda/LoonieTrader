@@ -68,12 +68,6 @@
     <Reference Include="Jot, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Jot.1.4.0\lib\Jot.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
@@ -84,14 +78,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
-      <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OxyPlot.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
-      <HintPath>..\packages\OxyPlot.Wpf.1.0.0\lib\net45\OxyPlot.Wpf.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="SciChart.Charting, Version=4.2.2.9777, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
@@ -375,14 +361,6 @@
     <ProjectReference Include="..\LoonieTrader.Library\LoonieTrader.Library.csproj">
       <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
       <Name>LoonieTrader.Library</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LoonieTrader.LiveCharts\LoonieTrader.LiveCharts.csproj">
-      <Project>{259eff49-f73a-491f-94d5-3fc8127c71ed}</Project>
-      <Name>LoonieTrader.LiveCharts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LoonieTrader.OxyPlot\LoonieTrader.OxyPlot.csproj">
-      <Project>{03425278-9ce4-481f-b4f8-e042d99b884b}</Project>
-      <Name>LoonieTrader.OxyPlot</Name>
     </ProjectReference>
     <ProjectReference Include="..\LoonieTrader.SciChart\LoonieTrader.SciChart.csproj">
       <Project>{a36e7811-09d4-46b8-90b8-4ff37e794f01}</Project>

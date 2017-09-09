@@ -8,9 +8,6 @@
 //using GalaSoft.MvvmLight;
 //using GalaSoft.MvvmLight.CommandWpf;
 //using JetBrains.Annotations;
-//using LiveCharts;
-//using LiveCharts.Configurations;
-//using LiveCharts.Wpf;
 //using LoonieTrader.Library.Extensions;
 //using LoonieTrader.Library.Interfaces;
 //using LoonieTrader.Library.Models;

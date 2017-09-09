@@ -12,7 +12,6 @@ https://fxtrade.oanda.com/community/forex-forum/93/
 
 
 
-- LiveCharts [GitHub](https://github.com/beto-rodriguez/Live-Charts)
 - Extended WPF Toolkit [Codeplex](http://wpftoolkit.codeplex.com/)
 - YamlDotNet [GitHub](https://github.com/aaubry/YamlDotNet)
 - AutoMapper [GitHub](https://github.com/AutoMapper/AutoMapper)

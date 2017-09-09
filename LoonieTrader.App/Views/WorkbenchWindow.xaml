@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
-        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
         xmlns:controls="clr-namespace:LoonieTrader.App.Views.Controls"
         DataContext="{Binding Source={StaticResource Locator}, Path=Workbench}"
         Title="Indicator Workbench"

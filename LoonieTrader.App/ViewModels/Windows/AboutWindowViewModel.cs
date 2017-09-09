@@ -27,7 +27,6 @@ namespace LoonieTrader.App.ViewModels.Windows
                 resp.AppendLine();
 
                 resp.AppendLine("The following frameworks has been used:");
-                resp.AppendLine("LiveCharts");
                 resp.AppendLine("Extended WPF Toolkit");
                 resp.AppendLine("YamlDotNet");
                 resp.AppendLine("AutoMapper");

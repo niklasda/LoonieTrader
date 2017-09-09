@@ -1,6 +1,4 @@
-using System.Globalization;
 using AutoMapper;
-using LiveCharts.Defaults;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Constants;
@@ -63,7 +61,7 @@ namespace LoonieTrader.App.Mapper
 
 
                 CreateMap<CandleDataRecord, CandleDataViewModel>();
-                CreateMap<CandleDataRecord, OhlcPoint>();
+               // CreateMap<CandleDataRecord, OhlcPoint>();
                 CreateMap<CandleDataViewModel, OhlciPoint>();
             }
         }

@@ -17,9 +17,7 @@ using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.ViewModels;
-using LoonieTrader.LiveCharts.ViewModels;
 using Microsoft.Practices.ServiceLocation;
-using Timer = System.Timers.Timer;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

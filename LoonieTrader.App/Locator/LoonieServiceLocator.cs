@@ -5,8 +5,6 @@ using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
-using LoonieTrader.LiveCharts.Locator;
-using LoonieTrader.OxyPlot.Locator;
 using LoonieTrader.SciChart.Locator;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
@@ -28,8 +26,6 @@ namespace LoonieTrader.App.Locator
                 c.ForSingletonOf<LayoutService>().Use<LayoutService>();
 
                 c.AddRegistry<LibraryRegistry>();
-                // c.AddRegistry<LiveChartsRegistry>();
-                // c.AddRegistry<OxyPlotRegistry>();
                 c.AddRegistry<SciChartRegistry>();
             });
 

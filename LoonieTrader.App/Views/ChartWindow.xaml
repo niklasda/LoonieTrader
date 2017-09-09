@@ -1,7 +1,6 @@
 ﻿<Window x:Class="LoonieTrader.App.Views.ChartWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:liveCharts="clr-namespace:LoonieTrader.LiveCharts;assembly=LoonieTrader.LiveCharts"
         xmlns:parts="clr-namespace:LoonieTrader.App.Views.Parts"
         DataContext="{Binding Source={StaticResource Locator}, Path=Chart}"
         Title="Chart"
