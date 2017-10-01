@@ -12,7 +12,7 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <parts:SciChartPartView Grid.Row="1" DataContext="{Binding ChartPart}" />
+        <parts:SciChartPartView Grid.Row="1" DataContext="{Binding .}" />
 
     </Grid>
 </Window>

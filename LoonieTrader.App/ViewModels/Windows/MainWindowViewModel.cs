@@ -12,6 +12,7 @@ using GalaSoft.MvvmLight.Messaging;
 using JetBrains.Annotations;
 using LoonieTrader.App.Constants;
 using LoonieTrader.App.MessageTypes;
+using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -88,8 +89,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
             else
             {
-                try
-                {
+                //try
+               // {
                     //AccountInstrumentsResponse instrumentsResponse = _accountsRequester.GetAccountInstruments(_settings.DefaultAccountId);
                     //AccountSummaryResponse accountSummaryResponse = _accountsRequester.GetAccountSummary(_settings.DefaultAccountId);
                     //PositionsResponse positionsResponse = _positionsRequester.GetPositions(_settings.DefaultAccountId);
@@ -128,13 +129,13 @@ namespace LoonieTrader.App.ViewModels.Windows
 
                     //_accountSummary = mapper.Map<AccountSummaryViewModel>(accountSummaryResponse.account);
 
-                }
-                catch (Exception ex)
-                {
-                    string msg = ex.Message;
+               // }
+               // catch (Exception ex)
+               // {
+                  //  string msg = ex.Message;
 
-                    MessageBox.Show("Failed to start application", AppProperties.ApplicationName);
-                }
+                //    MessageBox.Show("Failed to start application", AppProperties.ApplicationName);
+              //  }
             }
 
         }
@@ -188,11 +189,11 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand GotoGoogleFinanceCommand { get; set; }
         public ICommand GotoYahooFinanceCommand { get; set; }
 
-        public ChartBaseViewModel ChartPart
+        public SciChartPartViewModel ChartPart
         {
             get
             {
-                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<ChartBaseViewModel>();
+                _chartPart = _chartPart ?? ServiceLocator.Current.GetInstance<SciChartPartViewModel>();
                 return _chartPart;
             }
         }
@@ -215,7 +216,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
-        private ChartBaseViewModel _chartPart;
+        private SciChartPartViewModel _chartPart;
         private InstrumentsWindowViewModel _instrumentsPart;
         private BlotterWindowViewModel _blotterPart;
 

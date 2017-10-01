@@ -9,7 +9,7 @@ namespace LoonieTrader.Library.RestApi.Interfaces
         AccountDetailsResponse GetAccountDetails(string accountId);
         AccountSummaryResponse GetAccountSummary(string accountId);
 
-        IEnumerable<AccountSummaryResponse> GetAccountSummaries();
+        IList<AccountSummaryResponse> GetAccountSummaries();
         AccountInstrumentsResponse GetAccountInstruments(string accountId);
         AccountChangesResponse GetAccountChanges(string accountId, string transactionId);
         AccountInstrumentsResponse PatchAccountConfiguration(string accountId);

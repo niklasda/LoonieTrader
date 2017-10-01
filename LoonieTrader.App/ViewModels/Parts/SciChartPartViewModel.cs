@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Constants;
@@ -16,6 +17,7 @@ using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Indicators;
+using LoonieTrader.Shared.Models;
 using SciChart.Charting.Model.ChartSeries;
 using SciChart.Charting.Model.DataSeries;
 using SciChart.Data.Model;
@@ -23,7 +25,7 @@ using SciChart.Data.Model;
 namespace LoonieTrader.App.ViewModels.Parts
 {
     [UsedImplicitly]
-    public class SciChartPartViewModel : ChartBaseViewModel
+    public class SciChartPartViewModel : ViewModelBase
     {
         public SciChartPartViewModel(IMapper mapper, ISettingsService settings, IPricingStreamingRequester priceStreamer)
         {
@@ -71,6 +73,25 @@ namespace LoonieTrader.App.ViewModels.Parts
         public ICommand UpdateCommand { get; set; }
 
         private IOhlcDataSeries<DateTime, double> _priceSeries;
+
+        private InstrumentViewModel _instrument;
+        public InstrumentViewModel Instrument
+        {
+            get { return _instrument; }
+            set
+            {
+                if (_instrument != value)
+                {
+                    _instrument = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public void AddIndicator(Func<OhlciPoint, double> func)
+        {
+            
+        }
 
         public IOhlcDataSeries<DateTime, double> PriceData
         {
@@ -228,7 +249,7 @@ namespace LoonieTrader.App.ViewModels.Parts
 
         public override string ToString()
         {
-            return _value.ToString();
+            return _value;
         }
     }
 
@@ -257,7 +278,7 @@ namespace LoonieTrader.App.ViewModels.Parts
 
         public override string ToString()
         {
-            return _value.ToString();
+            return _value;
         }
     }
 

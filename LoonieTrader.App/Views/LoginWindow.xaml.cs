@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Media;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
 using Microsoft.Practices.ServiceLocation;

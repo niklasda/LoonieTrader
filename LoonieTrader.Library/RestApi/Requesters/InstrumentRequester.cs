@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using JetBrains.Annotations;
 using Jil;
 using LoonieTrader.Library.Extensions;

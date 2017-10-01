@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using LoonieTrader.Shared.Interfaces;
 using LoonieTrader.Shared.Models;
 using NUnit.Framework;

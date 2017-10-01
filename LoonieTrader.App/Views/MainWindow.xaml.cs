@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Media;
+﻿using System.ComponentModel;
 using Fluent;
 using FontAwesome.WPF;
 using LoonieTrader.App.Constants;

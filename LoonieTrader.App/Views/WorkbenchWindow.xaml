@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
                 <TabControl  >
                     <TabItem Header="Select indicator">
-                        <Grid Grid.Column="0">
+                        <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Net;
 using JetBrains.Annotations;
 using Jil;
 using LoonieTrader.Library.Interfaces;

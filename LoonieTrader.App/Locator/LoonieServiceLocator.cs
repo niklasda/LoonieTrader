@@ -6,7 +6,6 @@ using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
-using LoonieTrader.Library.ViewModels;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
@@ -25,7 +24,7 @@ namespace LoonieTrader.App.Locator
                 c.For<IDialogService>().Use<DialogService>();
                 c.ForSingletonOf<MainWindowViewModel>().Use<MainWindowViewModel>();
                 c.ForSingletonOf<LayoutService>().Use<LayoutService>();
-                c.For<ChartBaseViewModel>().Use<SciChartPartViewModel>();
+                //c.For<SciChartPartViewModel>().Use<SciChartPartViewModel>();
 
                 c.AddRegistry<LibraryRegistry>();
                 //c.AddRegistry<SciChartRegistry>();
@@ -52,7 +51,7 @@ namespace LoonieTrader.App.Locator
 
         public MainWindowViewModel Main => _container.GetInstance<MainWindowViewModel>();
 
-        public ChartWindowViewModel Chart => _container.GetInstance<ChartWindowViewModel>();
+        public SciChartPartViewModel Chart => _container.GetInstance<SciChartPartViewModel>();
 
         public ComplexOrderWindowViewModel ComplexOrder => _container.GetInstance<ComplexOrderWindowViewModel>();
 

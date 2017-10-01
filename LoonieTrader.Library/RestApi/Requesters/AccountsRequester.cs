@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using JetBrains.Annotations;
 using Jil;
 using LoonieTrader.Library.Interfaces;
@@ -18,7 +17,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
         }
 
-        public IEnumerable<AccountSummaryResponse> GetAccountSummaries()
+        public IList<AccountSummaryResponse> GetAccountSummaries()
         {
             var accounts = GetAccounts();
             IList<AccountSummaryResponse> accountSummaries = new List<AccountSummaryResponse>();

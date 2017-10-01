@@ -7,7 +7,6 @@
              xmlns:sci="clr-namespace:SciChart.Charting.Visuals;assembly=SciChart.Charting"
              xmlns:ax="clr-namespace:SciChart.Charting.Visuals.Axes;assembly=SciChart.Charting"
              xmlns:anot="clr-namespace:SciChart.Charting.Visuals.Annotations;assembly=SciChart.Charting"
-             xmlns:rend="clr-namespace:SciChart.Charting.Visuals.RenderableSeries;assembly=SciChart.Charting"
              xmlns:mup="clr-namespace:SciChart.Charting.Common.MarkupExtensions;assembly=SciChart.Charting"
              xmlns:mod="clr-namespace:SciChart.Charting.ChartModifiers;assembly=SciChart.Charting"
 

@@ -9,6 +9,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using JetBrains.Annotations;
+using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
@@ -21,7 +22,7 @@ namespace LoonieTrader.App.ViewModels.Windows
     [UsedImplicitly]
     public class ComplexOrderWindowViewModel : ViewModelBase
     {
-        public ComplexOrderWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, ChartBaseViewModel chartPart)
+        public ComplexOrderWindowViewModel(IMapper mapper, ISettingsService settingsService, IPricingRequester pricingRequester, IOrdersRequester orderRequester, IExtendedLogger logger, SciChartPartViewModel chartPart)
         {
             _mapper = mapper;
             _settings = settingsService.CachedSettings.SelectedEnvironment;
@@ -69,7 +70,7 @@ namespace LoonieTrader.App.ViewModels.Windows
 
         private readonly IList<InstrumentViewModel> _allInstruments;
 
-        public ChartBaseViewModel ChartPart { get; private set; }
+        public SciChartPartViewModel ChartPart { get; private set; }
 
         public ObservableCollection<InstrumentViewModel> AllInstruments
         {
@@ -87,8 +88,8 @@ namespace LoonieTrader.App.ViewModels.Windows
             {
                 if (_latestPrice != null)
                 {
-                    IEnumerable<PriceDepthViewModel> bidDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].bids);
-                    IEnumerable<PriceDepthViewModel> askDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].asks);
+                    IList<PriceDepthViewModel> bidDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].bids);
+                    IList<PriceDepthViewModel> askDepth = _mapper.Map<IList<PriceDepthViewModel>>(_latestPrice.prices[0].asks);
 
                     //IEnumerable<PriceDepthViewModel> depths = _latestPrice.prices[0].bids.Select(
                     //    x =>

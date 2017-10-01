@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Text;
 using JetBrains.Annotations;
 using JsonPrettyPrinterPlus;
