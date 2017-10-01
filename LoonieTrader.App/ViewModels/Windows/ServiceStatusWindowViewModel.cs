@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using JetBrains.Annotations;
@@ -44,14 +45,23 @@ namespace LoonieTrader.App.ViewModels.Windows
                     RaisePropertyChanged();
 
                     LoadEnvironenment(_selectedEnvironment.Id);
-                }
+               }
             }
         }
 
         private void LoadEnvironenment(string environmentName)
         {
-            ServiceEventsResponse restEvents = _healthRequester.GetServiceEvents(environmentName);
-            ServiceEventViewModel[] restVms = _mapper.Map<ServiceEventsResponse.Event[], ServiceEventViewModel[]>(restEvents.events);
+            ServiceEventViewModel[] restVms;
+            try
+            {
+                ServiceEventsResponse restEvents = _healthRequester.GetServiceEvents(environmentName);
+                restVms = _mapper.Map<ServiceEventsResponse.Event[], ServiceEventViewModel[]>(restEvents.events);
+
+            }
+            catch
+            {
+                restVms = new[] {new ServiceEventViewModel {Message = "Failed to load service status"}};
+            }
 
             ServiceEvents.Clear();
             foreach (var vm in restVms)
