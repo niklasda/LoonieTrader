@@ -168,8 +168,8 @@
                         <xctk:CheckComboBox ItemsSource="{Binding AvailableIndicators}"  VerticalContentAlignment="Center" SelectedItem="{Binding SelectedIndicator}"  Width="170" Margin="2,0"  />
 
                     </StackPanel>
-                    <parts:TheChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
-                    </parts:TheChartPartView>
+                    <parts:SciChartPartView Grid.Row="1" DataContext="{Binding ChartPart}">
+                    </parts:SciChartPartView>
 
                 </Grid>
             </Grid>

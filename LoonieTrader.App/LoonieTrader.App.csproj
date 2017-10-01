@@ -230,9 +230,6 @@
     <Compile Include="Views\Parts\ServiceStatusPartView.xaml.cs">
       <DependentUpon>ServiceStatusPartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Parts\TheChartPartView.xaml.cs">
-      <DependentUpon>TheChartPartView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ServiceStatusWindow.xaml.cs">
       <DependentUpon>ServiceStatusWindow.xaml</DependentUpon>
     </Compile>
@@ -285,10 +282,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Parts\ServiceStatusPartView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Parts\TheChartPartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

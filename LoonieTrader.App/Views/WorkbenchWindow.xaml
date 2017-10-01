@@ -108,9 +108,9 @@
             </Grid>
 
             <GridSplitter Grid.Row="1"  Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
-            <parts:TheChartPartView Grid.Row="2" DataContext="{Binding ChartPart}" >
+            <parts:SciChartPartView Grid.Row="2" DataContext="{Binding ChartPart}" >
 
-            </parts:TheChartPartView>
+            </parts:SciChartPartView>
 
         </Grid>
     </Grid>

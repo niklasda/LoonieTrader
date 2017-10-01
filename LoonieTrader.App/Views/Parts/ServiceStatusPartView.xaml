@@ -11,8 +11,8 @@
     <UserControl.Resources>
     </UserControl.Resources>
     <Grid>
-            <TabControl  d:DataContext="{d:DesignInstance Type=windows:ServiceStatusWindowViewModel}">
-            <TabItem  Header="  Events  ">
+            <TabControl d:DataContext="{d:DesignInstance Type=windows:ServiceStatusWindowViewModel}">
+            <TabItem Header="  Events  ">
                 <xcdg:DataGridControl AutoCreateColumns="False" ItemsSource="{Binding ServiceEvents,Mode=OneWay}" ReadOnly="True" SelectionMode="Single"  >
                     <xcdg:DataGridControl.View>
                         <xcdg:TableView ColumnStretchMode="Last" IsColumnVirtualizationEnabled="False" ShowRowSelectorPane="False" UseDefaultHeadersFooters="False" >

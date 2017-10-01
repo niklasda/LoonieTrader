@@ -200,8 +200,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <parts:TheChartPartView DataContext="{Binding ChartPart}" MinHeight="200">
-                        </parts:TheChartPartView>
+                        <parts:SciChartPartView DataContext="{Binding ChartPart}" MinHeight="200">
+                        </parts:SciChartPartView>
                         </Grid>
                 </Expander>
             </StackPanel>
