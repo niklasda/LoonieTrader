@@ -33,13 +33,13 @@ namespace LoonieTrader.Library.RestApi.Responses
                 resp.Append(", time: ");
                 resp.Append(candle.time);
                 resp.Append(", open: ");
-                resp.Append(cd.o);
+                resp.Append(cd?.o);
                 resp.Append(", high: ");
-                resp.Append(cd.h);
+                resp.Append(cd?.h);
                 resp.Append(", low: ");
-                resp.Append(cd.l);
+                resp.Append(cd?.l);
                 resp.Append(", close: ");
-                resp.Append(cd.c);
+                resp.Append(cd?.c);
                 resp.Append(", volume: ");
                 resp.AppendLine(candle.volume.ToString());
             }

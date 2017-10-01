@@ -88,6 +88,20 @@ namespace LoonieTrader.App.ViewModels.Windows
             }
         }
 
+        private InstrumentViewModel _selectedInstrument;
+        public InstrumentViewModel SelectedInstrument
+        {
+            get { return _selectedInstrument; }
+            set
+            {
+                if (_selectedInstrument != value)
+                {
+                    _selectedInstrument = value;
+                   // DisplayInfo(_selectedInstrument);
+                }
+            }
+        }
+
         private void DisplayInfo(ILoadable loadable)
         {
             LoadableInfo = loadable.Title;
@@ -109,7 +123,7 @@ namespace LoonieTrader.App.ViewModels.Windows
                 return new ObservableCollection<InstrumentViewModel>(filteredInstrumentList);
             }
         }
-
+        
         //private string _instrumentTest;
         //public string InstrumentText
         //{
