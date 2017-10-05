@@ -50,6 +50,9 @@ namespace LoonieTrader.App.ViewModels.Parts
             PriceData.SeriesName = priceData.Symbol;
             PriceData.Append(priceData.TimeData, priceData.OpenData, priceData.HighData, priceData.LowData, priceData.CloseData);
 
+            XVisibleRange = new IndexRange(0, 100);
+            YVisibleRange = new DoubleRange(0.2d, 1.0d);
+
             //PriceData.InvalidateParentSurface(RangeMode.ZoomToFit);
 
             MovingAverage sma50 = new MovingAverage(3);
@@ -113,8 +116,8 @@ namespace LoonieTrader.App.ViewModels.Parts
             get { return "Price"; }
         }
 
-        private DoubleRange _xVisibleRange;
-        public DoubleRange XVisibleRange
+        private IndexRange _xVisibleRange;
+        public IndexRange XVisibleRange
         {
             get { return _xVisibleRange; }
             set
@@ -122,6 +125,20 @@ namespace LoonieTrader.App.ViewModels.Parts
                 if (!Equals(_xVisibleRange, value))
                 {
                     _xVisibleRange = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private DoubleRange _yVisibleRange;
+        public DoubleRange YVisibleRange
+        {
+            get { return _yVisibleRange; }
+            set
+            {
+                if (!Equals(_yVisibleRange, value))
+                {
+                    _yVisibleRange = value;
                     RaisePropertyChanged();
                 }
             }
@@ -157,7 +174,9 @@ namespace LoonieTrader.App.ViewModels.Parts
 
             _uiContext.Post(o =>
             {
-                var bps =   PriceData;// as BoxPlotDataSeries<double, double>;
+                var bps = (IOhlcDataSeries<DateTime, double>) RenderableSeriesViewModels[0].DataSeries;
+
+//                var bps = PriceData;// as BoxPlotDataSeries<double, double>;
 
                 if (price.asks?.Length > 0)
                 {
@@ -172,14 +191,40 @@ namespace LoonieTrader.App.ViewModels.Parts
                         Time = DateTime.Now.ToString("HHmmss")
                     };
 
-                    using (bps.SuspendUpdates())
+                    using (var s = bps.SuspendUpdates())
                     {
                         var x = DateTime.Now;
                         bps.Append(x, p.Open, p.High, p.Low, p.Close);
+                    }
 
+                    if (XVisibleRange.Max < bps.Count)
+                    {
+                        var existingRange = _xVisibleRange;
+                        var newRange = new IndexRange(existingRange.Min + 1, existingRange.Max + 1);
+                        XVisibleRange = newRange;
+                    }
+
+                    if (YVisibleRange.Max < p.High)
+                    {
+                        var existingRange = _yVisibleRange;
+                        var newRange = new DoubleRange(existingRange.Min, existingRange.Max + 1);
+                        YVisibleRange = newRange;
+                    }
+
+                    if (YVisibleRange.Min > p.Low)
+                    {
+                        var existingRange = _yVisibleRange;
+                        var newRange = new DoubleRange(existingRange.Min - 1, existingRange.Max);
+                        YVisibleRange = newRange;
                     }
                 }
+
+                //   RaisePropertyChanged(()=> PriceData);
+                //   RaisePropertyChanged(()=> RenderableSeriesViewModels);
+
             }, null);
+
+           
         }
 
         private void UpdateAllOnClick()

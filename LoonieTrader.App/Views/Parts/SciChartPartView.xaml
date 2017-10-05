@@ -74,11 +74,11 @@
 
             <!--  Create an X Axis  -->
             <sci:SciChartSurface.XAxis>
-                <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once" DrawMajorGridLines="True" DrawMinorGridLines="True" AxisBandsFill="White" TickTextBrush="Black" GrowBy="0,0.1" />
+                <ax:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once" VisibleRange="{Binding XVisibleRange}" DrawMajorGridLines="True" DrawMinorGridLines="True" AxisBandsFill="White" TickTextBrush="Black" GrowBy="0,0.1" />
             </sci:SciChartSurface.XAxis>
             <!--  Create a Y Axis  -->
             <sci:SciChartSurface.YAxis>
-                <ax:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Once" DrawMajorGridLines="True" DrawMinorGridLines="True"  AxisBandsFill="White" TickTextBrush="Black" ></ax:NumericAxis>
+                <ax:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Once" VisibleRange="{Binding YVisibleRange}" DrawMajorGridLines="True" DrawMinorGridLines="True"  AxisBandsFill="White" TickTextBrush="Black" ></ax:NumericAxis>
             </sci:SciChartSurface.YAxis>
             <!--  Specify interactivity modifiers  -->
             <sci:SciChartSurface.ChartModifier>
