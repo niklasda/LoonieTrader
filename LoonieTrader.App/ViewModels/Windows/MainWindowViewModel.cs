@@ -18,7 +18,7 @@ using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.ViewModels;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 
 namespace LoonieTrader.App.ViewModels.Windows
 {

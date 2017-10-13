@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
+using CommonServiceLocator;
 using Fluent;
 using FontAwesome.WPF;
 using LoonieTrader.App.Constants;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
-using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.Views
 {

@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Threading;
 using LoonieTrader.Library.Interfaces;
-using Microsoft.Practices.ServiceLocation;
 using SciChart.Charting.Visuals;
+using CommonServiceLocator;
 
 namespace LoonieTrader.App
 {

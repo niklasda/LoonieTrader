@@ -1,12 +1,12 @@
 using System.ComponentModel.Composition.Hosting;
 using AutoMapper;
+using CommonServiceLocator;
 using LoonieTrader.App.Mapper;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.App.ViewModels.Windows;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Locator;
-using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
 namespace LoonieTrader.App.Locator

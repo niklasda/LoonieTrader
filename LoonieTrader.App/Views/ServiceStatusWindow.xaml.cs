@@ -1,6 +1,6 @@
 ﻿using System.Windows;
+using CommonServiceLocator;
 using LoonieTrader.App.Services;
-using Microsoft.Practices.ServiceLocation;
 
 namespace LoonieTrader.App.Views
 {

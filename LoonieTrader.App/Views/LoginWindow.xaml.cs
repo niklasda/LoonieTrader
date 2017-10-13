@@ -1,7 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using CommonServiceLocator;
 using LoonieTrader.App.Services;
 using LoonieTrader.App.ViewModels.Windows;
-using Microsoft.Practices.ServiceLocation;
 using FontAwesome.WPF;
 using LoonieTrader.App.Constants;
 
@@ -25,6 +26,7 @@ namespace LoonieTrader.App.Views
 
             var fore = ColorConfig.ForeGround;
 
+//            LoginUseButtonIcon.Icon = new Image() {Source  = ImageAwesome.CreateImageSource(FontAwesomeIcon.Check, fore)};
             LoginUseButtonIcon.Source = ImageAwesome.CreateImageSource(FontAwesomeIcon.Check, fore);
 
         }
