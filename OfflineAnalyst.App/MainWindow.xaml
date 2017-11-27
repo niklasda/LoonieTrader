@@ -1,0 +1,131 @@
+﻿<fluent:RibbonWindow x:Class="OfflineAnalyst.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OfflineAnalyst.App"
+        xmlns:fluent="urn:fluent-ribbon"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:s="http://schemas.abtsoftware.co.uk/scichart"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        ResizeMode="CanResizeWithGrip"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+                     Height="700" MinHeight="600"
+                     Width="1280" MinWidth="960">
+    
+    <DockPanel LastChildFill="True">
+        
+        <fluent:Ribbon DockPanel.Dock="Top" CanQuickAccessLocationChanging="False">
+            <!--Backstage-->
+            <fluent:Ribbon.ToolBarItems>
+            </fluent:Ribbon.ToolBarItems>
+            <!--Quick Access Toolbar Items-->
+            <fluent:Ribbon.QuickAccessItems >
+                <!--Use Content or Target Property to set QAT item-->
+                <fluent:QuickAccessMenuItem IsChecked="true" Target="{Binding Source={x:Reference LoadFileButton}}" />
+                <!--You Can Just Bind with Any Control
+                <fluent:QuickAccessMenuItem Target="{Binding ElementName=OpenOrderWindow}"/>-->
+            </fluent:Ribbon.QuickAccessItems>
+
+            <!--Tabs-->
+            <fluent:RibbonTabItem Header="Analysis"  fluent:KeyTip.Keys="T">
+                <fluent:RibbonGroupBox Header="File" Height="84">
+                    <fluent:Button Header="Load"               x:Name="LoadFileButton"              fluent:KeyTip.Keys="L" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Close"               x:Name="CloseFileButton"              fluent:KeyTip.Keys="C" Command="{Binding NewChartCommand}" />
+                </fluent:RibbonGroupBox>
+                <fluent:RibbonGroupBox Header="Operations">
+                    <fluent:Button Header="Find U-U-U-D"               x:Name="FindPattern1Button"              fluent:KeyTip.Keys="1" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Find U-U-U-U-D"               x:Name="FindPattern2Button"              fluent:KeyTip.Keys="2" Command="{Binding NewChartCommand}" />
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+
+        </fluent:Ribbon>
+        <fluent:StatusBar  DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <fluent:StatusBarItem Title="{Binding StatusBarLeft}" Value="150" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding StatusBarLeft}"></TextBlock>
+            </fluent:StatusBarItem>
+            <fluent:StatusBarItem Title="{Binding StatusBarRight}" Margin="20,0" Value="188" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding StatusBarRight}"></TextBlock>
+            </fluent:StatusBarItem>
+        </fluent:StatusBar>
+
+        <Grid   >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="190"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+            </Grid>
+            <GridSplitter Grid.Column="1" Width="7" ResizeDirection="Columns" HorizontalAlignment="Stretch" ></GridSplitter>
+
+            <Grid  Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="Auto">
+                        
+                    </RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <s:SciChartSurface Grid.Row="0" RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}" Background="White" >
+
+                    <!--  Create an X Axis  -->
+                    <s:SciChartSurface.XAxis>
+                        <s:CategoryDateTimeAxis AxisTitle="{Binding XAxisTitle}" AutoRange="Once" VisibleRange="{Binding XVisibleRange}" DrawMajorGridLines="True" DrawMinorGridLines="True" AxisBandsFill="White" TickTextBrush="Black" GrowBy="0,0.1" />
+                    </s:SciChartSurface.XAxis>
+                    <!--  Create a Y Axis  -->
+                    <s:SciChartSurface.YAxis>
+                        <s:NumericAxis AxisTitle="{Binding YAxisTitle}" AutoRange="Once" VisibleRange="{Binding YVisibleRange}" DrawMajorGridLines="True" DrawMinorGridLines="True"  AxisBandsFill="White" TickTextBrush="Black" ></s:NumericAxis>
+                    </s:SciChartSurface.YAxis>
+                    <!--  Specify interactivity modifiers  -->
+                    <s:SciChartSurface.ChartModifier>
+                        <s:ModifierGroup>
+                            <s:RubberBandXyZoomModifier IsEnabled="True" />
+                            <s:ZoomExtentsModifier IsEnabled="True" />
+                            <s:ZoomPanModifier IsEnabled ="False"/>
+                            <s:TooltipModifier IsEnabled="False" />
+                            <s:RolloverModifier IsEnabled="True" DrawVerticalLine="True" ShowTooltipOn="Always" SourceMode="AllSeries" ShowAxisLabels="True" />
+                            <s:LegendModifier ShowLegend="True"/>
+                        </s:ModifierGroup>
+                    </s:SciChartSurface.ChartModifier>
+
+                    <!-- Add annotations hints to the user -->
+                    <s:SciChartSurface.Annotations>
+                        <s:TextAnnotation Text="Hello world!" X1="5.0" Y1="5.0"/>
+
+                    </s:SciChartSurface.Annotations>
+                </s:SciChartSurface>
+                <GridSplitter  Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></GridSplitter>
+                <Grid Grid.Row="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+
+
+
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</fluent:RibbonWindow>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

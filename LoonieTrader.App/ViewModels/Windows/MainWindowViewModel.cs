@@ -53,7 +53,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             BlotterCommand = new RelayCommand(OpenBlotterWindow);
             MachineLearningCommand = new RelayCommand(OpenMachineLearningWindow);
             InstrumentsCommand = new RelayCommand(OpenInstrumentsWindow);
-            NewChartCommand = new RelayCommand(()=>OpenNewChartWindow(null));
+            NewChartCommand = new RelayCommand(() => OpenNewChartWindow(null));
             SettingsCommand = new RelayCommand(OpenSettingsWindow);
             LogOutCommand = new RelayCommand(LogOut);
             ExitApplicationCommand = new RelayCommand(ExitApplication);
