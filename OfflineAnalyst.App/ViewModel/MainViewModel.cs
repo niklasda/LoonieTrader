@@ -4,8 +4,10 @@ using System.Windows.Input;
 using System;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Net;
 using OfflineAnalyst.App.Models;
@@ -146,6 +148,14 @@ namespace OfflineAnalyst.App.ViewModel
                                                 // 32 - bit float: Ask volume,
                                                 // 32 - bit float: Bid volume. 
                                                 // bigEndian
+                                                // AUSUSD ~   0,75
+                                                // EURUSD ~   1,18
+                                                // GBPUSD ~   1,34
+                                                // NZDUSD ~   0,68
+                                                // USDCAD ~   1,29
+                                                // USDCHF ~   0,99
+                                                // USDJPY ~ 113,54
+
 
                 var li = filename.LastIndexOf(@"\") + 1;
                 var len = filename.Length;
@@ -154,35 +164,35 @@ namespace OfflineAnalyst.App.ViewModel
                 var mon = filename.Substring(li - 6, 2);
                 var yr = filename.Substring(li - 11, 4);
 
+                var ccy = filename.Substring(li - 18, 6);
+
                 var baseDate = DateTime.ParseExact($"{yr}-{mon}-{day} {hour}:00:00", "yyyy-MM-dd HH:mm:ss", CultureInfo.CurrentCulture);
-            //    var baseDate = new  DateTime(yr, mon, day, );
+
+                decimal tickDivider = 100000m;
+
+                if (ccy == "USDJPY")
+                {
+                    tickDivider = 1000m;
+                }
 
                 using (ArchiveFile archiveFile = new ArchiveFile(dlg.OpenFile(), SevenZipFormat.Lzma))
                 {
-                    foreach (Entry entry in archiveFile.Entries)
+                    IList<TickModel> ticks = new List<TickModel>();
+
+                    Entry entry = archiveFile.Entries.FirstOrDefault();
+
+                    if ( entry != null)
                     {
-                        Console.WriteLine($"size {entry.Size}");
-
-                        // extract to file
-                        //  entry.Extract(entry.FileName);
-
                         // extract to stream
                         var memoryStream = new MemoryStream();
                         entry.Extract(memoryStream);
-                        //  var buff = memoryStream.ToArray();
-                        //  var buff = memoryStream.ToArray();
-
-                        //    BitConverter.
 
                         BinaryReader reader = new BinaryReader(memoryStream);
 
-                        // var len = memoryStream.Length;
                         memoryStream.Seek(0, SeekOrigin.Begin);
 
-                        while (reader.BaseStream.Position < reader.BaseStream.Length)
+                        while (memoryStream.Position < memoryStream.Length)
                         {
-
-
                             int msec = reader.ReadInt32();
                             int milli = IPAddress.HostToNetworkOrder(msec);
 
@@ -203,21 +213,23 @@ namespace OfflineAnalyst.App.ViewModel
                             Array.Reverse(floatBidBytes);
                             float bidv = BitConverter.ToSingle(floatBidBytes, 0);
 
-
-
-                            //  float askv = reader.ReadSingle();
-                            //                            int avv = IPAddress.HostToNetworkOrder(askv);
-                            //    float x = BitConverter.ToSingle(askv, 0);
-
-                            //     float bidv = reader.ReadSingle();
-                            //                 var sec = buff[i+5];
-                            //                          int bvv = IPAddress.HostToNetworkOrder(bidv);
-
+                            
                             var tm = new TickModel();
-                            Console.WriteLine($"{milli}: ask:{aaa}, bid:{bbb}, av:{askv}, bv:{bidv}");
+                            tm.TimeStamp = tickDate;
+                            tm.Milli = msec;
+                            tm.Ask = aaa/ tickDivider;
+                            tm.AskVolume = (decimal)askv;
+                            tm.Bid = bbb/ tickDivider;
+                            tm.BidVolume = (decimal)bidv;
 
+                           // Console.WriteLine($"{tickDate.ToString("HH:mm:ss.fff")}: ask:{aaa}, bid:{bbb}, av:{askv}, bv:{bidv}");
+                            ticks.Add(tm);
+                            Console.WriteLine($"{tm}");
                         }
                     }
+
+                    Console.WriteLine($"Number of ticks: {ticks.Count}, s/h: {60 * 60}, s/d: {60 * 60 * 24}");
+
                 }
 
             }

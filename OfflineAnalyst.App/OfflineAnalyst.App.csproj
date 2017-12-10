@@ -150,10 +150,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Files\00h_ticks.bi5" />
+    <None Include="Files\AUDUSD\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\AUDUSD\2017\11\01\01h_ticks.bi5" />
     <None Include="Files\EURUSD\2017\11\01\00h_ticks.bi5" />
     <None Include="Files\EURUSD\2017\11\01\01h_ticks.bi5" />
     <None Include="Files\EURUSD_tick.csv" />
+    <None Include="Files\GBPUSD\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\GBPUSD\2017\11\01\01h_ticks.bi5" />
+    <None Include="Files\NZDUSD\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\NZDUSD\2017\11\01\01h_ticks.bi5" />
+    <None Include="Files\USDCAD\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\USDCAD\2017\11\01\01h_ticks.bi5" />
+    <None Include="Files\USDCHF\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\USDCHF\2017\11\01\01h_ticks.bi5" />
+    <None Include="Files\USDJPY\2017\11\01\00h_ticks.bi5" />
+    <None Include="Files\USDJPY\2017\11\01\01h_ticks.bi5" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
