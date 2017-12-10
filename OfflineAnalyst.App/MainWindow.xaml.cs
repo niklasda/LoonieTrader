@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿
 using Fluent;
+using FontAwesome.WPF;
+using OfflineAnalyst.App.Constants;
 
 namespace OfflineAnalyst.App
 {
@@ -24,6 +13,11 @@ namespace OfflineAnalyst.App
         public MainWindow()
         {
             InitializeComponent();
+
+            var fore = ColorConfig.ForeGround;
+
+            LoadFileButton.Icon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Plus, fore);
+            LoadFileButton.LargeIcon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Plus, fore);
         }
     }
 }

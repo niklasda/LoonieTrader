@@ -63,11 +63,11 @@
 
             <Grid  Grid.Column="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="180"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="Auto">
                         
                     </RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="90"></RowDefinition>
                 </Grid.RowDefinitions>
                 <s:SciChartSurface Grid.Row="0" RenderableSeries="{s:SeriesBinding RenderableSeriesViewModels}" Background="White" >
 
