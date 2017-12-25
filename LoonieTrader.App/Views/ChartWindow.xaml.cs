@@ -1,6 +1,6 @@
 ﻿using System.Windows;
+using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Parts;
-using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.Views
 {

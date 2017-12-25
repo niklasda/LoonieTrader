@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Globalization;
 using GalaSoft.MvvmLight;
-using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.ViewModels
 {

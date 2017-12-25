@@ -1,5 +1,4 @@
 ﻿
-using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.ViewModels
 {

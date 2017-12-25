@@ -9,7 +9,6 @@ using LoonieTrader.App.ViewModels.Parts;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Caches;
 using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Interfaces;
 
 namespace LoonieTrader.App.ViewModels.Windows

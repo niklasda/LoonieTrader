@@ -7,7 +7,6 @@ using System.Windows.Media;
 using CommonServiceLocator;
 using LoonieTrader.App.ViewModels;
 using LoonieTrader.App.ViewModels.Windows;
-using LoonieTrader.Library.ViewModels;
 
 namespace LoonieTrader.App.Views.Parts
 {

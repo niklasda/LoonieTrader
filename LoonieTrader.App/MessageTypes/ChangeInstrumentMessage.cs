@@ -1,4 +1,4 @@
-﻿using LoonieTrader.Library.ViewModels;
+﻿using LoonieTrader.App.ViewModels;
 
 namespace LoonieTrader.App.MessageTypes
 {

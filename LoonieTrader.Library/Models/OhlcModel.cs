@@ -1,13 +1,9 @@
 ﻿using System;
-using LoonieTrader.Library.Enums;
 
-namespace LoonieTrader.App.ViewModels
+namespace LoonieTrader.Library.Models
 {
-    public class CandleDataViewModel
+    public class OhlcModel
     {
-        public string Ticker { get; set; }
-        public PricePointType PointType { get; set; }
-
         public string Date { get; set; }
 
         public string Time { get; set; }
@@ -40,6 +36,7 @@ namespace LoonieTrader.App.ViewModels
         public double Low { get; set; }
 
         public double Close { get; set; }
+
         public int TickCount { get; set; }
 
         public double Volume { get; set; }

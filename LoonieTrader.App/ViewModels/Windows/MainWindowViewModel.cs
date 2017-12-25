@@ -17,7 +17,6 @@ using LoonieTrader.App.Views;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.ViewModels;
 using CommonServiceLocator;
 
 namespace LoonieTrader.App.ViewModels.Windows
@@ -73,6 +72,7 @@ namespace LoonieTrader.App.ViewModels.Windows
             GotoMarketPulseCommand = new RelayCommand(() => GotoLocation(GotoLocations.MarketPulse));
             GotoMarketPulseCalendarCommand = new RelayCommand(() => GotoLocation(GotoLocations.MarketPulseCalendar));
             GotoNewsCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaNews));
+            GotoAlgoLabCommand = new RelayCommand(() => GotoLocation(GotoLocations.OandaAlgoLab));
             GotoGoogleFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.GoogleFinance));
             GotoYahooFinanceCommand = new RelayCommand(() => GotoLocation(GotoLocations.YahooFinance));
 
@@ -186,6 +186,7 @@ namespace LoonieTrader.App.ViewModels.Windows
         public ICommand GotoMarketPulseCommand { get; set; }
         public ICommand GotoMarketPulseCalendarCommand { get; set; }
         public ICommand GotoNewsCommand { get; set; }
+        public ICommand GotoAlgoLabCommand { get; set; }
         public ICommand GotoGoogleFinanceCommand { get; set; }
         public ICommand GotoYahooFinanceCommand { get; set; }
 
@@ -250,6 +251,9 @@ namespace LoonieTrader.App.ViewModels.Windows
                     break;
                 case GotoLocations.OandaNews:
                     SafeStartUri("https://www.oanda.com/forex-trading/analysis/");
+                    break;
+                case GotoLocations.OandaAlgoLab:
+                    SafeStartUri("https://www.oanda.com/forex-trading/tools/algo-lab");
                     break;
                 case GotoLocations.GoogleFinance:
                     SafeStartUri("https://www.google.com/finance?q=eurusd");

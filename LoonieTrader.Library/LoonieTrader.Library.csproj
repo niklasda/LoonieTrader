@@ -123,7 +123,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\TimeFramePointType.cs" />
+    <Compile Include="Enums\PricePointType.cs" />
+    <Compile Include="Models\OhlcListModel.cs" />
+    <Compile Include="Models\OhlcModel.cs" />
+    <Compile Include="Models\TickListModel.cs" />
+    <Compile Include="Models\TickModel.cs" />
     <Compile Include="RestApi\Requesters\LoonieWebClient.cs" />
+    <Compile Include="TimeFrames\TimeFrameFactory.cs" />
+    <Compile Include="TimeFrames\TimeFrame.cs" />
     <Compile Include="ViewModels\CandleDataViewModel.cs" />
     <Compile Include="ViewModels\ChartBaseViewModel.cs" />
     <Compile Include="ViewModels\InstrumentViewModel.cs" />

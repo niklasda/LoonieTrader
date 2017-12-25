@@ -14,7 +14,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.ViewModels;
 using System.Reflection;
 
 namespace LoonieTrader.App.ViewModels.Windows

@@ -74,6 +74,7 @@
                         <fluent:MenuItem Header="Market Pulse" Command="{Binding GotoMarketPulseCommand}" />
                         <fluent:MenuItem Header="Market Pulse Calendar" Command="{Binding GotoMarketPulseCalendarCommand}" />
                         <fluent:MenuItem Header="Financial News" Command="{Binding GotoNewsCommand}" />
+                        <fluent:MenuItem Header="AlgoLab" Command="{Binding GotoAlgoLabCommand}" />
                         <fluent:MenuItem Header="Google Finance" Command="{Binding GotoGoogleFinanceCommand}" />
                         <fluent:MenuItem Header="Yahoo Finance" Command="{Binding GotoYahooFinanceCommand}" />
                     </fluent:SplitButton>

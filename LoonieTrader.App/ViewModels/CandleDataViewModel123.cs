@@ -1,12 +1,10 @@
 ﻿//using System;
-//using LoonieTrader.Library.Enums;
 
-//namespace LoonieTrader.Library.ViewModels
+//namespace LoonieTrader.App.ViewModels
 //{
 //    public class CandleDataViewModel
 //    {
 //        public string Ticker { get; set; }
-//        public PricePointType PointType { get; set; }
 
 //        public string Date { get; set; }
 
@@ -25,24 +23,17 @@
 //                // 636131658420000000 / 36000000000 = 17670323,845
 //                return dt;
 //            }
-//            set
-//            {
-//                Date = value.ToString("yyyyMMdd");
-//                Time = value.ToString("HHmmss");
-                
-//            }
 //        }
 
-//        public double Open { get; set; }
+//        public decimal Open { get; set; }
 
-//        public double High { get; set; }
+//        public decimal High { get; set; }
 
-//        public double Low { get; set; }
+//        public decimal Low { get; set; }
 
-//        public double Close { get; set; }
-//        public int TickCount { get; set; }
+//        public decimal Close { get; set; }
 
-//        public double Volume { get; set; }
+//        public int Volume { get; set; }
 //    }
 //    //<TICKER>,<DTYYYYMMDD>,<TIME>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>
 //}

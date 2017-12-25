@@ -16,7 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 
-namespace OfflineAnalyst.App.ViewModel
+namespace OfflineAnalyst.App.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the

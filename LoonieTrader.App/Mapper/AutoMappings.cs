@@ -5,7 +5,6 @@ using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Models;
 
 namespace LoonieTrader.App.Mapper

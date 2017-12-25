@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace LoonieTrader.App.ViewModels
+namespace OfflineAnalyst.App.ViewModels
 {
     [DisplayName(@"Instrument: ")]
     public class InstrumentViewModel

@@ -1,7 +1,7 @@
 ﻿using System;
 using LoonieTrader.Library.Enums;
 
-namespace LoonieTrader.App.ViewModels
+namespace OfflineAnalyst.App.ViewModels
 {
     public class CandleDataViewModel
     {

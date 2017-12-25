@@ -181,13 +181,15 @@
     <Compile Include="Services\LayoutService.cs" />
     <Compile Include="Services\UIServices.cs" />
     <Compile Include="ViewModels\AccountSummaryViewModel.cs" />
-    <Compile Include="ViewModels\CandleTimeViewModel.cs" />
     <Compile Include="ViewModels\CandleDataViewModel.cs" />
+    <Compile Include="ViewModels\CandleTimeViewModel.cs" />
+    <Compile Include="ViewModels\CandleDataViewModel123.cs" />
     <Compile Include="ViewModels\Converters\IsPositiveConverter.cs" />
     <Compile Include="ViewModels\Converters\IsNegativeConverter.cs" />
     <Compile Include="ViewModels\Converters\InstrumentTypeConverter.cs" />
     <Compile Include="ViewModels\DepthViewModel.cs" />
     <Compile Include="ViewModels\InstrumentTypeViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentViewModel.cs" />
     <Compile Include="ViewModels\Parts\SciChartPartViewModel.cs" />
     <Compile Include="ViewModels\ServiceViewModel.cs" />
     <Compile Include="ViewModels\ServiceEventViewModel.cs" />
@@ -204,7 +206,7 @@
     <Compile Include="ViewModels\Windows\WorkbenchWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\ChartWindowViewModel.cs" />
     <Compile Include="ViewModels\Windows\AboutWindowViewModel.cs" />
-    <Compile Include="ViewModels\InstrumentViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentViewModel123.cs" />
     <Compile Include="ViewModels\Windows\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\PositionViewModel.cs" />
     <Compile Include="Views\MachineLearningWindow.xaml.cs">

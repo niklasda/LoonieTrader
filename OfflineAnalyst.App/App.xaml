@@ -9,7 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:OfflineAnalyst.App.ViewModel" />
+                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:OfflineAnalyst.App.ViewModels" />
                 </ResourceDictionary>
                 <ResourceDictionary Source="/Fluent;Component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>

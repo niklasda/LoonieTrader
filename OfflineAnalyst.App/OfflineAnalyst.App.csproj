@@ -117,8 +117,10 @@
     </ApplicationDefinition>
     <Compile Include="Constants\ColorConfig.cs" />
     <Compile Include="Models\TickModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModels\CandleDataViewModel.cs" />
+    <Compile Include="ViewModels\InstrumentViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -174,7 +176,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LoonieTrader.Library\LoonieTrader.Library.csproj">
+      <Project>{442e127c-5965-4377-894f-2464c2f340da}</Project>
+      <Name>LoonieTrader.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SevenZipExtractor.1.0.10\build\SevenZipExtractor.targets" Condition="Exists('..\packages\SevenZipExtractor.1.0.10\build\SevenZipExtractor.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

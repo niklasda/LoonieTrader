@@ -15,7 +15,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.ViewModels;
 using LoonieTrader.Shared.Indicators;
 using LoonieTrader.Shared.Models;
 using SciChart.Charting.Model.ChartSeries;
@@ -273,7 +272,7 @@ namespace LoonieTrader.App.ViewModels.Parts
         /// <summary>
         /// Extracts the Volume column of the PriceSeries as an array
         /// </summary>
-        public IList<long> VolumeData { get { return this.Select(x => x.Volume).ToArray(); } }
+        public IList<double> VolumeData { get { return this.Select(x => x.Volume).ToArray(); } }
 
     }
 

@@ -1,6 +1,6 @@
 ﻿//using System.ComponentModel;
 
-//namespace LoonieTrader.Library.ViewModels
+//namespace LoonieTrader.App.ViewModels
 //{
 //    [DisplayName(@"Instrument: ")]
 //    public class InstrumentViewModel
