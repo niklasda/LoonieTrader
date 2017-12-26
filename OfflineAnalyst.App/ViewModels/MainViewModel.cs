@@ -15,43 +15,42 @@ using SciChart.Charting.Model.ChartSeries;
 using SciChart.Charting.Model.DataSeries;
 using SevenZipExtractor;
 using LoonieTrader.Library.Models;
+using LoonieTrader.Shared.Indicators;
 
 namespace OfflineAnalyst.App.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
         public MainViewModel()
         {
             NewChartCommand = new RelayCommand(OpenChartWindow);
+            CloseChartCommand = new RelayCommand(CloseChart);
+            Find1Command = new RelayCommand(FindPattern1);
+            Find2Command = new RelayCommand(FindPattern2);
 
-            //  MovingAverage sma50 = new MovingAverage(3);
-            var ds1 = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA" };
-
-            //ds1.Append(PriceData.XValues.Select(x => x), PriceData.CloseValues.Select(y => sma50.Push(y).Current));
 
             this.PriceData = new OhlcDataSeries<DateTime, double>();
-        //    PriceData.SeriesName = priceData.Symbol;
-        //    PriceData.Append(priceData.TimeData, priceData.OpenData, priceData.HighData, priceData.LowData, priceData.CloseData);
+
+            var ds1 = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA" };
 
 
             RenderableSeriesViewModels = new ObservableCollection<BaseRenderableSeriesViewModel>();
 
-            //  RenderableSeriesViewModels.Add( new OhlcRenderableSeriesViewModel() {DataSeries = PriceData });
             RenderableSeriesViewModels.Add(new CandlestickRenderableSeriesViewModel() { DataSeries = PriceData });
-            // RenderableSeriesViewModels.Add(new LineRenderableSeriesViewModel() { DataSeries = ds1 });
+            RenderableSeriesViewModels.Add(new LineRenderableSeriesViewModel() { DataSeries = ds1 });
 
             XVisibleRange = new IndexRange(0, 100);
             YVisibleRange = new DoubleRange(0.2d, 1.0d);
 
-
-
-
+            StatusBarLeft = "Bi5 test app";
         }
 
         public ICommand NewChartCommand { get; set; }
+        public ICommand CloseChartCommand { get; set; }
+        public ICommand Find1Command { get; set; }
+        public ICommand Find2Command { get; set; }
+
+
 
         private IOhlcDataSeries<DateTime, double> _priceSeries;
         public IOhlcDataSeries<DateTime, double> PriceData
@@ -64,9 +63,18 @@ namespace OfflineAnalyst.App.ViewModels
             }
         }
 
+        private string _leftStatusText;
         public string StatusBarLeft
         {
-            get { return "Left part"; }
+            get { return _leftStatusText; }
+            set
+            {
+                if (_leftStatusText != value)
+                {
+                    _leftStatusText = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
 
         private string _rightStatusText;
@@ -133,24 +141,37 @@ namespace OfflineAnalyst.App.ViewModels
             }
         }
 
+        private void CloseChart()
+        {
+            foreach (var r in RenderableSeriesViewModels)
+            {
+                r.DataSeries.Clear();
+            }
+
+        }
+
+        private void FindPattern1()
+        {
+        }
+
+        private void FindPattern2()
+        {
+        }
+
+
         private void OpenChartWindow()
         {
             OpenFileDialog dlg = new OpenFileDialog();
 
 
-            // Set filter for file extension and default file extension 
             dlg.DefaultExt = ".bi5";
             dlg.Filter = "bi5 Files (*.bi5)|*.bi5|CSV Files (*.csv)|*.csv";
 
-
-            // Display OpenFileDialog by calling ShowDialog method 
             var result = dlg.ShowDialog();
 
-
-            // Get the selected file name and display in a TextBox 
             if (result == true)
             {
-                // Open document 
+                StatusBarRight = dlg.FileName;
 
                 var tix = DecodeBinary(dlg.FileName, dlg.OpenFile());
                 var ohlc = MapToTime(tix);
@@ -161,34 +182,24 @@ namespace OfflineAnalyst.App.ViewModels
 
         private void ShowData(OhlcListModel ohlc)
         {
-            //  XAxisTitle = "";
-            //            XVisibleRange.Min = 1;
-            //          XVisibleRange.Max = 10;
-
-            //        YVisibleRange.Min = 1;
-            //      YVisibleRange.Max = 10;
-
             var ylow = ohlc.OhlcList.Max(o => o.Low);
             var ymax = ohlc.OhlcList.Max(o => o.High);
 
-            XVisibleRange.SetMinMax(0, 5);
-            YVisibleRange.SetMinMax(ymax - 0.01, ymax + 0.01);
+            
 
             PriceData.SeriesName = ohlc.Ticker;
 
+
+
             PriceData.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Open).ToList(), ohlc.OhlcList.Select(o => o.High).ToList(), ohlc.OhlcList.Select(o => o.Low).ToList(), ohlc.OhlcList.Select(o => o.Close).ToList());
 
-          //  foreach (var ohlcModel in ohlc.OhlcList)
-          //  {
+            MovingAverage sma50 = new MovingAverage(3);
 
-//                PriceData.OpenValues.Add(ohlcModel.Open);
-  //              PriceData.HighValues.Add(ohlcModel.High);
-    //            PriceData.LowValues.Add(ohlcModel.Low);
-      //          PriceData.CloseValues.Add(ohlcModel.Close);
+            var ts = (XyDataSeries<DateTime, double>) RenderableSeriesViewModels[1].DataSeries;
+            ts.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Close).Select(y => sma50.Push(y).Current));
 
-           // }
-            //   RenderableSeriesViewModels
-
+            XVisibleRange.SetMinMax(0, PriceData.Count);
+            YVisibleRange.SetMinMax(ylow - 0.01, ymax + 0.01);
         }
 
         private TickListModel DecodeBinary(string filename, Stream fileStream)
@@ -236,7 +247,6 @@ namespace OfflineAnalyst.App.ViewModels
 
                 if (entry != null)
                 {
-                    // extract to stream
                     var memoryStream = new MemoryStream();
                     entry.Extract(memoryStream);
 

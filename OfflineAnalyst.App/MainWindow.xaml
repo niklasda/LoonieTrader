@@ -10,7 +10,7 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
         ResizeMode="CanResizeWithGrip"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Bi5 file test decoder and visualizer" 
                      Height="700" MinHeight="600"
                      Width="1280" MinWidth="960">
     
@@ -31,12 +31,12 @@
             <!--Tabs-->
             <fluent:RibbonTabItem Header="Analysis"  fluent:KeyTip.Keys="T">
                 <fluent:RibbonGroupBox Header="File" Height="84">
-                    <fluent:Button Header="Load"               x:Name="LoadFileButton"              fluent:KeyTip.Keys="L" Command="{Binding NewChartCommand}" />
-                    <fluent:Button Header="Close"               x:Name="CloseFileButton"              fluent:KeyTip.Keys="C" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Load"               x:Name="LoadFileButton"         fluent:KeyTip.Keys="L" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Close"              x:Name="CloseFileButton"        fluent:KeyTip.Keys="C" Command="{Binding CloseChartCommand}" />
                 </fluent:RibbonGroupBox>
                 <fluent:RibbonGroupBox Header="Operations">
-                    <fluent:Button Header="Find U-U-U-D"               x:Name="FindPattern1Button"              fluent:KeyTip.Keys="1" Command="{Binding NewChartCommand}" />
-                    <fluent:Button Header="Find U-U-U-U-D"               x:Name="FindPattern2Button"              fluent:KeyTip.Keys="2" Command="{Binding NewChartCommand}" />
+                    <fluent:Button Header="Find U-U-U-D"       x:Name="FindPattern1Button"     fluent:KeyTip.Keys="1" Command="{Binding Find1Command}" />
+                    <fluent:Button Header="Find U-U-U-U-D"     x:Name="FindPattern2Button"     fluent:KeyTip.Keys="2" Command="{Binding Find2Command}" />
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
