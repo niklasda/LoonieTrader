@@ -58,17 +58,17 @@
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
-    <Reference Include="SciChart.Charting, Version=4.2.2.9777, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
-      <HintPath>..\packages\SciChart.4.2.2.9777\lib\net46\SciChart.Charting.dll</HintPath>
+    <Reference Include="SciChart.Charting, Version=5.0.1.11093, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.5.0.1.11093\lib\net47\SciChart.Charting.dll</HintPath>
     </Reference>
-    <Reference Include="SciChart.Core, Version=4.2.2.9777, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
-      <HintPath>..\packages\SciChart.4.2.2.9777\lib\net46\SciChart.Core.dll</HintPath>
+    <Reference Include="SciChart.Core, Version=5.0.1.11093, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.5.0.1.11093\lib\net47\SciChart.Core.dll</HintPath>
     </Reference>
-    <Reference Include="SciChart.Data, Version=4.2.2.9777, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
-      <HintPath>..\packages\SciChart.4.2.2.9777\lib\net46\SciChart.Data.dll</HintPath>
+    <Reference Include="SciChart.Data, Version=5.0.1.11093, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.5.0.1.11093\lib\net47\SciChart.Data.dll</HintPath>
     </Reference>
-    <Reference Include="SciChart.Drawing, Version=4.2.2.9777, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
-      <HintPath>..\packages\SciChart.4.2.2.9777\lib\net46\SciChart.Drawing.dll</HintPath>
+    <Reference Include="SciChart.Drawing, Version=5.0.1.11093, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
+      <HintPath>..\packages\SciChart.5.0.1.11093\lib\net47\SciChart.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="SevenZipExtractor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SevenZipExtractor.1.0.11\lib\net45\SevenZipExtractor.dll</HintPath>

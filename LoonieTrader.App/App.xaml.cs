@@ -19,16 +19,16 @@ namespace LoonieTrader.App
             // Check this code into your version-control and it will enable SciChart
             // for end-users of your application who are not activated
             SciChartSurface.SetRuntimeLicenseKey(@"<LicenseContract>
-                                                      <Customer>Dahlman Labs</Customer>
-                                                      <OrderId>ABT161230-2572-39102</OrderId>
+                                                      <Customer>nd@sql8r.net</Customer>
+                                                      <OrderId>ABT171227-5123-40128</OrderId>
                                                       <LicenseCount>1</LicenseCount>
                                                       <IsTrialLicense>false</IsTrialLicense>
-                                                      <SupportExpires>03/30/2017 00:00:00</SupportExpires>
+                                                      <SupportExpires>12/30/2017 00:00:00</SupportExpires>
                                                       <ProductCode>SC-WPF-2D-PRO</ProductCode>
-                                                      <KeyCode>lwAAAAEAAAAYR1Yw6GLSAWwAQ3VzdG9tZXI9bmRAc3FsOHIubmV0O09yZGVySWQ9QUJUMTYxMjMwLTI1NzItMzkxMDI7U3Vic2NyaXB0aW9uVmFsaWRUbz0zMC1NYXItMjAxNztQcm9kdWN0Q29kZT1TQy1XUEYtMkQtUFJPIdWtP9lDzpIpQVJoDriFXIj7iwNoMOMZUzxoo2kVAGb0YyU033oPfBBryNJApcwJ</KeyCode>
+                                                      <KeyCode>lwAAAAEAAAA+jKgBMH/TAWwAQ3VzdG9tZXI9bmRAc3FsOHIubmV0O09yZGVySWQ9QUJUMTcxMjI3LTUxMjMtNDAxMjg7U3Vic2NyaXB0aW9uVmFsaWRUbz0zMC1EZWMtMjAxNztQcm9kdWN0Q29kZT1TQy1XUEYtMkQtUFJPapJXLBU2cqw30GPiZOCwu0MycGsuOaQ+XP8RDZNCDk+m+eFmsFdRfUrqD1GYc75X</KeyCode>
                                                     </LicenseContract>");
         }
-
+        // lwAAAAEAAAA+jKgBMH/TAWwAQ3VzdG9tZXI9bmRAc3FsOHIubmV0O09yZGVySWQ9QUJUMTcxMjI3LTUxMjMtNDAxMjg7U3Vic2NyaXB0aW9uVmFsaWRUbz0zMC1EZWMtMjAxNztQcm9kdWN0Q29kZT1TQy1XUEYtMkQtUFJPapJXLBU2cqw30GPiZOCwu0MycGsuOaQ+XP8RDZNCDk+m+eFmsFdRfUrqD1GYc75X
         private void Dispatcher_UnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             string exMsg = String.Empty;
