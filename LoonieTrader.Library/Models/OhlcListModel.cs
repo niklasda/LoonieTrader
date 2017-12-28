@@ -13,6 +13,6 @@ namespace LoonieTrader.Library.Models
         public string Ticker { get; set; }
         public PricePointType PointType { get; set; }
         public IList<OhlcModel> OhlcList { get; set; }
-
+        public int MinutePeriod { get; set; }
     }
 }

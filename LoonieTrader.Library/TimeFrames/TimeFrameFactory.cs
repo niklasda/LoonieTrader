@@ -4,9 +4,9 @@ namespace LoonieTrader.Library.TimeFrames
 {
     public static class TimeFrameFactory
     {
-        public static TimeFrame Create15Minutes()
+        public static TimeFrame CreateFromMinutes(int minutes)
         {
-            return new TimeFrame("15 Minutes", TimeSpan.FromMinutes(15));
+            return new TimeFrame($"{minutes} Minutes", TimeSpan.FromMinutes(minutes));
         }
     }
 }

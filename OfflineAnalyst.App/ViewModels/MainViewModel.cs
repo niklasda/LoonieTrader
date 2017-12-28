@@ -178,7 +178,7 @@ namespace OfflineAnalyst.App.ViewModels
                     using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
                     {
                         var tix = DecodeBinary(fileName, stream);
-                        var ohlc = MapToTime(tix);
+                        var ohlc = MapToTime(tix, 15);
 
                         ShowData(ohlc);
                     }
@@ -191,17 +191,14 @@ namespace OfflineAnalyst.App.ViewModels
             var ylow = ohlc.OhlcList.Max(o => o.Low);
             var ymax = ohlc.OhlcList.Max(o => o.High);
 
-            
-
-            PriceData.SeriesName = ohlc.Ticker;
-
-
+            PriceData.SeriesName = $"{ohlc.Ticker} ({ohlc.MinutePeriod}m)";
 
             PriceData.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Open).ToList(), ohlc.OhlcList.Select(o => o.High).ToList(), ohlc.OhlcList.Select(o => o.Low).ToList(), ohlc.OhlcList.Select(o => o.Close).ToList());
 
             MovingAverage sma50 = new MovingAverage(3);
 
             var ts = (XyDataSeries<DateTime, double>) RenderableSeriesViewModels[1].DataSeries;
+            
             ts.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Close).Select(y => sma50.Push(y).Current));
 
             XVisibleRange.SetMinMax(0, PriceData.Count);
@@ -306,11 +303,11 @@ namespace OfflineAnalyst.App.ViewModels
             return null;
         }
 
-        private OhlcListModel MapToTime(TickListModel tickList)
+        private OhlcListModel MapToTime(TickListModel tickList, int minutes)
         {
-            var m15 = TimeFrameFactory.Create15Minutes();
+            var m15 = TimeFrameFactory.CreateFromMinutes(minutes);
             OhlcListModel ohlcList = m15.ConvertTime(tickList, PricePointType.Bid);
-
+            ohlcList.MinutePeriod = minutes;
             return ohlcList;
         }
     }
