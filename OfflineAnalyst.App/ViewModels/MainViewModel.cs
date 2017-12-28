@@ -163,20 +163,26 @@ namespace OfflineAnalyst.App.ViewModels
         {
             OpenFileDialog dlg = new OpenFileDialog();
 
-
             dlg.DefaultExt = ".bi5";
             dlg.Filter = "bi5 Files (*.bi5)|*.bi5|CSV Files (*.csv)|*.csv";
+            dlg.Multiselect = true;
 
             var result = dlg.ShowDialog();
 
             if (result == true)
             {
-                StatusBarRight = dlg.FileName;
+                foreach(var fileName in dlg.FileNames.OrderBy(f=>f))
+                {
+                    StatusBarRight = fileName;
 
-                var tix = DecodeBinary(dlg.FileName, dlg.OpenFile());
-                var ohlc = MapToTime(tix);
+                    using (var stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+                    {
+                        var tix = DecodeBinary(fileName, stream);
+                        var ohlc = MapToTime(tix);
 
-                ShowData(ohlc);
+                        ShowData(ohlc);
+                    }
+                }
             }
         }
 
