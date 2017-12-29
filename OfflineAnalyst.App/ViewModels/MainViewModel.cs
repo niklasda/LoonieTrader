@@ -8,6 +8,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Windows;
+using System.Windows.Media;
 using LoonieTrader.Library.Enums;
 using LoonieTrader.Library.TimeFrames;
 using SciChart.Data.Model;
@@ -16,6 +18,7 @@ using SciChart.Charting.Model.DataSeries;
 using SevenZipExtractor;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Shared.Indicators;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace OfflineAnalyst.App.ViewModels
 {
@@ -31,25 +34,31 @@ namespace OfflineAnalyst.App.ViewModels
 
             this.PriceData = new OhlcDataSeries<DateTime, double>();
 
-            var ds1 = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA" };
-
+            var sma3close = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA Close" };
+            var sma3mid = new XyDataSeries<DateTime, double> { SeriesName = "3-Period SMA Mid" };
 
             RenderableSeriesViewModels = new ObservableCollection<BaseRenderableSeriesViewModel>();
 
-            RenderableSeriesViewModels.Add(new CandlestickRenderableSeriesViewModel() { DataSeries = PriceData });
-            RenderableSeriesViewModels.Add(new LineRenderableSeriesViewModel() { DataSeries = ds1 });
+            RenderableSeriesViewModels.Add(new CandlestickRenderableSeriesViewModel { DataSeries = PriceData });
+            RenderableSeriesViewModels.Add(new LineRenderableSeriesViewModel { DataSeries = sma3close });
+            RenderableSeriesViewModels.Add(new LineRenderableSeriesViewModel { DataSeries = sma3mid });
+
+            RenderableSeriesViewModels[1].Stroke = Colors.AliceBlue;
+            RenderableSeriesViewModels[2].Stroke = Colors.Bisque;
+
 
             XVisibleRange = new IndexRange(0, 100);
             YVisibleRange = new DoubleRange(0.2d, 1.0d);
 
-            StatusBarLeft = "Bi5 test app";
+            StatusBarLeft = WindowTitle;
         }
+
+        private const string WindowTitle = "Bi5 file test decoder and visualizer";
 
         public ICommand NewChartCommand { get; set; }
         public ICommand CloseChartCommand { get; set; }
         public ICommand Find1Command { get; set; }
         public ICommand Find2Command { get; set; }
-
 
 
         private IOhlcDataSeries<DateTime, double> _priceSeries;
@@ -152,10 +161,20 @@ namespace OfflineAnalyst.App.ViewModels
 
         private void FindPattern1()
         {
+            if (PriceData.Count < 100)
+            {
+                MessageBox.Show(Application.Current.MainWindow, "Too few points", WindowTitle);
+            }
+
         }
 
         private void FindPattern2()
         {
+            if (PriceData.Count < 100)
+            {
+                MessageBox.Show(Application.Current.MainWindow, "Too few points", WindowTitle);
+            }
+
         }
 
 
@@ -171,7 +190,7 @@ namespace OfflineAnalyst.App.ViewModels
 
             if (result == true)
             {
-                foreach(var fileName in dlg.FileNames.OrderBy(f=>f))
+                foreach (var fileName in dlg.FileNames.OrderBy(f => f))
                 {
                     StatusBarRight = fileName;
 
@@ -188,21 +207,25 @@ namespace OfflineAnalyst.App.ViewModels
 
         private void ShowData(OhlcListModel ohlc)
         {
-            var ylow = ohlc.OhlcList.Max(o => o.Low);
-            var ymax = ohlc.OhlcList.Max(o => o.High);
-
             PriceData.SeriesName = $"{ohlc.Ticker} ({ohlc.MinutePeriod}m)";
 
             PriceData.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Open).ToList(), ohlc.OhlcList.Select(o => o.High).ToList(), ohlc.OhlcList.Select(o => o.Low).ToList(), ohlc.OhlcList.Select(o => o.Close).ToList());
 
-            MovingAverage sma50 = new MovingAverage(3);
+            MovingAverage sma3 = new MovingAverage(3);
 
-            var ts = (XyDataSeries<DateTime, double>) RenderableSeriesViewModels[1].DataSeries;
-            
-            ts.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Close).Select(y => sma50.Push(y).Current));
+            var tsClose = (XyDataSeries<DateTime, double>)RenderableSeriesViewModels[1].DataSeries;
+            var tsMid = (XyDataSeries<DateTime, double>)RenderableSeriesViewModels[2].DataSeries;
 
-            XVisibleRange.SetMinMax(0, PriceData.Count);
-            YVisibleRange.SetMinMax(ylow - 0.01, ymax + 0.01);
+
+
+            tsClose.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => o.Close).Select(y => sma3.Push(y).Current));
+            tsMid.Append(ohlc.OhlcList.Select(o => o.DatePlusTime).ToList(), ohlc.OhlcList.Select(o => (o.High + o.Low) / 2).Select(y => sma3.Push(y).Current));
+
+            var ylow = PriceData.LowValues.Min(o => o);
+            var ymax = PriceData.HighValues.Max(o => o);
+
+            XVisibleRange.SetMinMax(0, PriceData.Count + 1);
+            YVisibleRange.SetMinMax(ylow - 0.05, ymax + 0.05);
         }
 
         private TickListModel DecodeBinary(string filename, Stream fileStream)

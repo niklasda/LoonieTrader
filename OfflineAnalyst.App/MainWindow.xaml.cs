@@ -18,6 +18,9 @@ namespace OfflineAnalyst.App
 
             LoadFileButton.Icon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Plus, fore);
             LoadFileButton.LargeIcon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Plus, fore);
+
+            CloseFileButton.Icon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Minus, fore);
+            CloseFileButton.LargeIcon = ImageAwesome.CreateImageSource(FontAwesomeIcon.Minus, fore);
         }
     }
 }
