@@ -11,9 +11,9 @@ namespace LoonieTrader.App.Services
             FileReaderWriterService rws = new FileReaderWriterService();
             var fileName = rws.GetLayoutFolderPath();
 
-            Tracker = new StateTracker { StoreFactory = new JsonFileStoreFactory(fileName) };
+            Tracker = new Tracker { Store = new JsonFileStore(fileName) };
         }
 
-        public StateTracker Tracker { get; private set; }
+        public Tracker Tracker { get; private set; }
     }
 }

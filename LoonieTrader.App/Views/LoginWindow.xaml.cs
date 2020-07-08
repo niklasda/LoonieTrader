@@ -15,7 +15,7 @@ namespace LoonieTrader.App.Views
             InitializeComponent();
 
             var ls = ServiceLocator.Current.GetInstance<LayoutService>();
-            base.SourceInitialized += (s, e) => ls.Tracker.Configure(this).Apply();
+            base.SourceInitialized += (s, e) => ls.Tracker.Configure(this);
 
             var vm = DataContext as LoginWindowViewModel;
             if (vm != null)

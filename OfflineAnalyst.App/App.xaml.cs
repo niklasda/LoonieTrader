@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 using SciChart.Charting.Visuals;
 
 namespace OfflineAnalyst.App

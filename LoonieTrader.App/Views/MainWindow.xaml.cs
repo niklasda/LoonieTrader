@@ -17,7 +17,7 @@ namespace LoonieTrader.App.Views
             Closing += Window_Closing;
 
             var ls = ServiceLocator.Current.GetInstance<LayoutService>();
-            base.SourceInitialized += (s, e) => ls.Tracker.Configure(this).Apply();
+            base.SourceInitialized += (s, e) => ls.Tracker.Configure(this);
 
             var fore = ColorConfig.ForeGround;
 

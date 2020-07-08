@@ -38,11 +38,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.1\lib\net47\CommonServiceLocator.dll</HintPath>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="ControlzEx, Version=2.2.0.4, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.2.2.0.4\lib\net45\ControlzEx.dll</HintPath>
@@ -53,33 +53,30 @@
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
     </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=2020.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2020.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="Jot, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jot.1.4.1\lib\net45\Jot.dll</HintPath>
+    <Reference Include="Jot, Version=2.1.7.0, Culture=neutral, PublicKeyToken=6b498f69c5f88322, processorArchitecture=MSIL">
+      <HintPath>..\packages\Jot.2.1.7\lib\netstandard2.0\Jot.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Polly, Version=5.6.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Polly.5.6.1\lib\net45\Polly.dll</HintPath>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.7.2.1\lib\net461\Polly.dll</HintPath>
     </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="SciChart.Charting, Version=5.0.1.11118, Culture=neutral, PublicKeyToken=b55dd9efe817e823, processorArchitecture=MSIL">
@@ -106,32 +103,38 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Printing" />
-    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive, Version=4.4.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.4.1\lib\net46\System.Reactive.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.4.4.1\lib\net46\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.4.4.1\lib\net46\System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net46\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\System.Reactive.Linq.4.4.1\lib\net46\System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.PlatformServices.3.1.1\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\System.Reactive.PlatformServices.4.4.1\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Windows.Threading.4.4.1\lib\net46\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\ControlzEx.2.2.0.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />

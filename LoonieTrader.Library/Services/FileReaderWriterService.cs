@@ -83,7 +83,7 @@ namespace LoonieTrader.Library.Services
                     var input = new StringReader(fileContent);
 
                     var desBuilder = new DeserializerBuilder();
-                    var deserializer = desBuilder.WithNamingConvention(new PascalCaseNamingConvention()).IgnoreUnmatchedProperties().Build();
+                    var deserializer = desBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).IgnoreUnmatchedProperties().Build();
 
                     var config = deserializer.Deserialize<Settings>(input);
 
@@ -104,7 +104,7 @@ namespace LoonieTrader.Library.Services
                 using (StreamWriter txtWr = new StreamWriter(fileStream))
                 {
                     var serBuilder = new SerializerBuilder();
-                    var serializer = serBuilder.WithNamingConvention(new PascalCaseNamingConvention()).Build();
+                    var serializer = serBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
 
                     serializer.Serialize(txtWr, settings);
                 }
