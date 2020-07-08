@@ -8,6 +8,7 @@
              xmlns:viewModels="clr-namespace:LoonieTrader.App.ViewModels"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:windows="clr-namespace:LoonieTrader.App.ViewModels.Windows"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance d:Type=windows:InstrumentsWindowViewModel}"
              d:DesignHeight="680" d:DesignWidth="280">
@@ -18,12 +19,12 @@
             <RowDefinition Height="*" MinHeight="26"></RowDefinition>
         </Grid.RowDefinitions>
         <TreeView Grid.Row="0" ItemsSource="{Binding AllInstrumentTypes,Mode=OneWay}" MouseDoubleClick="InstrumentTree_OnMouseDoubleClick" x:Name="InstrumentTree" PreviewMouseRightButtonDown="InstrumentTree_OnPreviewMouseRightButtonDown" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectedItemChanged">
-                    <i:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectedItemChanged">
+                    <b:InvokeCommandAction Command="{Binding SelectedInstrumentChangedCommand}"
                                    CommandParameter="{Binding ElementName=InstrumentTree,Path=SelectedItem}"/>
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
             <TreeView.Resources>
                 <ContextMenu  x:Key="MenuWithAdd">
                     <MenuItem Header="Add to Favourites" Command="{Binding AddInstrumentToFavouritesContextCommand}"/>
