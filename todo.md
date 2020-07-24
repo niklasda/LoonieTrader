@@ -34,6 +34,6 @@ indicators with parameter input, proprtygrid
 right click in grid, menu,  order @
 serilog
 
-async wait after login click
+async wait after login click	
 window icons same as toolbar button
 option to not login
