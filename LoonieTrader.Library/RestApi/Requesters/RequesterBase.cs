@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
-using System.Text.Json;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;

@@ -1,6 +1,6 @@
 ﻿using System.IO;
+using System.Text.Json;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
@@ -23,11 +23,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlServiceList);
                 base.SaveLocalJson("service-list", "all", responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var slr = JSON.Deserialize<ServiceListResponse>(input);
+          //      using (var input = new StringReader(responseString))
+            //    {
+                    var slr = JsonSerializer.Deserialize<ServiceListResponse>(responseString);
                     return slr;
-                }
+              //  }
 
             }
         }
@@ -40,11 +40,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlServices);
                 base.SaveLocalJson("services", "all", responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var sr = JSON.Deserialize<ServicesResponse>(input);
+          //      using (var input = new StringReader(responseString))
+            //    {
+                    var sr = JsonSerializer.Deserialize<ServicesResponse>(responseString);
                     return sr;
-                }
+              //  }
             }
         }
 
@@ -56,11 +56,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlService, serviceId);
                 base.SaveLocalJson("services", serviceId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var srs = JSON.Deserialize<ServicesResponse.Service>(input);
+             //   using (var input = new StringReader(responseString))
+               // {
+                    var srs = JsonSerializer.Deserialize<ServicesResponse.Service>(responseString);
                     return srs;
-                }
+                //}
             }
         }
 
@@ -72,11 +72,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlStatuses);
                 base.SaveLocalJson("statuses", "all", responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var sr = JSON.Deserialize<StatusesResponse>(input);
+           //     using (var input = new StringReader(responseString))
+             //   {
+                    var sr = JsonSerializer.Deserialize<StatusesResponse>(responseString);
                     return sr;
-                }
+               // }
             }
         }
 
@@ -88,11 +88,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlStatus, statusId);
                 base.SaveLocalJson("statuses", statusId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var srs = JSON.Deserialize<StatusesResponse.Status>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var srs = JsonSerializer.Deserialize<StatusesResponse.Status>(responseString);
                     return srs;
-                }
+                //}
             }
         }
 
@@ -104,11 +104,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlService, serviceId);
                 base.SaveLocalJson("serviceEvents", serviceId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ser = JSON.Deserialize<ServiceEventsResponse>(input);
+           //     using (var input = new StringReader(responseString))
+             //   {
+                    var ser = JsonSerializer.Deserialize<ServiceEventsResponse>(responseString);
                     return ser;
-                }
+               // }
             }
         }
 
@@ -120,11 +120,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlService, serviceId, eventId);
                 base.SaveLocalJson("serviceEvent", serviceId, eventId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ser = JSON.Deserialize<ServiceEventsResponse.Event>(input);
+        //        using (var input = new StringReader(responseString))
+          //      {
+                    var ser = JsonSerializer.Deserialize<ServiceEventsResponse.Event>(responseString);
                     return ser;
-                }
+            //    }
             }
         }
     }

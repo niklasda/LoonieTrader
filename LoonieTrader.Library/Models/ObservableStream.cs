@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using Jil;
+using System.Text.Json;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 
@@ -56,7 +56,7 @@ namespace LoonieTrader.Library.Models
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
-                    T obj = JSON.Deserialize<T>(line);
+                    T obj = JsonSerializer.Deserialize<T>(line);
 
                     _logger.Information("Stream observation: {0}", line);
 

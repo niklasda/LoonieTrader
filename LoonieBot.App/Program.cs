@@ -1,11 +1,10 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieBot.App.Locator;
 
-namespace LoonieBot.TestApp
+namespace LoonieBot.App
 {
     internal class Program
     {
@@ -27,7 +26,7 @@ namespace LoonieBot.TestApp
 
                 IExtendedLogger logger = container.GetInstance<IExtendedLogger>();
 
-                ResizeWindow();
+                
 
                 logger.Information("GetAccounts");
                 Console.WriteLine(ar.GetAccounts());
@@ -83,19 +82,6 @@ namespace LoonieBot.TestApp
             Console.ReadLine();
         }
 
-        private static void ResizeWindow()
-        {
-            try
-            {
-                Console.WindowHeight = 80;
-                Console.WindowWidth = 200;
-                Console.BufferHeight = 800;
-                Console.BufferWidth = 200;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+        
     }
 }

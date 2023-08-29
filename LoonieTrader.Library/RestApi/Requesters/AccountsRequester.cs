@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
@@ -46,11 +46,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlAccounts);
                 base.SaveLocalJson("accounts", "all", responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ar = JSON.Deserialize<AccountsResponse>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var ar = JsonSerializer.Deserialize<AccountsResponse>(responseString);
                     return ar;
-                }
+                //}
 
             }
         }
@@ -63,11 +63,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlAccountDetails, accountId);
                 base.SaveLocalJson("accountDetails", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ar = JSON.Deserialize<AccountDetailsResponse>(input);
+             //   using (var input = new StringReader(responseString))
+               // {
+                    var ar = JsonSerializer.Deserialize<AccountDetailsResponse>(responseString);
                     return ar;
-                }
+                //}
             }
         }
 
@@ -79,11 +79,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlAccountSummary, accountId);
                 base.SaveLocalJson("accountSummary", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ar = JSON.Deserialize<AccountSummaryResponse>(input);
+         //       using (var input = new StringReader(responseString))
+           //     {
+                    var ar = JsonSerializer.Deserialize<AccountSummaryResponse>(responseString);
                     return ar;
-                }
+             //   }
             }
         }
 
@@ -95,11 +95,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlInstruments, accountId);
                 base.SaveLocalJson("accountInstruments", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);
+           //     using (var input = new StringReader(responseString))
+             //   {
+                    var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);
                     return ir;
-                }
+               // }
             }
         }
 
@@ -111,11 +111,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlChanges, accountId, transactionId);
                 base.SaveLocalJson("accountChanges", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ir = JSON.Deserialize<AccountChangesResponse>(input);
+         //       using (var input = new StringReader(responseString))
+           //     {
+                    var ir = JsonSerializer.Deserialize<AccountChangesResponse>(responseString);
                     return ir;
-                }
+             //   }
             }
         }
 
@@ -127,11 +127,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = PatchData(wc, urlInstruments, accountId);
                 base.SaveLocalJson("accountPatch", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var ir = JSON.Deserialize<AccountInstrumentsResponse>(input);
+      //          using (var input = new StringReader(responseString))
+        //        {
+                    var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);
                     return ir;
-                }
+          //      }
             }
         }
     }

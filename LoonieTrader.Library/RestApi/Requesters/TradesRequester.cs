@@ -1,6 +1,6 @@
 ﻿using System.IO;
+using System.Text.Json;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
@@ -25,11 +25,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 var responseString = GetData(wc, urlTrades, accountId);
                 base.SaveLocalJson("trades", accountId, responseString);
 
-                using (var input = new StringReader(responseString))
-                {
-                    var atr = JSON.Deserialize<TradesResponse>(input);
+          //      using (var input = new StringReader(responseString))
+            //    {
+                    var atr = JsonSerializer.Deserialize<TradesResponse>(responseString);
                     return atr;
-                }
+              //  }
             }
         }
         public TradesResponse GetOpenTrades(string accountId)
@@ -41,11 +41,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 var responseString = GetData(wc, urlOpenTrades, accountId);
                 base.SaveLocalJson("tradesOpen", accountId, responseString);
 
-                using (var input = new StringReader(responseString))
-                {
-                    var atr = JSON.Deserialize<TradesResponse>(input);
+          //      using (var input = new StringReader(responseString))
+            //    {
+                    var atr = JsonSerializer.Deserialize<TradesResponse>(responseString);
                     return atr;
-                }
+              //  }
             }
         }
 
@@ -58,11 +58,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 var responseString = GetData(wc, urlTradeDetails, accountId, tradeId);
                 base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
 
-                using (var input = new StringReader(responseString))
-                {
-                    var atr = JSON.Deserialize<TradeDetailsResponse>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var atr = JsonSerializer.Deserialize<TradeDetailsResponse>(responseString);
                     return atr;
-                }
+                //}
             }
         }
     }

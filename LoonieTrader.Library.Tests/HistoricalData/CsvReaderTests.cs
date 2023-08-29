@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using FileHelpers;
+﻿using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Services;

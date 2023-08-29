@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using LoonieTrader.Library.Interfaces;
+﻿using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;

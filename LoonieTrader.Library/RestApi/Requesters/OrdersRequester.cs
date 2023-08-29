@@ -1,6 +1,7 @@
 ﻿using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -24,11 +25,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlOrders, accountId);
                 base.SaveLocalJson("orders", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var aor = JSON.Deserialize<OrdersResponse>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var aor = JsonSerializer.Deserialize<OrdersResponse>(responseString);
                     return aor;
-                }
+                //}
             }
         }
 
@@ -40,11 +41,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlPendingOrders, accountId);
                 base.SaveLocalJson("ordersPending", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var aor = JSON.Deserialize<OrdersPendingResponse>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var aor = JsonSerializer.Deserialize<OrdersPendingResponse>(responseString);
                     return aor;
-                }
+                //}
             }
         }
 
@@ -56,11 +57,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlOrderDetails, accountId, orderId);
                 base.SaveLocalJson("orderDetails", accountId, orderId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var aor = JSON.Deserialize<OrderDetailsResponse>(input);
+              //  using (var input = new StringReader(responseString))
+                //{
+                    var aor = JsonSerializer.Deserialize<OrderDetailsResponse>(responseString);
                     return aor;
-                }
+                //}
             }
         }
 
@@ -70,18 +71,18 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             using (var wc = GetAuthenticatedWebClient())
             {
-                var orderJson = JSON.Serialize(order, new Options(excludeNulls: true));
+                var orderJson = JsonSerializer.Serialize(order, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
                 base.Logger.Debug(orderJson.PrettyPrintJson());
 
                 string responseString = PostData(wc, orderJson, urlCreateOrder, accountId);
 
                 base.Logger.Debug(responseString.PrettyPrintJson());
 
-                using (var input = new StringReader(responseString))
-                {
-                    var aor = JSON.Deserialize<OrderCreateResponse>(input);
+      //          using (var input = new StringReader(responseString))
+        //        {
+                    var aor = JsonSerializer.Deserialize<OrderCreateResponse>(responseString);
                     return aor;
-                }
+          //      }
             }
         }
 
@@ -97,11 +98,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
                 base.Logger.Debug(responseString.PrettyPrintJson());
 
-                using (var input = new StringReader(responseString))
-                {
-                    var aor = JSON.Deserialize<OrderCreateResponse>(input);
+            //    using (var input = new StringReader(responseString))
+              //  {
+                    var aor = JsonSerializer.Deserialize<OrderCreateResponse>(responseString);
                     return aor;
-                }
+                //}
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using LoonieTrader.Library.RestApi.Enums;
+﻿using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 

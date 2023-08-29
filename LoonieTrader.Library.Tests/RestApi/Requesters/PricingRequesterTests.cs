@@ -1,5 +1,4 @@
-﻿using System;
-using Jil;
+﻿using System.Text.Json;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
@@ -38,7 +37,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             PricesResponse presp1 = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
             string resp2 = pr.GetPricesJson(_s.DefaultAccountId, "EUR_USD");
 
-            string resp1 = JSON.Serialize(presp1);
+            string resp1 = JsonSerializer.Serialize(presp1);
 
             Console.WriteLine(resp1);
             Console.WriteLine(resp2);

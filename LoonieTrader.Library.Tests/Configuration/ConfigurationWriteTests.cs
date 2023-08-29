@@ -10,6 +10,7 @@ namespace LoonieTrader.Library.Tests.Configuration
     public class ConfigurationWriteTests
     {
         [TestMethod]
+        [Ignore("This overwrites the config")]
         public void YamlDotNetWriteReadTest()
         {
             ISettings settings = new Settings();

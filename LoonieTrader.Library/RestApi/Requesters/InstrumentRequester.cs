@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Text.Json;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Enums;
@@ -51,15 +51,15 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         private CandlesResponse GetCandlesInternal(string url, string tag)
         {
-             using (var wc = GetAuthenticatedWebClient())
+            using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, url);
                 base.SaveLocalJson("candles", tag, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var apr = JSON.Deserialize<CandlesResponse>(input);
+               // using (var input = new StringReader(responseString))
+               // {
+                    var apr = JsonSerializer.Deserialize<CandlesResponse>(responseString);
                     return apr;
-                }
+                //}
             }
         }
     }

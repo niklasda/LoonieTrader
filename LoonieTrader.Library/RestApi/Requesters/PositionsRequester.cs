@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
-using Jil;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -28,11 +29,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 //var responseBytes = wc.GetData(string.Format(urlPositions, accountId));
                 //var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.SaveLocalJson("positions", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var apr = JSON.Deserialize<PositionsResponse>(input);
+           //     using (var input = new StringReader(responseString))
+             //   {
+                    var apr = JsonSerializer.Deserialize<PositionsResponse>(responseString);
                     return apr;
-                }
+               // }
             }
         }
 
@@ -44,11 +45,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlOpenPositions, accountId);
                 base.SaveLocalJson("positionsOpen", accountId, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var apr = JSON.Deserialize<PositionsOpenResponse>(input);
+           //     using (var input = new StringReader(responseString))
+             //   {
+                    var apr = JsonSerializer.Deserialize<PositionsOpenResponse>(responseString);
                     return apr;
-                }
+               // }
             }
         }
 
@@ -60,11 +61,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlInstrumentPositions, accountId, instrument);
                 base.SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
-                using (var input = new StringReader(responseString))
-                {
-                    var apr = JSON.Deserialize<PositionsInstrumentResponse>(input);
+        //        using (var input = new StringReader(responseString))
+          //      {
+                    var apr = JsonSerializer.Deserialize<PositionsInstrumentResponse>(responseString);
                     return apr;
-                }
+            //    }
             }
         }
 
@@ -82,7 +83,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                     shortUnits = null
                 };
 
-                var parametersJson = JSON.Serialize(parameters, new Options(excludeNulls: true));
+                var parametersJson = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
                 base.Logger.Debug(parametersJson.PrettyPrintJson());
                 var parametersBytes = Encoding.UTF8.GetBytes(parametersJson);
 
@@ -90,11 +91,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 base.Logger.Debug(responseString.PrettyPrintJson());
 
-                using (var input = new StringReader(responseString))
-                {
-                    var apr = JSON.Deserialize<PositionsCloseResponse>(input);
+         //       using (var input = new StringReader(responseString))
+           //     {
+                    var apr = JsonSerializer.Deserialize<PositionsCloseResponse>(responseString);
                     return apr;
-                }
+             //   }
             }
         }
     }
