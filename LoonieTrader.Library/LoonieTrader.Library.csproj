@@ -1,239 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{442E127C-5965-4377-894F-2464C2F340DA}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LoonieTrader.Library</RootNamespace>
-    <AssemblyName>LoonieTrader.Library</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net47\CommonServiceLocator.dll</HintPath>
-    </Reference>
-    <Reference Include="FileHelpers, Version=3.4.1.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
-      <HintPath>..\packages\FileHelpers.3.4.1\lib\net45\FileHelpers.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="JetBrains.Annotations, Version=2020.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <HintPath>..\packages\JetBrains.Annotations.2020.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Jil, Version=2.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Jil.2.17.0\lib\net45\Jil.dll</HintPath>
-    </Reference>
-    <Reference Include="JsonPrettyPrinterPlus, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\JsonPrettyPrinter.1.0.1.1\lib\net35\JsonPrettyPrinterPlus.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.9.0\lib\net46\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.Console, Version=3.1.1.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.Console.3.1.1\lib\net45\Serilog.Sinks.Console.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.File.4.1.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.Literate, Version=3.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.Literate.3.0.0\lib\net45\Serilog.Sinks.Literate.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sigil, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sigil.5.0.0\lib\net461\Sigil.dll</HintPath>
-    </Reference>
-    <Reference Include="StructureMap, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.7.1\lib\net45\StructureMap.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Reactive, Version=4.4.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.4.4.1\lib\net46\System.Reactive.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Core.4.4.1\lib\net46\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Interfaces.4.4.1\lib\net46\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Linq.4.4.1\lib\net46\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.PlatformServices.4.4.1\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reactive.Windows.Threading.4.4.1\lib\net46\System.Reactive.Windows.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="YamlDotNet, Version=8.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\YamlDotNet.8.1.2\lib\net45\YamlDotNet.dll</HintPath>
-    </Reference>
+    <PackageReference Include="FileHelpers" Version="3.5.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+    <PackageReference Include="Jil" Version="2.17.0" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="System.Reactive" Version="6.0.0" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+    <PackageReference Include="YamlDotNet" Version="13.3.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Enums\TimeFramePointType.cs" />
-    <Compile Include="Enums\PricePointType.cs" />
-    <Compile Include="Models\OhlcListModel.cs" />
-    <Compile Include="Models\OhlcModel.cs" />
-    <Compile Include="Models\TickListModel.cs" />
-    <Compile Include="Models\TickModel.cs" />
-    <Compile Include="RestApi\Requesters\LoonieWebClient.cs" />
-    <Compile Include="TimeFrames\TimeFrameFactory.cs" />
-    <Compile Include="TimeFrames\TimeFrame.cs" />
-    <Compile Include="ViewModels\CandleDataViewModel.cs" />
-    <Compile Include="ViewModels\ChartBaseViewModel.cs" />
-    <Compile Include="ViewModels\InstrumentViewModel.cs" />
-    <None Include="HistoricalData\Samples\dkc.csv" />
-    <Compile Include="Constants\AppProperties.cs" />
-    <Compile Include="Extensions\DateTimeEx.cs" />
-    <Compile Include="Extensions\MathEx.cs" />
-    <Compile Include="Extensions\RandomExtensions.cs" />
-    <Compile Include="Interfaces\ISettingsService.cs" />
-    <Compile Include="Models\ObservableStream.cs" />
-    <Compile Include="RestApi\Caches\AccountCache.cs" />
-    <Compile Include="RestApi\Caches\InstrumentCache.cs" />
-    <Compile Include="RestApi\Caches\PriceCache.cs" />
-    <Compile Include="Logging\LogCache.cs" />
-    <Compile Include="Logging\LogEntry.cs" />
-    <Compile Include="Logging\ExtendedLogger.cs" />
-    <Compile Include="Interfaces\IDialogService.cs" />
-    <Compile Include="RestApi\Enums\CandleEnums.cs" />
-    <Compile Include="RestApi\Interfaces\IHealthRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IHeartbeatStreamable.cs" />
-    <Compile Include="RestApi\Interfaces\IInstrumentRequester.cs" />
-    <Compile Include="RestApi\Interfaces\ITransactionsStreamingRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IPricingStreamingRequester.cs" />
-    <Compile Include="RestApi\Requesters\HealthRequester.cs" />
-    <Compile Include="RestApi\Requesters\InstrumentRequester.cs" />
-    <Compile Include="RestApi\Requesters\PricingStreamingRequester.cs" />
-    <Compile Include="RestApi\Requesters\TransactionsStreamingRequester.cs" />
-    <Compile Include="RestApi\Responses\AccountChangesResponse.cs" />
-    <Compile Include="RestApi\Responses\CandlesResponse.cs" />
-    <Compile Include="RestApi\Responses\ServiceListResponse.cs" />
-    <Compile Include="RestApi\Responses\ServiceEventsResponse.cs" />
-    <Compile Include="RestApi\Responses\ServicesResponse.cs" />
-    <Compile Include="RestApi\Responses\StatusesResponse.cs" />
-    <Compile Include="RestApi\Responses\PositionsCloseResponse.cs" />
-    <Compile Include="Services\SettingsService.cs" />
-    <Compile Include="Services\FileReaderWriterService.cs" />
-    <Compile Include="Constants\Environments.cs" />
-    <Compile Include="HistoricalData\CandleDataRecord.cs" />
-    <Compile Include="HistoricalData\HistoricalDataLoader.cs" />
-    <Compile Include="Interfaces\IExtendedLogger.cs" />
-    <Compile Include="Interfaces\IHistoricalDataLoader.cs" />
-    <Compile Include="Interfaces\IFileReaderWriterService.cs" />
-    <Compile Include="RestApi\Interfaces\ITransactionsRequester.cs" />
-    <Compile Include="RestApi\Interfaces\ITradesRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IPricingRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IPositionsRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IOrdersRequester.cs" />
-    <Compile Include="RestApi\Interfaces\IAccountsRequester.cs" />
-    <Compile Include="Interfaces\ISettings.cs" />
-    <Compile Include="Models\InstrumentType.cs" />
-    <Compile Include="RestApi\Enums\TransactionEnums.cs" />
-    <Compile Include="RestApi\Enums\InstrumentEnums.cs" />
-    <Compile Include="RestApi\Enums\TradeEnums.cs" />
-    <Compile Include="RestApi\Enums\AccountEnums.cs" />
-    <Compile Include="RestApi\Enums\OrderEnums.cs" />
-    <Compile Include="RestApi\Responses\AccountDetailsResponse.cs" />
-    <Compile Include="RestApi\Responses\OrderCreateResponse.cs" />
-    <Compile Include="RestApi\Responses\PositionsInstrumentResponse.cs" />
-    <Compile Include="RestApi\Responses\OrderDetailsResponse.cs" />
-    <Compile Include="RestApi\Responses\TradeDetailsResponse.cs" />
-    <Compile Include="RestApi\Responses\TransactionDetailsResponse.cs" />
-    <Compile Include="RestApi\Requesters\PositionsRequester.cs" />
-    <Compile Include="RestApi\Requesters\TransactionsRequester.cs" />
-    <Compile Include="RestApi\Requesters\PricingRequester.cs" />
-    <Compile Include="RestApi\Requesters\TradesRequester.cs" />
-    <Compile Include="RestApi\Requesters\RequesterBase.cs" />
-    <Compile Include="Models\Settings.cs" />
-    <Compile Include="Locator\LibraryRegistry.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RestApi\Requesters\OrdersRequester.cs" />
-    <Compile Include="RestApi\Requesters\AccountsRequester.cs" />
-    <Compile Include="RestApi\Responses\OrdersPendingResponse.cs" />
-    <Compile Include="RestApi\Responses\OrdersResponse.cs" />
-    <Compile Include="RestApi\Responses\PositionsOpenResponse.cs" />
-    <Compile Include="RestApi\Responses\TradesResponse.cs" />
-    <Compile Include="RestApi\Responses\PositionsResponse.cs" />
-    <Compile Include="RestApi\Responses\AccountSummaryResponse.cs" />
-    <Compile Include="RestApi\Responses\AccountsResponse.cs" />
-    <Compile Include="RestApi\Responses\TransactionPagesResponse.cs" />
-    <Compile Include="RestApi\Responses\TransactionsResponse.cs" />
-    <Compile Include="RestApi\Responses\AccountInstrumentsResponse.cs" />
-    <Compile Include="RestApi\Responses\PricesResponse.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LoonieTrader.Shared\LoonieTrader.Shared.csproj">
-      <Project>{f368eb3e-6bf2-46cf-bcae-cb365f4365d0}</Project>
-      <Name>LoonieTrader.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  
+
 </Project>

@@ -1,17 +1,16 @@
-﻿using NUnit.Framework;
-using LoonieTrader.Library.Services;
+﻿using LoonieTrader.Library.Services;
 
 namespace LoonieTrader.Library.Tests.Configuration
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class ConfigurationReadTests
     {
-        [Test]
+        [TestMethod]
         public void YamlDotNetReadTest()
         {
             var frw = new FileReaderWriterService();
             var s = frw.LoadConfiguration();
-            Assert.NotNull(s);
+            Assert.IsNotNull(s);
         }
     }
 }

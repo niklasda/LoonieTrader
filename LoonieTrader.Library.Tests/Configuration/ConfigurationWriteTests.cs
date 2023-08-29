@@ -2,15 +2,14 @@
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
-using NUnit.Framework;
 using LoonieTrader.Library.Services;
 
 namespace LoonieTrader.Library.Tests.Configuration
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class ConfigurationWriteTests
     {
-        [Test]
+        [TestMethod]
         public void YamlDotNetWriteReadTest()
         {
             ISettings settings = new Settings();
@@ -39,7 +38,7 @@ namespace LoonieTrader.Library.Tests.Configuration
 
 
             var s = frw.LoadConfiguration();
-            Assert.NotNull(s);
+            Assert.IsNotNull(s);
 
         }
     }

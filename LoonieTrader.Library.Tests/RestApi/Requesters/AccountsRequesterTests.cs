@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -10,10 +9,10 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class AccountsRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -24,40 +23,40 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private IAccountsRequester _ar;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestGetAccounts()
         {
-            Assert.NotNull(_ar.GetAccounts());
+            Assert.IsNotNull(_ar.GetAccounts());
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountDetails()
         {
-            Assert.NotNull(_ar.GetAccountDetails(_s.DefaultAccountId));
+            Assert.IsNotNull(_ar.GetAccountDetails(_s.DefaultAccountId));
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountSummary()
         {
-            Assert.NotNull(_ar.GetAccountSummary(_s.DefaultAccountId));
+            Assert.IsNotNull(_ar.GetAccountSummary(_s.DefaultAccountId));
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountInstruments()
         {
             AccountInstrumentsResponse air = _ar.GetAccountInstruments(_s.DefaultAccountId);
-            Assert.NotNull(air);
+            Assert.IsNotNull(air);
 
             Assert.AreEqual(28, air.instruments.Count(x => x.type == "CFD"));
             Assert.AreEqual(71, air.instruments.Count(x => x.type == "CURRENCY"));
             Assert.AreEqual(23, air.instruments.Count(x => x.type == "METAL"));
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountInstrumentSortedHierarchy()
         {
             AccountInstrumentsResponse air = _ar.GetAccountInstruments(_s.DefaultAccountId);
-            Assert.NotNull(air);
+            Assert.IsNotNull(air);
 
             IEnumerable<IGrouping<string, AccountInstrumentsResponse.Instrument>> groups = air.instruments.Select(x => x).OrderBy(y => y.type).GroupBy(x => x.type);
 
@@ -77,12 +76,12 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
 
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountConfigurationChanges()
         {
             AccountChangesResponse air = _ar.GetAccountChanges(_s.DefaultAccountId, "2920"); // 3337-2920=417
             Console.WriteLine(air);
-            Assert.NotNull(air);
+            Assert.IsNotNull(air);
         }
     }
 }

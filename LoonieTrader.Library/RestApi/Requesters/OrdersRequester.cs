@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using JetBrains.Annotations;
 using Jil;
-using JsonPrettyPrinterPlus;
+using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;

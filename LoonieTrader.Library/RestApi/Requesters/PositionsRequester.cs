@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text;
 using JetBrains.Annotations;
 using Jil;
-using JsonPrettyPrinterPlus;
+using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;

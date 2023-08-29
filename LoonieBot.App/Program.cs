@@ -3,9 +3,9 @@ using System.Net;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
-using LoonieTrader.TestApp.Locator;
+using LoonieBot.App.Locator;
 
-namespace LoonieTrader.TestApp
+namespace LoonieBot.TestApp
 {
     internal class Program
     {
@@ -34,28 +34,28 @@ namespace LoonieTrader.TestApp
 
                 logger.Information($"GetAccountDetails {cfg.DefaultAccountId}");
                 Console.WriteLine(ar.GetAccountDetails(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetAccountSummary");
                 Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetPositions");
                 Console.WriteLine(por.GetPositions(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetOpenPositions");
                 Console.WriteLine(por.GetOpenPositions(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetOrders");
                 Console.WriteLine(or.GetOrders(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetPendingOrders");
                 Console.WriteLine(or.GetPendingOrders(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetTransactionPages");
                 Console.WriteLine(txr.GetTransactionPages(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetTransactions");
                 Console.WriteLine(txr.GetTransactions(cfg.DefaultAccountId));
-                
+
                 logger.Information("GetTrades");
                 Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));
 

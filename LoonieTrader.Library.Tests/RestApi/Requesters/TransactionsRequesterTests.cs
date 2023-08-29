@@ -1,15 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class TransactionsRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -20,36 +19,36 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private ITransactionsRequester _txr;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountTransactionPages()
         {
             var resp = _txr.GetTransactionPages(_s.DefaultAccountId);
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountTransactions()
         {
             var resp = _txr.GetTransactions(_s.DefaultAccountId);
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAllAccountTransactions()
         {
             var resp = _txr.GetAllTransactions(_s.DefaultAccountId);
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountTransactionDetails()
         {
             var resp = _txr.GetTransactionDetails(_s.DefaultAccountId, "3337");
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
     }

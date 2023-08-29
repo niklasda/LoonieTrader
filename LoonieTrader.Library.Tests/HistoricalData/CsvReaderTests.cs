@@ -4,14 +4,13 @@ using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Services;
-using NUnit.Framework;
 
 namespace LoonieTrader.Library.Tests.HistoricalData
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class CsvReaderTests
     {
-        [Test]
+        [TestMethod]
         public void TestEurUsdTxt()
         {
             //TestAutoMappings ams = new TestAutoMappings();

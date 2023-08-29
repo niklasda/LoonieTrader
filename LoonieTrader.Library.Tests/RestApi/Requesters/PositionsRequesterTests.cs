@@ -1,15 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class PositionsRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -20,36 +19,36 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private IPositionsRequester _por;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountPositions()
         {
             var resp = _por.GetPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountOpenPositions()
         {
             var resp = _por.GetOpenPositions(_s.DefaultAccountId);
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountInstrumentPositions()
         {
             var resp = _por.GetInstrumentPositions(_s.DefaultAccountId, "EUR_USD");
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestCloseAccountInstrumentPositions()
         {
             var resp = _por.PutClosePosition(_s.DefaultAccountId, "EUR_USD");
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -9,10 +8,10 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class PricingStreamingRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -23,7 +22,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private IPricingStreamingRequester _txr;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestPricingStream()
         {
             ObservableStream<PricesResponse.Price> pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");

@@ -1,5 +1,4 @@
 ﻿using System;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -8,10 +7,10 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class OrdersRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -22,31 +21,31 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private IOrdersRequester _or;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountOrders()
         {
             OrdersResponse aor = _or.GetOrders(_s.DefaultAccountId);
-            Assert.NotNull(aor);
+            Assert.IsNotNull(aor);
             Console.WriteLine(aor);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountPendingOrders()
         {
             OrdersPendingResponse apor = _or.GetPendingOrders(_s.DefaultAccountId);
-            Assert.NotNull(apor);
+            Assert.IsNotNull(apor);
             Console.WriteLine(apor);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetAccountOrderDetails()
         {
             OrderDetailsResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "61");
-            Assert.NotNull(aodr);
+            Assert.IsNotNull(aodr);
             Console.WriteLine(aodr);
         }
 
-        [Test]
+        [TestMethod]
         public void TestPostCreateAccountMarketOrder()
         {
             var od = new OrderCreateResponse.OrderDefinition();
@@ -57,12 +56,12 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             od.order.positionFill = OrderPositionFill.DEFAULT.ToString();
 
             OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
-            Assert.NotNull(aodr);
+            Assert.IsNotNull(aodr);
 
             Console.WriteLine(aodr);
         }
 
-        [Test]
+        [TestMethod]
         public void TestPostCreateAccountLimitOrder()
         {
             var od = new OrderCreateResponse.OrderDefinition();
@@ -79,7 +78,7 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
 
 
             OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
-            Assert.NotNull(aodr);
+            Assert.IsNotNull(aodr);
 
             Console.WriteLine(aodr);
 

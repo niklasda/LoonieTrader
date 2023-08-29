@@ -1,12 +1,12 @@
 ﻿using System;
 using LoonieTrader.Library.Extensions;
-using NUnit.Framework;
 
 namespace LoonieTrader.Library.Tests.Extensions
 {
+    [TestClass]
     public class MathExTests
     {
-        [Test]
+        [TestMethod]
         public void TestNormalPowers()
         {
             Assert.AreEqual(1, MathEx.IntPow(0, 0));
@@ -26,12 +26,12 @@ namespace LoonieTrader.Library.Tests.Extensions
             // Assert.AreEqual(10000000000000000000, MathEx.IntPow(10, 19));
         }
 
-        [Test]
+        [TestMethod]
         public void TestNegativeNumbersPowers()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(()=> MathEx.IntPow(-1, 1));
-            Assert.Throws<ArgumentOutOfRangeException>(()=> MathEx.IntPow(1, -1));
-            Assert.Throws<ArgumentOutOfRangeException>(()=> MathEx.IntPow(-1, -1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(()=> MathEx.IntPow(-1, 1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(()=> MathEx.IntPow(1, -1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(()=> MathEx.IntPow(-1, -1));
         }
     }
 }

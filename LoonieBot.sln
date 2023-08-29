@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20923E81-0833-44C8-8EE5-E9297B9C0E7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".git", ".git", "{F2946475-3209-4CDF-BEFB-66C6C1A0E1C0}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieTrader.Library", "LoonieTrader.Library\LoonieTrader.Library.csproj", "{442E127C-5965-4377-894F-2464C2F340DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{40948BCA-A13A-4282-A301-4CBDE74DFB63}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+		todo.md = todo.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieBot.App", "LoonieBot.App\LoonieBot.App.csproj", "{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieTrader.Library.Tests", "LoonieTrader.Library.Tests\LoonieTrader.Library.Tests.csproj", "{A8435B47-7045-4927-AEAF-D58254AACC9E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8435B47-7045-4927-AEAF-D58254AACC9E} = {20923E81-0833-44C8-8EE5-E9297B9C0E7F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A088F5FD-297D-4C7D-8441-BF93E040BA72}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal

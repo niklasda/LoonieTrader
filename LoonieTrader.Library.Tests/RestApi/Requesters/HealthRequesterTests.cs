@@ -1,14 +1,13 @@
 ﻿using System;
-using NUnit.Framework;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class HealthRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -17,23 +16,23 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
 
         private IHealthRequester _hr;
 
-        [Test]
+        [TestMethod]
         public void TestGetServiceList()
         {
             var stats = _hr.GetServiceList();
             Console.WriteLine(stats);
-            Assert.NotNull(stats);
+            Assert.IsNotNull(stats);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetServices()
         {
             var stats = _hr.GetServices();
             Console.WriteLine(stats);
-            Assert.NotNull(stats);
+            Assert.IsNotNull(stats);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetService()
         {
             var stats1 = _hr.GetService("fxtrade-practice-rest-api");
@@ -44,21 +43,21 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             Console.WriteLine(stats2);
             Console.WriteLine(stats3);
             Console.WriteLine(stats4);
-            Assert.NotNull(stats1);
-            Assert.NotNull(stats2);
-            Assert.NotNull(stats3);
-            Assert.NotNull(stats4);
+            Assert.IsNotNull(stats1);
+            Assert.IsNotNull(stats2);
+            Assert.IsNotNull(stats3);
+            Assert.IsNotNull(stats4);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetStatuses()
         {
             var stats = _hr.GetStatuses();
             Console.WriteLine(stats);
-            Assert.NotNull(stats);
+            Assert.IsNotNull(stats);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetStatus()
         {
             var stats1 = _hr.GetStatus("down");
@@ -67,12 +66,12 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             Console.WriteLine(stats1);
             Console.WriteLine(stats2);
             Console.WriteLine(stats3);
-            Assert.NotNull(stats1);
-            Assert.NotNull(stats2);
-            Assert.NotNull(stats3);
+            Assert.IsNotNull(stats1);
+            Assert.IsNotNull(stats2);
+            Assert.IsNotNull(stats3);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetServiceEvents()
         {
             var stats1 = _hr.GetServiceEvents("fxtrade-practice-rest-api");
@@ -83,12 +82,13 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             Console.WriteLine(stats2);
             Console.WriteLine(stats3);
             Console.WriteLine(stats4);
-            Assert.NotNull(stats1);
-            Assert.NotNull(stats2);//ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgICA_L2BCgw
-            Assert.NotNull(stats3);
-            Assert.NotNull(stats4);
+            Assert.IsNotNull(stats1);
+            Assert.IsNotNull(stats2);//ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgICA_L2BCgw
+            Assert.IsNotNull(stats3);
+            Assert.IsNotNull(stats4);
         }
-        [Test]
+
+        [TestMethod]
         public void TestGetServiceEvent()
         {
             var stats1 = _hr.GetServiceEvent("fxtrade-practice-rest-api", "ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgICA_L2BCgw"); // ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgIDAnoOUCgw
@@ -99,10 +99,10 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
             Console.WriteLine(stats2);
             Console.WriteLine(stats3);
             Console.WriteLine(stats4);
-            Assert.NotNull(stats1);
-            Assert.NotNull(stats2);//ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgICA_L2BCgw
-            Assert.NotNull(stats3);
-            Assert.NotNull(stats4);
+            Assert.IsNotNull(stats1);
+            Assert.IsNotNull(stats2);//ahNzfm9hbmRhLXN0YXR1cy1wYWdlchILEgVFdmVudBiAgICA_L2BCgw
+            Assert.IsNotNull(stats3);
+            Assert.IsNotNull(stats4);
         }
 
     }

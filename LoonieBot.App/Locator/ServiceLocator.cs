@@ -1,16 +1,15 @@
 ﻿using Lamar;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.Logging;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.Services;
+using LoonieTrader.Library.Logging;
 using Serilog;
 
-
-namespace LoonieTrader.Library.Tests.Locator
+namespace LoonieBot.App.Locator
 {
-    public static class TestServiceLocator
+    public static class ServiceLocator
     {
         public static IContainer Initialize()
         {
@@ -46,10 +45,10 @@ namespace LoonieTrader.Library.Tests.Locator
             var logFilePattern = cr.GetLogFilePattern();
 
             var logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .WriteTo.File(logFilePattern)
-                .MinimumLevel.Debug()
-                .CreateLogger();
+               .WriteTo.Console()
+               .WriteTo.File(logFilePattern)
+               .MinimumLevel.Debug()
+               .CreateLogger();
 
             IExtendedLogger exLogger = new ExtendedLogger(logger);
 

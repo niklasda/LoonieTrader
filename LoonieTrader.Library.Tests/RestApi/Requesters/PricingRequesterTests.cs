@@ -1,6 +1,5 @@
 ﻿using System;
 using Jil;
-using NUnit.Framework;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
@@ -9,10 +8,10 @@ using LoonieTrader.Library.Tests.Locator;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters
 {
-    [TestFixture, Category("Integration")]
+    [TestClass, TestCategory("Integration")]
     public class PricingRequesterTests
     {
-        [OneTimeSetUp]
+        [TestInitialize]
         public void Setup()
         {
             var container = TestServiceLocator.Initialize();
@@ -23,15 +22,15 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters
         private IPricingRequester _pr;
         private IEnvironmentSettings _s;
 
-        [Test]
+        [TestMethod]
         public void TestGetPrices()
         {
             var resp = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
             Console.WriteLine(resp);
-            Assert.NotNull(resp);
+            Assert.IsNotNull(resp);
         }
 
-        [Test]
+        [TestMethod]
         public void TestGetPricesVerifyJson()
         {
             PricingRequester pr = (PricingRequester)_pr;

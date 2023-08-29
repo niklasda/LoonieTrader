@@ -2,8 +2,9 @@
 using System.Net.Http;
 using System.Text;
 using JetBrains.Annotations;
-using JsonPrettyPrinterPlus;
+using System.Text.Json;
 using LoonieTrader.Library.Constants;
+using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 
 namespace LoonieTrader.Library.RestApi.Requesters

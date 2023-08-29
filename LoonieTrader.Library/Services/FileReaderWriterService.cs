@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.Models;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
+using Settings = LoonieTrader.Library.Models.Settings;
 
 namespace LoonieTrader.Library.Services
 {

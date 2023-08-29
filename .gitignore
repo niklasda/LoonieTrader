@@ -16,9 +16,7 @@
 # Visual Studio 2015 cache/options directory
 .vs/
 
-# NUNIT
-*.VisualState.xml
-TestResult.xml
+
 
 # Click-Once directory
 publish/
@@ -26,13 +24,7 @@ publish/
 # The packages folder can be ignored because of Package Restore
 **/packages/
 
-# Paket dependency manager
-!LoonieServer/.paket/paket.exe
-!LoonieServer/.paket/paket.bootstrapper.exe
-!LoonieServer/inotifywait.exe
 
-# FAKE - F# Make
-LoonieServer/.fake/
 
 **/build/
 **/deploy/
