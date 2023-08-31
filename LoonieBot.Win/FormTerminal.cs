@@ -18,8 +18,8 @@ namespace LoonieBot.Win
             IExtendedLogger logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
 
             var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
-            var cfgs = ServiceLocator.Container.GetInstance<ISettingsService>();
-            var cfg = cfgs.CachedSettings.SelectedEnvironment;
+            //var cfgs = ServiceLocator.Container.GetInstance<ISettingsService>();
+            //var cfg = cfgs.CachedSettings.SelectedEnvironment;
 
             logger.Information("GetAccounts");
             var accounts = ar.GetAccounts();

@@ -11,6 +11,7 @@ public static class Program
 {
     private static void Main()
     {
+        /*
         RootCommand rootCommand = new RootCommand(description: "Converts an image file from one format to another.");
 
         Option inputOption = new Option<string>(aliases: new string[] { "--input", "-i" }
@@ -39,7 +40,7 @@ public static class Program
 
         Command cmd = new Command(name: "account", description: "acc");
         rootCommand.AddCommand(cmd);
-
+        */
 
 
 //    https://github.com/dotnet/command-line-api/blob/main/docs/DragonFruit-overview.md
