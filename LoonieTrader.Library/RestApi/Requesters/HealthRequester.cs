@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
@@ -24,7 +23,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("service-list", "all", responseString);
           //      using (var input = new StringReader(responseString))
             //    {
-                    var slr = JsonSerializer.Deserialize<ServiceListResponse>(responseString);
+                    var slr = JsonDeserialize<ServiceListResponse>(responseString);
                     return slr;
               //  }
 
@@ -41,7 +40,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("services", "all", responseString);
           //      using (var input = new StringReader(responseString))
             //    {
-                    var sr = JsonSerializer.Deserialize<ServicesResponse>(responseString);
+                    var sr = JsonDeserialize<ServicesResponse>(responseString);
                     return sr;
               //  }
             }
@@ -57,7 +56,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("services", serviceId, responseString);
              //   using (var input = new StringReader(responseString))
                // {
-                    var srs = JsonSerializer.Deserialize<ServicesResponse.Service>(responseString);
+                    var srs = JsonDeserialize<ServicesResponse.Service>(responseString);
                     return srs;
                 //}
             }
@@ -73,7 +72,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("statuses", "all", responseString);
            //     using (var input = new StringReader(responseString))
              //   {
-                    var sr = JsonSerializer.Deserialize<StatusesResponse>(responseString);
+                    var sr = JsonDeserialize<StatusesResponse>(responseString);
                     return sr;
                // }
             }
@@ -89,7 +88,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("statuses", statusId, responseString);
             //    using (var input = new StringReader(responseString))
               //  {
-                    var srs = JsonSerializer.Deserialize<StatusesResponse.Status>(responseString);
+                    var srs = JsonDeserialize<StatusesResponse.Status>(responseString);
                     return srs;
                 //}
             }
@@ -105,7 +104,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("serviceEvents", serviceId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
-                    var ser = JsonSerializer.Deserialize<ServiceEventsResponse>(responseString);
+                    var ser = JsonDeserialize<ServiceEventsResponse>(responseString);
                     return ser;
                // }
             }
@@ -121,7 +120,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("serviceEvent", serviceId, eventId, responseString);
         //        using (var input = new StringReader(responseString))
           //      {
-                    var ser = JsonSerializer.Deserialize<ServiceEventsResponse.Event>(responseString);
+                    var ser = JsonDeserialize<ServiceEventsResponse.Event>(responseString);
                     return ser;
             //    }
             }

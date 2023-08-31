@@ -30,7 +30,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("positions", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
-                    var apr = JsonSerializer.Deserialize<PositionsResponse>(responseString);
+                    var apr = JsonDeserialize<PositionsResponse>(responseString);
                     return apr;
                // }
             }
@@ -46,7 +46,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("positionsOpen", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
-                    var apr = JsonSerializer.Deserialize<PositionsOpenResponse>(responseString);
+                    var apr = JsonDeserialize<PositionsOpenResponse>(responseString);
                     return apr;
                // }
             }
@@ -62,7 +62,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
         //        using (var input = new StringReader(responseString))
           //      {
-                    var apr = JsonSerializer.Deserialize<PositionsInstrumentResponse>(responseString);
+                    var apr = JsonDeserialize<PositionsInstrumentResponse>(responseString);
                     return apr;
             //    }
             }
@@ -92,7 +92,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
          //       using (var input = new StringReader(responseString))
            //     {
-                    var apr = JsonSerializer.Deserialize<PositionsCloseResponse>(responseString);
+                    var apr = JsonDeserialize<PositionsCloseResponse>(responseString);
                     return apr;
              //   }
             }

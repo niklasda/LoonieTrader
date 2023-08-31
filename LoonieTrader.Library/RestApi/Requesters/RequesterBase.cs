@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
+using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Requesters
 {
@@ -171,6 +173,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 _logger.Error(ex, "Failed to PATCH data");
                 throw;
             }
+        }
+
+        protected T JsonDeserialize<T>(string jsonString) 
+        {
+            return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true } );
+            
         }
     }
 }

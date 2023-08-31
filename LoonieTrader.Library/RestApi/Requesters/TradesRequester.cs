@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
@@ -26,7 +25,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
           //      using (var input = new StringReader(responseString))
             //    {
-                    var atr = JsonSerializer.Deserialize<TradesResponse>(responseString);
+                    var atr = JsonDeserialize<TradesResponse>(responseString);
                     return atr;
               //  }
             }
@@ -42,7 +41,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
           //      using (var input = new StringReader(responseString))
             //    {
-                    var atr = JsonSerializer.Deserialize<TradesResponse>(responseString);
+                    var atr = JsonDeserialize<TradesResponse>(responseString);
                     return atr;
               //  }
             }
@@ -59,7 +58,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             //    using (var input = new StringReader(responseString))
               //  {
-                    var atr = JsonSerializer.Deserialize<TradeDetailsResponse>(responseString);
+                    var atr = JsonDeserialize<TradeDetailsResponse>(responseString);
                     return atr;
                 //}
             }

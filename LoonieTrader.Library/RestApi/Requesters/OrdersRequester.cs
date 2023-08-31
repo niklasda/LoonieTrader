@@ -26,7 +26,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("orders", accountId, responseString);
             //    using (var input = new StringReader(responseString))
               //  {
-                    var aor = JsonSerializer.Deserialize<OrdersResponse>(responseString);
+                    var aor = JsonDeserialize<OrdersResponse>(responseString);
                     return aor;
                 //}
             }
@@ -42,7 +42,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("ordersPending", accountId, responseString);
             //    using (var input = new StringReader(responseString))
               //  {
-                    var aor = JsonSerializer.Deserialize<OrdersPendingResponse>(responseString);
+                    var aor = JsonDeserialize<OrdersPendingResponse>(responseString);
                     return aor;
                 //}
             }
@@ -58,7 +58,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("orderDetails", accountId, orderId, responseString);
               //  using (var input = new StringReader(responseString))
                 //{
-                    var aor = JsonSerializer.Deserialize<OrderDetailsResponse>(responseString);
+                    var aor = JsonDeserialize<OrderDetailsResponse>(responseString);
                     return aor;
                 //}
             }
@@ -79,7 +79,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
       //          using (var input = new StringReader(responseString))
         //        {
-                    var aor = JsonSerializer.Deserialize<OrderCreateResponse>(responseString);
+                    var aor = JsonDeserialize<OrderCreateResponse>(responseString);
                     return aor;
           //      }
             }

@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.CommandLine;
-using System.Reflection;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;

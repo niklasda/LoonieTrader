@@ -47,7 +47,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accounts", "all", responseString);
             //    using (var input = new StringReader(responseString))
               //  {
-                    var ar = JsonSerializer.Deserialize<AccountsResponse>(responseString);
+                    var ar = JsonDeserialize<AccountsResponse>(responseString);
                     return ar;
                 //}
 
@@ -62,10 +62,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
             {
                 var responseString = GetData(wc, urlAccountDetails, accountId);
                 SaveLocalJson("accountDetails", accountId, responseString);
-             //   using (var input = new StringReader(responseString))
-               // {
-                    var ar = JsonSerializer.Deserialize<AccountDetailsResponse>(responseString);
-                    return ar;
+                //   using (var input = new StringReader(responseString))
+                // {
+                var ar = base.JsonDeserialize<AccountDetailsResponse>(responseString);
+
+                //var ar = JsonSerializer.Deserialize<AccountDetailsResponse>(responseString, new JsonSerializerOptions(){PropertyNameCaseInsensitive = true});
+                return ar;
                 //}
             }
         }
@@ -80,7 +82,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accountSummary", accountId, responseString);
          //       using (var input = new StringReader(responseString))
            //     {
-                    var ar = JsonSerializer.Deserialize<AccountSummaryResponse>(responseString);
+                    var ar = JsonDeserialize<AccountSummaryResponse>(responseString);
                     return ar;
              //   }
             }

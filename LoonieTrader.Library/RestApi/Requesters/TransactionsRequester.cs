@@ -26,7 +26,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         //        using (var input = new StringReader(responseString))
           //      {
-                    var atpr = JsonSerializer.Deserialize<TransactionPagesResponse>(responseString);
+                    var atpr = JsonDeserialize<TransactionPagesResponse>(responseString);
                     return atpr;
             //    }
             }
@@ -43,7 +43,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
        //         using (var input = new StringReader(responseString))
          //       {
-                    var atr = JsonSerializer.Deserialize<TransactionsResponse>(responseString);
+                    var atr = JsonDeserialize<TransactionsResponse>(responseString);
                     return atr;
            //     }
             }
@@ -93,7 +93,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
           //      using (var input = new StringReader(responseString))
             //    {
-                    var atr = JsonSerializer.Deserialize<TransactionDetailsResponse>(responseString);
+                    var atr = JsonDeserialize<TransactionDetailsResponse>(responseString);
                     return atr;
               //  }
             }

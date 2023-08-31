@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
@@ -56,7 +55,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("candles", tag, responseString);
                // using (var input = new StringReader(responseString))
                // {
-                    var apr = JsonSerializer.Deserialize<CandlesResponse>(responseString);
+                    var apr = JsonDeserialize<CandlesResponse>(responseString);
                     return apr;
                 //}
             }

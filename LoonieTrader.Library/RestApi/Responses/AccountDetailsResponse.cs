@@ -15,9 +15,9 @@ namespace LoonieTrader.Library.RestApi.Responses
             var resp = new StringBuilder();
 
             resp.Append("alias: ");
-            resp.Append(account.alias);
+            resp.Append(account.Alias);
             resp.Append(", balance: ");
-            resp.Append(account.balance);
+            resp.Append(account.Balance);
             resp.Append(", ccy: ");
             resp.Append(account.currency);
             resp.Append(", by user: ");
@@ -33,8 +33,8 @@ namespace LoonieTrader.Library.RestApi.Responses
         public class Account
         {
             public string NAV { get; set; }
-            public string alias { get; set; }
-            public string balance { get; set; }
+            public string Alias { get; set; }
+            public string Balance { get; set; }
             public int createdByUserID { get; set; }
             public string createdTime { get; set; }
             public string currency { get; set; }
