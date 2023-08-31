@@ -1,5 +1,4 @@
-﻿using System;
-using LoonieTrader.Library.Extensions;
+﻿using LoonieTrader.Library.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.Extensions;

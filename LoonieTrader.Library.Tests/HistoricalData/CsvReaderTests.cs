@@ -18,19 +18,19 @@ public class CsvReaderTests
         var engine = new FileHelperEngine<CandleDataRecord>();
         IFileReaderWriterService frw = new FileReaderWriterService();
         string hdPath = frw.GetHistoricalDataFolderPath();
-        var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2016.txt")); // todo hardcoded
+        var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2022.txt")); // todo hardcoded
 
-        Assert.AreEqual(212445, records.Length);
+        Assert.AreEqual(366351, records.Length);
 
         //  var candleViewModels = mapper.Map<List<CandleDataViewModel>>(records);
 
         var recordList = records.ToList();
 
-        Assert.AreEqual(212445, recordList.Count);
-        Assert.IsTrue(recordList.TrueForAll(x => x.Open > 1));
-        Assert.IsTrue(recordList.TrueForAll(x => x.High > 1));
-        Assert.IsTrue(recordList.TrueForAll(x => x.Low > 1));
-        Assert.IsTrue(recordList.TrueForAll(x => x.Close > 1));
+        Assert.AreEqual(366351, recordList.Count);
+        Assert.IsTrue(recordList.TrueForAll(x => x.Open > 0.9m));
+        Assert.IsTrue(recordList.TrueForAll(x => x.High > 0.9m));
+        Assert.IsTrue(recordList.TrueForAll(x => x.Low > 0.9m));
+        Assert.IsTrue(recordList.TrueForAll(x => x.Close > 0.9m));
         Assert.IsTrue(recordList.TrueForAll(x => x.Date.Length > 6));
     }
 }

@@ -1,30 +1,27 @@
-﻿using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Enums;
-using LoonieTrader.Library.RestApi.Interfaces;
+﻿using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class OrdersRequesterTests
+public class OrdersRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _or = container.GetInstance<IOrdersRequester>();
-        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    OrdersReq = container.GetInstance<IOrdersRequester>();
+    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    //}
 
-    private IOrdersRequester _or;
-    private IEnvironmentSettings _s;
+    //private IOrdersRequester OrdersReq;
+    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetAccountOrders()
     {
-        OrdersResponse aor = _or.GetOrders(_s.DefaultAccountId);
+        OrdersResponse aor = OrdersReq.GetOrders(EnvSettings.DefaultAccountId);
         Assert.IsNotNull(aor);
         Console.WriteLine(aor);
     }
@@ -32,7 +29,7 @@ public class OrdersRequesterTests
     [TestMethod]
     public void TestGetAccountPendingOrders()
     {
-        OrdersPendingResponse apor = _or.GetPendingOrders(_s.DefaultAccountId);
+        OrdersPendingResponse apor = OrdersReq.GetPendingOrders(EnvSettings.DefaultAccountId);
         Assert.IsNotNull(apor);
         Console.WriteLine(apor);
     }
@@ -40,7 +37,7 @@ public class OrdersRequesterTests
     [TestMethod]
     public void TestGetAccountOrderDetails()
     {
-        OrderDetailsResponse aodr = _or.GetOrderDetails(_s.DefaultAccountId, "61");
+        OrderDetailsResponse aodr = OrdersReq.GetOrderDetails(EnvSettings.DefaultAccountId, "61");
         Assert.IsNotNull(aodr);
         Console.WriteLine(aodr);
     }
@@ -55,7 +52,7 @@ public class OrdersRequesterTests
         od.order.type = OrderTypes.MARKET.ToString();
         od.order.positionFill = OrderPositionFill.DEFAULT.ToString();
 
-        OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
+        OrderCreateResponse aodr = OrdersReq.PostCreateOrder(EnvSettings.DefaultAccountId, od);
         Assert.IsNotNull(aodr);
 
         Console.WriteLine(aodr);
@@ -77,7 +74,7 @@ public class OrdersRequesterTests
         od.order.stopLossOnFill.price = "1.000";
 
 
-        OrderCreateResponse aodr = _or.PostCreateOrder(_s.DefaultAccountId, od);
+        OrderCreateResponse aodr = OrdersReq.PostCreateOrder(EnvSettings.DefaultAccountId, od);
         Assert.IsNotNull(aodr);
 
         Console.WriteLine(aodr);

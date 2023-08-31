@@ -1,30 +1,27 @@
-﻿using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.Models;
-using LoonieTrader.Library.RestApi.Interfaces;
+﻿using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class TransactionsStreamingRequesterTests
+public class TransactionsStreamingRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _txr = container.GetInstance<ITransactionsStreamingRequester>();
-        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    TxStreamReq = container.GetInstance<ITransactionsStreamingRequester>();
+    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    //}
 
-    private ITransactionsStreamingRequester _txr;
-    private IEnvironmentSettings _s;
+    //private ITransactionsStreamingRequester TxStreamReq;
+    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestTransactionStream()
     {
-        ObservableStream<TransactionsResponse.Transaction> tss = _txr.GetTransactionStream(_s.DefaultAccountId);
+        ObservableStream<TransactionsResponse.Transaction> tss = TxStreamReq.GetTransactionStream(EnvSettings.DefaultAccountId);
         tss.NewValue += Tss_NewPrice;
         //IDisposable l1 = tss.Subscribe(x => Console.WriteLine("Tx1: {0}", x));
 

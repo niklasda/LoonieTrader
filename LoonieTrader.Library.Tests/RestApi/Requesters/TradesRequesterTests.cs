@@ -1,28 +1,25 @@
-﻿using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.Tests.Locator;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class TradesRequesterTests
+public class TradesRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _tr = container.GetInstance<ITradesRequester>();
-        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    TradesReq = container.GetInstance<ITradesRequester>();
+    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    //}
 
-    private ITradesRequester _tr;
-    private IEnvironmentSettings _s;
+    //private ITradesRequester TradesReq;
+    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetAccountTrades()
     {
-        var resp = _tr.GetTrades(_s.DefaultAccountId);
+        var resp = TradesReq.GetTrades(EnvSettings.DefaultAccountId);
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -30,7 +27,7 @@ public class TradesRequesterTests
     [TestMethod]
     public void TestGetAccountOpenTrades()
     {
-        var resp = _tr.GetOpenTrades(_s.DefaultAccountId);
+        var resp = TradesReq.GetOpenTrades(EnvSettings.DefaultAccountId);
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -38,7 +35,7 @@ public class TradesRequesterTests
     [TestMethod]
     public void TestGetAccountTradeDetails()
     {
-        var resp = _tr.GetTradeDetails(_s.DefaultAccountId, "37");
+        var resp = TradesReq.GetTradeDetails(EnvSettings.DefaultAccountId, "37");
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }

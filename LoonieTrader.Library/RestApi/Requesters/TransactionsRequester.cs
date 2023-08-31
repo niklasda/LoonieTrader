@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
@@ -18,12 +17,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionPagesResponse GetTransactionPages(string accountId)
         {
-            string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions?from=2021-08-23T21:12:24.357321399Z");
+            string urlTransactionPages = GetRestUrl("accounts/{0}/transactions?from=2021-08-23T21:12:24.357321399Z");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionPages, accountId);
-                base.SaveLocalJson("transactionPages", accountId, responseString);
+                SaveLocalJson("transactionPages", accountId, responseString);
 
         //        using (var input = new StringReader(responseString))
           //      {
@@ -35,12 +34,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionsResponse GetTransactions(string accountId)
         {
-            string urlTransactions = base.GetRestUrl("accounts/{0}/transactions/idrange?from=90&to=94");
+            string urlTransactions = GetRestUrl("accounts/{0}/transactions/idrange?from=90&to=94");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactions, accountId);
-                base.SaveLocalJson("transactions", accountId, responseString);
+                SaveLocalJson("transactions", accountId, responseString);
 
        //         using (var input = new StringReader(responseString))
          //       {
@@ -52,7 +51,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionsResponse GetAllTransactions(string accountId)
         {
-            string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions/");
+            string urlTransactionPages = GetRestUrl("accounts/{0}/transactions/");
 
             using (var wc = GetAuthenticatedWebClient())
             {
@@ -85,12 +84,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionDetailsResponse GetTransactionDetails(string accountId, string transactionId)
         {
-            string urlTransactionDetails = base.GetRestUrl("accounts/{0}/transactions/{1}");
+            string urlTransactionDetails = GetRestUrl("accounts/{0}/transactions/{1}");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionDetails, accountId, transactionId);
-                base.SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
+                SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
 
           //      using (var input = new StringReader(responseString))
             //    {

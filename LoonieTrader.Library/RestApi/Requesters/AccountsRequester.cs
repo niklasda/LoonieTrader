@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
@@ -29,7 +28,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 }
                 catch (Exception ex)
                 {
-                    base.Logger.Warning(ex, "Could not get  account summary for {0}", account.id);
+                    Logger.Warning(ex, "Could not get  account summary for {0}", account.id);
                 }
             }
 
@@ -40,12 +39,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountsResponse GetAccounts()
         {
-            string urlAccounts = base.GetRestUrl("accounts");
+            string urlAccounts = GetRestUrl("accounts");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccounts);
-                base.SaveLocalJson("accounts", "all", responseString);
+                SaveLocalJson("accounts", "all", responseString);
             //    using (var input = new StringReader(responseString))
               //  {
                     var ar = JsonSerializer.Deserialize<AccountsResponse>(responseString);
@@ -57,12 +56,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountDetailsResponse GetAccountDetails(string accountId)
         {
-            string urlAccountDetails = base.GetRestUrl("accounts/{0}");
+            string urlAccountDetails = GetRestUrl("accounts/{0}");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccountDetails, accountId);
-                base.SaveLocalJson("accountDetails", accountId, responseString);
+                SaveLocalJson("accountDetails", accountId, responseString);
              //   using (var input = new StringReader(responseString))
                // {
                     var ar = JsonSerializer.Deserialize<AccountDetailsResponse>(responseString);
@@ -73,12 +72,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountSummaryResponse GetAccountSummary(string accountId)
         {
-            string urlAccountSummary = base.GetRestUrl("accounts/{0}/summary");
+            string urlAccountSummary = GetRestUrl("accounts/{0}/summary");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlAccountSummary, accountId);
-                base.SaveLocalJson("accountSummary", accountId, responseString);
+                SaveLocalJson("accountSummary", accountId, responseString);
          //       using (var input = new StringReader(responseString))
            //     {
                     var ar = JsonSerializer.Deserialize<AccountSummaryResponse>(responseString);
@@ -89,12 +88,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountInstrumentsResponse GetAccountInstruments(string accountId)
         {
-            string urlInstruments = base.GetRestUrl("accounts/{0}/instruments");
+            string urlInstruments = GetRestUrl("accounts/{0}/instruments");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlInstruments, accountId);
-                base.SaveLocalJson("accountInstruments", accountId, responseString);
+                SaveLocalJson("accountInstruments", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
                     var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);
@@ -105,12 +104,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountChangesResponse GetAccountChanges(string accountId, string transactionId)
         {
-            string urlChanges = base.GetRestUrl("accounts/{0}/changes?sinceTransactionID={1}");
+            string urlChanges = GetRestUrl("accounts/{0}/changes?sinceTransactionID={1}");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlChanges, accountId, transactionId);
-                base.SaveLocalJson("accountChanges", accountId, responseString);
+                SaveLocalJson("accountChanges", accountId, responseString);
          //       using (var input = new StringReader(responseString))
            //     {
                     var ir = JsonSerializer.Deserialize<AccountChangesResponse>(responseString);
@@ -121,12 +120,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public AccountInstrumentsResponse PatchAccountConfiguration(string accountId)
         {
-            string urlInstruments = base.GetRestUrl("accounts/{0}/configuration");
+            string urlInstruments = GetRestUrl("accounts/{0}/configuration");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = PatchData(wc, urlInstruments, accountId);
-                base.SaveLocalJson("accountPatch", accountId, responseString);
+                SaveLocalJson("accountPatch", accountId, responseString);
       //          using (var input = new StringReader(responseString))
         //        {
                     var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);

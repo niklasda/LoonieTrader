@@ -2,9 +2,9 @@
 
 namespace LoonieTrader.Library.Services
 {
-    public class SettingserService : ISettingsService
+    public class SettingsService : ISettingsService
     {
-        public SettingserService(IFileReaderWriterService fileReaderWriter)
+        public SettingsService(IFileReaderWriterService fileReaderWriter)
         {
             _fileReaderWriter = fileReaderWriter;
         }

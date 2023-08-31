@@ -23,14 +23,14 @@ public class ConfigurationWriteTests
                 ApiKey = "NA",
                 DefaultAccountId = "NA",
                 EnvironmentKey = Environments.Practice.Key,
-                FavouriteInstruments = new StringCollection { "EURUSD","USDSEK" }
+                FavoriteInstruments = new StringCollection { "EURUSD","USDSEK" }
             },
             new EnvironmentSettings()
             {
                 ApiKey = "APIKEY-2",
                 DefaultAccountId = "Account-2",
                 EnvironmentKey = Environments.Live.Key,
-                FavouriteInstruments = new StringCollection { "EURUSD", "USDSEK" }
+                FavoriteInstruments = new StringCollection { "EURUSD", "USDSEK" }
             }
         };
 

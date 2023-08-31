@@ -5,14 +5,9 @@ namespace LoonieTrader.Library.Models
 {
     public class OhlcListModel
     {
-        public OhlcListModel()
-        {
-            OhlcList = new List<OhlcModel>();
-        }
-
         public string Ticker { get; set; }
         public PricePointType PointType { get; set; }
-        public IList<OhlcModel> OhlcList { get; set; }
+        public IList<OhlcModel> OhlcList { get; set; } = new List<OhlcModel>();
         public int MinutePeriod { get; set; }
     }
 }

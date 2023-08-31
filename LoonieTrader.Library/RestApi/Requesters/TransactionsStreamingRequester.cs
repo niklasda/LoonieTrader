@@ -31,7 +31,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 }
             }
 
-            string urlTransactionStream = base.GetStreamingRestUrl("accounts/{0}/transactions/stream");
+            string urlTransactionStream = GetStreamingRestUrl("accounts/{0}/transactions/stream");
             var uri = new Uri(string.Format(urlTransactionStream, accountId));
 
             using (var wc = GetAuthenticatedWebClient())

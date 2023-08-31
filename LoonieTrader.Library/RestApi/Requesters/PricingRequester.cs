@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
@@ -19,7 +18,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public PricesResponse GetPrices(string accountId, string instrument)
         {
             var responseString = GetPricesJson(accountId, instrument);
-            base.SaveLocalJson("prices", accountId, instrument, responseString);
+            SaveLocalJson("prices", accountId, instrument, responseString);
         //    using (var input = new StringReader(responseString))
           //  {
                 var pr = JsonSerializer.Deserialize<PricesResponse>(responseString);
@@ -29,7 +28,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public string GetPricesJson(string accountId, string instrument)
         {
-            string urlPrices = base.GetRestUrl("accounts/{0}/pricing?instruments={1}&since={2}");
+            string urlPrices = GetRestUrl("accounts/{0}/pricing?instruments={1}&since={2}");
 
             using (var wc = GetAuthenticatedWebClient())
             {

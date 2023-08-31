@@ -31,8 +31,8 @@ namespace LoonieTrader.Library.Models
                 {
                     EnvironmentSettings = new[]
                     {
-                        new EnvironmentSettings {EnvironmentKey = Environments.Practice.Key, FavouriteInstruments = new StringCollection()},
-                        new EnvironmentSettings {EnvironmentKey = Environments.Live.Key, FavouriteInstruments = new StringCollection()}
+                        new EnvironmentSettings {EnvironmentKey = Environments.Practice.Key, FavoriteInstruments = new StringCollection()},
+                        new EnvironmentSettings {EnvironmentKey = Environments.Live.Key, FavoriteInstruments = new StringCollection()}
                     }
                 };
             }
@@ -47,6 +47,6 @@ namespace LoonieTrader.Library.Models
 
         public string DefaultAccountId { get; set; }
 
-        public StringCollection FavouriteInstruments { get; set; } = new StringCollection();
+        public StringCollection FavoriteInstruments { get; set; } = new StringCollection();
     }
 }

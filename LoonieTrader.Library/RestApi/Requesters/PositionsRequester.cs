@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -21,14 +20,14 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public PositionsResponse GetPositions(string accountId)
         {
-            string urlPositions = base.GetRestUrl("accounts/{0}/positions/");
+            string urlPositions = GetRestUrl("accounts/{0}/positions/");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlPositions, accountId);
                 //var responseBytes = wc.GetData(string.Format(urlPositions, accountId));
                 //var responseString = Encoding.UTF8.GetString(responseBytes);
-                base.SaveLocalJson("positions", accountId, responseString);
+                SaveLocalJson("positions", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
                     var apr = JsonSerializer.Deserialize<PositionsResponse>(responseString);
@@ -39,12 +38,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public PositionsOpenResponse GetOpenPositions(string accountId)
         {
-            string urlOpenPositions = base.GetRestUrl("accounts/{0}/openPositions/");
+            string urlOpenPositions = GetRestUrl("accounts/{0}/openPositions/");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOpenPositions, accountId);
-                base.SaveLocalJson("positionsOpen", accountId, responseString);
+                SaveLocalJson("positionsOpen", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
                     var apr = JsonSerializer.Deserialize<PositionsOpenResponse>(responseString);
@@ -55,12 +54,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public PositionsInstrumentResponse GetInstrumentPositions(string accountId, string instrument)
         {
-            string urlInstrumentPositions = base.GetRestUrl("accounts/{0}/positions/{1}");
+            string urlInstrumentPositions = GetRestUrl("accounts/{0}/positions/{1}");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlInstrumentPositions, accountId, instrument);
-                base.SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
+                SaveLocalJson("positionsInstrument", accountId, instrument, responseString);
         //        using (var input = new StringReader(responseString))
           //      {
                     var apr = JsonSerializer.Deserialize<PositionsInstrumentResponse>(responseString);
@@ -73,7 +72,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             Logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {accountId} - {instrument}");
 
-            string urlInstrumentClose = base.GetRestUrl("accounts/{0}/positions/{1}/close");
+            string urlInstrumentClose = GetRestUrl("accounts/{0}/positions/{1}/close");
 
             using (var wc = GetAuthenticatedWebClient())
             {
@@ -84,12 +83,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 };
 
                 var parametersJson = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
-                base.Logger.Debug(parametersJson.PrettyPrintJson());
+                Logger.Debug(parametersJson.PrettyPrintJson());
                 var parametersBytes = Encoding.UTF8.GetBytes(parametersJson);
 
                 var responseBytes = wc.UploadData(string.Format(urlInstrumentClose, accountId, instrument), "PUT", parametersBytes);
                 var responseString = Encoding.UTF8.GetString(responseBytes);
-                base.Logger.Debug(responseString.PrettyPrintJson());
+                Logger.Debug(responseString.PrettyPrintJson());
 
          //       using (var input = new StringReader(responseString))
            //     {

@@ -31,7 +31,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 }
             }
 
-            string urlPricesStream = base.GetStreamingRestUrl("accounts/{0}/pricing/stream?instruments={1}");
+            string urlPricesStream = GetStreamingRestUrl("accounts/{0}/pricing/stream?instruments={1}");
             var uri = new Uri(string.Format(urlPricesStream, accountId, instrument));
 
             using (var wc = GetAuthenticatedWebClient())

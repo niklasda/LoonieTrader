@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Text.Json;
+﻿using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -18,12 +17,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public TradesResponse GetTrades(string accountId)
         {
             // OPEN The Trade is currently open, CLOSED The Trade has been fully closed, CLOSE_WHEN_TRADEABLE The Trade will be closed as soon as the trade’s instrument becomes tradeable
-            string urlTrades = base.GetRestUrl("accounts/{0}/trades?state=CLOSED");
+            string urlTrades = GetRestUrl("accounts/{0}/trades?state=CLOSED");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTrades, accountId);
-                base.SaveLocalJson("trades", accountId, responseString);
+                SaveLocalJson("trades", accountId, responseString);
 
           //      using (var input = new StringReader(responseString))
             //    {
@@ -34,12 +33,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
         public TradesResponse GetOpenTrades(string accountId)
         {
-            string urlOpenTrades = base.GetRestUrl("accounts/{0}/openTrades");
+            string urlOpenTrades = GetRestUrl("accounts/{0}/openTrades");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlOpenTrades, accountId);
-                base.SaveLocalJson("tradesOpen", accountId, responseString);
+                SaveLocalJson("tradesOpen", accountId, responseString);
 
           //      using (var input = new StringReader(responseString))
             //    {
@@ -51,12 +50,12 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TradeDetailsResponse GetTradeDetails(string accountId, string tradeId)
         {
-            string urlTradeDetails = base.GetRestUrl("accounts/{0}/trades/{1}");
+            string urlTradeDetails = GetRestUrl("accounts/{0}/trades/{1}");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTradeDetails, accountId, tradeId);
-                base.SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
+                SaveLocalJson("tradeDetails", accountId, tradeId, responseString);
 
             //    using (var input = new StringReader(responseString))
               //  {

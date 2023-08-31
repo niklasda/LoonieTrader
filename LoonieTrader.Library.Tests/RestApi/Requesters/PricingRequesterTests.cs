@@ -1,31 +1,28 @@
 ﻿using System.Text.Json;
-using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class PricingRequesterTests
+public class PricingRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _pr = container.GetInstance<IPricingRequester>();
-        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    PricingReq = container.GetInstance<IPricingRequester>();
+    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    //}
 
-    private IPricingRequester _pr;
-    private IEnvironmentSettings _s;
+    //private IPricingRequester PricingReq;
+    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetPrices()
     {
-        var resp = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
+        var resp = PricingReq.GetPrices(EnvSettings.DefaultAccountId, "EUR_USD");
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -33,10 +30,10 @@ public class PricingRequesterTests
     [TestMethod]
     public void TestGetPricesVerifyJson()
     {
-        PricingRequester pr = (PricingRequester)_pr;
+        PricingRequester pr = (PricingRequester)PricingReq;
 
-        PricesResponse presp1 = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
-        string resp2 = pr.GetPricesJson(_s.DefaultAccountId, "EUR_USD");
+        PricesResponse presp1 = PricingReq.GetPrices(EnvSettings.DefaultAccountId, "EUR_USD");
+        string resp2 = pr.GetPricesJson(EnvSettings.DefaultAccountId, "EUR_USD");
 
         string resp1 = JsonSerializer.Serialize(presp1);
 

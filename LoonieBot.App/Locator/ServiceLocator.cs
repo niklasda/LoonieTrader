@@ -18,7 +18,7 @@ public static class ServiceLocator
             IFileReaderWriterService cr = new FileReaderWriterService();
             IExtendedLogger exLogger = CreateExLogger(cr);
 
-            c.ForSingletonOf<ISettingsService>().Use<SettingserService>();
+            c.ForSingletonOf<ISettingsService>().Use<SettingsService>();
             c.ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
             c.For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();

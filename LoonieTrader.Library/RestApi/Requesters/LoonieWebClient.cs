@@ -17,7 +17,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         public void Dispose()
         {
             // Currently want to keep WebCLient so dont dispose them
-            Console.WriteLine("Disposing LoonieWebClient");
+           // Console.WriteLine("Disposing LoonieWebClient");
         }
 
         public byte[] UploadData(string url, string method, byte[] dataBytes)

@@ -1,30 +1,27 @@
-﻿using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.Models;
-using LoonieTrader.Library.RestApi.Interfaces;
+﻿using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Responses;
-using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class PricingStreamingRequesterTests
+public class PricingStreamingRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _txr = container.GetInstance<IPricingStreamingRequester>();
-        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    PricingStreamReq = container.GetInstance<IPricingStreamingRequester>();
+    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    //}
 
-    private IPricingStreamingRequester _txr;
-    private IEnvironmentSettings _s;
+    //private IPricingStreamingRequester PricingStreamReq;
+    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestPricingStream()
     {
-        ObservableStream<PricesResponse.Price> pss = _txr.GetPriceStream(_s.DefaultAccountId, "EUR_USD");
+        ObservableStream<PricesResponse.Price> pss = PricingStreamReq.GetPriceStream(EnvSettings.DefaultAccountId, "EUR_USD");
         pss.NewValue += Pss_NewPrice;
         //            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
 

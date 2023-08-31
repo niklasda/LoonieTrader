@@ -20,6 +20,6 @@ namespace LoonieTrader.Library.Interfaces
 
         string DefaultAccountId { get; set; }
 
-        StringCollection FavouriteInstruments { get; set; }
+        StringCollection FavoriteInstruments { get; set; }
     }
 }

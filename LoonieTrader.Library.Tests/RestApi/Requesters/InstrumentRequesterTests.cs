@@ -1,26 +1,24 @@
 ﻿using LoonieTrader.Library.RestApi.Enums;
-using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 
 [TestClass, TestCategory("Integration")]
-public class InstrumentRequesterTests
+public class InstrumentRequesterTests : TestClassBase
 {
-    [TestInitialize]
-    public void Setup()
-    {
-        var container = TestServiceLocator.Initialize();
-        _ir = container.GetInstance<IInstrumentRequester>();
-    }
+    //[TestInitialize]
+    //public void Setup()
+    //{
+    //    var container = TestServiceLocator.Initialize();
+    //    InstrReq = container.GetInstance<IInstrumentRequester>();
+    //}
 
-    private IInstrumentRequester _ir;
+    //private IInstrumentRequester InstrReq;
 
     [TestMethod]
     public void TestGetCandlesDefaults()
     {
-        var resp = _ir.GetCandles("EUR_USD");
+        var resp = InstrReq.GetCandles("EUR_USD");
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -28,7 +26,7 @@ public class InstrumentRequesterTests
     [TestMethod]
     public void TestGetCandlesError()
     {
-        var resp = _ir.GetCandles("EUXYZSD");
+        var resp = InstrReq.GetCandles("EUXYZSD");
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -36,7 +34,7 @@ public class InstrumentRequesterTests
     [TestMethod]
     public void TestGetCandlesS5CountM5()
     {
-        var resp = _ir.GetCandles("EUR_USD", CandlestickGranularity.S5, "M", 5);
+        var resp = InstrReq.GetCandles("EUR_USD", CandlestickGranularity.S5, "M", 5);
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -44,7 +42,7 @@ public class InstrumentRequesterTests
     [TestMethod]
     public void TestGetCandlesS5CountA5()
     {
-        var resp = _ir.GetCandles("GBP_USD", CandlestickGranularity.S15, "A", 5);
+        var resp = InstrReq.GetCandles("GBP_USD", CandlestickGranularity.S15, "A", 5);
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -52,7 +50,7 @@ public class InstrumentRequesterTests
     [TestMethod]
     public void TestGetCandlesS5CountB5()
     {
-        var resp = _ir.GetCandles("USD_SEK", CandlestickGranularity.S30, "B", 5);
+        var resp = InstrReq.GetCandles("USD_SEK", CandlestickGranularity.S30, "B", 5);
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
@@ -60,7 +58,7 @@ public class InstrumentRequesterTests
     [TestMethod]
     public void TestGetCandlesS5CountDate()
     {
-        var resp = _ir.GetCandles("EUR_USD", DateTime.Now.AddMonths(-1));
+        var resp = InstrReq.GetCandles("EUR_USD", DateTime.Now.AddMonths(-1));
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }
