@@ -7,52 +7,51 @@ using LoonieTrader.Library.Services;
 using LoonieTrader.Library.Logging;
 using Serilog;
 
-namespace LoonieBot.App.Locator
+namespace LoonieBot.App.Locator;
+
+public static class ServiceLocator
 {
-    public static class ServiceLocator
+    public static IContainer Initialize()
     {
-        public static IContainer Initialize()
+        var container = new Container(c =>
         {
-            var container = new Container(c =>
-            {
-                IFileReaderWriterService cr = new FileReaderWriterService();
-                IExtendedLogger exLogger = CreateExLogger(cr);
+            IFileReaderWriterService cr = new FileReaderWriterService();
+            IExtendedLogger exLogger = CreateExLogger(cr);
 
-                c.ForSingletonOf<ISettingsService>().Use<SettingserService>();
-                c.ForSingletonOf<IExtendedLogger>().Use(exLogger);
+            c.ForSingletonOf<ISettingsService>().Use<SettingserService>();
+            c.ForSingletonOf<IExtendedLogger>().Use(exLogger);
 
-                c.For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
-                c.For<IFileReaderWriterService>().Use<FileReaderWriterService>();
+            c.For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
+            c.For<IFileReaderWriterService>().Use<FileReaderWriterService>();
 
-                c.For<IAccountsRequester>().Use<AccountsRequester>();
-                c.For<IOrdersRequester>().Use<OrdersRequester>();
-                c.For<IPositionsRequester>().Use<PositionsRequester>();
-                c.For<IPricingRequester>().Use<PricingRequester>();
-                c.For<ITradesRequester>().Use<TradesRequester>();
-                c.For<ITransactionsRequester>().Use<TransactionsRequester>();
-                c.For<IInstrumentRequester>().Use<InstrumentRequester>();
-                c.For<IHealthRequester>().Use<HealthRequester>();
+            c.For<IAccountsRequester>().Use<AccountsRequester>();
+            c.For<IOrdersRequester>().Use<OrdersRequester>();
+            c.For<IPositionsRequester>().Use<PositionsRequester>();
+            c.For<IPricingRequester>().Use<PricingRequester>();
+            c.For<ITradesRequester>().Use<TradesRequester>();
+            c.For<ITransactionsRequester>().Use<TransactionsRequester>();
+            c.For<IInstrumentRequester>().Use<InstrumentRequester>();
+            c.For<IHealthRequester>().Use<HealthRequester>();
 
-                c.ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
-                c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
-            });
+            c.ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
+            c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
+        });
 
-            return container;
-        }
+        return container;
+    }
 
-        private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
-        {
-            var logFilePattern = cr.GetLogFilePattern();
+    private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
+    {
+        var logFilePattern = cr.GetLogFilePattern();
 
-            var logger = new LoggerConfiguration()
-               .WriteTo.Console()
-               .WriteTo.File(logFilePattern)
-               .MinimumLevel.Debug()
-               .CreateLogger();
+        var logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(logFilePattern)
+            .MinimumLevel.Debug()
+            .CreateLogger();
 
-            IExtendedLogger exLogger = new ExtendedLogger(logger);
+        IExtendedLogger exLogger = new ExtendedLogger(logger);
 
-            return exLogger;
-        }
+        return exLogger;
     }
 }

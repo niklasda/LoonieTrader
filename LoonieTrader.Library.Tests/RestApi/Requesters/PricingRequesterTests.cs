@@ -4,45 +4,45 @@ using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.Tests.Locator;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoonieTrader.Library.Tests.RestApi.Requesters
+namespace LoonieTrader.Library.Tests.RestApi.Requesters;
+
+[TestClass, TestCategory("Integration")]
+public class PricingRequesterTests
 {
-    [TestClass, TestCategory("Integration")]
-    public class PricingRequesterTests
+    [TestInitialize]
+    public void Setup()
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            var container = TestServiceLocator.Initialize();
-            _pr = container.GetInstance<IPricingRequester>();
-            _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-        }
+        var container = TestServiceLocator.Initialize();
+        _pr = container.GetInstance<IPricingRequester>();
+        _s = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+    }
 
-        private IPricingRequester _pr;
-        private IEnvironmentSettings _s;
+    private IPricingRequester _pr;
+    private IEnvironmentSettings _s;
 
-        [TestMethod]
-        public void TestGetPrices()
-        {
-            var resp = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
-            Console.WriteLine(resp);
-            Assert.IsNotNull(resp);
-        }
+    [TestMethod]
+    public void TestGetPrices()
+    {
+        var resp = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
+        Console.WriteLine(resp);
+        Assert.IsNotNull(resp);
+    }
 
-        [TestMethod]
-        public void TestGetPricesVerifyJson()
-        {
-            PricingRequester pr = (PricingRequester)_pr;
+    [TestMethod]
+    public void TestGetPricesVerifyJson()
+    {
+        PricingRequester pr = (PricingRequester)_pr;
 
-            PricesResponse presp1 = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
-            string resp2 = pr.GetPricesJson(_s.DefaultAccountId, "EUR_USD");
+        PricesResponse presp1 = _pr.GetPrices(_s.DefaultAccountId, "EUR_USD");
+        string resp2 = pr.GetPricesJson(_s.DefaultAccountId, "EUR_USD");
 
-            string resp1 = JsonSerializer.Serialize(presp1);
+        string resp1 = JsonSerializer.Serialize(presp1);
 
-            Console.WriteLine(resp1);
-            Console.WriteLine(resp2);
+        Console.WriteLine(resp1);
+        Console.WriteLine(resp2);
 
-            //Assert.AreEqual(resp1.Length, resp2.Length);
-        }
+        //Assert.AreEqual(resp1.Length, resp2.Length);
     }
 }

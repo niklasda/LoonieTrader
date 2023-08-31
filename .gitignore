@@ -4,10 +4,7 @@
 *.suo
 *.user
 *.userosscache
-*.sln.docstates
 
-# User-specific files (MonoDevelop/Xamarin Studio)
-*.userprefs
 
 # Build results
 [Bb]in/
@@ -17,15 +14,6 @@
 .vs/
 
 
-
 # Click-Once directory
 publish/
 
-# The packages folder can be ignored because of Package Restore
-**/packages/
-
-
-
-**/build/
-**/deploy/
-**/Logs/

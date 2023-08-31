@@ -3,44 +3,44 @@ using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LoonieTrader.Library.Tests.Configuration
+namespace LoonieTrader.Library.Tests.Configuration;
+
+[TestClass, TestCategory("Integration")]
+public class ConfigurationWriteTests
 {
-    [TestClass, TestCategory("Integration")]
-    public class ConfigurationWriteTests
+    [TestMethod]
+    [Ignore("This overwrites the config")]
+    public void YamlDotNetWriteReadTest()
     {
-        [TestMethod]
-        [Ignore("This overwrites the config")]
-        public void YamlDotNetWriteReadTest()
+        ISettings settings = new Settings();
+        settings.SelectedEnvironmentKey = Environments.Practice.Key;
+        settings.EnvironmentSettings = new []
         {
-            ISettings settings = new Settings();
-            settings.SelectedEnvironmentKey = Environments.Practice.Key;
-            settings.EnvironmentSettings = new []
+            new EnvironmentSettings()
             {
-                new EnvironmentSettings()
-                {
-                    ApiKey = "APIKEY-1",
-                    DefaultAccountId = "Account-1",
-                    EnvironmentKey = Environments.Practice.Key,
-                    FavouriteInstruments = new StringCollection {"INST1-1","INST1-2" }
-                },
-                new EnvironmentSettings()
-                {
-                    ApiKey = "APIKEY-2",
-                    DefaultAccountId = "Account-2",
-                    EnvironmentKey = Environments.Live.Key,
-                    FavouriteInstruments = new StringCollection {"INST2-1","INST2-2" }
-                }
-            };
+                ApiKey = "NA",
+                DefaultAccountId = "NA",
+                EnvironmentKey = Environments.Practice.Key,
+                FavouriteInstruments = new StringCollection { "EURUSD","USDSEK" }
+            },
+            new EnvironmentSettings()
+            {
+                ApiKey = "APIKEY-2",
+                DefaultAccountId = "Account-2",
+                EnvironmentKey = Environments.Live.Key,
+                FavouriteInstruments = new StringCollection { "EURUSD", "USDSEK" }
+            }
+        };
 
-            var frw = new FileReaderWriterService();
-            frw.SaveConfiguration(settings);
+        var frw = new FileReaderWriterService();
+        frw.SaveConfiguration(settings);
 
 
 
-            var s = frw.LoadConfiguration();
-            Assert.IsNotNull(s);
+        var s = frw.LoadConfiguration();
+        Assert.IsNotNull(s);
 
-        }
     }
 }

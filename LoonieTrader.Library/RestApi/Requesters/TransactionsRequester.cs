@@ -18,7 +18,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionPagesResponse GetTransactionPages(string accountId)
         {
-            string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions/");
+            string urlTransactionPages = base.GetRestUrl("accounts/{0}/transactions?from=2021-08-23T21:12:24.357321399Z");
 
             using (var wc = GetAuthenticatedWebClient())
             {
@@ -35,7 +35,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionsResponse GetTransactions(string accountId)
         {
-            string urlTransactions = base.GetRestUrl("accounts/{0}/transactions/idrange?from=3200&to=3300");
+            string urlTransactions = base.GetRestUrl("accounts/{0}/transactions/idrange?from=90&to=94");
 
             using (var wc = GetAuthenticatedWebClient())
             {
