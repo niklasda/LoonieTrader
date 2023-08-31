@@ -20,6 +20,8 @@ namespace LoonieTrader.Library.RestApi.Responses
             resp.Append(account.balance);
             resp.Append(", ccy: ");
             resp.Append(account.currency);
+            resp.Append(", openPos: ");
+            resp.Append(account.openPositionCount);
             resp.Append(", by user: ");
             resp.Append(account.createdByUserID);
             resp.Append(", at time: ");

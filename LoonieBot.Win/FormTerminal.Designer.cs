@@ -47,7 +47,7 @@
             groupBox1.Controls.Add(textBox1);
             groupBox1.Location = new Point(226, 18);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(540, 233);
+            groupBox1.Size = new Size(763, 233);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Account";
@@ -55,7 +55,7 @@
             // buttonAccount
             // 
             buttonAccount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonAccount.Location = new Point(448, 193);
+            buttonAccount.Location = new Point(671, 193);
             buttonAccount.Name = "buttonAccount";
             buttonAccount.Size = new Size(75, 23);
             buttonAccount.TabIndex = 1;
@@ -70,7 +70,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(504, 154);
+            textBox1.Size = new Size(727, 154);
             textBox1.TabIndex = 0;
             // 
             // groupBox2
@@ -78,9 +78,9 @@
             groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(buttonSubscribe);
             groupBox2.Controls.Add(textBox2);
-            groupBox2.Location = new Point(9, 271);
+            groupBox2.Location = new Point(9, 374);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(757, 149);
+            groupBox2.Size = new Size(980, 191);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Transactions";
@@ -88,7 +88,7 @@
             // buttonSubscribe
             // 
             buttonSubscribe.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonSubscribe.Location = new Point(665, 114);
+            buttonSubscribe.Location = new Point(888, 156);
             buttonSubscribe.Name = "buttonSubscribe";
             buttonSubscribe.Size = new Size(75, 23);
             buttonSubscribe.TabIndex = 1;
@@ -103,7 +103,7 @@
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(720, 77);
+            textBox2.Size = new Size(943, 119);
             textBox2.TabIndex = 0;
             // 
             // buttonDisconnect
@@ -128,7 +128,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1023, 595);
             Controls.Add(buttonConnect);
             Controls.Add(buttonDisconnect);
             Controls.Add(groupBox2);

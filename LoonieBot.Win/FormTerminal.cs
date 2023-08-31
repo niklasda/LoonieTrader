@@ -30,7 +30,7 @@ namespace LoonieBot.Win
                 var details = ar.GetAccountDetails(account.id);
                 textBox1.Text += details.ToString() + Environment.NewLine;
 
-                var summary = ar.GetAccountSummary(cfg.DefaultAccountId);
+                var summary = ar.GetAccountSummary(account.id);
                 textBox1.Text += summary.ToString() + Environment.NewLine;
 
             }
@@ -49,7 +49,8 @@ namespace LoonieBot.Win
 
             var txr = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
 
-            textBox2.Text = txr.GetTransactions(cfg.DefaultAccountId).ToString();
+            var txs = txr.GetTransactions(cfg.DefaultAccountId);
+            textBox2.Text = txs.ToString();
         }
     }
 }

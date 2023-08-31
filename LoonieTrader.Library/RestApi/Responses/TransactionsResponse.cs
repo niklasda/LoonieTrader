@@ -75,6 +75,8 @@ namespace LoonieTrader.Library.RestApi.Responses
                 resp.Append(instrument);
                 resp.Append(", amount: ");
                 resp.Append(amount);
+                resp.Append(", time: ");
+                resp.Append(time);
 
                 return resp.ToString();
             }
