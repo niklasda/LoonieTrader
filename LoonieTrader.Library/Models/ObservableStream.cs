@@ -56,7 +56,7 @@ namespace LoonieTrader.Library.Models
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
-                    T obj = JsonSerializer.Deserialize<T>(line);
+                    T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                     _logger.Information("Stream observation: {0}", line);
 

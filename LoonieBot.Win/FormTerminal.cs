@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Lamar;
-using LoonieBot.Win.Locator;
+﻿using LoonieBot.Win.Locator;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 
@@ -50,6 +40,16 @@ namespace LoonieBot.Win
 
             //        logger.Information("GetAccountSummary");
             //      Console.WriteLine(ar.GetAccountSummary(cfg.DefaultAccountId));
+        }
+
+        private void buttonSubscribe_Click(object sender, EventArgs e)
+        {
+            var cfgs = ServiceLocator.Container.GetInstance<ISettingsService>();
+            var cfg = cfgs.CachedSettings.SelectedEnvironment;
+
+            var txr = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
+
+            textBox2.Text = txr.GetTransactions(cfg.DefaultAccountId).ToString();
         }
     }
 }

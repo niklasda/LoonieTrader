@@ -99,7 +99,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             //    using (var input = new StringReader(responseString))
               //  {
-                    var aor = JsonSerializer.Deserialize<OrderCreateResponse>(responseString);
+                    var aor = JsonDeserialize<OrderCreateResponse>(responseString);
                     return aor;
                 //}
             }

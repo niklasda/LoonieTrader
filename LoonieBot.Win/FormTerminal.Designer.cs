@@ -69,6 +69,7 @@
             textBox1.Location = new Point(19, 33);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
+            textBox1.ScrollBars = ScrollBars.Vertical;
             textBox1.Size = new Size(504, 154);
             textBox1.TabIndex = 0;
             // 
@@ -93,6 +94,7 @@
             buttonSubscribe.TabIndex = 1;
             buttonSubscribe.Text = "Subscribe";
             buttonSubscribe.UseVisualStyleBackColor = true;
+            buttonSubscribe.Click += buttonSubscribe_Click;
             // 
             // textBox2
             // 
@@ -100,6 +102,7 @@
             textBox2.Location = new Point(20, 31);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
+            textBox2.ScrollBars = ScrollBars.Vertical;
             textBox2.Size = new Size(720, 77);
             textBox2.TabIndex = 0;
             // 

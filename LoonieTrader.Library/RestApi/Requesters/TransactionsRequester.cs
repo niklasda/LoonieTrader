@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -62,13 +61,13 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
             //    using (var inputPages = new StringReader(responsePagesString))
               //  {
-                    var atpr = JsonSerializer.Deserialize<TransactionPagesResponse>(responsePagesString);
+                    var atpr = JsonDeserialize<TransactionPagesResponse>(responsePagesString);
                     foreach (var p in atpr.pages)
                     {
                         var responseString = GetData(wc, p, accountId);
              //           using (var input = new StringReader(responseString))
                 //        {
-                            var atr = JsonSerializer.Deserialize<TransactionsResponse>(responseString);
+                            var atr = JsonDeserialize<TransactionsResponse>(responseString);
                             //Console.WriteLine(atr);
 
                             transactions.AddRange(atr.transactions);

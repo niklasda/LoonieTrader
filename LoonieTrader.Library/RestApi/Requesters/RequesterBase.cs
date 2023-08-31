@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.RestApi.Requesters
 {

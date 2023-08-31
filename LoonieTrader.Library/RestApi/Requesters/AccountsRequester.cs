@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -28,7 +27,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 }
                 catch (Exception ex)
                 {
-                    Logger.Warning(ex, "Could not get  account summary for {0}", account.id);
+                    Logger.Warning(ex, "Could not get account summary for {0}", account.id);
                 }
             }
 
@@ -64,7 +63,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accountDetails", accountId, responseString);
                 //   using (var input = new StringReader(responseString))
                 // {
-                var ar = base.JsonDeserialize<AccountDetailsResponse>(responseString);
+                var ar = JsonDeserialize<AccountDetailsResponse>(responseString);
 
                 //var ar = JsonSerializer.Deserialize<AccountDetailsResponse>(responseString, new JsonSerializerOptions(){PropertyNameCaseInsensitive = true});
                 return ar;
@@ -98,7 +97,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accountInstruments", accountId, responseString);
            //     using (var input = new StringReader(responseString))
              //   {
-                    var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);
+                    var ir = JsonDeserialize<AccountInstrumentsResponse>(responseString);
                     return ir;
                // }
             }
@@ -114,7 +113,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accountChanges", accountId, responseString);
          //       using (var input = new StringReader(responseString))
            //     {
-                    var ir = JsonSerializer.Deserialize<AccountChangesResponse>(responseString);
+                    var ir = JsonDeserialize<AccountChangesResponse>(responseString);
                     return ir;
              //   }
             }
@@ -130,7 +129,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 SaveLocalJson("accountPatch", accountId, responseString);
       //          using (var input = new StringReader(responseString))
         //        {
-                    var ir = JsonSerializer.Deserialize<AccountInstrumentsResponse>(responseString);
+                    var ir = JsonDeserialize<AccountInstrumentsResponse>(responseString);
                     return ir;
           //      }
             }
