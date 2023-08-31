@@ -1,4 +1,6 @@
 ﻿using System.Net;
+using System.CommandLine;
+using System.Reflection;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
@@ -9,6 +11,60 @@ namespace LoonieBot.App;
 public static class Program
 {
     private static void Main()
+    {
+        RootCommand rootCommand = new RootCommand(description: "Converts an image file from one format to another.");
+
+        Option inputOption = new Option<string>(aliases: new string[] { "--input", "-i" }
+            , description: "The path to the image file that is to be converted.");
+//            , argument: new Argument<FileInfo>());
+        rootCommand.AddOption(inputOption);
+
+        Option outputOption = new Option<string>(aliases: new string[] { "--output", "-o" }
+            , description: "The target name of the output file after conversion.");
+ //           , argument: new Argument<FileInfo>());
+        rootCommand.AddOption(outputOption);
+
+        Option xCropSizeOption = new Option<string>(aliases: new string[] { "--x-crop-size", "-x" }
+            , description: "The x dimension size to crop the picture. The default is 0 indicating no cropping is required.");
+//            , argument: new Argument<FileInfo>());
+        rootCommand.AddOption(xCropSizeOption);
+        
+        Option yCropSizeOption = new Option<string>(aliases: new string[] { "--y-crop-size", "-y" }
+            , description: "The Y dimension size to crop the picture. The default is 0 indicating no cropping is required.");
+//            , argument: new Argument<FileInfo>());
+
+        
+        rootCommand.AddOption(yCropSizeOption);
+
+
+
+        Command cmd = new Command(name: "account", description: "acc");
+        rootCommand.AddCommand(cmd);
+
+
+
+//    https://github.com/dotnet/command-line-api/blob/main/docs/DragonFruit-overview.md
+//
+ //       rootCommand.Handler = CommandHandler.Create<FileInfo, FileInfo, int, int>(Convert);
+
+        /*
+        RootCommand rootCommand = new RootCommand(
+            description: "Converts an image file from one format to another."
+            , treatUnmatchedTokensAsErrors: true);
+        MethodInfo method = typeof(Program).GetMethod(nameof(Convert));
+        rootCommand.ConfigureFromMethod(method);
+        rootCommand.Children["--input"].AddAlias("-i");
+        rootCommand.Children["--output"].AddAlias("-o");
+        */
+
+        //return await rootCommand.InvokeAsync(args);
+
+
+
+        Console.ReadLine();
+    }
+
+    private static void DoAllTheStuffs()
     {
         try
         {
@@ -26,7 +82,7 @@ public static class Program
 
             IExtendedLogger logger = container.GetInstance<IExtendedLogger>();
 
-                
+
 
             logger.Information("GetAccounts");
             Console.WriteLine(ar.GetAccounts());
@@ -79,8 +135,7 @@ public static class Program
             Console.WriteLine(resp.Server);
         }
 
-        Console.ReadLine();
     }
 
-        
+
 }
