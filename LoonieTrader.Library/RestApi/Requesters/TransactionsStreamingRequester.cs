@@ -24,8 +24,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             if (_transactionSubscriptions.ContainsKey(accountId))
             {
-                ObservableStream<TransactionsResponse.Transaction> obs;
-                if (_transactionSubscriptions.TryGetValue(accountId, out obs))
+                //ObservableStream<TransactionsResponse.Transaction> obs;
+                if (_transactionSubscriptions.TryGetValue(accountId, out var obs))
                 {
                     return obs;
                 }

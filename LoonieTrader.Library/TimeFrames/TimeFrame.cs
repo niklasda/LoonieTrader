@@ -29,11 +29,11 @@ namespace LoonieTrader.Library.TimeFrames
             {
                 var ts = tick.TimeStamp.RoundDownTo(Length);
 
-                OhlcModel cd = new OhlcModel();
+                OhlcModel cd ;//= new OhlcModel();
 
-                if (dic.ContainsKey(ts))
+                if (dic.TryGetValue(ts, out OhlcModel value))
                 {
-                    cd = dic[ts];
+                    cd = value;
                 }
                 else
                 {

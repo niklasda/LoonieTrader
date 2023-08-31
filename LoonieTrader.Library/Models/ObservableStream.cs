@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.Models
         private readonly Stream _stream;
         private readonly IExtendedLogger _logger;
 
-        public event NewValueEventHandler<T>? NewValue;
+        public event NewValueEventHandler<T> NewValue;
 
         private void OnChanged(StreamEventArgs<T> e)
         {
