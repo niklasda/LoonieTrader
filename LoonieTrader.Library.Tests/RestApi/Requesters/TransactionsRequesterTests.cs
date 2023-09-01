@@ -27,7 +27,7 @@ public class TransactionsRequesterTests : TestClassBase
     [TestMethod]
     public void TestGetAccountTransactions()
     {
-        var resp = TxReq.GetTransactions(EnvSettings.DefaultAccountId);
+        var resp = TxReq.GetTransactions(EnvSettings.DefaultAccountId, "94");
         Console.WriteLine(resp);
         Assert.IsNotNull(resp);
     }

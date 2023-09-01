@@ -67,7 +67,7 @@ namespace LoonieBot.Win
                 Console.WriteLine(txr.GetTransactionPages(cfg.DefaultAccountId));
 
                 logger.Information("GetTransactions");
-                Console.WriteLine(txr.GetTransactions(cfg.DefaultAccountId));
+                Console.WriteLine(txr.GetTransactions(cfg.DefaultAccountId, "94"));
 
                 logger.Information("GetTrades");
                 Console.WriteLine(tr.GetTrades(cfg.DefaultAccountId));

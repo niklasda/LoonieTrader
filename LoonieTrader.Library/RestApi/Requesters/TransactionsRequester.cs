@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -16,36 +17,46 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public TransactionPagesResponse GetTransactionPages(string accountId)
         {
-            string urlTransactionPages = GetRestUrl("accounts/{0}/transactions?from=2021-08-23T21:12:24.357321399Z");
+            string urlTransactionPages = GetRestUrl("accounts/{0}/transactions");
+            //string urlTransactionPages = GetRestUrl("accounts/{0}/transactions?from=2021-08-23T21:12:24.357321399Z");
 
             using (var wc = GetAuthenticatedWebClient())
             {
                 var responseString = GetData(wc, urlTransactionPages, accountId);
                 SaveLocalJson("transactionPages", accountId, responseString);
 
-        //        using (var input = new StringReader(responseString))
-          //      {
-                    var atpr = JsonDeserialize<TransactionPagesResponse>(responseString);
-                    return atpr;
-            //    }
+                //        using (var input = new StringReader(responseString))
+                //      {
+                var atpr = JsonDeserialize<TransactionPagesResponse>(responseString);
+                return atpr;
+                //    }
             }
         }
 
-        public TransactionsResponse GetTransactions(string accountId)
+        public TransactionsResponse GetTransactions(string accountId, string transactionId)
         {
-            string urlTransactions = GetRestUrl("accounts/{0}/transactions/idrange?from=90&to=94");
-
-            using (var wc = GetAuthenticatedWebClient())
+            if (int.TryParse(transactionId, out int txId))
             {
-                var responseString = GetData(wc, urlTransactions, accountId);
-                SaveLocalJson("transactions", accountId, responseString);
+                string urlTransactions = GetRestUrl($"accounts/{{0}}/transactions/idrange?from={txId - 10}&to={txId}");
 
-       //         using (var input = new StringReader(responseString))
-         //       {
+                using (var wc = GetAuthenticatedWebClient())
+                {
+                    var responseString = GetData(wc, urlTransactions, accountId);
+                    SaveLocalJson("transactions", accountId, responseString);
+
+                    //         using (var input = new StringReader(responseString))
+                    //       {
                     var atr = JsonDeserialize<TransactionsResponse>(responseString);
                     return atr;
-           //     }
+                    //     }
+                }
+
             }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(transactionId));
+            }
+
         }
 
         public TransactionsResponse GetAllTransactions(string accountId)
@@ -59,21 +70,21 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 TransactionsResponse responseAll = new TransactionsResponse();
                 List<TransactionsResponse.Transaction> transactions = new List<TransactionsResponse.Transaction>();
 
-            //    using (var inputPages = new StringReader(responsePagesString))
-              //  {
-                    var atpr = JsonDeserialize<TransactionPagesResponse>(responsePagesString);
-                    foreach (var p in atpr.pages)
-                    {
-                        var responseString = GetData(wc, p, accountId);
-             //           using (var input = new StringReader(responseString))
-                //        {
-                            var atr = JsonDeserialize<TransactionsResponse>(responseString);
-                            //Console.WriteLine(atr);
+                //    using (var inputPages = new StringReader(responsePagesString))
+                //  {
+                var atpr = JsonDeserialize<TransactionPagesResponse>(responsePagesString);
+                foreach (var p in atpr.pages)
+                {
+                    var responseString = GetData(wc, p, accountId);
+                    //           using (var input = new StringReader(responseString))
+                    //        {
+                    var atr = JsonDeserialize<TransactionsResponse>(responseString);
+                    //Console.WriteLine(atr);
 
-                            transactions.AddRange(atr.transactions);
-                            responseAll.lastTransactionID = atr.lastTransactionID;
-                  //      }
-                    }
+                    transactions.AddRange(atr.transactions);
+                    responseAll.lastTransactionID = atr.lastTransactionID;
+                    //      }
+                }
                 //}
 
                 responseAll.transactions = transactions.ToArray();
@@ -90,11 +101,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
                 var responseString = GetData(wc, urlTransactionDetails, accountId, transactionId);
                 SaveLocalJson("transactionDetails", accountId, transactionId, responseString);
 
-          //      using (var input = new StringReader(responseString))
-            //    {
-                    var atr = JsonDeserialize<TransactionDetailsResponse>(responseString);
-                    return atr;
-              //  }
+                //      using (var input = new StringReader(responseString))
+                //    {
+                var atr = JsonDeserialize<TransactionDetailsResponse>(responseString);
+                return atr;
+                //  }
             }
         }
 

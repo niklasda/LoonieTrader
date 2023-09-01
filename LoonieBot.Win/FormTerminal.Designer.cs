@@ -35,7 +35,8 @@
             buttonSubscribe = new Button();
             textBox2 = new TextBox();
             buttonDisconnect = new Button();
-            buttonConnect = new Button();
+            buttonConnectDemo = new Button();
+            buttonConnectLive = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -108,28 +109,40 @@
             // 
             // buttonDisconnect
             // 
-            buttonDisconnect.Location = new Point(26, 72);
+            buttonDisconnect.Location = new Point(26, 112);
             buttonDisconnect.Name = "buttonDisconnect";
-            buttonDisconnect.Size = new Size(75, 23);
+            buttonDisconnect.Size = new Size(91, 27);
             buttonDisconnect.TabIndex = 2;
             buttonDisconnect.Text = "Disconnect";
             buttonDisconnect.UseVisualStyleBackColor = true;
             // 
-            // buttonConnect
+            // buttonConnectDemo
             // 
-            buttonConnect.Location = new Point(26, 34);
-            buttonConnect.Name = "buttonConnect";
-            buttonConnect.Size = new Size(75, 23);
-            buttonConnect.TabIndex = 3;
-            buttonConnect.Text = "Connect";
-            buttonConnect.UseVisualStyleBackColor = true;
+            buttonConnectDemo.Location = new Point(26, 34);
+            buttonConnectDemo.Name = "buttonConnectDemo";
+            buttonConnectDemo.Size = new Size(114, 33);
+            buttonConnectDemo.TabIndex = 3;
+            buttonConnectDemo.Text = "Connect Demo";
+            buttonConnectDemo.UseVisualStyleBackColor = true;
+            buttonConnectDemo.Click += buttonConnectDemo_Click;
+            // 
+            // buttonConnectLive
+            // 
+            buttonConnectLive.Location = new Point(26, 73);
+            buttonConnectLive.Name = "buttonConnectLive";
+            buttonConnectLive.Size = new Size(114, 33);
+            buttonConnectLive.TabIndex = 4;
+            buttonConnectLive.Text = "Connect Live";
+            buttonConnectLive.UseVisualStyleBackColor = true;
+            buttonConnectLive.Click += buttonConnectLive_Click;
             // 
             // FormTerminal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1023, 595);
-            Controls.Add(buttonConnect);
+            Controls.Add(buttonConnectLive);
+            Controls.Add(buttonConnectDemo);
             Controls.Add(buttonDisconnect);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -150,7 +163,8 @@
         private GroupBox groupBox2;
         private TextBox textBox2;
         private Button buttonDisconnect;
-        private Button buttonConnect;
+        private Button buttonConnectDemo;
         private Button buttonSubscribe;
+        private Button buttonConnectLive;
     }
 }
