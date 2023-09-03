@@ -54,6 +54,8 @@ namespace LoonieTrader.Library.RestApi.Responses
             public Stoplossonfill stopLossOnFill { get; set; }
             public Takeprofitonfill takeProfitOnFill { get; set; }
             public string triggerCondition { get; set; }
+            public string lastTransactionID { get; set; }
+
 
             public override string ToString()
             {

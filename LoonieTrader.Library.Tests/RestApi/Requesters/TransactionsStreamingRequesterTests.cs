@@ -22,20 +22,20 @@ public class TransactionsStreamingRequesterTests : TestClassBase
     public void TestTransactionStream()
     {
         ObservableStream<TransactionsResponse.Transaction> tss = TxStreamReq.GetTransactionStream(EnvSettings.DefaultAccountId);
-        tss.NewValue += Tss_NewPrice;
+        tss.NewValue += Tss_NewTrx;
         //IDisposable l1 = tss.Subscribe(x => Console.WriteLine("Tx1: {0}", x));
 
         Task.Delay(10000).Wait();
         Console.WriteLine("Done. 10s");
 
-        tss.NewValue -= Tss_NewPrice;
+        tss.NewValue -= Tss_NewTrx;
         // l1.Dispose();
 
         //            var price = JSON.Deserialize<TransactionsResponse.Transaction>(l1);
         //          Assert.NotNull(price);
     }
 
-    private void Tss_NewPrice(object sender, EventArgs e)
+    private void Tss_NewTrx(object sender, EventArgs e)
     {
         Console.WriteLine("Tx1: ");
     }

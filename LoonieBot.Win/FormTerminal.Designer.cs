@@ -30,13 +30,17 @@
         {
             groupBox1 = new GroupBox();
             buttonAccount = new Button();
-            textBox1 = new TextBox();
+            textBoxAcc = new TextBox();
             groupBox2 = new GroupBox();
             buttonSubscribe = new Button();
-            textBox2 = new TextBox();
+            textBoxTrx = new TextBox();
             buttonDisconnect = new Button();
             buttonConnectDemo = new Button();
             buttonConnectLive = new Button();
+            textBoxSymbol = new TextBox();
+            textBoxPositions = new TextBox();
+            buttonSymbol = new Button();
+            buttonPos = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -45,10 +49,10 @@
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(buttonAccount);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(textBoxAcc);
             groupBox1.Location = new Point(226, 18);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(763, 233);
+            groupBox1.Size = new Size(942, 232);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Account";
@@ -56,7 +60,7 @@
             // buttonAccount
             // 
             buttonAccount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonAccount.Location = new Point(671, 193);
+            buttonAccount.Location = new Point(850, 192);
             buttonAccount.Name = "buttonAccount";
             buttonAccount.Size = new Size(75, 23);
             buttonAccount.TabIndex = 1;
@@ -64,24 +68,24 @@
             buttonAccount.UseVisualStyleBackColor = true;
             buttonAccount.Click += buttonAccount_Click;
             // 
-            // textBox1
+            // textBoxAcc
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(19, 33);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(727, 154);
-            textBox1.TabIndex = 0;
+            textBoxAcc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxAcc.Location = new Point(19, 33);
+            textBoxAcc.Multiline = true;
+            textBoxAcc.Name = "textBoxAcc";
+            textBoxAcc.ScrollBars = ScrollBars.Vertical;
+            textBoxAcc.Size = new Size(906, 153);
+            textBoxAcc.TabIndex = 0;
             // 
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(buttonSubscribe);
-            groupBox2.Controls.Add(textBox2);
-            groupBox2.Location = new Point(9, 374);
+            groupBox2.Controls.Add(textBoxTrx);
+            groupBox2.Location = new Point(9, 343);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(980, 191);
+            groupBox2.Size = new Size(1159, 300);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Transactions";
@@ -89,7 +93,7 @@
             // buttonSubscribe
             // 
             buttonSubscribe.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonSubscribe.Location = new Point(888, 156);
+            buttonSubscribe.Location = new Point(1067, 265);
             buttonSubscribe.Name = "buttonSubscribe";
             buttonSubscribe.Size = new Size(75, 23);
             buttonSubscribe.TabIndex = 1;
@@ -97,15 +101,15 @@
             buttonSubscribe.UseVisualStyleBackColor = true;
             buttonSubscribe.Click += buttonSubscribe_Click;
             // 
-            // textBox2
+            // textBoxTrx
             // 
-            textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(20, 31);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ScrollBars = ScrollBars.Vertical;
-            textBox2.Size = new Size(943, 119);
-            textBox2.TabIndex = 0;
+            textBoxTrx.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxTrx.Location = new Point(20, 31);
+            textBoxTrx.Multiline = true;
+            textBoxTrx.Name = "textBoxTrx";
+            textBoxTrx.ScrollBars = ScrollBars.Vertical;
+            textBoxTrx.Size = new Size(1122, 210);
+            textBoxTrx.TabIndex = 0;
             // 
             // buttonDisconnect
             // 
@@ -136,11 +140,54 @@
             buttonConnectLive.UseVisualStyleBackColor = true;
             buttonConnectLive.Click += buttonConnectLive_Click;
             // 
+            // textBoxSymbol
+            // 
+            textBoxSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            textBoxSymbol.Location = new Point(28, 182);
+            textBoxSymbol.Multiline = true;
+            textBoxSymbol.Name = "textBoxSymbol";
+            textBoxSymbol.Size = new Size(152, 137);
+            textBoxSymbol.TabIndex = 5;
+            // 
+            // textBoxPositions
+            // 
+            textBoxPositions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxPositions.Location = new Point(300, 268);
+            textBoxPositions.Multiline = true;
+            textBoxPositions.Name = "textBoxPositions";
+            textBoxPositions.Size = new Size(749, 69);
+            textBoxPositions.TabIndex = 6;
+            // 
+            // buttonSymbol
+            // 
+            buttonSymbol.Location = new Point(188, 273);
+            buttonSymbol.Name = "buttonSymbol";
+            buttonSymbol.Size = new Size(75, 23);
+            buttonSymbol.TabIndex = 7;
+            buttonSymbol.Text = "ËURUSD";
+            buttonSymbol.UseVisualStyleBackColor = true;
+            buttonSymbol.Click += buttonSymbol_Click;
+            // 
+            // buttonPos
+            // 
+            buttonPos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonPos.Location = new Point(1076, 296);
+            buttonPos.Name = "buttonPos";
+            buttonPos.Size = new Size(75, 23);
+            buttonPos.TabIndex = 7;
+            buttonPos.Text = "Pos";
+            buttonPos.UseVisualStyleBackColor = true;
+            buttonPos.Click += buttonPos_Click;
+            // 
             // FormTerminal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1023, 595);
+            ClientSize = new Size(1180, 655);
+            Controls.Add(buttonPos);
+            Controls.Add(buttonSymbol);
+            Controls.Add(textBoxPositions);
+            Controls.Add(textBoxSymbol);
             Controls.Add(buttonConnectLive);
             Controls.Add(buttonConnectDemo);
             Controls.Add(buttonDisconnect);
@@ -153,18 +200,23 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox groupBox1;
         private Button buttonAccount;
-        private TextBox textBox1;
+        private TextBox textBoxAcc;
         private GroupBox groupBox2;
-        private TextBox textBox2;
+        private TextBox textBoxTrx;
         private Button buttonDisconnect;
         private Button buttonConnectDemo;
         private Button buttonSubscribe;
         private Button buttonConnectLive;
+        private TextBox textBoxSymbol;
+        private TextBox textBoxPositions;
+        private Button buttonSymbol;
+        private Button buttonPos;
     }
 }
