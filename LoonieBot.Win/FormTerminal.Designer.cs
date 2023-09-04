@@ -52,7 +52,7 @@
             groupBox1.Controls.Add(textBoxAcc);
             groupBox1.Location = new Point(226, 18);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(942, 232);
+            groupBox1.Size = new Size(942, 189);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Account";
@@ -60,7 +60,7 @@
             // buttonAccount
             // 
             buttonAccount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonAccount.Location = new Point(850, 192);
+            buttonAccount.Location = new Point(850, 149);
             buttonAccount.Name = "buttonAccount";
             buttonAccount.Size = new Size(75, 23);
             buttonAccount.TabIndex = 1;
@@ -75,7 +75,7 @@
             textBoxAcc.Multiline = true;
             textBoxAcc.Name = "textBoxAcc";
             textBoxAcc.ScrollBars = ScrollBars.Vertical;
-            textBoxAcc.Size = new Size(906, 153);
+            textBoxAcc.Size = new Size(906, 110);
             textBoxAcc.TabIndex = 0;
             // 
             // groupBox2
@@ -142,25 +142,27 @@
             // 
             // textBoxSymbol
             // 
-            textBoxSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            textBoxSymbol.Location = new Point(28, 182);
+            textBoxSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxSymbol.Location = new Point(28, 225);
             textBoxSymbol.Multiline = true;
             textBoxSymbol.Name = "textBoxSymbol";
-            textBoxSymbol.Size = new Size(152, 137);
+            textBoxSymbol.ScrollBars = ScrollBars.Vertical;
+            textBoxSymbol.Size = new Size(493, 94);
             textBoxSymbol.TabIndex = 5;
             // 
             // textBoxPositions
             // 
-            textBoxPositions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            textBoxPositions.Location = new Point(300, 268);
+            textBoxPositions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            textBoxPositions.Location = new Point(689, 268);
             textBoxPositions.Multiline = true;
             textBoxPositions.Name = "textBoxPositions";
-            textBoxPositions.Size = new Size(749, 69);
+            textBoxPositions.Size = new Size(360, 69);
             textBoxPositions.TabIndex = 6;
             // 
             // buttonSymbol
             // 
-            buttonSymbol.Location = new Point(188, 273);
+            buttonSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonSymbol.Location = new Point(542, 296);
             buttonSymbol.Name = "buttonSymbol";
             buttonSymbol.Size = new Size(75, 23);
             buttonSymbol.TabIndex = 7;
@@ -194,7 +196,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "FormTerminal";
-            Text = "FormTerminal";
+            Text = "LoonieTerminal";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
