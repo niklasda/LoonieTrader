@@ -41,8 +41,15 @@
             textBoxPositions = new TextBox();
             buttonSymbol = new Button();
             buttonPos = new Button();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            menuStrip1 = new MenuStrip();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -52,7 +59,7 @@
             groupBox1.Controls.Add(textBoxAcc);
             groupBox1.Location = new Point(226, 18);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(942, 189);
+            groupBox1.Size = new Size(953, 189);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Account";
@@ -60,7 +67,7 @@
             // buttonAccount
             // 
             buttonAccount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonAccount.Location = new Point(850, 149);
+            buttonAccount.Location = new Point(861, 149);
             buttonAccount.Name = "buttonAccount";
             buttonAccount.Size = new Size(75, 23);
             buttonAccount.TabIndex = 1;
@@ -75,7 +82,7 @@
             textBoxAcc.Multiline = true;
             textBoxAcc.Name = "textBoxAcc";
             textBoxAcc.ScrollBars = ScrollBars.Vertical;
-            textBoxAcc.Size = new Size(906, 110);
+            textBoxAcc.Size = new Size(917, 110);
             textBoxAcc.TabIndex = 0;
             // 
             // groupBox2
@@ -83,9 +90,9 @@
             groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox2.Controls.Add(buttonSubscribe);
             groupBox2.Controls.Add(textBoxTrx);
-            groupBox2.Location = new Point(9, 343);
+            groupBox2.Location = new Point(9, 375);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1159, 300);
+            groupBox2.Size = new Size(1170, 261);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Transactions";
@@ -93,22 +100,22 @@
             // buttonSubscribe
             // 
             buttonSubscribe.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonSubscribe.Location = new Point(1067, 265);
+            buttonSubscribe.Location = new Point(1078, 226);
             buttonSubscribe.Name = "buttonSubscribe";
             buttonSubscribe.Size = new Size(75, 23);
             buttonSubscribe.TabIndex = 1;
-            buttonSubscribe.Text = "Subscribe";
+            buttonSubscribe.Text = "&Subscribe";
             buttonSubscribe.UseVisualStyleBackColor = true;
             buttonSubscribe.Click += buttonSubscribe_Click;
             // 
             // textBoxTrx
             // 
-            textBoxTrx.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            textBoxTrx.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             textBoxTrx.Location = new Point(20, 31);
             textBoxTrx.Multiline = true;
             textBoxTrx.Name = "textBoxTrx";
             textBoxTrx.ScrollBars = ScrollBars.Vertical;
-            textBoxTrx.Size = new Size(1122, 210);
+            textBoxTrx.Size = new Size(1133, 189);
             textBoxTrx.TabIndex = 0;
             // 
             // buttonDisconnect
@@ -147,22 +154,22 @@
             textBoxSymbol.Multiline = true;
             textBoxSymbol.Name = "textBoxSymbol";
             textBoxSymbol.ScrollBars = ScrollBars.Vertical;
-            textBoxSymbol.Size = new Size(493, 94);
+            textBoxSymbol.Size = new Size(504, 126);
             textBoxSymbol.TabIndex = 5;
             // 
             // textBoxPositions
             // 
             textBoxPositions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxPositions.Location = new Point(689, 268);
+            textBoxPositions.Location = new Point(700, 268);
             textBoxPositions.Multiline = true;
             textBoxPositions.Name = "textBoxPositions";
-            textBoxPositions.Size = new Size(360, 69);
+            textBoxPositions.Size = new Size(360, 101);
             textBoxPositions.TabIndex = 6;
             // 
             // buttonSymbol
             // 
             buttonSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonSymbol.Location = new Point(542, 296);
+            buttonSymbol.Location = new Point(553, 296);
             buttonSymbol.Name = "buttonSymbol";
             buttonSymbol.Size = new Size(75, 23);
             buttonSymbol.TabIndex = 7;
@@ -173,7 +180,7 @@
             // buttonPos
             // 
             buttonPos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonPos.Location = new Point(1076, 296);
+            buttonPos.Location = new Point(1087, 296);
             buttonPos.Name = "buttonPos";
             buttonPos.Size = new Size(75, 23);
             buttonPos.TabIndex = 7;
@@ -181,11 +188,51 @@
             buttonPos.UseVisualStyleBackColor = true;
             buttonPos.Click += buttonPos_Click;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1 });
+            statusStrip1.Location = new Point(0, 665);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1191, 22);
+            statusStrip1.TabIndex = 8;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(86, 17);
+            toolStripStatusLabel1.Text = "Not connected";
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { helpToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1191, 24);
+            menuStrip1.TabIndex = 9;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.ShortcutKeyDisplayString = "";
+            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Text = "&About";
+            // 
             // FormTerminal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1180, 655);
+            ClientSize = new Size(1191, 687);
+            Controls.Add(statusStrip1);
+            Controls.Add(menuStrip1);
             Controls.Add(buttonPos);
             Controls.Add(buttonSymbol);
             Controls.Add(textBoxPositions);
@@ -195,12 +242,17 @@
             Controls.Add(buttonDisconnect);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            MainMenuStrip = menuStrip1;
             Name = "FormTerminal";
             Text = "LoonieTerminal";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -220,5 +272,10 @@
         private TextBox textBoxPositions;
         private Button buttonSymbol;
         private Button buttonPos;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
