@@ -7,16 +7,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class TransactionsStreamingRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    TxStreamReq = container.GetInstance<ITransactionsStreamingRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private ITransactionsStreamingRequester TxStreamReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestTransactionStream()
@@ -35,7 +25,7 @@ public class TransactionsStreamingRequesterTests : TestClassBase
         //          Assert.NotNull(price);
     }
 
-    private void Tss_NewTrx(object sender, EventArgs e)
+    private void Tss_NewTrx(object sender, StreamEventArgs<TransactionsResponse.Transaction> e)
     {
         Console.WriteLine("Tx1: ");
     }

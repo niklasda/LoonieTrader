@@ -5,16 +5,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class PositionsRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    PosReq = container.GetInstance<IPositionsRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private IPositionsRequester PosReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetAccountPositions()

@@ -7,16 +7,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class AccountsRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    AccReq = container.GetInstance<IAccountsRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private IAccountsRequester AccReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetAccounts()

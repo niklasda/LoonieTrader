@@ -7,16 +7,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class PricingStreamingRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    PricingStreamReq = container.GetInstance<IPricingStreamingRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private IPricingStreamingRequester PricingStreamReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestPricingStream()
@@ -35,7 +25,7 @@ public class PricingStreamingRequesterTests : TestClassBase
         // Assert.NotNull(price);
     }
 
-    private void Pss_NewPrice(object sender, EventArgs e)
+    private void Pss_NewPrice(object sender, StreamEventArgs<PricesResponse.Price> e)
     {
         Console.WriteLine("Price1: ");
     }

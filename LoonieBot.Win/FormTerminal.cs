@@ -4,7 +4,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace LoonieBot.Win
 {
@@ -13,7 +12,9 @@ namespace LoonieBot.Win
         public FormTerminal()
         {
             InitializeComponent();
-
+            
+            _logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
+            
             SettingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
             TxReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
 
@@ -22,7 +23,7 @@ namespace LoonieBot.Win
 
 
             AccReq = ServiceLocator.Container.GetInstance<IAccountsRequester>();
-            HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
+           // HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
             InstrReq = ServiceLocator.Container.GetInstance<IInstrumentRequester>();
             OrdersReq = ServiceLocator.Container.GetInstance<IOrdersRequester>();
             PosReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
@@ -30,47 +31,49 @@ namespace LoonieBot.Win
             TradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
         }
 
-        private ISettingsService SettingsService;
-        private IAccountsRequester AccReq;
-        private IHealthRequester HealthReq;
-        private IInstrumentRequester InstrReq;
-        private IOrdersRequester OrdersReq;
-        private IPositionsRequester PosReq;
-        private IPricingRequester PricingReq;
-        private ITradesRequester TradesReq;
-        private IPricingStreamingRequester PricingStreamReq;
-        private ITransactionsRequester TxReq;
-        private ITransactionsStreamingRequester TxStreamReq;
+        private readonly IExtendedLogger _logger;
+        private readonly ISettingsService SettingsService;
+        private readonly IAccountsRequester AccReq;
+        //private IHealthRequester HealthReq;
+        private readonly IInstrumentRequester InstrReq;
+        private readonly IOrdersRequester OrdersReq;
+        private readonly IPositionsRequester PosReq;
+        private readonly IPricingRequester PricingReq;
+        private readonly ITradesRequester TradesReq;
+        private readonly IPricingStreamingRequester PricingStreamReq;
+        private readonly ITransactionsRequester TxReq;
+        private readonly ITransactionsStreamingRequester TxStreamReq;
 
         private void buttonConnectDemo_Click(object sender, EventArgs e)
         {
             SettingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
+            PrintCurrentEnvironment();
         }
 
         private void buttonConnectLive_Click(object sender, EventArgs e)
         {
             SettingsService.CachedSettings.SelectedEnvironmentKey = Environments.Live.Key;
+            PrintCurrentEnvironment();
         }
 
 
         private void buttonAccount_Click(object sender, EventArgs e)
         {
-            IExtendedLogger logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
             var cfg = SettingsService.CachedSettings.SelectedEnvironment;
 
-            var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
+         //   var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
 
-            logger.Information("GetAccounts");
-            var accounts = ar.GetAccounts();
+            _logger.Information("GetAccounts");
+            var accounts = AccReq.GetAccounts();
 
             textBoxAcc.Clear();
             textBoxAcc.Text = cfg.EnvironmentKey + Environment.NewLine;
             foreach (var account in accounts.accounts)
             {
-                var details = ar.GetAccountDetails(account.id);
+                var details = AccReq.GetAccountDetails(account.id);
                 textBoxAcc.Text += details.ToString() + Environment.NewLine;
 
-                var summary = ar.GetAccountSummary(account.id);
+                var summary = AccReq.GetAccountSummary(account.id);
                 textBoxAcc.Text += summary.ToString() + Environment.NewLine;
 
             }
@@ -94,7 +97,7 @@ namespace LoonieBot.Win
         private void Tss_NewTtrx(object sender, StreamEventArgs<TransactionsResponse.Transaction> e)
         {
             TransactionsResponse.Transaction trx = e.Obj;
-            if (trx.type != AppProperties.HeartbeatName)
+            if (trx.EventType != AppProperties.HeartbeatName)
             {
                 string line = trx.ToString();
                 if (InvokeRequired)
@@ -144,7 +147,7 @@ namespace LoonieBot.Win
         private void Pss_NewPrice(object sender, StreamEventArgs<PricesResponse.Price> e)
         {
             PricesResponse.Price pr = e.Obj;
-            if (pr.type != AppProperties.HeartbeatName)
+            if (pr.EventType != AppProperties.HeartbeatName)
             {
                 string line = pr.ToString();
                 if (InvokeRequired)
@@ -188,6 +191,18 @@ namespace LoonieBot.Win
 
             textBoxPositions.Text += $"{Environment.NewLine} {resp.positions.Length} positions";
 
+        }
+
+        private void FormTerminal_Load(object sender, EventArgs e)
+        {
+            PrintCurrentEnvironment();
+        }
+
+        private void PrintCurrentEnvironment()
+        {
+            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+
+            toolStripStatusLabel1.Text = $"Using {cfg.EnvironmentKey}";
         }
     }
 }

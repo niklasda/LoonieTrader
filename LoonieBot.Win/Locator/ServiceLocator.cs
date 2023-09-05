@@ -31,7 +31,7 @@ public static class ServiceLocator
             c.For<ITradesRequester>().Use<TradesRequester>();
             c.For<ITransactionsRequester>().Use<TransactionsRequester>();
             c.For<IInstrumentRequester>().Use<InstrumentRequester>();
-            c.For<IHealthRequester>().Use<HealthRequester>();
+            //c.For<IHealthRequester>().Use<HealthRequester>();
 
             c.ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
             c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();

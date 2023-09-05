@@ -27,7 +27,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             get
             {
                 var settings = _settingsService.CachedSettings.SelectedEnvironment;
-                return string.Format("Bearer {0}", settings.ApiKey);
+                return $"Bearer {settings.ApiKey}";
             }
         }
 
@@ -43,18 +43,15 @@ namespace LoonieTrader.Library.RestApi.Requesters
             return string.Format("https://{0}.oanda.com/v3/{1}", Environments.GetStreamingHostValueFor(settings.EnvironmentKey), path);
         }
 
-        protected string GetHttpRestUrl(string env)
-        {
-            return string.Format("http://{0}.oanda.com/api/v1/{1}", Environments.Status.Value, env);
-        }
+        //protected string GetHttpRestUrl(string env)
+        //{
+        //    return string.Format("http://{0}.oanda.com/api/v1/{1}", Environments.Status.Value, env);
+        //}
 
-        protected IExtendedLogger Logger
-        {
-            get { return _logger; }
-        }
+        protected IExtendedLogger Logger => _logger;
 
         private LoonieWebClient _authWc;
-        private LoonieWebClient _anonWc;
+        //private LoonieWebClient _anonWc;
 
         protected LoonieWebClient GetAuthenticatedWebClient()
         {
@@ -68,16 +65,16 @@ namespace LoonieTrader.Library.RestApi.Requesters
             return _authWc;
         }
 
-        protected LoonieWebClient GetAnonymousWebClient()
-        {
-            if (_anonWc == null)
-            {
-                _anonWc = new LoonieWebClient();
-                _anonWc.Headers.Add("Content-Type", "application/json");
-            }
+        //protected LoonieWebClient GetAnonymousWebClient()
+        //{
+        //    if (_anonWc == null)
+        //    {
+        //        _anonWc = new LoonieWebClient();
+        //        _anonWc.Headers.Add("Content-Type", "application/json");
+        //    }
 
-            return _anonWc;
-        }
+        //    return _anonWc;
+        //}
 
         protected void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json)
         {

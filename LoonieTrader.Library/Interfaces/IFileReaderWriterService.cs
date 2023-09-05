@@ -7,10 +7,11 @@
         string LoadLocalJson(string fileNamePart1, string fileNamePart2);
         void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json);
         void SaveLocalJson(string fileNamePart1, string fileNamePart2, string fileNamePart3, string json);
-        string GetLocalFolderPath();
+        //string GetLocalFolderPath();
         string GetLogFilePattern();
-        string GetIndicatorFolderPath();
+        string GetTestLogFilePattern();
+  //      string GetIndicatorFolderPath();
         string GetHistoricalDataFolderPath();
-        string GetLayoutFolderPath();
+    //    string GetLayoutFolderPath();
     }
 }

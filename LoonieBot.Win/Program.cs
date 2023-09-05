@@ -21,7 +21,7 @@ namespace LoonieBot.Win
             ApplicationConfiguration.Initialize();
             Application.Run(new FormTerminal());
         }
-
+/*
         private static void DoAllTheStuffs()
         {
             try
@@ -93,6 +93,6 @@ namespace LoonieBot.Win
                 Console.WriteLine(resp.Server);
             }
 
-        }
+        }*/
     }
 }

@@ -40,7 +40,7 @@ namespace LoonieTrader.Library.RestApi.Responses
            // public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
             public string status { get; set; }
             public string time { get; set; }
-            public string type { get; set; } // to support HEARTBEATS in streaming
+            public string EventType { get; set; } // to support HEARTBEATS in streaming
             // public Unitsavailable unitsAvailable { get; set; }
 
             // needed here to support streaming
@@ -53,7 +53,7 @@ namespace LoonieTrader.Library.RestApi.Responses
                 resp.Append(", time: ");
                 resp.Append(time);
                 resp.Append(", type: ");
-                resp.Append(type);
+                resp.Append(EventType);
 
                 if (asks != null)
                 {

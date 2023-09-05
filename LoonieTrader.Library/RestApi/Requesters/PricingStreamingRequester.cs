@@ -24,8 +24,8 @@ namespace LoonieTrader.Library.RestApi.Requesters
         {
             if (_priceSubscriptions.ContainsKey(instrument))
             {
-                ObservableStream<PricesResponse.Price> obs;
-                if (_priceSubscriptions.TryGetValue(instrument, out obs))
+//                ObservableStream<PricesResponse.Price> obs;
+                if (_priceSubscriptions.TryGetValue(instrument, out var obs))
                 {
                     return obs;
                 }
@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (var wc = GetAuthenticatedWebClient())
             {
                 Stream responseStream = wc.OpenRead(uri);
-                var obsStream = new ObservableStream<PricesResponse.Price>(responseStream, Logger);
+                var obsStream = new ObservableStream<PricesResponse.Price>(responseStream);
                 _priceSubscriptions.TryAdd(instrument, obsStream);
                 return obsStream;
             }

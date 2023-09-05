@@ -15,37 +15,37 @@ namespace LoonieTrader.Library.Services
             _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
             string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
-            string indicatorPath = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
+        //    string indicatorPath = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
 
             Directory.CreateDirectory(dataPath);
             Directory.CreateDirectory(historicalDataPath);
-            Directory.CreateDirectory(indicatorPath);
+          //  Directory.CreateDirectory(indicatorPath);
             //File.Create(GetConfigFilePath());
         }
 
         private const string ConfigFileName = "Config.yaml";
-        private const string LayoutFolder = "Layout";
+        //private const string LayoutFolder = "Layout";
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
         private const string HistoricalDataFolderName = "HistoricalData";
-        private const string IndicatorsFolderName = "Indicators";
+        //private const string IndicatorsFolderName = "Indicators";
         private const string LogsFolderName = "Logs";
         private const string Extension = "json";
         private const string Separator = "#";
 
         private readonly string _appDataFolderPath;
 
-        public string GetLocalFolderPath()
+        private string GetLocalFolderPath()
         {
             var ltp = Path.Combine(_appDataFolderPath, FolderName);
             return ltp;
         }
 
-        public string GetIndicatorFolderPath()
-        {
-            var ip = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
-            return ip;
-        }
+        //public string GetIndicatorFolderPath()
+        //{
+        //    var ip = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
+        //    return ip;
+        //}
 
         public string GetHistoricalDataFolderPath()
         {
@@ -57,6 +57,12 @@ namespace LoonieTrader.Library.Services
         {
             var ltp = Path.Combine(_appDataFolderPath, FolderName, LogsFolderName, "LTLog.txt");
             return ltp;
+        }        
+        
+        public string GetTestLogFilePattern()
+        {
+            var ltp = Path.Combine(_appDataFolderPath, FolderName, LogsFolderName, "LTTestLog.txt");
+            return ltp;
         }
 
         private string GetConfigFilePath()
@@ -66,12 +72,12 @@ namespace LoonieTrader.Library.Services
             return cfp;
         }
 
-        public string GetLayoutFolderPath()
-        {
-            var up = GetLocalFolderPath();
-            var sfp = Path.Combine(up, LayoutFolder);
-            return sfp;
-        }
+        //public string GetLayoutFolderPath()
+        //{
+        //    var up = GetLocalFolderPath();
+        //    var sfp = Path.Combine(up, LayoutFolder);
+        //    return sfp;
+        //}
 
         public ISettings LoadConfiguration()
         {

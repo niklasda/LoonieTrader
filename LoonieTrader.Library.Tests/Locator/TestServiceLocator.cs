@@ -7,14 +7,13 @@ using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.Services;
 using Serilog;
 
-
 namespace LoonieTrader.Library.Tests.Locator;
 
 public static class TestServiceLocator
 {
     public static IContainer Initialize()
     {
-        var container = new Container(c =>
+        Container = new Container(c =>
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
             IExtendedLogger exLogger = CreateExLogger(cr);
@@ -32,18 +31,20 @@ public static class TestServiceLocator
             c.For<ITradesRequester>().Use<TradesRequester>();
             c.For<ITransactionsRequester>().Use<TransactionsRequester>();
             c.For<IInstrumentRequester>().Use<InstrumentRequester>();
-            c.For<IHealthRequester>().Use<HealthRequester>();
+            //c.For<IHealthRequester>().Use<HealthRequester>();
 
             c.ForSingletonOf<ITransactionsStreamingRequester>().Use<TransactionsStreamingRequester>();
             c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
         });
 
-        return container;
+        return Container;
     }
+
+    public static IContainer Container { get; private set; }
 
     private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
     {
-        var logFilePattern = cr.GetLogFilePattern();
+        var logFilePattern = cr.GetTestLogFilePattern();
 
         var logger = new LoggerConfiguration()
             .WriteTo.Console()

@@ -10,33 +10,33 @@ public class TestClassBase
     [TestInitialize]
     public void Setup()
     {
-        var container = TestServiceLocator.Initialize();
+        TestServiceLocator.Initialize();
 
-        EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-        AccReq = container.GetInstance<IAccountsRequester>();
-        HealthReq = container.GetInstance<IHealthRequester>();
-        InstrReq = container.GetInstance<IInstrumentRequester>();
-        OrdersReq = container.GetInstance<IOrdersRequester>();
-        PosReq = container.GetInstance<IPositionsRequester>();
-        PricingReq = container.GetInstance<IPricingRequester>();
-        TradesReq = container.GetInstance<ITradesRequester>();
-        PricingStreamReq = container.GetInstance<IPricingStreamingRequester>();
-        TxReq = container.GetInstance<ITransactionsRequester>();
-        TxStreamReq = container.GetInstance<ITransactionsStreamingRequester>();
+        EnvSettings = TestServiceLocator.Container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+        AccReq = TestServiceLocator.Container.GetInstance<IAccountsRequester>();
+        //HealthReq = container.GetInstance<IHealthRequester>();
+        InstrReq = TestServiceLocator.Container.GetInstance<IInstrumentRequester>();
+        OrdersReq = TestServiceLocator.Container.GetInstance<IOrdersRequester>();
+        PosReq = TestServiceLocator.Container.GetInstance<IPositionsRequester>();
+        PricingReq = TestServiceLocator.Container.GetInstance<IPricingRequester>();
+        TradesReq = TestServiceLocator.Container.GetInstance<ITradesRequester>();
+        PricingStreamReq = TestServiceLocator.Container.GetInstance<IPricingStreamingRequester>();
+        TxReq = TestServiceLocator.Container.GetInstance<ITransactionsRequester>();
+        TxStreamReq = TestServiceLocator.Container.GetInstance<ITransactionsStreamingRequester>();
 
 
     }
 
-    protected IEnvironmentSettings EnvSettings;
-    protected IAccountsRequester AccReq;
-    protected IHealthRequester HealthReq;
-    protected IInstrumentRequester InstrReq;
-    protected IOrdersRequester OrdersReq;
-    protected IPositionsRequester PosReq;
-    protected IPricingRequester PricingReq;
-    protected ITradesRequester TradesReq;
-    protected IPricingStreamingRequester PricingStreamReq;
-    protected ITransactionsRequester TxReq;
-    protected ITransactionsStreamingRequester TxStreamReq;
+    protected IEnvironmentSettings EnvSettings { get; private set; }
+    protected IAccountsRequester AccReq { get; private set; }
+    // protected IHealthRequester HealthReq;
+    protected IInstrumentRequester InstrReq { get; private set; }
+    protected IOrdersRequester OrdersReq { get; private set; }
+    protected IPositionsRequester PosReq { get; private set; }
+    protected IPricingRequester PricingReq { get; private set; }
+    protected ITradesRequester TradesReq { get; private set; }
+    protected IPricingStreamingRequester PricingStreamReq { get; private set; }
+    protected ITransactionsRequester TxReq { get; private set; }
+    protected ITransactionsStreamingRequester TxStreamReq { get; private set; }
 
 }

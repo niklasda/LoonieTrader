@@ -8,16 +8,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class PricingRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    PricingReq = container.GetInstance<IPricingRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private IPricingRequester PricingReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetPrices()

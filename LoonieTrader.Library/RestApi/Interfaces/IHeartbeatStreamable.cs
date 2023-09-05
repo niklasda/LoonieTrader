@@ -1,7 +1,10 @@
-﻿namespace LoonieTrader.Library.RestApi.Interfaces
+﻿using System.Text.Json.Serialization;
+
+namespace LoonieTrader.Library.RestApi.Interfaces
 {
     public interface IHeartbeatStreamable
     {
-        string type { get; set; } // to support HEARTBEATS in streaming
+        [JsonPropertyName("type")]
+        string EventType { get; set; } // to support HEARTBEATS in streaming
     }
 }

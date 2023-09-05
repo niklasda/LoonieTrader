@@ -223,7 +223,7 @@
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeyDisplayString = "";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "&About";
             // 
             // FormTerminal
@@ -245,6 +245,7 @@
             MainMenuStrip = menuStrip1;
             Name = "FormTerminal";
             Text = "LoonieTerminal";
+            Load += FormTerminal_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

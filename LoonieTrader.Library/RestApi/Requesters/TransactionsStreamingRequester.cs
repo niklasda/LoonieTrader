@@ -37,7 +37,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
             using (var wc = GetAuthenticatedWebClient())
             {
                 Stream responseStream = wc.OpenRead(uri);
-                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream, Logger);
+                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
                 _transactionSubscriptions.TryAdd(accountId, obsStream);
                 return obsStream;
             }

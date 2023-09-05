@@ -36,7 +36,7 @@ namespace LoonieTrader.Library.RestApi.Responses
             public string id { get; set; }
             public int siteID { get; set; }
             public string time { get; set; }
-            public string type { get; set; }
+            public string EventType { get; set; }
             public int userID { get; set; }
             public string alias { get; set; }
             public string marginRate { get; set; }
@@ -72,7 +72,7 @@ namespace LoonieTrader.Library.RestApi.Responses
                 resp.Append(", accountBalance: ");
                 resp.Append(accountBalance);
                 resp.Append(", type: ");
-                resp.Append(type);
+                resp.Append(EventType);
                 resp.Append(", instrument: ");
                 resp.Append(instrument);
                 resp.Append(", amount: ");

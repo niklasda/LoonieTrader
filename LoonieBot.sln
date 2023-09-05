@@ -18,11 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{40948BCA
 		todo.md = todo.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieBot.App", "LoonieBot.App\LoonieBot.App.csproj", "{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieTrader.Library.Tests", "LoonieTrader.Library.Tests\LoonieTrader.Library.Tests.csproj", "{A8435B47-7045-4927-AEAF-D58254AACC9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoonieBot.Win", "LoonieBot.Win\LoonieBot.Win.csproj", "{0D5BAB6E-BA80-437D-9E17-434E48A6CE71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoonieBot.Win", "LoonieBot.Win\LoonieBot.Win.csproj", "{0D5BAB6E-BA80-437D-9E17-434E48A6CE71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +32,6 @@ Global
 		{442E127C-5965-4377-894F-2464C2F340DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{442E127C-5965-4377-894F-2464C2F340DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F0FFD35-7CCC-474A-98D0-73B9B0E2F2BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8435B47-7045-4927-AEAF-D58254AACC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,7 +48,7 @@ Global
 		{A8435B47-7045-4927-AEAF-D58254AACC9E} = {20923E81-0833-44C8-8EE5-E9297B9C0E7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 		SolutionGuid = {A088F5FD-297D-4C7D-8441-BF93E040BA72}
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
 	EndGlobalSection
 EndGlobal

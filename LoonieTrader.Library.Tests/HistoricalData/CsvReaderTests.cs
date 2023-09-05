@@ -12,8 +12,6 @@ public class CsvReaderTests
     [TestMethod]
     public void TestEurUsdTxt()
     {
-        //TestAutoMappings ams = new TestAutoMappings();
-        //IMapper mapper = ams.CreateMapper();
 
         var engine = new FileHelperEngine<CandleDataRecord>();
         IFileReaderWriterService frw = new FileReaderWriterService();
@@ -21,8 +19,6 @@ public class CsvReaderTests
         var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2022.txt")); // todo hardcoded
 
         Assert.AreEqual(366351, records.Length);
-
-        //  var candleViewModels = mapper.Map<List<CandleDataViewModel>>(records);
 
         var recordList = records.ToList();
 

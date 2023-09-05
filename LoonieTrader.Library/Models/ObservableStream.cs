@@ -4,7 +4,6 @@ using System.IO;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Text.Json;
-using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 
 namespace LoonieTrader.Library.Models
@@ -24,10 +23,10 @@ namespace LoonieTrader.Library.Models
 
     public class ObservableStream<T> where T : IHeartbeatStreamable
     {
-        public ObservableStream(Stream stream, IExtendedLogger logger)
+        public ObservableStream(Stream stream)
         {
             _stream = stream;
-            _logger = logger;
+         //   _logger = logger;
 
             var obs = GetObservable();
             obs.Subscribe(x => OnChanged(new StreamEventArgs<T>(x)));
@@ -35,7 +34,7 @@ namespace LoonieTrader.Library.Models
 
        // private IObservable<T> _obs;
         private readonly Stream _stream;
-        private readonly IExtendedLogger _logger;
+       // private readonly IExtendedLogger _logger;
 
         public event NewValueEventHandler<T> NewValue;
 
@@ -58,7 +57,7 @@ namespace LoonieTrader.Library.Models
                     var line = reader.ReadLine();
                     T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                    _logger.Information("Stream observation: {0}", line);
+                    //_logger.Information("Stream observation: {0}", line);
 
                     yield return obj;
                 }
@@ -66,30 +65,3 @@ namespace LoonieTrader.Library.Models
         }
     }
 }
-/*
-private string _c2;
-
-public static readonly string C2PropertyName = "C2";
-partial void OnC2Changed();
-public System.String C2
-{
-  get { return _c2; }
-  set
-  {
-    if (_c2 == value)
-      return;
-
-    _c2 = value;
-
-    OnPropertyChanged();
-    OnC2Changed();
-    _c2Subject.OnNext(value);
-  }
-}
-
-private ISubject<System.String> _c2Subject = new Subject<System.String>();
-public System.IObservable<System.String> C2Observable
-{
-  get { return _c2Subject; }
-}
-*/

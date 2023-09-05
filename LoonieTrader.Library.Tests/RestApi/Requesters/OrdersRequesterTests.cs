@@ -7,16 +7,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class OrdersRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    OrdersReq = container.GetInstance<IOrdersRequester>();
-    //    EnvSettings = container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
-    //}
-
-    //private IOrdersRequester OrdersReq;
-    //private IEnvironmentSettings EnvSettings;
 
     [TestMethod]
     public void TestGetAccountOrders()

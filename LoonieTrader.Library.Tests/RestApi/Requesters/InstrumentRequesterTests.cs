@@ -6,14 +6,6 @@ namespace LoonieTrader.Library.Tests.RestApi.Requesters;
 [TestClass, TestCategory("Integration")]
 public class InstrumentRequesterTests : TestClassBase
 {
-    //[TestInitialize]
-    //public void Setup()
-    //{
-    //    var container = TestServiceLocator.Initialize();
-    //    InstrReq = container.GetInstance<IInstrumentRequester>();
-    //}
-
-    //private IInstrumentRequester InstrReq;
 
     [TestMethod]
     public void TestGetCandlesDefaults()
