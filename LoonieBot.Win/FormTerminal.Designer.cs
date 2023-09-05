@@ -46,6 +46,7 @@
             menuStrip1 = new MenuStrip();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
+            buttonCandle = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -169,7 +170,7 @@
             // buttonSymbol
             // 
             buttonSymbol.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonSymbol.Location = new Point(553, 296);
+            buttonSymbol.Location = new Point(553, 286);
             buttonSymbol.Name = "buttonSymbol";
             buttonSymbol.Size = new Size(75, 23);
             buttonSymbol.TabIndex = 7;
@@ -226,11 +227,23 @@
             aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "&About";
             // 
+            // buttonCandle
+            // 
+            buttonCandle.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonCandle.Location = new Point(553, 315);
+            buttonCandle.Name = "buttonCandle";
+            buttonCandle.Size = new Size(75, 23);
+            buttonCandle.TabIndex = 10;
+            buttonCandle.Text = "Candle";
+            buttonCandle.UseVisualStyleBackColor = true;
+            buttonCandle.Click += buttonCandle_Click;
+            // 
             // FormTerminal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1191, 687);
+            Controls.Add(buttonCandle);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
             Controls.Add(buttonPos);
@@ -278,5 +291,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private Button buttonCandle;
     }
 }

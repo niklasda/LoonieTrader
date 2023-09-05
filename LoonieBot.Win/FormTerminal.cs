@@ -4,6 +4,7 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using LoonieTrader.Library.RestApi.Enums;
 
 namespace LoonieBot.Win
 {
@@ -12,9 +13,9 @@ namespace LoonieBot.Win
         public FormTerminal()
         {
             InitializeComponent();
-            
+
             _logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
-            
+
             SettingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
             TxReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
 
@@ -23,7 +24,7 @@ namespace LoonieBot.Win
 
 
             AccReq = ServiceLocator.Container.GetInstance<IAccountsRequester>();
-           // HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
+            // HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
             InstrReq = ServiceLocator.Container.GetInstance<IInstrumentRequester>();
             OrdersReq = ServiceLocator.Container.GetInstance<IOrdersRequester>();
             PosReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
@@ -61,7 +62,7 @@ namespace LoonieBot.Win
         {
             var cfg = SettingsService.CachedSettings.SelectedEnvironment;
 
-         //   var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
+            //   var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
 
             _logger.Information("GetAccounts");
             var accounts = AccReq.GetAccounts();
@@ -203,6 +204,12 @@ namespace LoonieBot.Win
             var cfg = SettingsService.CachedSettings.SelectedEnvironment;
 
             toolStripStatusLabel1.Text = $"Using {cfg.EnvironmentKey}";
+        }
+
+        private void buttonCandle_Click(object sender, EventArgs e)
+        {
+            var candles = InstrReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
+            var asd = candles.ToString().Trim();
         }
     }
 }
