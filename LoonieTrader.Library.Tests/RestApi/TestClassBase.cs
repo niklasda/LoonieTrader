@@ -1,4 +1,5 @@
-﻿using LoonieTrader.Library.Interfaces;
+﻿using LoonieTrader.Library.Constants;
+using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.Tests.Locator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,9 +11,13 @@ public class TestClassBase
     [TestInitialize]
     public void Setup()
     {
-        TestServiceLocator.Initialize();
+       // TestServiceLocator.Initialize();
 
-        EnvSettings = TestServiceLocator.Container.GetInstance<ISettingsService>().CachedSettings.SelectedEnvironment;
+        var settingsService = TestServiceLocator.Container.GetInstance<ISettingsService>();
+        settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
+
+        EnvSettings = settingsService.CachedSettings.SelectedEnvironment;
+
         AccReq = TestServiceLocator.Container.GetInstance<IAccountsRequester>();
         //HealthReq = container.GetInstance<IHealthRequester>();
         InstrReq = TestServiceLocator.Container.GetInstance<IInstrumentRequester>();

@@ -11,9 +11,9 @@ namespace LoonieTrader.Library.Tests.Locator;
 
 public static class TestServiceLocator
 {
-    public static IContainer Initialize()
+    private static IContainer Initialize()
     {
-        Container = new Container(c =>
+        var container = new Container(c =>
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
             IExtendedLogger exLogger = CreateExLogger(cr);
@@ -37,10 +37,11 @@ public static class TestServiceLocator
             c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
         });
 
-        return Container;
+        return container;
     }
 
-    public static IContainer Container { get; private set; }
+    public static IContainer Container { get; } = Initialize();
+    //public static IContainer Container { get{ } }
 
     private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
     {

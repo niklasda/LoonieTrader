@@ -1,7 +1,3 @@
-using LoonieTrader.Library.Interfaces;
-using LoonieTrader.Library.RestApi.Interfaces;
-using LoonieTrader.Library.RestApi.Requesters;
-using System.Net;
 using LoonieBot.Win.Locator;
 
 namespace LoonieBot.Win
@@ -14,7 +10,8 @@ namespace LoonieBot.Win
         [STAThread]
         private static void Main()
         {
-            ServiceLocator.Initialize();
+
+           // ServiceLocator.Initialize();
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

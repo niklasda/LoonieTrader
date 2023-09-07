@@ -70,7 +70,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         public PositionsCloseResponse PutClosePosition(string accountId, string instrument)
         {
-            Logger.Debug($"{GetType().Name}.{MethodBase.GetCurrentMethod().Name} - {accountId} - {instrument}");
+            Logger.Debug($"{nameof(PutClosePosition)} - {accountId} - {instrument}");
 
             string urlInstrumentClose = GetRestUrl("accounts/{0}/positions/{1}/close");
 

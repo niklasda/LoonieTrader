@@ -11,9 +11,9 @@ namespace LoonieBot.Win.Locator;
 
 public static class ServiceLocator
 {
-    public static IContainer Initialize()
+    private static IContainer Initialize()
     {
-        Container = new Container(c =>
+        var container = new Container(c =>
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
             IExtendedLogger exLogger = CreateExLogger(cr);
@@ -37,10 +37,10 @@ public static class ServiceLocator
             c.ForSingletonOf<IPricingStreamingRequester>().Use<PricingStreamingRequester>();
         });
 
-        return Container;
+        return container;
     }
 
-    public static IContainer Container { get; private set; }
+    public static IContainer Container { get; } = Initialize();
 
     private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
     {

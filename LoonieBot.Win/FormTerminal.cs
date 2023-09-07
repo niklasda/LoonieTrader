@@ -16,66 +16,66 @@ namespace LoonieBot.Win
 
             _logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
 
-            SettingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
-            TxReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
+            _settingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
+            _txReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
 
-            TxStreamReq = ServiceLocator.Container.GetInstance<ITransactionsStreamingRequester>();
-            PricingStreamReq = ServiceLocator.Container.GetInstance<IPricingStreamingRequester>();
+            _txStreamReq = ServiceLocator.Container.GetInstance<ITransactionsStreamingRequester>();
+            _pricingStreamReq = ServiceLocator.Container.GetInstance<IPricingStreamingRequester>();
 
 
-            AccReq = ServiceLocator.Container.GetInstance<IAccountsRequester>();
+            _accountReq = ServiceLocator.Container.GetInstance<IAccountsRequester>();
             // HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
-            InstrReq = ServiceLocator.Container.GetInstance<IInstrumentRequester>();
-            OrdersReq = ServiceLocator.Container.GetInstance<IOrdersRequester>();
-            PosReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
-            PricingReq = ServiceLocator.Container.GetInstance<IPricingRequester>();
-            TradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
+            _instrumentReq = ServiceLocator.Container.GetInstance<IInstrumentRequester>();
+            _ordersReq = ServiceLocator.Container.GetInstance<IOrdersRequester>();
+            _positionReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
+            _pricingReq = ServiceLocator.Container.GetInstance<IPricingRequester>();
+            _tradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
         }
 
         private readonly IExtendedLogger _logger;
-        private readonly ISettingsService SettingsService;
-        private readonly IAccountsRequester AccReq;
+        private readonly ISettingsService _settingsService;
+        private readonly IAccountsRequester _accountReq;
         //private IHealthRequester HealthReq;
-        private readonly IInstrumentRequester InstrReq;
-        private readonly IOrdersRequester OrdersReq;
-        private readonly IPositionsRequester PosReq;
-        private readonly IPricingRequester PricingReq;
-        private readonly ITradesRequester TradesReq;
-        private readonly IPricingStreamingRequester PricingStreamReq;
-        private readonly ITransactionsRequester TxReq;
-        private readonly ITransactionsStreamingRequester TxStreamReq;
+        private readonly IInstrumentRequester _instrumentReq;
+        private readonly IOrdersRequester _ordersReq;
+        private readonly IPositionsRequester _positionReq;
+        private readonly IPricingRequester _pricingReq;
+        private readonly ITradesRequester _tradesReq;
+        private readonly IPricingStreamingRequester _pricingStreamReq;
+        private readonly ITransactionsRequester _txReq;
+        private readonly ITransactionsStreamingRequester _txStreamReq;
 
         private void buttonConnectDemo_Click(object sender, EventArgs e)
         {
-            SettingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
+            _settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
             PrintCurrentEnvironment();
         }
 
         private void buttonConnectLive_Click(object sender, EventArgs e)
         {
-            SettingsService.CachedSettings.SelectedEnvironmentKey = Environments.Live.Key;
+            _settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Live.Key;
             PrintCurrentEnvironment();
         }
 
 
         private void buttonAccount_Click(object sender, EventArgs e)
         {
-            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+            var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
             //   var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
 
             _logger.Information("GetAccounts");
-            var accounts = AccReq.GetAccounts();
+            var accounts = _accountReq.GetAccounts();
 
             textBoxAcc.Clear();
             textBoxAcc.Text = cfg.EnvironmentKey + Environment.NewLine;
             foreach (var account in accounts.accounts)
             {
-                var details = AccReq.GetAccountDetails(account.id);
-                textBoxAcc.Text += details.ToString() + Environment.NewLine;
+                var details = _accountReq.GetAccountDetails(account.id);
+                textBoxAcc.Text += details + Environment.NewLine;
 
-                var summary = AccReq.GetAccountSummary(account.id);
-                textBoxAcc.Text += summary.ToString() + Environment.NewLine;
+                var summary = _accountReq.GetAccountSummary(account.id);
+                textBoxAcc.Text += summary + Environment.NewLine;
 
             }
         }
@@ -88,9 +88,9 @@ namespace LoonieBot.Win
 
         private void TestTransactionStream()
         {
-            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+            var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            ObservableStream<TransactionsResponse.Transaction> tss = TxStreamReq.GetTransactionStream(cfg.DefaultAccountId);
+            ObservableStream<TransactionsResponse.Transaction> tss = _txStreamReq.GetTransactionStream(cfg.DefaultAccountId);
             tss.NewValue += Tss_NewTtrx;
 
         }
@@ -113,9 +113,9 @@ namespace LoonieBot.Win
             else
             {
                 string line = $".";
-                var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+                var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-                var txs = TxReq.GetTransactions(cfg.DefaultAccountId, trx.lastTransactionID);
+                var txs = _txReq.GetTransactions(cfg.DefaultAccountId, trx.lastTransactionID);
                 line += txs.ToString();
                 if (InvokeRequired)
                 {
@@ -138,9 +138,9 @@ namespace LoonieBot.Win
 
         private void TestPricingStream()
         {
-            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+            var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            ObservableStream<PricesResponse.Price> pss = PricingStreamReq.GetPriceStream(cfg.DefaultAccountId, "EUR_USD,USD_CAD");
+            ObservableStream<PricesResponse.Price> pss = _pricingStreamReq.GetPriceStream(cfg.DefaultAccountId, "EUR_USD,USD_CAD");
             pss.NewValue += Pss_NewPrice;
 
         }
@@ -176,9 +176,9 @@ namespace LoonieBot.Win
 
         private void buttonPos_Click(object sender, EventArgs e)
         {
-            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+            var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            var openPos = PosReq.GetOpenPositions(cfg.DefaultAccountId);
+            var openPos = _positionReq.GetOpenPositions(cfg.DefaultAccountId);
 
             textBoxPositions.Text = openPos.ToString();
             if (!openPos.positions.Any())
@@ -188,7 +188,7 @@ namespace LoonieBot.Win
             }
 
 
-            var resp = PosReq.GetPositions(cfg.DefaultAccountId);
+            var resp = _positionReq.GetPositions(cfg.DefaultAccountId);
 
             textBoxPositions.Text += $"{Environment.NewLine} {resp.positions.Length} positions";
 
@@ -201,14 +201,14 @@ namespace LoonieBot.Win
 
         private void PrintCurrentEnvironment()
         {
-            var cfg = SettingsService.CachedSettings.SelectedEnvironment;
+            var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
             toolStripStatusLabel1.Text = $"Using {cfg.EnvironmentKey}";
         }
 
         private void buttonCandle_Click(object sender, EventArgs e)
         {
-            var candles = InstrReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
+            CandlesResponse candles = _instrumentReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
             var asd = candles.ToString().Trim();
         }
     }

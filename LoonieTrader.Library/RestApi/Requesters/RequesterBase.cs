@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -34,13 +35,15 @@ namespace LoonieTrader.Library.RestApi.Requesters
         protected string GetRestUrl(string path)
         {
             var settings = _settingsService.CachedSettings.SelectedEnvironment;
-            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.GetHostValueFor(settings.EnvironmentKey), path);
+            string host = Environments.GetHostValueFor(settings.EnvironmentKey);
+            return $"https://{host}.oanda.com/v3/{path}";
         }
 
         protected string GetStreamingRestUrl(string path)
         {
             var settings = _settingsService.CachedSettings.SelectedEnvironment;
-            return string.Format("https://{0}.oanda.com/v3/{1}", Environments.GetStreamingHostValueFor(settings.EnvironmentKey), path);
+            string host = Environments.GetHostValueFor(settings.EnvironmentKey);
+            return $"https://{host}.oanda.com/v3/{path}";
         }
 
         //protected string GetHttpRestUrl(string env)
@@ -50,16 +53,21 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         protected IExtendedLogger Logger => _logger;
 
-        private LoonieWebClient _authWc;
+        private WebClient _authWc;
         //private LoonieWebClient _anonWc;
 
-        protected LoonieWebClient GetAuthenticatedWebClient()
+        protected WebClient GetAuthenticatedWebClient()
         {
             if (_authWc == null)
             {
-                _authWc = new LoonieWebClient();
+                _authWc = new WebClient();
                 _authWc.Headers.Add("Authorization", BearerApiKey);
                 _authWc.Headers.Add("Content-Type", "application/json");
+            }
+
+            if (_authWc.Headers.Get("Authorization") != BearerApiKey)
+            {
+                _authWc.Headers.Set("Authorization", BearerApiKey);
             }
 
             return _authWc;
@@ -91,56 +99,60 @@ namespace LoonieTrader.Library.RestApi.Requesters
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string GetData(LoonieWebClient wc, string urlFormat, params object[] args)
+        protected string GetData(WebClient wc, string urlFormat, params object[] args)
         {
+            var address = string.Format(urlFormat, args);
+
             try
             {
-                var address = string.Format(urlFormat, args);
+                //var address = string.Format(urlFormat, args);
                 var responseBytes = wc.DownloadData(address);
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 return responseString;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to GET data");
+                _logger.Error(ex, $"Failed to GET data from {address}");
                 throw;
             }
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PostData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PostData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
+            var address = string.Format(urlFormat, args);
+
             try
             {
                 var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                var address = string.Format(urlFormat, args);
                 var responseBytes = wc.UploadData(address, HttpMethod.Post.Method, dataBytes);
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 return responseString;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to POST data");
+                _logger.Error(ex, $"Failed to POST data from {address}");
                 throw;
             }
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PutData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PutData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
+            var address = string.Format(urlFormat, args);
+
             try
             {
                 byte[] responseBytes;
                 if (jsonData != null)
                 {
                     var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                    var address = string.Format(urlFormat, args);
                     responseBytes = wc.UploadData(address, HttpMethod.Put.Method, dataBytes);
                 }
                 else
                 {
                     //var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                    var address = string.Format(urlFormat, args);
+                   // var address = string.Format(urlFormat, args);
                     responseBytes = wc.UploadData(address, HttpMethod.Put.Method, new byte[0]);
                 }
 
@@ -149,24 +161,25 @@ namespace LoonieTrader.Library.RestApi.Requesters
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to PUT data");
+                _logger.Error(ex, $"Failed to PUT data from {address}");
                 throw;
             }
         }
 
         [StringFormatMethod("urlFormat")]
-        protected string PatchData(LoonieWebClient wc, string jsonData, string urlFormat, params object[] args)
+        protected string PatchData(WebClient wc, string jsonData, string urlFormat, params object[] args)
         {
+            var address = string.Format(urlFormat, args);
             try
             {
                 var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                var responseBytes = wc.UploadData(string.Format(urlFormat, args), "PATCH", dataBytes);
+                var responseBytes = wc.UploadData(address, "PATCH", dataBytes);
                 var responseString = Encoding.UTF8.GetString(responseBytes);
                 return responseString;
             }
             catch (Exception ex)
             {
-                _logger.Error(ex, "Failed to PATCH data");
+                _logger.Error(ex, $"Failed to PATCH data from {address}");
                 throw;
             }
         }

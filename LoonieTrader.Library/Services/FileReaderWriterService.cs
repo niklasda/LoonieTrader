@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using LoonieTrader.Library.Interfaces;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NamingConventions;
-using Settings = LoonieTrader.Library.Models.Settings;
+//using YamlDotNet.Serialization;
+//using YamlDotNet.Serialization.NamingConventions;
+//using Settings = LoonieTrader.Library.Models.Settings;
 
 namespace LoonieTrader.Library.Services
 {
@@ -23,7 +23,7 @@ namespace LoonieTrader.Library.Services
             //File.Create(GetConfigFilePath());
         }
 
-        private const string ConfigFileName = "Config.yaml";
+       // private const string ConfigFileName = "Config.yaml";
         //private const string LayoutFolder = "Layout";
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
@@ -65,12 +65,12 @@ namespace LoonieTrader.Library.Services
             return ltp;
         }
 
-        private string GetConfigFilePath()
-        {
-            var up = GetLocalFolderPath();
-            var cfp = Path.Combine(up, ConfigFileName);
-            return cfp;
-        }
+        //private string GetConfigFilePath()
+        //{
+        //    var up = GetLocalFolderPath();
+        //    var cfp = Path.Combine(up, ConfigFileName);
+        //    return cfp;
+        //}
 
         //public string GetLayoutFolderPath()
         //{
@@ -79,54 +79,54 @@ namespace LoonieTrader.Library.Services
         //    return sfp;
         //}
 
-        public ISettings LoadConfiguration()
-        {
-            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
-            {
-                using (StreamReader txtRd = new StreamReader(fileStream))
-                {
-                    string fileContent = txtRd.ReadToEnd();
-                    var input = new StringReader(fileContent);
+        //public ISettings LoadConfiguration()
+        //{
+        //    using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
+        //    {
+        //        using (StreamReader txtRd = new StreamReader(fileStream))
+        //        {
+        //            string fileContent = txtRd.ReadToEnd();
+        //            var input = new StringReader(fileContent);
 
-                    var desBuilder = new DeserializerBuilder();
-                    var deserializer = desBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).IgnoreUnmatchedProperties().Build();
+        //            var desBuilder = new DeserializerBuilder();
+        //            var deserializer = desBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).IgnoreUnmatchedProperties().Build();
 
-                    var config = deserializer.Deserialize<Settings>(input);
+        //            var config = deserializer.Deserialize<Settings>(input);
 
-                    if (config?.EnvironmentSettings != null)
-                    {
-                        return config;
-                    }
+        //            if (config?.EnvironmentSettings != null)
+        //            {
+        //                return config;
+        //            }
 
-                    return Settings.Empty;
-                }
-            }
-        }
+        //            return Settings.Empty;
+        //        }
+        //    }
+        //}
 
-        public void SaveConfiguration(ISettings settings)
-        {
-            using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.Create))
-            {
-                using (StreamWriter txtWr = new StreamWriter(fileStream))
-                {
-                    var serBuilder = new SerializerBuilder();
-                    var serializer = serBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
+        //public void SaveConfiguration(ISettings settings)
+        //{
+        //    using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.Create))
+        //    {
+        //        using (StreamWriter txtWr = new StreamWriter(fileStream))
+        //        {
+        //            var serBuilder = new SerializerBuilder();
+        //            var serializer = serBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
 
-                    serializer.Serialize(txtWr, settings);
-                }
-            }
-        }
+        //            serializer.Serialize(txtWr, settings);
+        //        }
+        //    }
+        //}
 
-        public string LoadLocalJson(string fileNamePart1, string fileNamePart2)
-        {
-            var folder = GetLocalFolderPath();
-            var jasonFileName = string.Concat(fileNamePart1, Separator, fileNamePart2);
-            jasonFileName = Path.ChangeExtension(jasonFileName, Extension);
-            var filePath = Path.Combine(folder, jasonFileName);
+        //public string LoadLocalJson(string fileNamePart1, string fileNamePart2)
+        //{
+        //    var folder = GetLocalFolderPath();
+        //    var jasonFileName = string.Concat(fileNamePart1, Separator, fileNamePart2);
+        //    jasonFileName = Path.ChangeExtension(jasonFileName, Extension);
+        //    var filePath = Path.Combine(folder, jasonFileName);
 
-            var json = File.ReadAllText(filePath, Encoding.UTF8);
-            return json;
-        }
+        //    var json = File.ReadAllText(filePath, Encoding.UTF8);
+        //    return json;
+        //}
 
         public void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json)
         {
