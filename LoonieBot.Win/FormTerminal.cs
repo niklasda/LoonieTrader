@@ -1,4 +1,6 @@
-﻿using LoonieBot.Win.Locator;
+﻿using System.Diagnostics;
+using System.Net;
+using LoonieBot.Win.Locator;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
@@ -24,7 +26,6 @@ namespace LoonieBot.Win
 
 
             _accountReq = ServiceLocator.Container.GetInstance<IAccountsRequester>();
-            // HealthReq = ServiceLocator.Container.GetInstance<IHealthRequester>();
             _instrumentReq = ServiceLocator.Container.GetInstance<IInstrumentRequester>();
             _ordersReq = ServiceLocator.Container.GetInstance<IOrdersRequester>();
             _positionReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
@@ -35,7 +36,6 @@ namespace LoonieBot.Win
         private readonly IExtendedLogger _logger;
         private readonly ISettingsService _settingsService;
         private readonly IAccountsRequester _accountReq;
-        //private IHealthRequester HealthReq;
         private readonly IInstrumentRequester _instrumentReq;
         private readonly IOrdersRequester _ordersReq;
         private readonly IPositionsRequester _positionReq;
@@ -62,7 +62,6 @@ namespace LoonieBot.Win
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            //   var ar = ServiceLocator.Container.GetInstance<IAccountsRequester>();
 
             _logger.Information("GetAccounts");
             var accounts = _accountReq.GetAccounts();
@@ -90,8 +89,25 @@ namespace LoonieBot.Win
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            ObservableStream<TransactionsResponse.Transaction> tss = _txStreamReq.GetTransactionStream(cfg.DefaultAccountId);
-            tss.NewValue += Tss_NewTtrx;
+            try
+            {
+                ObservableStream<TransactionsResponse.Transaction> tss = _txStreamReq.GetTransactionStream(cfg.DefaultAccountId);
+                tss.NewValue += Tss_NewTtrx;
+
+            }
+            catch (WebException wex)
+            {
+                Console.WriteLine(wex);
+                using var str = new StreamReader(wex.Response.GetResponseStream());
+                var content = str.ReadToEnd();
+                Debug.WriteLine(wex.Response.ResponseUri.ToString());
+                Debug.WriteLine(content);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+
+            }
 
         }
 
@@ -130,7 +146,6 @@ namespace LoonieBot.Win
         }
 
 
-
         private void buttonSymbol_Click(object sender, EventArgs e)
         {
             TestPricingStream();
@@ -140,8 +155,24 @@ namespace LoonieBot.Win
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
-            ObservableStream<PricesResponse.Price> pss = _pricingStreamReq.GetPriceStream(cfg.DefaultAccountId, "EUR_USD,USD_CAD");
-            pss.NewValue += Pss_NewPrice;
+            try
+            {
+                ObservableStream<PricesResponse.Price> pss = _pricingStreamReq.GetPriceStream(cfg.DefaultAccountId, "EUR_USD,USD_CAD");
+                pss.NewValue += Pss_NewPrice;
+            }
+            catch (WebException wex)
+            {
+                Console.WriteLine(wex);
+                using var str = new StreamReader(wex.Response.GetResponseStream());
+                var content = str.ReadToEnd();
+                Debug.WriteLine(wex.Response.ResponseUri.ToString());
+                Debug.WriteLine(content);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+
+            }
 
         }
 
@@ -209,7 +240,8 @@ namespace LoonieBot.Win
         private void buttonCandle_Click(object sender, EventArgs e)
         {
             CandlesResponse candles = _instrumentReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
-            var asd = candles.ToString().Trim();
+            var asd = candles.ToString();
+            Debug.WriteLine(asd);
         }
     }
 }

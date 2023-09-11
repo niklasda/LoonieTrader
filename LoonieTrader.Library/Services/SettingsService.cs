@@ -11,8 +11,6 @@ namespace LoonieTrader.Library.Services
             CachedSettings = LoadSettings();
         }
 
-        //private readonly IFileReaderWriterService _fileReaderWriter;
-//        private ISettings _lastSettings;
 
         public ISettings CachedSettings { get; }
                 
@@ -31,9 +29,5 @@ namespace LoonieTrader.Library.Services
             //   return _fileReaderWriter.LoadConfiguration();
         }
 
-        //public void SaveSettings(ISettings settings)
-        //{
-        //    _fileReaderWriter.SaveConfiguration(settings);
-        //}
     }
 }

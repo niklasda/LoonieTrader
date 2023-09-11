@@ -49,16 +49,14 @@ namespace LoonieTrader.Library.RestApi.Requesters
 
         private CandlesResponse GetCandlesInternal(string url, string tag)
         {
-            using (var wc = GetAuthenticatedWebClient())
-            {
-                var responseString = GetData(wc, url);
-                SaveLocalJson("candles", tag, responseString);
-               // using (var input = new StringReader(responseString))
-               // {
-                    var apr = JsonDeserialize<CandlesResponse>(responseString);
-                    return apr;
-                //}
-            }
+            using var wc = GetAuthenticatedWebClient();
+            var responseString = GetData(wc, url);
+            SaveLocalJson("candles", tag, responseString);
+            // using (var input = new StringReader(responseString))
+            // {
+            var apr = JsonDeserialize<CandlesResponse>(responseString);
+            return apr;
+            //}
         }
     }
 }

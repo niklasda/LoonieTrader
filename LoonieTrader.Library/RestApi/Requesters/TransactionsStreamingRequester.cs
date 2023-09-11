@@ -34,13 +34,11 @@ namespace LoonieTrader.Library.RestApi.Requesters
             string urlTransactionStream = GetStreamingRestUrl("accounts/{0}/transactions/stream");
             var uri = new Uri(string.Format(urlTransactionStream, accountId));
 
-            using (var wc = GetAuthenticatedWebClient())
-            {
-                Stream responseStream = wc.OpenRead(uri);
-                var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
-                _transactionSubscriptions.TryAdd(accountId, obsStream);
-                return obsStream;
-            }
+            using var wc = GetAuthenticatedWebClient();
+            Stream responseStream = wc.OpenRead(uri);
+            var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
+            _transactionSubscriptions.TryAdd(accountId, obsStream);
+            return obsStream;
         }
     }
 }

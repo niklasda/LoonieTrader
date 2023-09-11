@@ -42,7 +42,7 @@ namespace LoonieTrader.Library.RestApi.Requesters
         protected string GetStreamingRestUrl(string path)
         {
             var settings = _settingsService.CachedSettings.SelectedEnvironment;
-            string host = Environments.GetHostValueFor(settings.EnvironmentKey);
+            string host = Environments.GetStreamingHostValueFor(settings.EnvironmentKey);
             return $"https://{host}.oanda.com/v3/{path}";
         }
 

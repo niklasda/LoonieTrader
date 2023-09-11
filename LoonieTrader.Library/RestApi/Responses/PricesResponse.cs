@@ -1,5 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 using System.Text;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using LoonieTrader.Library.RestApi.Interfaces;
 
@@ -40,6 +41,8 @@ namespace LoonieTrader.Library.RestApi.Responses
            // public Quotehomeconversionfactors quoteHomeConversionFactors { get; set; }
             public string status { get; set; }
             public string time { get; set; }
+
+            [JsonPropertyName("type")]
             public string EventType { get; set; } // to support HEARTBEATS in streaming
             // public Unitsavailable unitsAvailable { get; set; }
 

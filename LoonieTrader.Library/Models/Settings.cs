@@ -2,7 +2,6 @@
 using System.Linq;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
-//using YamlDotNet.Serialization;
 
 namespace LoonieTrader.Library.Models
 {
@@ -12,7 +11,6 @@ namespace LoonieTrader.Library.Models
 
         public EnvironmentSettings[] EnvironmentSettings { get; set; }
 
-  //      [YamlIgnore]
         public IEnvironmentSettings SelectedEnvironment
         {
             get
@@ -22,21 +20,6 @@ namespace LoonieTrader.Library.Models
             }
         }
 
-        //[YamlIgnore]
-        //public static Settings Empty
-        //{
-        //    get
-        //    {
-        //        return new Settings()
-        //        {
-        //            EnvironmentSettings = new[]
-        //            {
-        //                new EnvironmentSettings {EnvironmentKey = Environments.Practice.Key, FavoriteInstruments = new StringCollection()},
-        //                new EnvironmentSettings {EnvironmentKey = Environments.Live.Key, FavoriteInstruments = new StringCollection()}
-        //            }
-        //        };
-        //    }
-        //}
     }
 
     public class EnvironmentSettings : IEnvironmentSettings

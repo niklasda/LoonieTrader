@@ -1,5 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 using System.Text;
+using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
 namespace LoonieTrader.Library.RestApi.Responses
@@ -33,13 +34,13 @@ namespace LoonieTrader.Library.RestApi.Responses
                 resp.Append(", time: ");
                 resp.Append(candle.time);
                 resp.Append(", open: ");
-                resp.Append(cd?.o);
+                resp.Append(cd?.open);
                 resp.Append(", high: ");
-                resp.Append(cd?.h);
+                resp.Append(cd?.high);
                 resp.Append(", low: ");
-                resp.Append(cd?.l);
+                resp.Append(cd?.low);
                 resp.Append(", close: ");
-                resp.Append(cd?.c);
+                resp.Append(cd?.close);
                 resp.Append(", volume: ");
                 resp.AppendLine(candle.volume.ToString());
             }
@@ -59,10 +60,18 @@ namespace LoonieTrader.Library.RestApi.Responses
 
         public class CandleData
         {
-            public string c { get; set; }
-            public string h { get; set; }
-            public string l { get; set; }
-            public string o { get; set; }
+
+            [JsonPropertyName("o")]
+            public string open { get; set; }
+
+            [JsonPropertyName("h")]
+            public string high { get; set; }
+            
+            [JsonPropertyName("l")]
+            public string low { get; set; }
+
+            [JsonPropertyName("c")]
+            public string close { get; set; }
         }
     }
 }

@@ -50,17 +50,15 @@ namespace LoonieTrader.Library.Models
 
         private IEnumerable<T> ReadLines(Stream stream)
         {
-            using (StreamReader reader = new StreamReader(stream))
+            using StreamReader reader = new StreamReader(stream);
+            while (!reader.EndOfStream)
             {
-                while (!reader.EndOfStream)
-                {
-                    string line = reader.ReadLine();
-                    T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                string line = reader.ReadLine();
+                T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-                    //_logger.Information("Stream observation: {0}", line);
+                //_logger.Information("Stream observation: {0}", line);
 
-                    yield return obj;
-                }
+                yield return obj;
             }
         }
     }

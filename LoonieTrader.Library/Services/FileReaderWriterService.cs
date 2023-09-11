@@ -15,20 +15,14 @@ namespace LoonieTrader.Library.Services
             _appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string dataPath = Path.Combine(_appDataFolderPath, FolderName, DataFolderName);
             string historicalDataPath = Path.Combine(_appDataFolderPath, FolderName, HistoricalDataFolderName);
-        //    string indicatorPath = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
 
             Directory.CreateDirectory(dataPath);
             Directory.CreateDirectory(historicalDataPath);
-          //  Directory.CreateDirectory(indicatorPath);
-            //File.Create(GetConfigFilePath());
         }
 
-       // private const string ConfigFileName = "Config.yaml";
-        //private const string LayoutFolder = "Layout";
         private const string FolderName = "LoonieTrader";
         private const string DataFolderName = "Data";
         private const string HistoricalDataFolderName = "HistoricalData";
-        //private const string IndicatorsFolderName = "Indicators";
         private const string LogsFolderName = "Logs";
         private const string Extension = "json";
         private const string Separator = "#";
@@ -40,12 +34,6 @@ namespace LoonieTrader.Library.Services
             var ltp = Path.Combine(_appDataFolderPath, FolderName);
             return ltp;
         }
-
-        //public string GetIndicatorFolderPath()
-        //{
-        //    var ip = Path.Combine(_appDataFolderPath, FolderName, IndicatorsFolderName);
-        //    return ip;
-        //}
 
         public string GetHistoricalDataFolderPath()
         {
@@ -64,69 +52,6 @@ namespace LoonieTrader.Library.Services
             var ltp = Path.Combine(_appDataFolderPath, FolderName, LogsFolderName, "LTTestLog.txt");
             return ltp;
         }
-
-        //private string GetConfigFilePath()
-        //{
-        //    var up = GetLocalFolderPath();
-        //    var cfp = Path.Combine(up, ConfigFileName);
-        //    return cfp;
-        //}
-
-        //public string GetLayoutFolderPath()
-        //{
-        //    var up = GetLocalFolderPath();
-        //    var sfp = Path.Combine(up, LayoutFolder);
-        //    return sfp;
-        //}
-
-        //public ISettings LoadConfiguration()
-        //{
-        //    using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.OpenOrCreate))
-        //    {
-        //        using (StreamReader txtRd = new StreamReader(fileStream))
-        //        {
-        //            string fileContent = txtRd.ReadToEnd();
-        //            var input = new StringReader(fileContent);
-
-        //            var desBuilder = new DeserializerBuilder();
-        //            var deserializer = desBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).IgnoreUnmatchedProperties().Build();
-
-        //            var config = deserializer.Deserialize<Settings>(input);
-
-        //            if (config?.EnvironmentSettings != null)
-        //            {
-        //                return config;
-        //            }
-
-        //            return Settings.Empty;
-        //        }
-        //    }
-        //}
-
-        //public void SaveConfiguration(ISettings settings)
-        //{
-        //    using (FileStream fileStream = File.Open(GetConfigFilePath(), FileMode.Create))
-        //    {
-        //        using (StreamWriter txtWr = new StreamWriter(fileStream))
-        //        {
-        //            var serBuilder = new SerializerBuilder();
-        //            var serializer = serBuilder.WithNamingConvention(PascalCaseNamingConvention.Instance).Build();
-
-        //            serializer.Serialize(txtWr, settings);
-        //        }
-        //    }
-        //}
-
-        //public string LoadLocalJson(string fileNamePart1, string fileNamePart2)
-        //{
-        //    var folder = GetLocalFolderPath();
-        //    var jasonFileName = string.Concat(fileNamePart1, Separator, fileNamePart2);
-        //    jasonFileName = Path.ChangeExtension(jasonFileName, Extension);
-        //    var filePath = Path.Combine(folder, jasonFileName);
-
-        //    var json = File.ReadAllText(filePath, Encoding.UTF8);
-        //    return json;
-        //}
 
         public void SaveLocalJson(string fileNamePart1, string fileNamePart2, string json)
         {

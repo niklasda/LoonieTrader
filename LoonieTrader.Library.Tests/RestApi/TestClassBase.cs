@@ -11,7 +11,6 @@ public class TestClassBase
     [TestInitialize]
     public void Setup()
     {
-       // TestServiceLocator.Initialize();
 
         var settingsService = TestServiceLocator.Container.GetInstance<ISettingsService>();
         settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
@@ -19,7 +18,6 @@ public class TestClassBase
         EnvSettings = settingsService.CachedSettings.SelectedEnvironment;
 
         AccReq = TestServiceLocator.Container.GetInstance<IAccountsRequester>();
-        //HealthReq = container.GetInstance<IHealthRequester>();
         InstrReq = TestServiceLocator.Container.GetInstance<IInstrumentRequester>();
         OrdersReq = TestServiceLocator.Container.GetInstance<IOrdersRequester>();
         PosReq = TestServiceLocator.Container.GetInstance<IPositionsRequester>();
@@ -34,7 +32,6 @@ public class TestClassBase
 
     protected IEnvironmentSettings EnvSettings { get; private set; }
     protected IAccountsRequester AccReq { get; private set; }
-    // protected IHealthRequester HealthReq;
     protected IInstrumentRequester InstrReq { get; private set; }
     protected IOrdersRequester OrdersReq { get; private set; }
     protected IPositionsRequester PosReq { get; private set; }
