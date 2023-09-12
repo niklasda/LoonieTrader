@@ -27,7 +27,6 @@ public class TestClassBase
         TxReq = TestServiceLocator.Container.GetInstance<ITransactionsRequester>();
         TxStreamReq = TestServiceLocator.Container.GetInstance<ITransactionsStreamingRequester>();
 
-
     }
 
     protected IEnvironmentSettings EnvSettings { get; private set; }
@@ -40,5 +39,4 @@ public class TestClassBase
     protected IPricingStreamingRequester PricingStreamReq { get; private set; }
     protected ITransactionsRequester TxReq { get; private set; }
     protected ITransactionsStreamingRequester TxStreamReq { get; private set; }
-
 }

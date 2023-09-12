@@ -1,25 +1,24 @@
 ﻿using System.Collections.Specialized;
 using LoonieTrader.Library.Models;
 
-namespace LoonieTrader.Library.Interfaces
+namespace LoonieTrader.Library.Interfaces;
+
+public interface ISettings
 {
-    public interface ISettings
-    {
-        string SelectedEnvironmentKey { get; set; }
+    string SelectedEnvironmentKey { get; set; }
 
-        EnvironmentSettings[] EnvironmentSettings { get; set; }
+    EnvironmentSettings[] EnvironmentSettings { get; set; }
 
-        IEnvironmentSettings SelectedEnvironment { get; }
-    }
+    IEnvironmentSettings SelectedEnvironment { get; }
+}
 
-    public interface IEnvironmentSettings
-    {
-        string EnvironmentKey { get; set; }
+public interface IEnvironmentSettings
+{
+    string EnvironmentKey { get; set; }
 
-        string ApiKey { get; set; }
+    string ApiKey { get; set; }
 
-        string DefaultAccountId { get; set; }
+    string DefaultAccountId { get; set; }
 
-        StringCollection FavoriteInstruments { get; set; }
-    }
+    StringCollection FavoriteInstruments { get; set; }
 }

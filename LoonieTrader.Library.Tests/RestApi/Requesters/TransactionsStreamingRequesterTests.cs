@@ -13,13 +13,11 @@ public class TransactionsStreamingRequesterTests : TestClassBase
     {
         ObservableStream<TransactionsResponse.Transaction> tss = TxStreamReq.GetTransactionStream(EnvSettings.DefaultAccountId);
         tss.NewValue += Tss_NewTrx;
-        //IDisposable l1 = tss.Subscribe(x => Console.WriteLine("Tx1: {0}", x));
 
         Task.Delay(10000).Wait();
         Console.WriteLine("Done. 10s");
 
         tss.NewValue -= Tss_NewTrx;
-        // l1.Dispose();
 
         //            var price = JSON.Deserialize<TransactionsResponse.Transaction>(l1);
         //          Assert.NotNull(price);

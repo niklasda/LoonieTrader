@@ -47,6 +47,8 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             buttonCandle = new Button();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            loadCSVToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -206,7 +208,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { helpToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1191, 24);
@@ -224,7 +226,7 @@
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeyDisplayString = "";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "&About";
             // 
             // buttonCandle
@@ -237,6 +239,20 @@
             buttonCandle.Text = "Candle";
             buttonCandle.UseVisualStyleBackColor = true;
             buttonCandle.Click += buttonCandle_Click;
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loadCSVToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // loadCSVToolStripMenuItem
+            // 
+            loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
+            loadCSVToolStripMenuItem.Size = new Size(180, 22);
+            loadCSVToolStripMenuItem.Text = "Load CSV";
+            loadCSVToolStripMenuItem.Click += loadCSVToolStripMenuItem_Click;
             // 
             // FormTerminal
             // 
@@ -292,5 +308,7 @@
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
         private Button buttonCandle;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem loadCSVToolStripMenuItem;
     }
 }

@@ -1,11 +1,10 @@
 ﻿using LoonieTrader.Library.RestApi.Responses;
 
-namespace LoonieTrader.Library.Models
-{
-    public class InstrumentType
-    {
-        public string Type { get; set; }
+namespace LoonieTrader.Library.Models;
 
-        public AccountInstrumentsResponse.Instrument[] Instruments { get; set; }
-    }
+public class InstrumentType
+{
+    public string Type { get; set; }
+
+    public AccountInstrumentsResponse.Instrument[] Instruments { get; set; }
 }

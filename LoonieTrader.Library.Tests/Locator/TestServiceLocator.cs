@@ -40,7 +40,6 @@ public static class TestServiceLocator
     }
 
     public static IContainer Container { get; } = Initialize();
-    //public static IContainer Container { get{ } }
 
     private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
     {

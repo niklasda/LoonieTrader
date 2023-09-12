@@ -1,21 +1,20 @@
-﻿using System;
+﻿//using System;
 
-namespace LoonieTrader.Library.Extensions
-{
-    public static class RandomExtensions
-    {
-        public static decimal NextDecimal(this Random r, decimal min, decimal max)
-        {
-            decimal randomDecimal = (decimal)r.NextDouble();
+//namespace LoonieTrader.Library.Extensions;
 
-            var p1 = randomDecimal * (max - min) + min;
-            return p1;
-        }
+//public static class RandomExtensions
+//{
+//    public static decimal NextDecimal(this Random r, decimal min, decimal max)
+//    {
+//        decimal randomDecimal = (decimal)r.NextDouble();
 
-        public static double NextDouble(this Random r, double min, double max)
-        {
-            var randomDouble = r.NextDouble() * (max - min) + min;
-            return randomDouble;
-        }
-    }
-}
+//        var p1 = randomDecimal * (max - min) + min;
+//        return p1;
+//    }
+
+//    public static double NextDouble(this Random r, double min, double max)
+//    {
+//        var randomDouble = r.NextDouble() * (max - min) + min;
+//        return randomDouble;
+//    }
+//}

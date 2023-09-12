@@ -1,11 +1,10 @@
 ﻿
-namespace LoonieTrader.Library.Constants
+namespace LoonieTrader.Library.Constants;
+
+public static class AppProperties
 {
-    public static class AppProperties
-    {
 
-        public static string HeartbeatName { get; } = "HEARTBEAT";
+    public static string HeartbeatName { get; } = "HEARTBEAT";
 
 
-    }
 }

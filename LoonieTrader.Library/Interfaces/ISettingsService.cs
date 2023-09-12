@@ -1,7 +1,6 @@
-﻿namespace LoonieTrader.Library.Interfaces
+﻿namespace LoonieTrader.Library.Interfaces;
+
+public interface ISettingsService
 {
-    public interface ISettingsService
-    {
-        ISettings CachedSettings { get; }
-    }
+    ISettings CachedSettings { get; }
 }

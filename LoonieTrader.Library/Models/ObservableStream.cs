@@ -6,60 +6,59 @@ using System.Reactive.Linq;
 using System.Text.Json;
 using LoonieTrader.Library.RestApi.Interfaces;
 
-namespace LoonieTrader.Library.Models
-{
-    public class StreamEventArgs<TP> : EventArgs where TP : IHeartbeatStreamable
-    {
-        public StreamEventArgs(TP obj)
-        {
-            Obj = obj;
-        }
+namespace LoonieTrader.Library.Models;
 
-        public TP Obj { get; private set; }
+public class StreamEventArgs<TP> : EventArgs where TP : IHeartbeatStreamable
+{
+    public StreamEventArgs(TP obj)
+    {
+        Obj = obj;
     }
 
-    public delegate void NewValueEventHandler<TS>(object sender, StreamEventArgs<TS> e)
-        where TS : IHeartbeatStreamable;
+    public TP Obj { get; private set; }
+}
 
-    public class ObservableStream<T> where T : IHeartbeatStreamable
+public delegate void NewValueEventHandler<TS>(object sender, StreamEventArgs<TS> e)
+    where TS : IHeartbeatStreamable;
+
+public class ObservableStream<T> where T : IHeartbeatStreamable
+{
+    public ObservableStream(Stream stream)
     {
-        public ObservableStream(Stream stream)
+        _stream = stream;
+        //   _logger = logger;
+
+        var obs = GetObservable();
+        obs.Subscribe(x => OnChanged(new StreamEventArgs<T>(x)));
+    }
+
+    // private IObservable<T> _obs;
+    private readonly Stream _stream;
+    // private readonly IExtendedLogger _logger;
+
+    public event NewValueEventHandler<T> NewValue;
+
+    private void OnChanged(StreamEventArgs<T> e)
+    {
+        NewValue?.Invoke(this, e);
+    }
+
+    private IObservable<T> GetObservable()
+    {
+        return ReadLines(_stream).ToObservable(Scheduler.Default);
+    }
+
+    private IEnumerable<T> ReadLines(Stream stream)
+    {
+        using StreamReader reader = new StreamReader(stream);
+        while (!reader.EndOfStream)
         {
-            _stream = stream;
-         //   _logger = logger;
+            string line = reader.ReadLine();
+            T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            var obs = GetObservable();
-            obs.Subscribe(x => OnChanged(new StreamEventArgs<T>(x)));
-        }
+            //_logger.Information("Stream observation: {0}", line);
 
-       // private IObservable<T> _obs;
-        private readonly Stream _stream;
-       // private readonly IExtendedLogger _logger;
-
-        public event NewValueEventHandler<T> NewValue;
-
-        private void OnChanged(StreamEventArgs<T> e)
-        {
-            NewValue?.Invoke(this, e);
-        }
-
-        private IObservable<T> GetObservable()
-        {
-            return ReadLines(_stream).ToObservable(Scheduler.Default);
-        }
-
-        private IEnumerable<T> ReadLines(Stream stream)
-        {
-            using StreamReader reader = new StreamReader(stream);
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
-                //_logger.Information("Stream observation: {0}", line);
-
-                yield return obj;
-            }
+            yield return obj;
         }
     }
 }

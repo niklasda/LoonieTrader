@@ -13,13 +13,11 @@ public class PricingStreamingRequesterTests : TestClassBase
     {
         ObservableStream<PricesResponse.Price> pss = PricingStreamReq.GetPriceStream(EnvSettings.DefaultAccountId, "EUR_USD");
         pss.NewValue += Pss_NewPrice;
-        //            var l1 = pss.Subscribe(x => Console.WriteLine("Price1: {0}", x));
 
         Task.Delay(10000).Wait();
         Console.WriteLine("Done 10s");
 
         pss.NewValue -= Pss_NewPrice;
-        //          l1.Dispose();
 
         // var price = JSON.Deserialize<PricesResponse.Price>(l1);
         // Assert.NotNull(price);

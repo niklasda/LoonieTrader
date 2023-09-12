@@ -7,6 +7,9 @@ using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.RestApi.Enums;
+using FileHelpers;
+using LoonieTrader.Library.HistoricalData;
+using LoonieTrader.Library.Services;
 
 namespace LoonieBot.Win
 {
@@ -92,7 +95,7 @@ namespace LoonieBot.Win
             try
             {
                 ObservableStream<TransactionsResponse.Transaction> tss = _txStreamReq.GetTransactionStream(cfg.DefaultAccountId);
-                tss.NewValue += Tss_NewTtrx;
+                tss.NewValue += Tss_NewTransaction;
 
             }
             catch (WebException wex)
@@ -111,7 +114,7 @@ namespace LoonieBot.Win
 
         }
 
-        private void Tss_NewTtrx(object sender, StreamEventArgs<TransactionsResponse.Transaction> e)
+        private void Tss_NewTransaction(object sender, StreamEventArgs<TransactionsResponse.Transaction> e)
         {
             TransactionsResponse.Transaction trx = e.Obj;
             if (trx.EventType != AppProperties.HeartbeatName)
@@ -242,6 +245,18 @@ namespace LoonieBot.Win
             CandlesResponse candles = _instrumentReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
             var asd = candles.ToString();
             Debug.WriteLine(asd);
+        }
+
+        private void loadCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var engine = new FileHelperEngine<CandleDataRecord>();
+            IFileReaderWriterService frw = new FileReaderWriterService();
+            string hdPath = frw.GetHistoricalDataFolderPath();
+            var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2022.txt")); // todo hardcoded
+
+            
+
+            List<CandleDataRecord> recordList = records.ToList();
         }
     }
 }
