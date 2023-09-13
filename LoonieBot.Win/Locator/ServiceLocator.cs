@@ -4,7 +4,6 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieTrader.Library.Services;
-using LoonieTrader.Library.Logging;
 using Serilog;
 
 namespace LoonieBot.Win.Locator;
@@ -16,10 +15,10 @@ public static class ServiceLocator
         var container = new Container(c =>
         {
             IFileReaderWriterService cr = new FileReaderWriterService();
-            IExtendedLogger exLogger = CreateExLogger(cr);
+            ILogger exLogger = CreateExLogger(cr);
 
             c.ForSingletonOf<ISettingsService>().Use<SettingsService>();
-            c.ForSingletonOf<IExtendedLogger>().Use(exLogger);
+            c.ForSingletonOf<ILogger>().Use(exLogger);
 
             c.For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
             c.For<IFileReaderWriterService>().Use<FileReaderWriterService>();
@@ -41,7 +40,7 @@ public static class ServiceLocator
 
     public static IContainer Container { get; } = Initialize();
 
-    private static IExtendedLogger CreateExLogger(IFileReaderWriterService cr)
+    private static ILogger CreateExLogger(IFileReaderWriterService cr)
     {
         var logFilePattern = cr.GetLogFilePattern();
 
@@ -51,8 +50,8 @@ public static class ServiceLocator
             .MinimumLevel.Debug()
             .CreateLogger();
 
-        IExtendedLogger exLogger = new ExtendedLogger(logger);
+ //       IExtendedLogger exLogger = new ExtendedLogger(logger);
 
-        return exLogger;
+        return logger;
     }
 }

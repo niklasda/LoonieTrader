@@ -5,13 +5,14 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Enums;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class InstrumentRequester : RequesterBase, IInstrumentRequester
 {
-    public InstrumentRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    public InstrumentRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger)
         : base(settings, fileReaderWriter, logger)
     {
     }

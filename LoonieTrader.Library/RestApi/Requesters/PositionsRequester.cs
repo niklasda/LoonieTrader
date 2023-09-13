@@ -7,13 +7,14 @@ using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class PositionsRequester : RequesterBase, IPositionsRequester
 {
-    public PositionsRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 
+    public PositionsRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger) 
         : base(settings, fileReaderWriter, logger)
     {
     }

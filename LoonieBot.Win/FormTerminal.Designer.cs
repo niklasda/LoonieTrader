@@ -44,11 +44,12 @@
             statusStrip1 = new StatusStrip();
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            loadCSVToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             buttonCandle = new Button();
-            fileToolStripMenuItem = new ToolStripMenuItem();
-            loadCSVToolStripMenuItem = new ToolStripMenuItem();
+            openFolderToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -215,6 +216,20 @@
             menuStrip1.TabIndex = 9;
             menuStrip1.Text = "menuStrip1";
             // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loadCSVToolStripMenuItem, openFolderToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // loadCSVToolStripMenuItem
+            // 
+            loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
+            loadCSVToolStripMenuItem.Size = new Size(180, 22);
+            loadCSVToolStripMenuItem.Text = "Load CSV";
+            loadCSVToolStripMenuItem.Click += loadCSVToolStripMenuItem_Click;
+            // 
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
@@ -226,7 +241,7 @@
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeyDisplayString = "";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "&About";
             // 
             // buttonCandle
@@ -240,19 +255,12 @@
             buttonCandle.UseVisualStyleBackColor = true;
             buttonCandle.Click += buttonCandle_Click;
             // 
-            // fileToolStripMenuItem
+            // openFolderToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { loadCSVToolStripMenuItem });
-            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
-            fileToolStripMenuItem.Text = "File";
-            // 
-            // loadCSVToolStripMenuItem
-            // 
-            loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
-            loadCSVToolStripMenuItem.Size = new Size(180, 22);
-            loadCSVToolStripMenuItem.Text = "Load CSV";
-            loadCSVToolStripMenuItem.Click += loadCSVToolStripMenuItem_Click;
+            openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
+            openFolderToolStripMenuItem.Size = new Size(180, 22);
+            openFolderToolStripMenuItem.Text = "Open Folder";
+            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
             // FormTerminal
             // 
@@ -310,5 +318,6 @@
         private Button buttonCandle;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem loadCSVToolStripMenuItem;
+        private ToolStripMenuItem openFolderToolStripMenuItem;
     }
 }

@@ -2,13 +2,14 @@
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class TradesRequester : RequesterBase, ITradesRequester
 {
-    public TradesRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    public TradesRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger)
         : base(settings, fileReaderWriter, logger)
     {
     }

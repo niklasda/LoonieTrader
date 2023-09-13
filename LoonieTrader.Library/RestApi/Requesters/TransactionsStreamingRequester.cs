@@ -6,13 +6,14 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class TransactionsStreamingRequester : RequesterBase, ITransactionsStreamingRequester
 {
-    public TransactionsStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    public TransactionsStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger)
         : base(settings, fileReaderWriter, logger)
     {
     }

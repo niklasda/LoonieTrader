@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿//using System.Collections.ObjectModel;
 
-namespace LoonieTrader.Library.Logging;
+//namespace LoonieTrader.Library.Logging;
 
-public static class LogCache
-{
-    public static ObservableCollection<LogEntry> LogEntries { get; set; } = new ObservableCollection<LogEntry>();
-}
+//public static class LogCache
+//{
+//    public static ObservableCollection<LogEntry> LogEntries { get; set; } = new ObservableCollection<LogEntry>();
+//}

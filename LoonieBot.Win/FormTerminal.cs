@@ -10,6 +10,7 @@ using LoonieTrader.Library.RestApi.Enums;
 using FileHelpers;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Services;
+using Serilog;
 
 namespace LoonieBot.Win
 {
@@ -19,7 +20,7 @@ namespace LoonieBot.Win
         {
             InitializeComponent();
 
-            _logger = ServiceLocator.Container.GetInstance<IExtendedLogger>();
+            _logger = ServiceLocator.Container.GetInstance<ILogger>();
 
             _settingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
             _txReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
@@ -36,7 +37,7 @@ namespace LoonieBot.Win
             _tradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
         }
 
-        private readonly IExtendedLogger _logger;
+        private readonly ILogger _logger;
         private readonly ISettingsService _settingsService;
         private readonly IAccountsRequester _accountReq;
         private readonly IInstrumentRequester _instrumentReq;
@@ -254,9 +255,22 @@ namespace LoonieBot.Win
             string hdPath = frw.GetHistoricalDataFolderPath();
             var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2022.txt")); // todo hardcoded
 
-            
+
 
             List<CandleDataRecord> recordList = records.ToList();
+        }
+
+        private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IFileReaderWriterService frw = new FileReaderWriterService();
+            string hdPath = frw.GetHistoricalDataFolderPath();
+            
+            OpenExplorerInFolder(hdPath);
+        }
+
+        private void OpenExplorerInFolder(string root )
+        {
+            Process.Start("explorer.exe", root);
         }
     }
 }

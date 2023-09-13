@@ -4,13 +4,14 @@ using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class AccountsRequester : RequesterBase, IAccountsRequester
 {
-    public AccountsRequester(ISettingsService settingService, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger) 
+    public AccountsRequester(ISettingsService settingService, IFileReaderWriterService fileReaderWriter, ILogger logger) 
         : base(settingService, fileReaderWriter, logger)
     {
     }

@@ -6,13 +6,14 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.Models;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly] // Registered as singleton in StructureMap
 public class PricingStreamingRequester : RequesterBase, IPricingStreamingRequester
 {
-    public PricingStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    public PricingStreamingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger)
         : base(settings, fileReaderWriter, logger)
     {
     }

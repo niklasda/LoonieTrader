@@ -7,12 +7,13 @@ using JetBrains.Annotations;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Extensions;
 using LoonieTrader.Library.Interfaces;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 public abstract class RequesterBase
 {
-    protected RequesterBase(ISettingsService settingsService, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    protected RequesterBase(ISettingsService settingsService, IFileReaderWriterService fileReaderWriter, ILogger logger)
     {
         _settingsService = settingsService;
         _fileReaderWriter = fileReaderWriter;
@@ -21,7 +22,7 @@ public abstract class RequesterBase
 
     private readonly ISettingsService _settingsService;
     private readonly IFileReaderWriterService _fileReaderWriter;
-    private readonly IExtendedLogger _logger;
+    private readonly ILogger _logger;
 
     private string BearerApiKey
     {
@@ -51,7 +52,7 @@ public abstract class RequesterBase
     //    return string.Format("http://{0}.oanda.com/api/v1/{1}", Environments.Status.Value, env);
     //}
 
-    protected IExtendedLogger Logger => _logger;
+    protected ILogger Logger => _logger;
 
     private WebClient _authWc;
     //private LoonieWebClient _anonWc;

@@ -3,13 +3,14 @@ using JetBrains.Annotations;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
+using Serilog;
 
 namespace LoonieTrader.Library.RestApi.Requesters;
 
 [UsedImplicitly]
 public class PricingRequester : RequesterBase, IPricingRequester
 {
-    public PricingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, IExtendedLogger logger)
+    public PricingRequester(ISettingsService settings, IFileReaderWriterService fileReaderWriter, ILogger logger)
         : base(settings, fileReaderWriter, logger)
     {
     }
