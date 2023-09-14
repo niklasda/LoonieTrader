@@ -46,10 +46,10 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             loadCSVToolStripMenuItem = new ToolStripMenuItem();
+            openFolderToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             buttonCandle = new Button();
-            openFolderToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -126,10 +126,11 @@
             // 
             buttonDisconnect.Location = new Point(26, 112);
             buttonDisconnect.Name = "buttonDisconnect";
-            buttonDisconnect.Size = new Size(91, 27);
+            buttonDisconnect.Size = new Size(114, 32);
             buttonDisconnect.TabIndex = 2;
-            buttonDisconnect.Text = "Disconnect";
+            buttonDisconnect.Text = "Disconnect All";
             buttonDisconnect.UseVisualStyleBackColor = true;
+            buttonDisconnect.Click += buttonDisconnect_Click;
             // 
             // buttonConnectDemo
             // 
@@ -137,7 +138,7 @@
             buttonConnectDemo.Name = "buttonConnectDemo";
             buttonConnectDemo.Size = new Size(114, 33);
             buttonConnectDemo.TabIndex = 3;
-            buttonConnectDemo.Text = "Connect Demo";
+            buttonConnectDemo.Text = "Use Demo";
             buttonConnectDemo.UseVisualStyleBackColor = true;
             buttonConnectDemo.Click += buttonConnectDemo_Click;
             // 
@@ -147,7 +148,7 @@
             buttonConnectLive.Name = "buttonConnectLive";
             buttonConnectLive.Size = new Size(114, 33);
             buttonConnectLive.TabIndex = 4;
-            buttonConnectLive.Text = "Connect Live";
+            buttonConnectLive.Text = "Use Live";
             buttonConnectLive.UseVisualStyleBackColor = true;
             buttonConnectLive.Click += buttonConnectLive_Click;
             // 
@@ -226,9 +227,16 @@
             // loadCSVToolStripMenuItem
             // 
             loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
-            loadCSVToolStripMenuItem.Size = new Size(180, 22);
+            loadCSVToolStripMenuItem.Size = new Size(139, 22);
             loadCSVToolStripMenuItem.Text = "Load CSV";
             loadCSVToolStripMenuItem.Click += loadCSVToolStripMenuItem_Click;
+            // 
+            // openFolderToolStripMenuItem
+            // 
+            openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
+            openFolderToolStripMenuItem.Size = new Size(139, 22);
+            openFolderToolStripMenuItem.Text = "Open Folder";
+            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -254,13 +262,6 @@
             buttonCandle.Text = "Candle";
             buttonCandle.UseVisualStyleBackColor = true;
             buttonCandle.Click += buttonCandle_Click;
-            // 
-            // openFolderToolStripMenuItem
-            // 
-            openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            openFolderToolStripMenuItem.Size = new Size(180, 22);
-            openFolderToolStripMenuItem.Text = "Open Folder";
-            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
             // FormTerminal
             // 

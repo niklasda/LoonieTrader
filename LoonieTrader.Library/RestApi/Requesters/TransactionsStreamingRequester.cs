@@ -18,15 +18,13 @@ public class TransactionsStreamingRequester : RequesterBase, ITransactionsStream
     {
     }
 
-    //private ConcurrentDictionary<string, string> _transactionSubscriptions = new ConcurrentDictionary<string, string>();
-    private readonly ConcurrentDictionary<string, ObservableStream<TransactionsResponse.Transaction>> _transactionSubscriptions = new ConcurrentDictionary<string, ObservableStream<TransactionsResponse.Transaction>>();
+    private ConcurrentDictionary<string, ObservableStream<TransactionsResponse.Transaction>> Subscriptions { get; } = new();
 
     public ObservableStream<TransactionsResponse.Transaction> GetTransactionStream(string accountId)
     {
-        if (_transactionSubscriptions.ContainsKey(accountId))
+        if (Subscriptions.ContainsKey(accountId))
         {
-            //ObservableStream<TransactionsResponse.Transaction> obs;
-            if (_transactionSubscriptions.TryGetValue(accountId, out var obs))
+            if (Subscriptions.TryGetValue(accountId, out var obs))
             {
                 return obs;
             }
@@ -38,7 +36,17 @@ public class TransactionsStreamingRequester : RequesterBase, ITransactionsStream
         using var wc = GetAuthenticatedWebClient();
         Stream responseStream = wc.OpenRead(uri);
         var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
-        _transactionSubscriptions.TryAdd(accountId, obsStream);
+        Subscriptions.TryAdd(accountId, obsStream);
         return obsStream;
+    }
+
+    public void Unsubscribe()
+    {
+        foreach (var kvp in Subscriptions)
+        {
+            kvp.Value.Unsubscribe();
+        }
+
+        Subscriptions.Clear();
     }
 }

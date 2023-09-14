@@ -26,15 +26,12 @@ public class ObservableStream<T> where T : IHeartbeatStreamable
     public ObservableStream(Stream stream)
     {
         _stream = stream;
-        //   _logger = logger;
 
         var obs = GetObservable();
         obs.Subscribe(x => OnChanged(new StreamEventArgs<T>(x)));
     }
 
-    // private IObservable<T> _obs;
     private readonly Stream _stream;
-    // private readonly IExtendedLogger _logger;
 
     public event NewValueEventHandler<T> NewValue;
 
@@ -51,14 +48,17 @@ public class ObservableStream<T> where T : IHeartbeatStreamable
     private IEnumerable<T> ReadLines(Stream stream)
     {
         using StreamReader reader = new StreamReader(stream);
-        while (!reader.EndOfStream)
+        while (reader.BaseStream.CanRead && !reader.EndOfStream)
         {
             string line = reader.ReadLine();
             T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            //_logger.Information("Stream observation: {0}", line);
-
             yield return obj;
         }
+    }
+
+    public void Unsubscribe()
+    {
+        NewValue = null;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Lamar;
+using LoonieTrader.Library.Caches;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
@@ -19,6 +20,9 @@ public static class ServiceLocator
 
             c.ForSingletonOf<ISettingsService>().Use<SettingsService>();
             c.ForSingletonOf<ILogger>().Use(exLogger);
+
+            c.ForSingletonOf<IPricesCache>().Use<PricesCache>();
+
 
             c.For<IHistoricalDataLoader>().Use<HistoricalDataLoader>();
             c.For<IFileReaderWriterService>().Use<FileReaderWriterService>();

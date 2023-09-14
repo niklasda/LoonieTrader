@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Reactive.Linq;
 using LoonieBot.Win.Locator;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -8,6 +9,7 @@ using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Responses;
 using LoonieTrader.Library.RestApi.Enums;
 using FileHelpers;
+using LoonieTrader.Library.Caches;
 using LoonieTrader.Library.HistoricalData;
 using LoonieTrader.Library.Services;
 using Serilog;
@@ -25,6 +27,7 @@ namespace LoonieBot.Win
             _settingsService = ServiceLocator.Container.GetInstance<ISettingsService>();
             _txReq = ServiceLocator.Container.GetInstance<ITransactionsRequester>();
 
+            _pricesCache = ServiceLocator.Container.GetInstance<IPricesCache>();
             _txStreamReq = ServiceLocator.Container.GetInstance<ITransactionsStreamingRequester>();
             _pricingStreamReq = ServiceLocator.Container.GetInstance<IPricingStreamingRequester>();
 
@@ -35,9 +38,16 @@ namespace LoonieBot.Win
             _positionReq = ServiceLocator.Container.GetInstance<IPositionsRequester>();
             _pricingReq = ServiceLocator.Container.GetInstance<IPricingRequester>();
             _tradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
+
+            //var list = new List<string>();
+            //list.Subscribe(add => Console.WriteLine());
+
+//            _pricesCache.Cache.Where(s=>s.Key=="EUR_USD")
+   //             .SelectMany(d=>d.Value).Subscribe(d => Console.WriteLine($"{d.Symbol}: trad"));
         }
 
         private readonly ILogger _logger;
+        private readonly IPricesCache _pricesCache;
         private readonly ISettingsService _settingsService;
         private readonly IAccountsRequester _accountReq;
         private readonly IInstrumentRequester _instrumentReq;
@@ -186,6 +196,8 @@ namespace LoonieBot.Win
             if (pr.EventType != AppProperties.HeartbeatName)
             {
                 string line = pr.ToString();
+                _pricesCache.CacheIt(pr);
+
                 if (InvokeRequired)
                 {
                     BeginInvoke(() => textBoxSymbol.Text += line);
@@ -256,7 +268,6 @@ namespace LoonieBot.Win
             var records = engine.ReadFile(Path.Combine(hdPath, "EURUSD2022.txt")); // todo hardcoded
 
 
-
             List<CandleDataRecord> recordList = records.ToList();
         }
 
@@ -264,13 +275,21 @@ namespace LoonieBot.Win
         {
             IFileReaderWriterService frw = new FileReaderWriterService();
             string hdPath = frw.GetHistoricalDataFolderPath();
-            
-            OpenExplorerInFolder(hdPath);
+
+            OpenExplorerInFolder(hdPath); 
         }
 
-        private void OpenExplorerInFolder(string root )
+        private void OpenExplorerInFolder(string root)
         {
             Process.Start("explorer.exe", root);
+        }
+
+        private void buttonDisconnect_Click(object sender, EventArgs e)
+        {
+            _txStreamReq.Unsubscribe();
+            _pricingStreamReq.Unsubscribe();
+
+
         }
     }
 }

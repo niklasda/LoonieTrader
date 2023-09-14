@@ -60,6 +60,7 @@ namespace LoonieTrader.Library.RestApi.Responses
             public string lastTransactionID { get; set; }
 
 
+            [NotNull]
             public override string ToString()
             {
                 var resp = new StringBuilder();

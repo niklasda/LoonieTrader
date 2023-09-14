@@ -6,4 +6,5 @@ namespace LoonieTrader.Library.RestApi.Interfaces;
 public interface ITransactionsStreamingRequester
 {
     ObservableStream<TransactionsResponse.Transaction> GetTransactionStream(string accountId);
+    void Unsubscribe();
 }

@@ -47,6 +47,8 @@ namespace LoonieTrader.Library.RestApi.Responses
             // public Unitsavailable unitsAvailable { get; set; }
 
             // needed here to support streaming
+            
+            [NotNull]
             public override string ToString()
             {
                 var resp = new StringBuilder();

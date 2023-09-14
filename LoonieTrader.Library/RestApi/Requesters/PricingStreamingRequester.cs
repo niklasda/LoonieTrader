@@ -19,14 +19,13 @@ public class PricingStreamingRequester : RequesterBase, IPricingStreamingRequest
     }
 
     // todo the stream does not support concurrent reads
-    private readonly ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>> _priceSubscriptions = new ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>>();
+    private ConcurrentDictionary<string, ObservableStream<PricesResponse.Price>> Subscriptions { get; } = new();
 
     public ObservableStream<PricesResponse.Price> GetPriceStream(string accountId, string instrument)
     {
-        if (_priceSubscriptions.ContainsKey(instrument))
+        if (Subscriptions.ContainsKey(instrument))
         {
-//                ObservableStream<PricesResponse.Price> obs;
-            if (_priceSubscriptions.TryGetValue(instrument, out var obs))
+            if (Subscriptions.TryGetValue(instrument, out var obs))
             {
                 return obs;
             }
@@ -38,7 +37,17 @@ public class PricingStreamingRequester : RequesterBase, IPricingStreamingRequest
         using var wc = GetAuthenticatedWebClient();
         Stream responseStream = wc.OpenRead(uri);
         var obsStream = new ObservableStream<PricesResponse.Price>(responseStream);
-        _priceSubscriptions.TryAdd(instrument, obsStream);
+        Subscriptions.TryAdd(instrument, obsStream);
         return obsStream;
+    }
+
+    public void Unsubscribe()
+    {
+        foreach (var kvp in Subscriptions)
+        {
+            kvp.Value.Unsubscribe();
+        }
+
+        Subscriptions.Clear();
     }
 }
