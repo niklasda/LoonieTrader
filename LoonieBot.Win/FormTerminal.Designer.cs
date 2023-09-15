@@ -77,7 +77,7 @@
             buttonAccount.TabIndex = 1;
             buttonAccount.Text = "Account";
             buttonAccount.UseVisualStyleBackColor = true;
-            buttonAccount.Click += buttonAccount_Click;
+            buttonAccount.Click += ButtonAccountClick;
             // 
             // textBoxAcc
             // 
@@ -110,7 +110,7 @@
             buttonSubscribe.TabIndex = 1;
             buttonSubscribe.Text = "&Subscribe";
             buttonSubscribe.UseVisualStyleBackColor = true;
-            buttonSubscribe.Click += buttonSubscribe_Click;
+            buttonSubscribe.Click += ButtonSubscribeClick;
             // 
             // textBoxTrx
             // 
@@ -130,7 +130,7 @@
             buttonDisconnect.TabIndex = 2;
             buttonDisconnect.Text = "Disconnect All";
             buttonDisconnect.UseVisualStyleBackColor = true;
-            buttonDisconnect.Click += buttonDisconnect_Click;
+            buttonDisconnect.Click += ButtonDisconnectClick;
             // 
             // buttonConnectDemo
             // 
@@ -140,7 +140,7 @@
             buttonConnectDemo.TabIndex = 3;
             buttonConnectDemo.Text = "Use Demo";
             buttonConnectDemo.UseVisualStyleBackColor = true;
-            buttonConnectDemo.Click += buttonConnectDemo_Click;
+            buttonConnectDemo.Click += ButtonConnectDemoClick;
             // 
             // buttonConnectLive
             // 
@@ -150,7 +150,7 @@
             buttonConnectLive.TabIndex = 4;
             buttonConnectLive.Text = "Use Live";
             buttonConnectLive.UseVisualStyleBackColor = true;
-            buttonConnectLive.Click += buttonConnectLive_Click;
+            buttonConnectLive.Click += ButtonConnectLiveClick;
             // 
             // textBoxSymbol
             // 
@@ -180,7 +180,7 @@
             buttonSymbol.TabIndex = 7;
             buttonSymbol.Text = "ËURUSD";
             buttonSymbol.UseVisualStyleBackColor = true;
-            buttonSymbol.Click += buttonSymbol_Click;
+            buttonSymbol.Click += ButtonSymbolClick;
             // 
             // buttonPos
             // 
@@ -191,7 +191,7 @@
             buttonPos.TabIndex = 7;
             buttonPos.Text = "Pos";
             buttonPos.UseVisualStyleBackColor = true;
-            buttonPos.Click += buttonPos_Click;
+            buttonPos.Click += ButtonPosClick;
             // 
             // statusStrip1
             // 
@@ -229,14 +229,14 @@
             loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
             loadCSVToolStripMenuItem.Size = new Size(139, 22);
             loadCSVToolStripMenuItem.Text = "Load CSV";
-            loadCSVToolStripMenuItem.Click += loadCSVToolStripMenuItem_Click;
+            loadCSVToolStripMenuItem.Click += LoadCsvToolStripMenuItemClick;
             // 
             // openFolderToolStripMenuItem
             // 
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
             openFolderToolStripMenuItem.Size = new Size(139, 22);
             openFolderToolStripMenuItem.Text = "Open Folder";
-            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
+            openFolderToolStripMenuItem.Click += OpenFolderToolStripMenuItemClick;
             // 
             // helpToolStripMenuItem
             // 
@@ -261,7 +261,7 @@
             buttonCandle.TabIndex = 10;
             buttonCandle.Text = "Candle";
             buttonCandle.UseVisualStyleBackColor = true;
-            buttonCandle.Click += buttonCandle_Click;
+            buttonCandle.Click += ButtonCandleClick;
             // 
             // FormTerminal
             // 

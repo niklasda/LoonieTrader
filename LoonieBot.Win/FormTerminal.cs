@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
-using System.Reactive.Linq;
+
 using LoonieBot.Win.Locator;
 using LoonieTrader.Library.Constants;
 using LoonieTrader.Library.Interfaces;
@@ -39,11 +39,8 @@ namespace LoonieBot.Win
             _pricingReq = ServiceLocator.Container.GetInstance<IPricingRequester>();
             _tradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
 
-            //var list = new List<string>();
-            //list.Subscribe(add => Console.WriteLine());
 
-//            _pricesCache.Cache.Where(s=>s.Key=="EUR_USD")
-   //             .SelectMany(d=>d.Value).Subscribe(d => Console.WriteLine($"{d.Symbol}: trad"));
+           
         }
 
         private readonly ILogger _logger;
@@ -59,20 +56,20 @@ namespace LoonieBot.Win
         private readonly ITransactionsRequester _txReq;
         private readonly ITransactionsStreamingRequester _txStreamReq;
 
-        private void buttonConnectDemo_Click(object sender, EventArgs e)
+        private void ButtonConnectDemoClick(object sender, EventArgs e)
         {
             _settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Practice.Key;
             PrintCurrentEnvironment();
         }
 
-        private void buttonConnectLive_Click(object sender, EventArgs e)
+        private void ButtonConnectLiveClick(object sender, EventArgs e)
         {
             _settingsService.CachedSettings.SelectedEnvironmentKey = Environments.Live.Key;
             PrintCurrentEnvironment();
         }
 
 
-        private void buttonAccount_Click(object sender, EventArgs e)
+        private void ButtonAccountClick(object sender, EventArgs e)
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
@@ -94,7 +91,7 @@ namespace LoonieBot.Win
         }
 
 
-        private void buttonSubscribe_Click(object sender, EventArgs e)
+        private void ButtonSubscribeClick(object sender, EventArgs e)
         {
             TestTransactionStream();
         }
@@ -160,7 +157,7 @@ namespace LoonieBot.Win
         }
 
 
-        private void buttonSymbol_Click(object sender, EventArgs e)
+        private void ButtonSymbolClick(object sender, EventArgs e)
         {
             TestPricingStream();
         }
@@ -221,7 +218,7 @@ namespace LoonieBot.Win
             }
         }
 
-        private void buttonPos_Click(object sender, EventArgs e)
+        private void ButtonPosClick(object sender, EventArgs e)
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
@@ -253,14 +250,14 @@ namespace LoonieBot.Win
             toolStripStatusLabel1.Text = $"Using {cfg.EnvironmentKey}";
         }
 
-        private void buttonCandle_Click(object sender, EventArgs e)
+        private void ButtonCandleClick(object sender, EventArgs e)
         {
             CandlesResponse candles = _instrumentReq.GetCandles("EUR_USD", CandlestickGranularity.S10, "BAM", 10);
             var asd = candles.ToString();
             Debug.WriteLine(asd);
         }
 
-        private void loadCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadCsvToolStripMenuItemClick(object sender, EventArgs e)
         {
             var engine = new FileHelperEngine<CandleDataRecord>();
             IFileReaderWriterService frw = new FileReaderWriterService();
@@ -271,7 +268,7 @@ namespace LoonieBot.Win
             List<CandleDataRecord> recordList = records.ToList();
         }
 
-        private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenFolderToolStripMenuItemClick(object sender, EventArgs e)
         {
             IFileReaderWriterService frw = new FileReaderWriterService();
             string hdPath = frw.GetHistoricalDataFolderPath();
@@ -284,7 +281,7 @@ namespace LoonieBot.Win
             Process.Start("explorer.exe", root);
         }
 
-        private void buttonDisconnect_Click(object sender, EventArgs e)
+        private void ButtonDisconnectClick(object sender, EventArgs e)
         {
             _txStreamReq.Unsubscribe();
             _pricingStreamReq.Unsubscribe();

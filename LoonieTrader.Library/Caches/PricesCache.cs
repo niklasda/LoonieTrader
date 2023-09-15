@@ -1,13 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Linq;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.Caches;
 
 public class PricesCache : IPricesCache
 {
-    private Dictionary<string, List<PricesResponse.Price>> Prices { get; } = new();
+    private Dictionary<string, ObservableCollection<PricesResponse.Price>> Prices { get; } = new();
 
-    public Dictionary<string, List<PricesResponse.Price>> Cache => Prices;
+    public Dictionary<string, ObservableCollection<PricesResponse.Price>> Cache => Prices;
 
     public void CacheIt(PricesResponse.Price pr)
     {
@@ -17,16 +21,36 @@ public class PricesCache : IPricesCache
         }
         else
         {
-            Prices.Add(pr.instrument, new List<PricesResponse.Price>());
+            var newList = new ObservableCollection<PricesResponse.Price>();
+            newList.CollectionChanged += OnCollectionChange;
+
+
+
+            Prices.Add(pr.instrument, newList);
 
             Prices[pr.instrument].Add(pr);
         }
     }
+
+    void OnCollectionChange(object sender, NotifyCollectionChangedEventArgs args)
+    {
+        if (args.Action == NotifyCollectionChangedAction.Add)
+        {
+
+            foreach (var item in args.NewItems.Cast<PricesResponse.Price> ())
+            {
+                Debug.WriteLine(item.ToString());
+
+            }
+
+        }
+    }
+
 }
 
 public interface IPricesCache
 {
-    Dictionary<string, List<PricesResponse.Price>> Cache { get; }
+    Dictionary<string, ObservableCollection<PricesResponse.Price>> Cache { get; }
 
     void CacheIt(PricesResponse.Price pr);
 }
