@@ -61,9 +61,9 @@
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(buttonAccount);
             groupBox1.Controls.Add(textBoxAcc);
-            groupBox1.Location = new Point(226, 18);
+            groupBox1.Location = new Point(226, 27);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(953, 189);
+            groupBox1.Size = new Size(953, 177);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Account";
@@ -71,7 +71,7 @@
             // buttonAccount
             // 
             buttonAccount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            buttonAccount.Location = new Point(861, 149);
+            buttonAccount.Location = new Point(861, 137);
             buttonAccount.Name = "buttonAccount";
             buttonAccount.Size = new Size(75, 23);
             buttonAccount.TabIndex = 1;
@@ -85,8 +85,8 @@
             textBoxAcc.Location = new Point(19, 33);
             textBoxAcc.Multiline = true;
             textBoxAcc.Name = "textBoxAcc";
-            textBoxAcc.ScrollBars = ScrollBars.Vertical;
-            textBoxAcc.Size = new Size(917, 110);
+            textBoxAcc.ScrollBars = ScrollBars.Both;
+            textBoxAcc.Size = new Size(917, 98);
             textBoxAcc.TabIndex = 0;
             // 
             // groupBox2
@@ -118,7 +118,7 @@
             textBoxTrx.Location = new Point(20, 31);
             textBoxTrx.Multiline = true;
             textBoxTrx.Name = "textBoxTrx";
-            textBoxTrx.ScrollBars = ScrollBars.Vertical;
+            textBoxTrx.ScrollBars = ScrollBars.Both;
             textBoxTrx.Size = new Size(1133, 189);
             textBoxTrx.TabIndex = 0;
             // 
@@ -158,18 +158,20 @@
             textBoxSymbol.Location = new Point(28, 225);
             textBoxSymbol.Multiline = true;
             textBoxSymbol.Name = "textBoxSymbol";
-            textBoxSymbol.ScrollBars = ScrollBars.Vertical;
+            textBoxSymbol.ScrollBars = ScrollBars.Both;
             textBoxSymbol.Size = new Size(504, 126);
             textBoxSymbol.TabIndex = 5;
             // 
             // textBoxPositions
             // 
             textBoxPositions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
-            textBoxPositions.Location = new Point(700, 268);
+            textBoxPositions.Location = new Point(652, 225);
             textBoxPositions.Multiline = true;
             textBoxPositions.Name = "textBoxPositions";
-            textBoxPositions.Size = new Size(360, 101);
+            textBoxPositions.ScrollBars = ScrollBars.Both;
+            textBoxPositions.Size = new Size(510, 113);
             textBoxPositions.TabIndex = 6;
+            textBoxPositions.WordWrap = false;
             // 
             // buttonSymbol
             // 
@@ -184,8 +186,8 @@
             // 
             // buttonPos
             // 
-            buttonPos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            buttonPos.Location = new Point(1087, 296);
+            buttonPos.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            buttonPos.Location = new Point(1087, 346);
             buttonPos.Name = "buttonPos";
             buttonPos.Size = new Size(75, 23);
             buttonPos.TabIndex = 7;

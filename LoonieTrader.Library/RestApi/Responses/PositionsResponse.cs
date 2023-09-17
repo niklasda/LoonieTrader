@@ -18,14 +18,14 @@ namespace LoonieTrader.Library.RestApi.Responses
 
             foreach (var position in positions)
             {
-                resp.AppendLine("Instrument: " + position.instrument);
-                resp.AppendLine("P/L: " + position.pl);
-                resp.AppendLine("resettable P/L: " + position.resettablePL);
-                resp.AppendLine("unrealized P/L: " + position.unrealizedPL);
-                resp.AppendLine("long units: " + position.@long.units);
-                resp.AppendLine("long P/L: " + position.@long.pl);
-                resp.AppendLine("short units: " + position.@short.units);
-                resp.AppendLine("short P/L: " + position.@short.pl);
+                resp.AppendLine(position.ToString());
+//                resp.AppendLine("P/L: " + position.pl);
+  //              resp.AppendLine("resettable P/L: " + position.resettablePL);
+    //            resp.AppendLine("unrealized P/L: " + position.unrealizedPL);
+      //          resp.AppendLine("long units: " + position.@long.units);
+        //        resp.AppendLine("long P/L: " + position.@long.pl);
+          //      resp.AppendLine("short units: " + position.@short.units);
+            //    resp.AppendLine("short P/L: " + position.@short.pl);
             }
 
             return resp.ToString();
@@ -39,6 +39,27 @@ namespace LoonieTrader.Library.RestApi.Responses
             public string resettablePL { get; set; }
             public Short @short { get; set; }
             public string unrealizedPL { get; set; }
+
+            public override string ToString()
+            {
+                var resp = new StringBuilder();
+         //       resp.Append("lastTransactionID: ");
+           //     resp.AppendLine(lastTransactionID);
+
+             //   foreach (var position in positions)
+               // {
+                    resp.Append("Instrument: " + instrument);
+                    resp.Append(", P/L: " + pl);
+                    resp.Append(", resettable P/L: " + resettablePL);
+                    resp.Append(", unrealized P/L: " + unrealizedPL);
+                    resp.Append(", long units: " + @long.units);
+                    resp.Append(", long P/L: " +  @long.pl);
+                    resp.Append(", short units: " + @short.units);
+                    resp.Append(", short P/L: " + @short.pl);
+               // }
+
+                return resp.ToString();
+            }
         }
 
         public class Long

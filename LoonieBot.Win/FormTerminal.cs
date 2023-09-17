@@ -40,7 +40,7 @@ namespace LoonieBot.Win
             _tradesReq = ServiceLocator.Container.GetInstance<ITradesRequester>();
 
 
-           
+
         }
 
         private readonly ILogger _logger;
@@ -228,14 +228,23 @@ namespace LoonieBot.Win
             if (!openPos.positions.Any())
             {
                 textBoxPositions.Text += $"{Environment.NewLine} {openPos.positions.Length} open positions";
-
+                foreach (var pos in openPos.positions)
+                {
+                    textBoxPositions.Text += $"{Environment.NewLine} {pos.ToString()} ";
+                }
             }
 
 
-            var resp = _positionReq.GetPositions(cfg.DefaultAccountId);
+            var oldPos = _positionReq.GetPositions(cfg.DefaultAccountId);
+            textBoxPositions.Text += $"{Environment.NewLine} {oldPos.positions.Length} positions";
 
-            textBoxPositions.Text += $"{Environment.NewLine} {resp.positions.Length} positions";
-
+            if (oldPos.positions.Any())
+            {
+                foreach (var pos in oldPos.positions)
+                {
+                    textBoxPositions.Text += $"{Environment.NewLine} {pos.ToString()}";
+                }
+            }
         }
 
         private void FormTerminal_Load(object sender, EventArgs e)
@@ -273,7 +282,7 @@ namespace LoonieBot.Win
             IFileReaderWriterService frw = new FileReaderWriterService();
             string hdPath = frw.GetHistoricalDataFolderPath();
 
-            OpenExplorerInFolder(hdPath); 
+            OpenExplorerInFolder(hdPath);
         }
 
         private void OpenExplorerInFolder(string root)
