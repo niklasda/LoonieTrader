@@ -159,16 +159,17 @@ namespace LoonieBot.Win
 
         private void ButtonSymbolClick(object sender, EventArgs e)
         {
-            TestPricingStream();
+            TestPricingStream("EUR_USD");
         }
 
-        private void TestPricingStream()
+        private void TestPricingStream(string symbols)
         {
             var cfg = _settingsService.CachedSettings.SelectedEnvironment;
 
             try
             {
-                ObservableStream<PricesResponse.Price> pss = _pricingStreamReq.GetPriceStream(cfg.DefaultAccountId, "EUR_USD,USD_CAD");
+                //"EUR_USD,USD_CAD"
+                ObservableStream<PricesResponse.Price> pss = _pricingStreamReq.GetPriceStream(cfg.DefaultAccountId, symbols);
                 pss.NewValue += Pss_NewPrice;
             }
             catch (WebException wex)
@@ -296,6 +297,17 @@ namespace LoonieBot.Win
             _pricingStreamReq.Unsubscribe();
 
 
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Yo");
+        }
+
+        private void buttonChart_Click(object sender, EventArgs e)
+        {
+            FormChart chart = new FormChart();
+            chart.Show();
         }
     }
 }

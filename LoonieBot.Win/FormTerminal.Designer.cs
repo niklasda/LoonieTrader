@@ -50,6 +50,7 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             buttonCandle = new Button();
+            buttonChart = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -229,14 +230,14 @@
             // loadCSVToolStripMenuItem
             // 
             loadCSVToolStripMenuItem.Name = "loadCSVToolStripMenuItem";
-            loadCSVToolStripMenuItem.Size = new Size(139, 22);
+            loadCSVToolStripMenuItem.Size = new Size(180, 22);
             loadCSVToolStripMenuItem.Text = "Load CSV";
             loadCSVToolStripMenuItem.Click += LoadCsvToolStripMenuItemClick;
             // 
             // openFolderToolStripMenuItem
             // 
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            openFolderToolStripMenuItem.Size = new Size(139, 22);
+            openFolderToolStripMenuItem.Size = new Size(180, 22);
             openFolderToolStripMenuItem.Text = "Open Folder";
             openFolderToolStripMenuItem.Click += OpenFolderToolStripMenuItemClick;
             // 
@@ -251,8 +252,9 @@
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeyDisplayString = "";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "&About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // buttonCandle
             // 
@@ -265,11 +267,23 @@
             buttonCandle.UseVisualStyleBackColor = true;
             buttonCandle.Click += ButtonCandleClick;
             // 
+            // buttonChart
+            // 
+            buttonChart.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonChart.Location = new Point(553, 257);
+            buttonChart.Name = "buttonChart";
+            buttonChart.Size = new Size(75, 23);
+            buttonChart.TabIndex = 11;
+            buttonChart.Text = "Chart...";
+            buttonChart.UseVisualStyleBackColor = true;
+            buttonChart.Click += buttonChart_Click;
+            // 
             // FormTerminal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1191, 687);
+            Controls.Add(buttonChart);
             Controls.Add(buttonCandle);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
@@ -322,5 +336,6 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem loadCSVToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem;
+        private Button buttonChart;
     }
 }

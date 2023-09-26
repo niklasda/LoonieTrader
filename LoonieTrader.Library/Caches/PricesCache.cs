@@ -1,17 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using LoonieTrader.Library.RestApi.Responses;
 
 namespace LoonieTrader.Library.Caches;
 
-public class PricesCache : IPricesCache
+public class PricesCache : IPricesCache//, IPricesCache1
 {
     private Dictionary<string, ObservableCollection<PricesResponse.Price>> Prices { get; } = new();
 
     public Dictionary<string, ObservableCollection<PricesResponse.Price>> Cache => Prices;
+
+    public event EventHandler<PriceEventArgs> NewPrice ;//{ add; remove; }
 
     public void CacheIt(PricesResponse.Price pr)
     {
@@ -37,8 +41,9 @@ public class PricesCache : IPricesCache
         if (args.Action == NotifyCollectionChangedAction.Add)
         {
 
-            foreach (var item in args.NewItems.Cast<PricesResponse.Price> ())
+            foreach (var item in args.NewItems.Cast<PricesResponse.Price>())
             {
+                NewPrice?.Invoke(this, new PriceEventArgs() { date=item.time, ask = item.asks.First().price });
                 Debug.WriteLine(item.ToString());
 
             }
@@ -52,5 +57,13 @@ public interface IPricesCache
 {
     Dictionary<string, ObservableCollection<PricesResponse.Price>> Cache { get; }
 
+    event EventHandler<PriceEventArgs> NewPrice;
+
     void CacheIt(PricesResponse.Price pr);
+}
+
+public class PriceEventArgs : EventArgs
+{
+    public string date;
+    public string ask;
 }
