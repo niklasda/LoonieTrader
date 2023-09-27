@@ -64,6 +64,11 @@ public interface IPricesCache
 
 public class PriceEventArgs : EventArgs
 {
-    public string date;
-    public string ask;
+    public string date { get; set; }
+    public string ask { get; set; }
+
+    public override string ToString()
+    {
+        return $"{date}: {ask}";
+    }
 }

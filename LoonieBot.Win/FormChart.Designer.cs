@@ -37,7 +37,7 @@
             // 
             // chart1
             // 
-            chart1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            chart1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             chartArea1.Name = "ChartArea1";
             chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -48,7 +48,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             chart1.Series.Add(series1);
-            chart1.Size = new Size(776, 325);
+            chart1.Size = new Size(776, 381);
             chart1.TabIndex = 0;
             chart1.Text = "chart1";
             // 

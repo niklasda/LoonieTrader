@@ -55,6 +55,7 @@ namespace LoonieBot.Win
         private readonly IPricingStreamingRequester _pricingStreamReq;
         private readonly ITransactionsRequester _txReq;
         private readonly ITransactionsStreamingRequester _txStreamReq;
+        private readonly FormChart _chart = new FormChart();
 
         private void ButtonConnectDemoClick(object sender, EventArgs e)
         {
@@ -306,8 +307,9 @@ namespace LoonieBot.Win
 
         private void buttonChart_Click(object sender, EventArgs e)
         {
-            FormChart chart = new FormChart();
-            chart.Show();
+            //FormChart chart = new FormChart();
+            _chart.Show();
+            _chart.BringToFront();
         }
     }
 }
