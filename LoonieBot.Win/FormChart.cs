@@ -43,6 +43,8 @@ namespace LoonieBot.Win
             //}
 
             chart1.Series["Series1"].ChartType = SeriesChartType.FastLine;
+            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 1.0491;
+            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 1.0482;
 
         }
 
@@ -59,15 +61,28 @@ namespace LoonieBot.Win
 
             // double yValue = 50.0;
             // Random random = new Random();
-            //    for (int pointIndex = 0; pointIndex < 20; pointIndex++)
-            //  {
-            //    yValue = yValue + (random.NextDouble() * 10.0 - 5.0);
+            // for (int pointIndex = 0; pointIndex < 20; pointIndex++)
+            // {
+            // yValue = yValue + (random.NextDouble() * 10.0 - 5.0);
 
 
             //  CultureInfo culture = new CultureInfo("en-US");
             double yValue = double.Parse(e.ask, _culture);
 
             chart1.Series["Series1"].Points.AddY(yValue);
+
+            var yAxis = chart1.ChartAreas["ChartArea1"].AxisY;
+
+            if (_isFirst)
+            {
+                _isFirst = false;
+                yAxis.Maximum = yValue + 0.0001;
+                yAxis.Minimum = yValue - 0.0001;
+            }
+
+            yAxis.Maximum = Math.Max(yAxis.Maximum, yValue+0.0001);
+            yAxis.Minimum = Math.Min(yAxis.Minimum, yValue-0.0001);
+
             //}
 
             //           chart1.Series["Series1"].ChartType = SeriesChartType.FastLine;
@@ -75,6 +90,7 @@ namespace LoonieBot.Win
 
         // private readonly System.Windows.Forms.Timer _timer;
         private readonly ILogger _logger;
+        private bool _isFirst = true;
         private readonly ISettingsService _settingsService;
         private readonly IPricesCache _pricesCache;
         private readonly CultureInfo _culture = new CultureInfo("en-US");
