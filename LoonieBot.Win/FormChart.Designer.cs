@@ -48,7 +48,7 @@
             chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
-            series1.Name = "Series1";
+            series1.Name = "Symbol";
             chart1.Series.Add(series1);
             chart1.Size = new Size(776, 381);
             chart1.TabIndex = 0;
@@ -61,7 +61,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(chart1);
             Name = "FormChart";
-            Text = "FormChart";
+            Text = "Chart";
             FormClosing += FormChart_FormClosing;
             Load += FormChart_Load;
             ((System.ComponentModel.ISupportInitialize)chart1).EndInit();

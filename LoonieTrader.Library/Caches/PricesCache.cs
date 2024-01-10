@@ -43,7 +43,9 @@ public class PricesCache : IPricesCache//, IPricesCache1
 
             foreach (var item in args.NewItems.Cast<PricesResponse.Price>())
             {
-                NewPrice?.Invoke(this, new PriceEventArgs() { date=item.time, ask = item.asks.First().price });
+                NewPrice?.Invoke(this, new PriceEventArgs() { date = item.time, 
+                                                    symbal = item.instrument, 
+                                                    ask = item.asks.First().price });
                 Debug.WriteLine(item.ToString());
 
             }
@@ -66,9 +68,10 @@ public class PriceEventArgs : EventArgs
 {
     public string date { get; set; }
     public string ask { get; set; }
+    public string symbal { get; set; }
 
     public override string ToString()
     {
-        return $"{date}: {ask}";
+        return $"{date}: {symbal}: {ask}";
     }
 }
