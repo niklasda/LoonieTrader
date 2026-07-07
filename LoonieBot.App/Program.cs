@@ -3,6 +3,7 @@ using LoonieTrader.Library.Interfaces;
 using LoonieTrader.Library.RestApi.Interfaces;
 using LoonieTrader.Library.RestApi.Requesters;
 using LoonieBot.App.Locator;
+using Serilog;
 
 namespace LoonieBot.App;
 
@@ -44,7 +45,7 @@ public static class Program
             var cfgs = container.GetInstance<ISettingsService>();
             var cfg = cfgs.CachedSettings.SelectedEnvironment;
 
-            IExtendedLogger logger = container.GetInstance<IExtendedLogger>();
+            ILogger logger = container.GetInstance<ILogger>();
 
 
 
