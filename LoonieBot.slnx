@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/.misc/">
+    <File Path=".gitignore" />
+    <File Path="readme.md" />
+    <File Path="todo.md" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="LoonieTrader.Library.Tests/LoonieTrader.Library.Tests.csproj" />
+  </Folder>
+  <Project Path="LoonieBot.Win/LoonieBot.Win.csproj" />
+  <Project Path="LoonieTrader.Library/LoonieTrader.Library.csproj" />
+  <Properties Name="ExtensibilityGlobals" Scope="PostLoad">
+    <Property Name="EnterpriseLibraryConfigurationToolBinariesPath" Value="packages\Unity.2.1.505.0\lib\NET35" />
+  </Properties>
+</Solution>
