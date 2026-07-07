@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using JetBrains.Annotations;
@@ -54,22 +55,22 @@ public abstract class RequesterBase
 
     protected ILogger Logger => _logger;
 
-    private WebClient _authWc;
+    private HttpClient _authWc;
     //private LoonieWebClient _anonWc;
 
-    protected WebClient GetAuthenticatedWebClient()
+    protected HttpClient GetAuthenticatedWebClient()
     {
         if (_authWc == null)
         {
-            _authWc = new WebClient();
-            _authWc.Headers.Add("Authorization", BearerApiKey);
-            _authWc.Headers.Add("Content-Type", "application/json");
+            _authWc = new HttpClient();
+            _authWc.DefaultRequestHeaders.Add("Authorization", BearerApiKey);
+            _authWc.DefaultRequestHeaders.Add("Content-Type", "application/json");
         }
 
-        if (_authWc.Headers.Get("Authorization") != BearerApiKey)
-        {
-            _authWc.Headers.Set("Authorization", BearerApiKey);
-        }
+        //if (_authWc.DefaultRequestHeaders.GetValue("Authorization") != BearerApiKey)
+        //{
+        //    _authWc.DefaultRequestHeaders.Set("Authorization", BearerApiKey);
+        //}
 
         return _authWc;
     }
@@ -100,15 +101,15 @@ public abstract class RequesterBase
     }
 
     [StringFormatMethod("urlFormat")]
-    protected string GetData(WebClient wc, string urlFormat, params object[] args)
+    protected string GetData(HttpClient wc, string urlFormat, params object[] args)
     {
         var address = string.Format(urlFormat, args);
 
         try
         {
             //var address = string.Format(urlFormat, args);
-            var responseBytes = wc.DownloadData(address);
-            var responseString = Encoding.UTF8.GetString(responseBytes);
+            var responseString = wc.GetStringAsync(address).Result;
+            //   var responseString = Encoding.UTF8.GetString(responseBytes);
             return responseString;
         }
         catch (Exception ex)
@@ -119,15 +120,18 @@ public abstract class RequesterBase
     }
 
     [StringFormatMethod("urlFormat")]
-    protected string PostData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+    protected string PostData(HttpClient wc, string jsonData, string urlFormat, params object[] args)
     {
         var address = string.Format(urlFormat, args);
 
         try
         {
-            var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-            var responseBytes = wc.UploadData(address, HttpMethod.Post.Method, dataBytes);
-            var responseString = Encoding.UTF8.GetString(responseBytes);
+
+         //   var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+            var c = JsonContent.Create(jsonData);
+            //          HttpContent c= new JsonContent(dataBytes);
+            var responseBytes = wc.PostAsync(address, c).Result;
+            var responseString = responseBytes.Content.ReadAsStringAsync().Result;
             return responseString;
         }
         catch (Exception ex)
@@ -138,26 +142,29 @@ public abstract class RequesterBase
     }
 
     [StringFormatMethod("urlFormat")]
-    protected string PutData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+    protected string PutData(HttpClient wc, string jsonData, string urlFormat, params object[] args)
     {
         var address = string.Format(urlFormat, args);
 
         try
         {
-            byte[] responseBytes;
+            string responseString;
             if (jsonData != null)
             {
-                var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-                responseBytes = wc.UploadData(address, HttpMethod.Put.Method, dataBytes);
+               // var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+                var c = JsonContent.Create(jsonData);
+                responseString = wc.PutAsync(address, c).Result.Content.ReadAsStringAsync().Result;
             }
             else
             {
                 //var dataBytes = Encoding.UTF8.GetBytes(jsonData);
                 // var address = string.Format(urlFormat, args);
-                responseBytes = wc.UploadData(address, HttpMethod.Put.Method, new byte[0]);
+                //var c = JsonContent.Create();
+
+                responseString = wc.PutAsync(address, null).Result.Content.ReadAsStringAsync().Result;
             }
 
-            var responseString = Encoding.UTF8.GetString(responseBytes);
+ //           var responseString = Encoding.UTF8.GetString(responseBytes);
             return responseString;
         }
         catch (Exception ex)
@@ -168,14 +175,16 @@ public abstract class RequesterBase
     }
 
     [StringFormatMethod("urlFormat")]
-    protected string PatchData(WebClient wc, string jsonData, string urlFormat, params object[] args)
+    protected string PatchData(HttpClient wc, string jsonData, string urlFormat, params object[] args)
     {
         var address = string.Format(urlFormat, args);
         try
         {
-            var dataBytes = Encoding.UTF8.GetBytes(jsonData);
-            var responseBytes = wc.UploadData(address, "PATCH", dataBytes);
-            var responseString = Encoding.UTF8.GetString(responseBytes);
+            // var dataBytes = Encoding.UTF8.GetBytes(jsonData);
+            var c = JsonContent.Create(jsonData);
+            // HttpContent content = new ByteArrayContent(dataBytes);
+            var responseBytes = wc.PatchAsync(address, c).Result;
+            var responseString = responseBytes.Content.ReadAsStringAsync().Result;
             return responseString;
         }
         catch (Exception ex)
@@ -185,9 +194,9 @@ public abstract class RequesterBase
         }
     }
 
-    protected T JsonDeserialize<T>(string jsonString) 
+    protected T JsonDeserialize<T>(string jsonString)
     {
-        return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true } );
-            
+        return JsonSerializer.Deserialize<T>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
     }
 }

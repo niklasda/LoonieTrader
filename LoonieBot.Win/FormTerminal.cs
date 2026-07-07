@@ -110,10 +110,10 @@ namespace LoonieBot.Win
             catch (WebException wex)
             {
                 Console.WriteLine(wex);
-                using var str = new StreamReader(wex.Response.GetResponseStream());
-                var content = str.ReadToEnd();
-                Debug.WriteLine(wex.Response.ResponseUri.ToString());
-                Debug.WriteLine(content);
+                //using var str = new StreamReader(wex.Response.GetResponseStream());
+                //var content = str.ReadToEnd();
+                Debug.WriteLine(wex.ToString());
+                //Debug.WriteLine(content);
             }
             catch (Exception ex)
             {
@@ -176,10 +176,10 @@ namespace LoonieBot.Win
             catch (WebException wex)
             {
                 Console.WriteLine(wex);
-                using var str = new StreamReader(wex.Response.GetResponseStream());
-                var content = str.ReadToEnd();
-                Debug.WriteLine(wex.Response.ResponseUri.ToString());
-                Debug.WriteLine(content);
+                //using var str = new StreamReader(wex.Response.GetResponseStream());
+                //var content = str.ReadToEnd();
+                Debug.WriteLine(wex.ToString());
+                //Debug.WriteLine(content);
             }
             catch (Exception ex)
             {

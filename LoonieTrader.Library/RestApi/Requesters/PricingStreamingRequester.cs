@@ -35,7 +35,7 @@ public class PricingStreamingRequester : RequesterBase, IPricingStreamingRequest
         var uri = new Uri(string.Format(urlPricesStream, accountId, instrument));
 
         using var wc = GetAuthenticatedWebClient();
-        Stream responseStream = wc.OpenRead(uri);
+        Stream responseStream = wc.GetAsync(uri).Result.Content.ReadAsStreamAsync().Result;
         var obsStream = new ObservableStream<PricesResponse.Price>(responseStream);
         Subscriptions.TryAdd(instrument, obsStream);
         return obsStream;

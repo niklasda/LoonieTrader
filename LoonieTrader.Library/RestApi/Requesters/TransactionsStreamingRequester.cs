@@ -34,7 +34,7 @@ public class TransactionsStreamingRequester : RequesterBase, ITransactionsStream
         var uri = new Uri(string.Format(urlTransactionStream, accountId));
 
         using var wc = GetAuthenticatedWebClient();
-        Stream responseStream = wc.OpenRead(uri);
+        Stream responseStream = wc.GetAsync(uri).Result.Content.ReadAsStreamAsync().Result;
         var obsStream = new ObservableStream<TransactionsResponse.Transaction>(responseStream);
         Subscriptions.TryAdd(accountId, obsStream);
         return obsStream;

@@ -51,9 +51,12 @@ public class ObservableStream<T> where T : IHeartbeatStreamable
         while (reader.BaseStream.CanRead && !reader.EndOfStream)
         {
             string line = reader.ReadLine();
-            T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            if (line != null)
+            {
+                T obj = JsonSerializer.Deserialize<T>(line, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
-            yield return obj;
+                yield return obj;
+            }
         }
     }
 

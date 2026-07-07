@@ -40,16 +40,19 @@ public class PricesCache : IPricesCache//, IPricesCache1
     {
         if (args.Action == NotifyCollectionChangedAction.Add)
         {
-
-            foreach (var item in args.NewItems.Cast<PricesResponse.Price>())
+            if (args.NewItems != null)
             {
-                NewPrice?.Invoke(this, new PriceEventArgs() { date = item.time, 
-                                                    symbal = item.instrument, 
-                                                    ask = item.asks.First().price });
-                Debug.WriteLine(item.ToString());
-
+                foreach (var item in args.NewItems.Cast<PricesResponse.Price>())
+                {
+                    NewPrice?.Invoke(this, new PriceEventArgs()
+                    {
+                        date = item.time,
+                        symbal = item.instrument,
+                        ask = item.asks.First().price
+                    });
+                    Debug.WriteLine(item.ToString());
+                }
             }
-
         }
     }
 

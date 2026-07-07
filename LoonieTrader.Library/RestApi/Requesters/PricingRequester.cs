@@ -32,9 +32,9 @@ public class PricingRequester : RequesterBase, IPricingRequester
 
         using (var wc = GetAuthenticatedWebClient())
         {
-            var responseBytes = wc.DownloadData(string.Format(urlPrices, accountId, instrument, "2016-08-05T04:00:00.000000Z"));
+            var responseBytes = wc.GetAsync(string.Format(urlPrices, accountId, instrument, "2016-08-05T04:00:00.000000Z")).Result;
 
-            var responseString = Encoding.UTF8.GetString(responseBytes);
+            var responseString = responseBytes.Content.ReadAsStringAsync().Result;
             return responseString;
         }
     }

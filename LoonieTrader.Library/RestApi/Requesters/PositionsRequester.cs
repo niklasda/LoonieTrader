@@ -1,4 +1,5 @@
 ﻿
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -80,8 +81,8 @@ public class PositionsRequester : RequesterBase, IPositionsRequester
         Logger.Debug(parametersJson.PrettyPrintJson());
         var parametersBytes = Encoding.UTF8.GetBytes(parametersJson);
 
-        var responseBytes = wc.UploadData(string.Format(urlInstrumentClose, accountId, instrument), "PUT", parametersBytes);
-        var responseString = Encoding.UTF8.GetString(responseBytes);
+        var responseString = wc.PutAsync(string.Format(urlInstrumentClose, accountId, instrument), JsonContent.Create(parametersJson)).Result.Content.ReadAsStringAsync().Result;
+        //var responseString = Encoding.UTF8.GetString(responseBytes);
         Logger.Debug(responseString.PrettyPrintJson());
 
         //       using (var input = new StringReader(responseString))
